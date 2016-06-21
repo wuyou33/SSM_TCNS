@@ -1,0 +1,793 @@
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[10pt,twocolumn,twoside]{IEEEtran}
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+% *** FONT AND LANGUAGE PACKAGES ***
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{mathrsfs} 
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+
+\usepackage[natbib=true,backend=bibtex,style=ieee,
+firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bibencoding=utf8]{biblatex}
+\addbibresource{../../../Library.bib}
+\AtBeginBibliography{\small}
+
+% !!!! IF FILE NOT FOUND DOWNLOAD IT FROM
+%https://www.dropbox.com/s/r00o9lw76cksxvj/Library.bib?dl=1
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  \usepackage{xcolor}
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  \graphicspath{{./imgs}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+  
+  \usepackage{epstopdf} % Must be loaded right after graphicx
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+% *** CROSS-REF PACKAGES ***
+
+\usepackage{hyperref}% backref linktocpage pagebackref
+%
+\hypersetup{
+% Uncomment the line below to remove all links (to references, figures, tables, etc)
+%draft, 
+colorlinks=true, linktocpage=true, pdfstartpage=1, pdfstartview=FitV,
+% Uncomment the line below if you want to have black links (e.g. for printing black and white)
+%colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV, 
+breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,
+plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,
+hypertexnames=true, pdfhighlight=/O, urlcolor=red!50!black, linkcolor=blue!75!black, citecolor=green!50!black,
+%
+% PDF file meta-information
+%
+pdftitle={},
+pdfauthor={},
+pdfsubject={},
+pdfkeywords={},
+pdfcreator={},
+pdfproducer={LaTeX}
+}
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+% *** THEOREM ENVIRONMENTS ***
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/pkg/endfloat
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\usepackage{todonotes}
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Structured Nonlinear Feedback Design with Separable Control-Contraction Metrics}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Humberto~Stein Shiromoto,~\IEEEmembership{Member,~IEEE,}
+        Ian~R. Manchester,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
+\thanks{Both authors are with the Department of Aerospace, Mechanical, and Mechatronic Engineering and The Australian Centre for Field Robotics. Address: The
+Rose Street Building J04, The University of Sydney, NSW 2006, Australia. Corresponding author: humberto.shiromoto@ieee.org.}% <-this % stops a space
+}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+IEEE, IEEEtran, journal, \LaTeX, paper, template.
+\end{IEEEkeywords}
+
+
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+
+For linear systems, the problem of design controllers with a prescribed structure is known to be NP-hard \cite{BlondelTsitsiklis1997}. Consequently, for nonlinear systems, it is \emph{at least} NP-hard.
+
+\paragraph{Overview.} The motivation and background needed for this paper are stated in Section \ref{sec:Background and Motivation}. The problem under consideration is formalized in Section \ref{sec:Problem Formulation}. Section \ref{sec:Results} presents the result of this paper. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. The proofs of the results are provided in Section \ref{sec:Proof of the Results}. Section \ref{sec:Conclusion} collects final remarks.
+
+\paragraph{Notation.} Let $N\in\mathbb{N}$ be a constant value. The notation $\mathbb{N}_{[1,N]}$ stands for the set $\{i\in\mathbb{N}:1\leq i\leq N\}$. Let $c\in\mathbb{R}$ be a constant value. The notation $\mathbb{R}_{[1,c]}$ (resp. $\mathbb{R}_{\diamond c}$) stands for the set $\{x\in\mathbb{R}:1\leq x\leq c\}$ (resp.  $\{x\in\mathbb{R}:x\diamond c\}$, where $\diamond$ is a comparison operator, i.e., $\diamond\in\{<,\geq,=,\ \text{etc}\}$). A matrix $M\in\mathbb{R}^{n\times n}$ with zero elements except (possibly) those  $m_{ii},\ldots,m_{nn}$ on the diagonal is denoted as $\mathbin{\mathtt{diag}}(m_{ii},\ldots,m_{nn})$. The notation $M\succ 0$ (resp. $M\succeq 0$) stands for $M$ being positive (resp. semi) definite.
+
+The notation $\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ stands for the class of functions $u:\mathbb{R}\to\mathbb{R}^m$ that are locally essentially bounded. Given differentiable functions $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $f:\mathbb{R}^n\to\mathbb{R}^n$ the notation $\partial_fM$ stands for matrix with dimension $n\times n$ and with $(i,j)$ element given by $\frac{\partial m_{ij}}{\partial x}(x)f(x)$.
+
+
+\subsection{Problem Formulation and Motivation}\label{sec:Problem Formulation and Motivation}
+
+\noindent{\itshape Class of systems.} Consider the class of systems described by the differential equation
+\begin{equation}\label{eq:general system}
+	\dot{x}(t)=f(x(t))+B(x(t))u(t),	
+\end{equation}
+where, for positive times $t$, the \emph{system state} $x(t)$ and the \emph{system input variable} $u(t)$ evolve in the Euclidean spaces $\mathbb{R}^n$ and $\mathbb{R}^m$, respectively. The functions $f:\mathbb{R}^n\to\mathbb{R}^n$ and $B:\mathbb{R}^n\to\mathbb{R}^m$ are assumed to be smooth, i.e., infinitely differentiable and satisfy $f(0)=0$ and $B(0)=0$. From now on the dependence of on the time $t$ will be omitted.
+
+A function $u^\ast\in\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ is said to be an \emph{input signal or control for \eqref{eq:general system}}. For such a control for \eqref{eq:general system}, and for every \emph{initial condition} $x^\ast$, there exists a unique solution to \eqref{eq:general system} (\cite{Teschl2012}) that is denoted by $X(t,x^\ast,u^\ast)$, when computed at time $t$. This solution is defined over an open interval $(\underline{t},\overline{t})$, and it is said to be \emph{forward complete} if $\overline{t}=+\infty$.
+
+{\itshape Stabilizability Notion.} A forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system} is said to be  \emph{globally exponentially uniformly stabilizable} with \emph{rate} $\lambda>0$ if there exist a constant value $C>0$ and a feedback law $k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\to\mathbb{R}^m$, denoted as $k^\ast(\cdot,\cdot,X^\ast,u^\ast)$, such that the inequality
+\begin{equation}\label{eq:global exponential uniform stabilizability}
+	\left|X(t,x^\ast,u^\ast)-X(t,x,k^\ast)\right|\leq Ce^{-\lambda t}|x^\ast-x|
+\end{equation}
+holds true, for every $t\geq0$, and for every $x\in\mathbb{R}^n$ (\cite{Manchester2014a}). Note that this not is a particular case of \emph{incremental asymptotic stability}, the interested reader may address \cite{Forni2014,Forni2014a} for further information on this stability concept.
+
+Note that a stronger condition than the global exponential stabilizability of a particular solution is the requirement that every forward complete solution of the system is globally exponentially stabilizable. This concept is formalized in the following definition recalled from \cite{Manchester2014a}.
+
+\begin{definition}\label{def:US}
+	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} that globally exponentially uniformly stabilizes any forward complete solution $X^\ast(\cdot,\cdot,u^\ast)$ to \eqref{eq:global exponential uniform stabilizability}.
+\end{definition}
+
+Note that Definition \ref{def:US} reduces to the notion of stabilizability of equilibria, when $x^\ast=0$ (for further reading on stabilizability, the reader may address \cite{Bacciotti:1992}).
+
+For each component $i\in\mathbb{N}_{[1,m]}$ of the feedback law $k^\ast=(k_1^\ast,\ldots,k_m^\ast)^\top$, denote the set of indexes
+\begin{equation*}
+	\mathscr{K}(i)=\left\{j\in\mathbb{N}_{[1,n]}:k_i^\ast\ \text{depends explicitely on}\ x_j \right\}.
+\end{equation*}
+The definition of the set $\mathscr{K}(\cdot)$ encompasses different structures. For instance, when $m=n$ full decentralization implies that, for each index $i\in\mathbb{N}_{[1,n]}$, the component $k_i^\ast$ of the function $k^\ast$ depends only on $x_i$. This is formalized by letting $\mathscr{K}(i)=\{i\}$. Moreover, at points where $k_i^\ast$ is differentiable, the explicit dependence on $x_i$ means that, for every index $j\in\mathbb{N}_{[1,n]}$ with $j\neq i$, $\partial k_i^\ast/\partial x_j\equiv0$.
+
+Define also the set of feedback laws
+\begin{equation*}
+	\Xi=\left\{k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\to\mathbb{R}^m:k_i^\ast\ \text{has the property}\ \mathscr{K}(i)\right\}.
+\end{equation*}
+
+At this point, the problem under consideration in this paper can be stated as follows.
+
+\begin{problem}\label{problem formulation}\hfill
+	\begin{enumerate}
+		\item Find a feedback law $k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\to\mathbb{R}^m$ for system \eqref{eq:general system} that globally exponentially uniformly stabilizes any forward complete solution $X(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system};
+		
+		\item The function $k^\ast=(k_1^\ast,\ldots,k_m^\ast)$ belongs to the set $\Xi$.
+		\end{enumerate}
+\end{problem}
+
+
+
+The property described in item 2 of Problem \ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology) for network systems rendering it universally stabilizable. Consider the network composed of systems described by the following equation.
+\begin{equation}\label{eq:example system:i}
+	\dot{x}_i=??
+\end{equation}
+Section \ref{sec:Illustration} shows how the approach proposed in this work is employed to design a decentralized controller for the network composed by interconnections of system \eqref{eq:example system:i}.
+
+\subsection{Background}
+
+{\itshape Riemannian metrics and differential formulation.} A Riemannian metric is a positive-definite bilinear form that depends smoothly on $x\in\mathbb{R}^n$. In a particular coordinate system, for any pair of vectors $\delta_0,\delta_1$ of $\mathbb{R}^n$ the metric is defined as the inner product $\langle\delta_0,\delta_{ 1}\rangle_x=\delta_0^\top M(x)\delta_1$, where $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ is a smooth function. Consequently, local notions of norm $|\delta_x|_x=\sqrt{\langle\delta_x,\delta_x\rangle_x}$ and orthogonality $\langle\delta_0,\delta_1\rangle_x=0$ can be defined. The metric is said to be \emph{bounded} if there exists constant values $\underline{m}>0$ and $\overline{m}>0$ such that, for every $x\in\mathbb{R}^n$, $\underline{m}I_n\leq M(x)\leq \overline{m}I_n$, where $I_n\in\mathbb{R}^{n\times n}$ is the identity matrix.
+
+Let $\Gamma(x_0,x_1)$ be the set of piecewise-smooth curves $\gamma:[0,1]\to\mathbb{R}^n$ connecting $x_0=\gamma(0)$ to $x_1=\gamma(1)$. The \emph{length} and \emph{energy} of $\gamma$ are, respectively, defined by the values
+\begin{equation*}
+	\ell(\gamma)=\int_0^1|\gamma'(s)|_{\gamma(s)}\,ds\ \text{and}\ e(\gamma)=\int_0^1|\gamma'(s)|_{\gamma(s)}^2\,ds.
+\end{equation*}
+The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{dist}}(x_0,x_1)$, is defined as the curve with the smallest length connecting them. This curve is said to be a \emph{geodesic} and it is the solution to the optimization problem.
+\begin{equation}\label{eq:geodesic formulation}
+	\mathbin{\mathtt{dist}}(x_0,x_1)=\inf_{\gamma\in\Gamma(x_0,x_1)}\ell(\gamma).
+\end{equation}
+
+A suitable framework to deal with exponential convergence of pair of solutions to \eqref{eq:general system} is provided by the \emph{differential} (also known as variational or prolonged) dynamical system
+\begin{equation}\label{eq:general system:differential}
+	\dot{\delta}_x=A(x,u)\delta_x+B(x)\delta_u,
+\end{equation}
+where $\delta_x$ (resp. $\delta_u$) is a vector of the Euclidean space $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). More precisely, it is the vector tangent to a piecewise smooth curve connecting a pair of points in $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). The matrix $A\in\mathbb{R}^{n\times n}$ has components given, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, by $A_{jk}(x,u)=\tfrac{\partial[f_j+b_ju_j]}{\partial x_k}(x,u)$
+for indexes $j,k\in\mathbb{N}_{[1,n]}$. 
+
+The resulting system composed of Equations \eqref{eq:general system} and \eqref{eq:general system:differential} is analyzed on the state space spanned by the vector $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$. 
+
+Similarly to \eqref{eq:general system}, given a control $\delta_u$ for system \eqref{eq:general system:differential}, the solution to \eqref{eq:general system:differential} computed at time $t\geq0$ with $(x,u)\in\mathbb{R}^n\times\mathbb{R}^n$ and issuing from the  initial condition $\delta_x\in\mathbb{R}^n$ is denoted by $\Delta_x(t,x,\delta_x,u,\delta_u)$. 
+
+Lyapunov stability notions of solutions to \eqref{eq:general system:differential} are similar to those of linear parameter-varying systems (LPVS) (see \cite[Ch. 2 and 3]{Briat2015} for more information on LPVS). 
+
+The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. If every solution $|\Delta_x(t,x,\delta_x,u,\delta u)|\to0$ exponentially as $t\to\infty$, then every pair of solutions to \eqref{eq:general system} converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
+
+A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
+
+\begin{definition}\label{def:}
+		 A smooth function $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ is said to be a \emph{metric for system \eqref{eq:general system}} if there exist constant values $\underline{c}>$ and $\overline{c}>$ such that the inequality
+		 \begin{subequations}\label{eq:metric}
+		 \begin{equation}
+		 	\underline{c}|\delta_x|^2\leq V(x,\delta_x)\leq \overline{c}|\delta_x|^2,
+	 	 \end{equation}
+	 	 holds, for every $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. A metric system \eqref{eq:general system} receives the adjective \emph{contraction} if there exists a value $\lambda>0$ such that the inequality
+	 	 \begin{equation}
+	 	 	\frac{dV}{dt}(X(t,x,u),\Delta(t,x,\delta x,u,\delta u))\leq -\lambda V(x,\delta_x)
+ 	 	 \end{equation}
+ 	 	 \end{subequations}
+ 	 	 holds, for every pair $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$.
+\end{definition}
+Note that a bounded Riemannian metric defined, for every $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$, as $V(x,\delta_x)=|\delta_x|_x^2$ and satisfying the set of inequalities \eqref{eq:metric} is a contraction metric for system \eqref{eq:general system}. With an abuse of concept, from now the bounded Riemannian metric defined above will be called simply as \emph{metric}.
+
+The existence a contraction metric for system \eqref{eq:general system} with $u\equiv0$ implies that every two solutions of this system converge to each other exponentially. The proof of this claim can be found in \cite[Theorem 1]{Lewis1951}, and \cite[Theorems 5.7 and 5.33]{Reich2005}, and \cite[Lemma 3.3]{Isac2008}.
+
+For the class of systems considered in this paper, the following kind of metric is of interest, since it also allows the design a feedback law for system \eqref{eq:general system:differential}.
+
+\begin{definition}[{\cite{Manchester2014a}}]\label{def:}
+	A metric for system \eqref{eq:general system} is said to be a \emph{control-contraction metric for system \eqref{eq:general system}} if there exists a constant value $\lambda>0$ such that the condition
+	\begin{subequations}\label{eq:Arstein-Sontag}
+		\begin{equation}\label{eq:}
+			\delta_x^\top M(x)B(x)=0
+		\end{equation}
+		implies that the inequality
+		\begin{align}
+			\delta_x^\top(\dot{M}+A^\top M+MA)\delta_x\leq\ -2\lambda \delta_x^\top M\delta_x\label{eq:}
+		\end{align}
+		holds, where $\dot{M}:=\partial_{f+Bu}M$.
+	\end{subequations}
+\end{definition}
+The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition for contraction. Given a control-contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides stabilizing a feedback law of the form $\delta_u=K\delta_x$ for system \eqref{eq:general system:differential} defined for every $\delta_x\in\mathbb{R}^n$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
+
+The following result is recalled from \cite{Manchester2014a} and provides a feedback law for system \eqref{eq:general system} given a feedback law for system \eqref{eq:general system:differential}.
+
+\begin{theorem}\label{prop:CCM Existence}
+	If there exists a control-contraction metric for system \eqref{eq:general system}, then there exists a solution to item 1 of Problem~\ref{problem formulation}.
+\end{theorem}
+
+Another important result of Theorem \ref{prop:CCM Existence} the feedback for system \eqref{eq:general system} obtained by integrating a feedback law designed for system \eqref{eq:general system:differential}.
+
+As remarked in \cite{Manchester2014a}, the main advantage to look for control-contraction metric with respect to a control-Lyapunov function is that the former case can be formulate in terms of a convex optimization problem \cite{Rantzer:2001}. The steps to obtain a control to system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} are shown below.
+
+Step 1 (Offline LMI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W=W^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following linear matrix inequality (LMI)
+\begin{equation}\label{eq:LMI formulation}
+	-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\preceq0,
+\end{equation}
+for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, $M=W^{-1}$ is a control-contraction metric for system \eqref{eq:general system}.
+
+Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system} and $K=YW^{-1}$, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every $x_0$ and $x_1\in\mathbb{R}^n$, there exist a smooth geodesic curve $\gamma:[0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
+\begin{equation}\label{eq:contracting feedback law}
+	k^\ast(t,s)=u^\ast(t)+\int_0^s K(\gamma(\sigma),k^\ast(t,\sigma))\gamma'(\sigma)\,d\sigma,
+\end{equation}
+where $s\in[0,1]$, is a feedback law for system \eqref{eq:general system}.
+
+{\itshape Motivation.} From the above steps, even if the problem of imposing a particular structure on $Y$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} can not be distributely computed.
+
+{\itshape Contribution.} In this paper, these limitations are addressed by imposing a block-diagonal structure over $W$. Moreover, when $W$ is row-diagonal dominant, not only the solutions to the optimization problem \eqref{eq:geodesic formulation} can be computed in parallel but also the LMI \eqref{eq:contracting feedback law}.
+
+\section{Results}\label{sec:Results}
+
+\begin{definition}\label{def:SSCCM}
+	A control-contraction metric $V$ for system \eqref{eq:general system} receives the adjective \emph{sum-separable} if $M$ has a block-diagonal structure. 
+\end{definition}
+
+Definition~\ref{def:SSCCM} implies that there exist integers $N>1$ and $n_i>0$ such that $n_1+\ldots+n_N=n$. Also, there exist smooth bounded functions $M_i:\mathbb{R}^{n_i}\to\mathbb{R}^{n_i\times n_i}$ satisfying $M_i=M_i^\top\succ0$, for every index $i\in\mathbb{N}_{[1,N]}$, and the equation
+	\begin{equation*}
+		V(x,\delta_x)=\sum_{i=1}^N \delta_{x_i}^\top M_i(x_i)\delta_{x_i},
+	\end{equation*}
+for every $(x_i,\delta x_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{n_i}$.
+
+Although the requirement of a control-contraction metric $M$ to have block-diagonal structure may be restrictive, for positive linear time-invariant systems the existence of a matrices $P=P^\top\succ0$ with diagonal structure is not conservative \cite{Tanaka2011}. Thus, the question of how restrictive is the requirement of $M$ to be diagonal is open. The main result of the paper is stated below.
+
+\todo[inline]{Compare SS-CCM with SS-LF from \cite{Dirr2015,Rantzer2013}}
+
+To solve item 2 of Problem~\ref{problem formulation}, the structure on the feedback defined in Equation \eqref{eq:contracting feedback law} is obtained by imposing a a suitable constraint on the function $Y$ to be satisfied together with the LMI \eqref{eq:LMI formulation}. 
+
+For each index $i\in\mathbb{N}_{[1,N]}$, define the sets 
+\begin{subequations}
+	\begin{equation*}
+		\mathscr{K}_Y(i)=\{j\in \mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}
+	\end{equation*}
+	and
+	\begin{align*}
+		\Xi_Y=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}:\text{the}\ i\text{-th row}\ Y_i\ \\
+		\text{has the property}&\ \mathscr{K}_Y(i)\}.
+	\end{align*}
+\end{subequations}
+Note that the set $\mathscr{K}_Y(i)$ is the set index for which the corresponding columns of the row-vector $Y_i$ are zero. By definition, this set is the complement of $\mathscr{K}(i)$. Consequently, given an index $j\in\mathscr{K}_Y$ and $W$ is diagonal, the $i$-th line of the vector $YW^{-1}\delta_x$ does not depend on $j$-th component of the vector $\delta_x$. As remarked in \cite{Tanaka2011}, the constraint ``$Y\in\Xi_Y$'' is linear.
+
+\begin{theorem}\label{thm:main result}
+	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the LMI \eqref{eq:LMI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
+\end{theorem}
+
+The detailed proof of Theorem \ref{thm:main result} is provided in Section \ref{sec:Proof of the Results}. 
+
+Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori} the computation of the LMI \eqref{eq:LMI formulation} is cannot be done in parallel. The next result provides sufficient conditions to solve each component \eqref{eq:LMI formulation} independently, and according to the structure defined by the set $\Xi$. Before present it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
+
+Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
+	\begin{subequations}\label{eq:T}
+	\begin{align}
+		T_{ii}=-\dot{W}_i+A_{ii}W_i+W_iA_i^\top+B_iY_{ii}+(B_iY_{ii})^\top\nonumber\\
+		+2\lambda_i W_i
+	\end{align}
+	and
+	\begin{equation}
+		T_{ij}=A_{ij}W_j+W_iA_{ji}+B_iY_{ij}+(B_jY_{ji})^\top.
+	\end{equation}
+	\end{subequations}
+
+\begin{definition}\label{def:}
+	The matrix $T$ is said to be \emph{block-diagonally dominant} if the inequality
+	\begin{equation}\label{eq:BDD}
+		|T_{ii}^{-1}|^{-1}\geq\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|,
+	\end{equation}
+	holds, for every index $i\in\mathbb{N}_{[1,N]}$ and for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$.
+\end{definition}
+
+\begin{corollary}\label{cor:distributed computation}
+	 If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the LMI
+	\begin{equation}\label{eq:LMI formulation:i}
+		T_{ii}\preceq 0
+	\end{equation}
+	for every index $i\in\mathbb{N}_{[1,N]}$, and the matrix $T$ is diagonally dominant, then pair of matrices $W$ and $Y$ is a solution to the LMI \eqref{eq:LMI formulation}.
+\end{corollary}
+
+The detailed proof of Corollary \ref{cor:distributed computation} is provided in Section \ref{sec:Proof of the Results}.
+
+\todo[inline]{See the works of Ahmadi (Princeton) on scale-diag. dom.}
+
+\section{Illustration}\label{sec:Illustration}
+
+Consider the network composed of interconnected systems described by the equation
+\begin{equation}\label{eq:example}
+		\left\{\begin{array}{rcl}
+			\dot{x}_i&=&\dfrac{a}{k+z_i}-bx_i+d(x_{i-1}-2x_i+x_{i+1})\\
+			\dot{y}_i&=&\alpha x_i-\beta y_i\\
+			\dot{z}_i&=&-\dfrac{\delta z_i}{k_M+z_i}+\gamma y_i+u_i\\
+		\end{array}\right.
+\end{equation}
+where $a,b,d,k,k_M,\alpha,\beta,\gamma,\delta\in\mathbb{R}_{>0}$ are constant values, and $x_0:=x_1$ and $x_{N+1}=x_N$ for convenience.
+
+System \eqref{eq:example} is a variation of the ``Goodwin model'' (introduced in \cite{Goodwin1965}) and considered in \cite{Aminzare2014a}. When $d=0$, this system is a generic model describing how persistent oscillations can be generated by an autoinhibitory gene circuit \cite[Section 7.3.1]{Ingalls2013}. The variable $x_i$ is the mRNA is translated into the enzyme $y_i$ which catalyses the production of the metabolite $z$. The metabolite $z$ supresses the transcription of the mRNA. When $d\neq0$, the composed network is interconnected throughout a diffusive term.
+
+As presented in Equation~\eqref{eq:example}, the translation of the mRNA $x_i$ is controlled by acting on the concentration of the metabolite $z_i$ by employing $u_i$.
+
+\section{Proof of the Results}\label{sec:Proof of the Results}
+
+\begin{proof}[Proof of Theorem \ref{thm:main result}]
+	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ is a solution to the LMI \eqref{eq:LMI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
+	
+	The LMI \eqref{eq:LMI formulation} implies that the inequality
+	\begin{equation*}
+		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
+	\end{equation*}
+	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system}.
+	
+	It now remains to integrate $K\delta_x$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
+	\begin{equation}\label{eq:geodesic sum}
+		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds.
+	\end{equation}
+
+	
+	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. More precisely, 
+	\begin{equation*}
+		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}.
+	\end{equation*}
+	This implies that the minimization of Equation \eqref{eq:geodesic sum} can be computed separately. 
+	
+	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
+	\begin{align*}
+		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i).
+	\end{align*}
+	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$. 
+	
+	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} is given by Equation \eqref{eq:contracting feedback law}. 
+	
+	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
+	\begin{equation}\label{eq:K ODE}
+		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast).
+	\end{equation}
+	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the smoothness of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, to show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)\to\infty$, as $s\to\bar{s}$.
+	
+	To show that a solution $k^\ast$ is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then the solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
+		
+	Since the vector field $\overline{K}$ is smooth, it also Lipschitz. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exists a constants $c_1(S)$ and $c_2(S)$ such that the inequality
+	\begin{equation*}
+		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
+	\end{equation*}
+	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely on $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
+	
+	Note that, due to the structure of the matrix $K$, the feedback law $k^\ast$ defined in Equation \eqref{eq:contracting feedback law} solves item 2 of Problem~\ref{problem formulation}, i.e., $k^\ast\in\Xi$. Furthermore, the computation of a solution to Equation~\eqref{eq:K ODE} can be partially distributed, because each line of the matrix $K$ will depend only on specific components of the vector $\gamma'$.
+	
+	 This concludes the proof of Theorem \ref{thm:main result}.
+\end{proof}
+
+
+\begin{proof}[Proof of Corollary~\ref{cor:distributed computation}]
+	By assumption, the pair of matrices $W$ and $Y$ is a solution to the LMI \eqref{eq:LMI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
+	
+	Equation \eqref{eq:BDD} together with the fact that $|I_{n_i}|\leq |T_{ii}||T_{ii}^{-1}|$ implies that the inequality
+	\begin{equation}\label{eq:BDD2} 
+		\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|\leq |T_{ii}|
+	\end{equation}
+	holds, for every index $i\in\mathbb{N}_{[1,N]}$.
+	
+	For every $\delta_\eta\in\mathbb{R}^n$, consider the product $\delta_\eta^\top T\delta_\eta$. Each line $i\in\mathbb{N}_{[1,N]}$ of this product is given by
+	\begin{equation*}
+		\delta_{\eta_i}^\top\begin{bmatrix}
+			T_{i1}&\cdots&T_{i(i-1)}&T_{ii}&T_{i(i+1)}&\cdots&T_{iN}
+		\end{bmatrix}\delta_\eta.
+	\end{equation*}
+	Inequalities \eqref{eq:BDD2} and \eqref{eq:LMI formulation:i} imply that the inequalities
+	\begin{equation*}
+		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{x_i}^\top T_{ii}\delta_{\eta_i}\leq 0
+	\end{equation*}
+	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the LMI \eqref{eq:LMI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
+\end{proof}
+
+
+\section{Conclusion}\label{sec:Conclusion}
+
+\appendices
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\printbibliography
+
+
+\end{document}
+
+
