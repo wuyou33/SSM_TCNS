@@ -49,11 +49,14 @@ zIC = rand(6,1)*100;
 IC = [xIC;yIC;zIC];
 
 time = 0:1e-1:5e1;
-[time,simout] = ode45(@sys,time,IC);
+% [time,simout] = ode45(@sys,time,IC);
 
-size(simout)
+% PlotSimulation(time,simout)
+LMIOptimization
 
+end
 
+function []=PlotSimulation(time,simout)
 % Time Evolution of the Solution components
 figure
 subplot(3,1,1),plot(time,simout(:,1),'b-','LineWidth',2);
@@ -237,5 +240,159 @@ global a b d k km alpha beta gamma delta u6
 x6dot = a/(k + z6) - b*x6 + d*(x5 -2*x6 + x6);
 y6dot = alpha*x6 - beta*y6;
 z6dot = -delta*z6/(km + z6) + gamma*y6 + u6;
+
+end
+
+function LMIOptimization
+
+global a b k km alpha beta gamma delta d
+
+lambda = 1;
+
+u1 = sdpvar(1);
+u2 = sdpvar(1);
+
+x1 = sdpvar(1,1);
+x2 = sdpvar(1,1);
+
+y1 = sdpvar(1,1);
+y2 = sdpvar(1,1);
+
+z1 = sdpvar(1,1);
+z2 = sdpvar(1,1);
+
+q1 = [x1;y1;z1];
+q2 = [x2;y2;z2];
+
+u = [u1;u2];
+q = [q1;q2];
+
+x1dot = a/(k + z1) - b*x1 + d*(x1 -2*x1 + x2);
+x2dot = a/(k + z2) - b*x2 + d*(x1 -2*x2 + x2);
+
+y1dot = alpha*x1 - beta*y1;
+y2dot = alpha*x2 - beta*y2;
+
+z1dot = -delta*z1/(km + z1) + gamma*y1 + u1;
+z2dot = -delta*z2/(km + z2) + gamma*y2 + u2;
+
+f1 = [x1dot;y1dot;z1dot];
+f2 = [x2dot;y2dot;z2dot];
+
+f = [f1;f2];
+
+A = jacobian(f,q)
+B = jacobian(f,u)
+
+size(B)
+
+Wdegree = 2;
+
+[Wp111,Wc111,Wv111] = polynomial(q1,Wdegree,0); 
+[Wp112,Wc112,Wv112] = polynomial(q1,Wdegree,0); 
+[Wp113,Wc113,Wv113] = polynomial(q1,Wdegree,0);
+[Wp122,Wc122,Wv122] = polynomial(q1,Wdegree,0);
+[Wp123,Wc123,Wv123] = polynomial(q1,Wdegree,0);
+[Wp133,Wc133,Wv133] = polynomial(q1,Wdegree,0);
+
+W1  = [Wp111 Wp112 Wp113;
+       Wp112 Wp122 Wp123;
+       Wp113 Wp123 Wp133];
+   
+Wc1 = [Wc111;Wc112;Wc113;Wc122;Wc123;Wc133];
+Wp1 = [Wp111;Wp112;Wp113;Wp122;Wp123;Wp133];
+
+DWTemp = jacobian(Wp1,q1);
+DW1    = [DWTemp(1) DWTemp(2) DWTemp(3);
+          DWTemp(2) DWTemp(4) DWTemp(5);
+          DWTemp(3) DWTemp(5) DWTemp(6)];
+
+[Wp211,Wc211,Wv211] = polynomial(q2,Wdegree,0); 
+[Wp212,Wc212,Wv212] = polynomial(q2,Wdegree,0); 
+[Wp213,Wc213,Wv213] = polynomial(q2,Wdegree,0);
+[Wp222,Wc222,Wv222] = polynomial(q2,Wdegree,0);
+[Wp223,Wc223,Wv223] = polynomial(q2,Wdegree,0);
+[Wp233,Wc233,Wv233] = polynomial(q2,Wdegree,0);
+
+W2  = [Wp211 Wp212 Wp213;
+       Wp212 Wp222 Wp223;
+       Wp213 Wp223 Wp233];
+   
+Wc2 = [Wc211;Wc212;Wc213;Wc222;Wc223;Wc233];
+Wp2 = [Wp211;Wp212;Wp213;Wp222;Wp223;Wp233];
+DWTemp = jacobian(Wp2,q2);
+DW2     = [DWTemp(1) DWTemp(2) DWTemp(3);
+           DWTemp(2) DWTemp(4) DWTemp(5);
+           DWTemp(3) DWTemp(5) DWTemp(6)];
+       
+Wc = [Wc1;Wc2];
+W  = blkdiag(W1,W2);
+DW = blkdiag(DW1,DW2);
+
+Ydegree = 2;
+
+[Y11,Yc11,Yv11]    = polynomial(q,Ydegree,0);
+[Y12,Yc12,Yv12]    = polynomial(q,Ydegree,0); 
+[Y13,Yc13,Yv13]    = polynomial(q,Ydegree,0);
+[Y14,Yc14,Yv14]    = polynomial(q,Ydegree,0);
+[Y15,Yc15,Yv15]    = polynomial(q,Ydegree,0); 
+[Y16,Yc16,Yv16]    = polynomial(q,Ydegree,0);
+[Y21,Yc21,Yv21]    = polynomial(q,Ydegree,0);
+[Y22,Yc22,Yv22]    = polynomial(q,Ydegree,0); 
+[Y23,Yc23,Yv23]    = polynomial(q,Ydegree,0);
+[Y24,Yc24,Yv24]    = polynomial(q,Ydegree,0);
+[Y25,Yc25,Yv25]    = polynomial(q,Ydegree,0); 
+[Y26,Yc26,Yv26]    = polynomial(q,Ydegree,0);
+
+
+Y  = [Y11 Y12 Y13 Y14 Y15 Y16;
+      Y21 Y22 Y23 Y24 Y25 Y26];
+  
+Yc = [Yc11;Yc12;Yc13;Yc14;Yc15;Yc16;Yc21;Yc22;Yc23;Yc24;Yc25;Yc26];
+
+LfW = -DW + A*W + W*A' + B*Y + Y'*B' + lambda*W;
+
+% The decision variables are the coefficients of the polynomials
+% Constraints = [sos(W-10*eps*eye(length(q)));sos(-LfW-10*eps*eye(length(q)))];
+Constraints = [sos(W);sos(-LfW)];
+checkset(Constraints)
+% set required solver
+coefList = [Wc;Yc];
+options = sdpsettings('solver','mosek');
+[sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
+
+verifiedW11 = clean(replace(W(1,1), coefList, double(coefList)), eps);
+verifiedW12 = clean(replace(W(1,2), coefList, double(coefList)), eps);
+verifiedW13 = clean(replace(W(1,3), coefList, double(coefList)), eps);
+verifiedW21 = clean(replace(W(2,1), coefList, double(coefList)), eps);
+verifiedW22 = clean(replace(W(2,2), coefList, double(coefList)), eps);
+verifiedW23 = clean(replace(W(2,3), coefList, double(coefList)), eps);
+verifiedW31 = clean(replace(W(3,1), coefList, double(coefList)), eps);
+verifiedW32 = clean(replace(W(3,2), coefList, double(coefList)), eps);
+verifiedW33 = clean(replace(W(3,3), coefList, double(coefList)), eps);
+
+verifiedW44 = clean(replace(W(4,4), coefList, double(coefList)), eps);
+verifiedW45 = clean(replace(W(4,5), coefList, double(coefList)), eps);
+verifiedW46 = clean(replace(W(4,6), coefList, double(coefList)), eps);
+verifiedW54 = clean(replace(W(5,4), coefList, double(coefList)), eps);
+verifiedW55 = clean(replace(W(5,5), coefList, double(coefList)), eps);
+verifiedW56 = clean(replace(W(5,6), coefList, double(coefList)), eps);
+verifiedW64 = clean(replace(W(6,4), coefList, double(coefList)), eps);
+verifiedW65 = clean(replace(W(6,5), coefList, double(coefList)), eps);
+verifiedW66 = clean(replace(W(6,6), coefList, double(coefList)), eps);
+
+W11 = sdisplay(verifiedW11)
+W12 = sdisplay(verifiedW12)
+W13 = sdisplay(verifiedW13)
+W22 = sdisplay(verifiedW22)
+W23 = sdisplay(verifiedW23)
+W33 = sdisplay(verifiedW33)
+
+W44 = sdisplay(verifiedW44)
+W45 = sdisplay(verifiedW45)
+W46 = sdisplay(verifiedW46)
+W55 = sdisplay(verifiedW55)
+W56 = sdisplay(verifiedW56)
+W66 = sdisplay(verifiedW66)
 
 end

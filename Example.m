@@ -249,9 +249,10 @@ function LMIOptimization
 
 global a b d k km alpha beta gamma delta
 
-FlagSyms = 0;
+FlagSyms      = 0;
 FlagConstantW = 0;
 FlagConstantY = 0;
+lambda        = 1;
 
 if FlagSyms == 0
     
@@ -607,7 +608,7 @@ Yc = [Yc11; Yc12; Yc13; Yc14; Yc15; Yc16; Yc17; Yc18; Yc19; Yc110; Yc111; Yc112;
       Yc51; Yc52; Yc53; Yc54; Yc55; Yc56; Yc57; Yc58; Yc59; Yc510; Yc511; Yc512; Yc513; Yc514; Yc515; Yc516; Yc517; Yc518;
       Yc61; Yc62; Yc63; Yc64; Yc65; Yc66; Yc67; Yc68; Yc69; Yc610; Yc611; Yc612; Yc613; Yc614; Yc615; Yc616; Yc617; Yc618];
  
-LfW = -DW + A*W + W*A' + B*Y + (B*Y)';
+LfW = -DW + A*W + W*A' + B*Y + Y'*B' + lambda*W;
 
 % The decision variables are the coefficients of the polynomials
 Constraints = [sos(W-10*eps*eye(length(q)));sos(-LfW-10*eps*eye(length(q)))];
@@ -615,7 +616,8 @@ Constraints = [sos(W-10*eps*eye(length(q)));sos(-LfW-10*eps*eye(length(q)))];
 coefList = [Wc;Yc];
 options = sdpsettings('solver','mosek');
 
-savefile = 'computation.mat'
+savefile = 'computation.mat';
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
+checkset(Constraints)
 save(savefile,'sol','q','Q','res')
 end

@@ -108,14 +108,14 @@ z = sdpvar(1);
 
 q = [x;y;z];
 
-xdot = a/(k + z) - b*x;                     % This is not a polynomial
+xdot = a/(k + z) - b*x;
 ydot = alpha*x - beta*y;
 zdot = -delta*z/(km + z) + gamma*y + u;
 
 f = [xdot;ydot;zdot];
 
-A = jacobian(f,q);
-B = jacobian(f,u);
+A = jacobian(f,q)
+B = jacobian(f,u)
 
 Wdegree = 2;
 
@@ -147,10 +147,10 @@ Ydegree = 2;
 Y  = [Y1 Y2 Y3];
 Yc = [Yc1;Yc2;Yc3];
 
-LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
+LfW = -DW + A*W + W*A' + B*Y + Y'*B' + lambda*W;
 
 % The decision variables are the coefficients of the polynomials
-Constraints = [sos(W-eye(length(q)));sos(-LfW-eye(length(q)))];
+Constraints = [sos(W-10*eps*eye(length(q)));sos(-LfW-10*eps*eye(length(q)))];
 checkset(Constraints)
 % set required solver
 coefList = [Wc;Yc];
@@ -170,16 +170,12 @@ verifiedW33 = clean(replace(W(3,3), coefList, double(coefList)), eps);
 W11 = sdisplay(verifiedW11)
 W12 = sdisplay(verifiedW12)
 W13 = sdisplay(verifiedW13)
-
 W21 = sdisplay(verifiedW21)
 W22 = sdisplay(verifiedW22)
 W23 = sdisplay(verifiedW23)
-
-W31 = sdisplay(verifiedW31)
-W32 = sdisplay(verifiedW32)
 W33 = sdisplay(verifiedW33)
 
-W = [W11 W12 W13; 
-     W21 W22 W23;
-     W31 W32 W33]
+W1 = [W11 W12 W13; 
+      W21 W22 W23;
+      W31 W]
 end
