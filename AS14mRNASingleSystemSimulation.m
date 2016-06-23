@@ -108,7 +108,7 @@ z = sdpvar(1);
 
 q = [x;y;z];
 
-xdot = a/(k + z) - b*x;                     % This is not a polynomial
+xdot = a/(k + z) - b*x;                     % This is not a polynomial: SOS does not work here
 ydot = alpha*x - beta*y;
 zdot = -delta*z/(km + z) + gamma*y + u;
 
@@ -151,11 +151,13 @@ LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
 
 % The decision variables are the coefficients of the polynomials
 Constraints = [sos(W-eye(length(q)));sos(-LfW-eye(length(q)))];
+% Constraints = [W-eye(length(q))>=0;-LfW+eye(length(q))>=0];
 checkset(Constraints)
 % set required solver
 coefList = [Wc;Yc];
 options = sdpsettings('solver','mosek');
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
+% optimize(Constraints,[],options);
 
 verifiedW11 = clean(replace(W(1,1), coefList, double(coefList)), eps);
 verifiedW12 = clean(replace(W(1,2), coefList, double(coefList)), eps);
