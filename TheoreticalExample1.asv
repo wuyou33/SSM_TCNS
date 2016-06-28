@@ -2,7 +2,6 @@
 %                                                                         %
 % Title: Simulation of system (19) from [AS14].                           %
 % Author: H. Stein Shiromoto                                              %
-% Notes: Is working fine                                                  %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -34,8 +33,7 @@ time = 0:1e-1:5e1;
 % [time,simout] = ode45(@sys,time,IC);
 % PlotSimulation(time,simout)
 
-[W,Y,coefList] = LMIOptimization;
-[W,Y] = postprocessing(W,Y,coefList)
+[W,Y] = LMIOptimization
 
 end
 
@@ -115,7 +113,7 @@ out = [xdot;ydot];
 
 end
 
-function [W,Y,coefList] = LMIOptimization
+function [W,Y] = LMIOptimization
 
 global d
 
@@ -160,16 +158,14 @@ f = [f1;f2;f3];
 A = jacobian(f,q);
 B = jacobian(f,u);
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Wdegree = 2;
 
-[Wp111,Wc111,Wv111] = polynomial(q1,Wdegree,0);
-[Wp112,Wc112,Wv112] = polynomial(q1,Wdegree,0);
-[Wp122,Wc122,Wv122] = polynomial(q1,Wdegree,0);
+[Wp111,Wc111,Wv111] = polynomial(q,Wdegree,0);
+[Wp112,Wc112,Wv112] = polynomial(q,Wdegree,0);
+[Wp122,Wc122,Wv122] = polynomial(q,Wdegree,0);
 
 W1  = [Wp111 Wp112;
-       Wp112 Wp122];
+      Wp112 Wp122];
 
 Wc1 = [Wc111;Wc112;Wc122];
 Wp1 = [Wp111;Wp112;Wp122];
@@ -178,9 +174,9 @@ DWTemp = jacobian(Wp1,q1);
 DW1     = [DWTemp(1) DWTemp(2);
           DWTemp(2) DWTemp(4)];
 
-[Wp211,Wc211,Wv211] = polynomial(q2,Wdegree,0);
-[Wp212,Wc212,Wv212] = polynomial(q2,Wdegree,0);
-[Wp222,Wc222,Wv222] = polynomial(q2,Wdegree,0);
+[Wp211,Wc211,Wv211] = polynomial(q,Wdegree,0);
+[Wp212,Wc212,Wv212] = polynomial(q,Wdegree,0);
+[Wp222,Wc222,Wv222] = polynomial(q,Wdegree,0);
 
 W2  = [Wp211 Wp212;
     Wp212 Wp222];
@@ -192,18 +188,18 @@ DWTemp = jacobian(Wp2,q2);
 DW2     = [DWTemp(1) DWTemp(2);
     DWTemp(2) DWTemp(4)];
 
-[Wp311,Wc311,Wv311] = polynomial(q3,Wdegree,0);
-[Wp312,Wc312,Wv312] = polynomial(q3,Wdegree,0);
-[Wp322,Wc322,Wv322] = polynomial(q3,Wdegree,0);
+[Wp311,Wc311,Wv311] = polynomial(q,Wdegree,0);
+[Wp312,Wc312,Wv312] = polynomial(q,Wdegree,0);
+[Wp322,Wc322,Wv322] = polynomial(q,Wdegree,0);
 
 W3  = [Wp311 Wp312;
-       Wp312 Wp322];
+      Wp312 Wp322];
 
 Wc3 = [Wc311;Wc312;Wc322];
 Wp3 = [Wp311;Wp312;Wp322];
 
 DWTemp = jacobian(Wp3,q3);
-DW3    = [DWTemp(1) DWTemp(2);
+DW3     = [DWTemp(1) DWTemp(2);
          DWTemp(2) DWTemp(4)];
      
 W = blkdiag(W1,W2,W3);
@@ -238,22 +234,6 @@ Y  = [Y11 Y12 Y13 Y14 Y15 Y16;
       Y21 Y22 Y23 Y24 Y25 Y26;
       Y31 Y32 Y33 Y34 Y35 Y36];
 
-% Dependent only on the neighnbors
-Y  = [Y11 Y12 Y13 Y14 0   0;
-      Y21 Y22 Y23 Y24 Y25 Y26;
-      0   0   Y33 Y34 Y35 Y36];
-
-% System 2 controls everyone
-Y  = [Y11 Y12 0   0   0   0;
-      Y21 Y22 Y23 Y24 Y25 Y26;
-      0   0   0   0   Y35 Y36];
-
-% Full Decentralization
-Y  = [Y11 Y12 0   0   0   0;
-      0   0   Y23 Y24 0   0;
-      0   0   0   0   Y35 Y36];
-
-  
 Yc  = [Yc11; Yc12; Yc13; Yc14; Yc15; Yc16;
        Yc21; Yc22; Yc23; Yc24; Yc25; Yc26;
        Yc31; Yc32; Yc33; Yc34; Yc35; Yc36];
@@ -272,7 +252,7 @@ options = sdpsettings('solver','mosek');
 
 end
 
-function [W,Y] = postprocessing(W,Y,coefList)
+function [W,Y] = postprocessing(W,Y)
 
 verifiedW11 = clean(replace(W(1,1), coefList, double(coefList)), eps);
 verifiedW12 = clean(replace(W(1,2), coefList, double(coefList)), eps);
@@ -367,6 +347,5 @@ Y35 = sdisplay(verifiedY35);
 Y36 = sdisplay(verifiedY36);
 
 Y = [Y11 Y12 Y13 Y14 Y15 Y16;
-     Y21 Y22 Y23 Y24 Y25 Y26;
-     Y31 Y32 Y33 Y34 Y35 Y36];
+     Y11 Y12 Y13 Y14 Y15 Y16;];
 end
