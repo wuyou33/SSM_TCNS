@@ -35,13 +35,17 @@ for n = 1:N
         
         for nc = 1:dimW
             
-            fprintf(fid, '[');
-            fprintf(fid, [Variable_Wp '%s%s%s,'], num2str(n),num2str(nr),num2str(nc));
-            fprintf(fid, [Variable_Wc '%s%s%s,'], num2str(n),num2str(nr),num2str(nc));
-            fprintf(fid, [Variable_Wv '%s%s%s]'], num2str(n),num2str(nr),num2str(nc));
-            fprintf(fid, ' = polynomial(');
-            fprintf(fid, 'q%s,', num2str(n));
-            fprintf(fid, 'Wdegree,0);\n');
+            if nc >= nr
+                
+                fprintf(fid, '[');
+                fprintf(fid, [Variable_Wp '%s%s%s,'], num2str(n),num2str(nr),num2str(nc));
+                fprintf(fid, [Variable_Wc '%s%s%s,'], num2str(n),num2str(nr),num2str(nc));
+                fprintf(fid, [Variable_Wv '%s%s%s]'], num2str(n),num2str(nr),num2str(nc));
+                fprintf(fid, ' = polynomial(');
+                fprintf(fid, 'q%s,', num2str(n));
+                fprintf(fid, 'Wdegree,0);\n');
+            
+            end
             
         end
     end
@@ -51,36 +55,44 @@ for n = 1:N
     
     fprintf(fid, [Variable_W '%s = ['], num2str(n));
     
-     for nr = 1:dimW
-         
-         if nr > 1
-               
-                fprintf(fid, '      ');
-                
-         end
+    for nr = 1:dimW
+        
+        if nr > 1
+            
+            fprintf(fid, '      ');
+            
+        end
         
         for nc = 1:dimW
             
-            if nc < dimW
+            if nc >= nr
                 
-                fprintf(fid, [Variable_Wp '%s%s%s, '], num2str(n),num2str(nr),num2str(nc));
-                
-            else
-                
-                if nr == dimW
+                if nc < dimW
                     
-                    fprintf(fid, [Variable_Wp '%s%s%s];\n'], num2str(n),num2str(nr),num2str(nc));
+                    fprintf(fid, [Variable_Wp '%s%s%s, '], num2str(n),num2str(nr),num2str(nc));
                     
                 else
                     
-                    fprintf(fid, [Variable_Wp '%s%s%s;\n'], num2str(n),num2str(nr),num2str(nc));
+                    if nr == dimW
+                        
+                        fprintf(fid, [Variable_Wp '%s%s%s];\n'], num2str(n),num2str(nr),num2str(nc));
+                        
+                    else
+                        
+                        fprintf(fid, [Variable_Wp '%s%s%s;\n'], num2str(n),num2str(nr),num2str(nc));
+                        
+                    end
                     
                 end
+                
+            else
+                
+                fprintf(fid, [Variable_Wp '%s%s%s, '], num2str(n),num2str(nc),num2str(nr));
                 
             end
             
         end
-     end
+    end
     
     fprintf(fid, '\n', num2str(n));
     
@@ -90,13 +102,17 @@ for n = 1:N
         
         for nc = 1:dimW
             
-            if nr*nc < dimW^2
+            if nc >= nr
                 
-                fprintf(fid, [Variable_Wc '%s%s%s;'], num2str(n),num2str(nr),num2str(nc));
-                
-            else
-                
-                fprintf(fid, [Variable_Wc '%s%s%s];\n'], num2str(n),num2str(nr),num2str(nc));
+                if nr*nc < dimW^2
+                    
+                    fprintf(fid, [Variable_Wc '%s%s%s;'], num2str(n),num2str(nr),num2str(nc));
+                    
+                else
+                    
+                    fprintf(fid, [Variable_Wc '%s%s%s];\n'], num2str(n),num2str(nr),num2str(nc));
+                    
+                end
                 
             end
             
@@ -109,13 +125,17 @@ for n = 1:N
         
         for nc = 1:dimW
             
-            if nr*nc < dimW^2
+            if nc >= nr
                 
-                fprintf(fid, [Variable_Wp '%s%s%s;'], num2str(n),num2str(nr),num2str(nc));
-                
-            else
-                
-                fprintf(fid, [Variable_Wp '%s%s%s];\n'], num2str(n),num2str(nr),num2str(nc));
+                if nr*nc < dimW^2
+                    
+                    fprintf(fid, [Variable_Wp '%s%s%s;'], num2str(n),num2str(nr),num2str(nc));
+                    
+                else
+                    
+                    fprintf(fid, [Variable_Wp '%s%s%s];\n'], num2str(n),num2str(nr),num2str(nc));
+                    
+                end
                 
             end
             
@@ -128,32 +148,60 @@ for n = 1:N
     fprintf(fid, '%% Creation of DW%s\n',num2str(n));
     
     fprintf(fid, 'DWTemp = jacobian(');
-    fprintf(fid, [Variable_W '%s,'], num2str(n));
+    fprintf(fid, [Variable_Wp '%s,'], num2str(n));
     fprintf(fid, 'q%s);\n', num2str(n));
     
     % Writes the matrix DW whose elements are the elements of the vector DWTemp
     fprintf(fid, [Variable_DW '%s = ['], num2str(n));
-    for i = 1:dimW^2
+    
+    counter = 1;
+    RowCounter = 1;
+    for nr = 1:dimW
         
-        if mod(i,dimW) > 0
-                  
-        fprintf(fid, [Variable_DWTemp '(%s), '], num2str(i));
+        for nc = 1:dimW
             
-        elseif i == dimW^2
-            
-            fprintf(fid, [Variable_DWTemp '(%s)];\n'], num2str(i));
-            
-        else
-            
-            fprintf(fid, [Variable_DWTemp '(%s);\n'], num2str(i));
-            fprintf(fid,'       ');
+            if nc >= nr
+                
+                if nc == dimW && nr < dimW
+                    
+                    fprintf(fid, [Variable_DWTemp '(%s);\n'], num2str(counter));
+                    fprintf(fid,'       ');
+                    
+                elseif nr == dimW
+                    
+                    fprintf(fid, [Variable_DWTemp '(%s)];\n'], num2str(counter));
+                    
+                else
+                    
+                    if nc == nr
+                        
+                        fprintf(fid, [Variable_DWTemp '(%s), '], num2str(counter));
+                        RowCounter = nr + 1;
+                    
+                    else
+                        
+                        fprintf(fid, [Variable_DWTemp '(%s), '], num2str(counter));
+                        
+                    end
+                
+                end
+                
+                counter = counter + 1;
+                
+            else
+                
+                fprintf(fid, [Variable_DWTemp '(%s), '], num2str(RowCounter));
+                
+            end
             
         end
-           
-       
+        
         
     end
     
+    fprintf(fid, [Variable_DW '%s = '], num2str(n));
+    fprintf(fid, [Variable_DW '%s + transpose('], num2str(n));
+    fprintf(fid, [Variable_DW '%s);\n'], num2str(n));
     fprintf(fid, '\n\n', num2str(n));
 end
 
