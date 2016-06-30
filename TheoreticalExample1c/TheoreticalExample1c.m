@@ -34,10 +34,10 @@ time = 0:1e-1:5e1;
 % [time,simout] = ode45(@sys,time,IC);
 % PlotSimulation(time,simout)
 
-[W,Y,coefList] = LMIOptimization;
+[W,Y,coefList,LMISolvingTime.L] = LMIOptimization;
 [W,Y] = postprocessing(W,Y,coefList)
 
-save('TheoreticalExample1aOutput','W','Y')
+save('TheoreticalExample1aOutput','W','Y','LMISolvingTime','L')
 
 end
 
@@ -117,47 +117,20 @@ out = [xdot;ydot];
 
 end
 
-function [W,Y,coefList] = LMIOptimization
+function [W,Y,coefList,LMISolvingTime,L] = LMIOptimization
 
 global d
 
 lambda = 1;
 
-u1 = sdpvar(1);
-u2 = sdpvar(1);
-u3 = sdpvar(1);
+% L = [1 -1 0; -1 2 -1; 0 -1 1];
 
-u = [u1;u2;u3];
+NAgents = 5;
 
-x1 = sdpvar(1);
-x2 = sdpvar(1);
-x3 = sdpvar(1);
+L = LaplacianGenerator(NAgents)
 
-y1 = sdpvar(1);
-y2 = sdpvar(1);
-y3 = sdpvar(1);
-
-q1 = [x1;y1];
-q2 = [x2;y2];
-q3 = [x3;y3];
-
-x = [x1;x2;x3];
-y = [y1;y2;y3];
-q = [q1;q2;q3];
-
-x1dot = -x1 - x1^3 + y1^2 + d*(x1^3 - 2*x1^3 + x2^3);
-x2dot = -x2 - x2^3 + y2^2 + d*(x1^3 - 2*x2^3 + x3^3);
-x3dot = -x3 - x3^3 + y3^2 + d*(x2^3 - 2*x3^3 + x3^3);
-
-y1dot = u1;
-y2dot = u2;
-y3dot = u3;
-
-f1 = [x1dot;y1dot];
-f2 = [x2dot;y2dot];
-f3 = [x3dot;y3dot];
-
-f = [f1;f2;f3];
+PreProcessingSys(L)
+PreProcessedSys
 
 A = jacobian(f,q);
 B = jacobian(f,u);
@@ -166,7 +139,7 @@ B = jacobian(f,u);
 
 Wdegree = 2;
 
-PreProcessingW(3,2)
+PreProcessingW(NAgents,2)
 PreProcessedWandDW
 
 Ydegree = 2;
@@ -177,9 +150,9 @@ PreProcessingY(nr,nc)
 PreProcessedY
 
 % Dependent only on the neighnbors
-Y  = [Y11 Y12 Y13 Y14 0   0;
-      Y21 Y22 Y23 Y24 Y25 Y26;
-      0   0   Y33 Y34 Y35 Y36];
+% Y  = [Y11 Y12 Y13 Y14 0   0;
+%       Y21 Y22 Y23 Y24 Y25 Y26;
+%       0   0   Y33 Y34 Y35 Y36];
 % 
 % System 2 controls everyone
 % Y  = [Y11 Y12 0   0   0   0;
@@ -200,7 +173,9 @@ checkset(Constraints)
 % set required solver
 coefList = [Wc;Yc];
 options = sdpsettings('solver','mosek');
+tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
+LMISolvingTime = toc
 % optimize(Constraints,[],options);
 
 end
@@ -212,4 +187,32 @@ PostProcessedWandDW
 
 PostProcessingW(3,6)
 PostProcessedY
+end
+
+function L=LaplacianGenerator(NAgents)
+
+L = randi([-1,0],NAgents);
+
+for RowCounter = 1:NAgents
+    
+        for ColumnCounter = 1:NAgents
+            
+             if ColumnCounter <= RowCounter
+             
+                 L(RowCounter,ColumnCounter) = 0;
+                 
+             end
+        
+        end
+        
+end
+
+L = L + transpose(L);
+
+for Counter = 1:NAgents
+    
+      L(Counter,Counter) = max(1,-sum(L(Counter,:)) + L(Counter,Counter));
+    
+end
+
 end

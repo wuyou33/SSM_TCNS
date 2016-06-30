@@ -52,6 +52,42 @@ DW3 = [DWTemp(1)/2, DWTemp(2);
 DW3 = DW3 + transpose(DW3);
 
 
-W = blkdiag(W1,W2,W3);
-DW = blkdiag(DW1,DW2,DW3);
-Wc = [Wc1;Wc2;Wc3];
+% Creation of W4 and DW4
+[Wp411,Wc411,Wv411] = polynomial(q4,Wdegree,0);
+[Wp412,Wc412,Wv412] = polynomial(q4,Wdegree,0);
+[Wp422,Wc422,Wv422] = polynomial(q4,Wdegree,0);
+% Creation of W4
+W4 = [Wp411, Wp412;
+      Wp412, Wp422];
+
+Wc4 = [Wc411;Wc412;Wc422];
+Wp4 = [Wp411;Wp412;Wp422];
+
+% Creation of DW4
+DWTemp = jacobian(Wp4,q4);
+DW4 = [DWTemp(1)/2, DWTemp(2);
+       0,           DWTemp(4)/2];
+DW4 = DW4 + transpose(DW4);
+
+
+% Creation of W5 and DW5
+[Wp511,Wc511,Wv511] = polynomial(q5,Wdegree,0);
+[Wp512,Wc512,Wv512] = polynomial(q5,Wdegree,0);
+[Wp522,Wc522,Wv522] = polynomial(q5,Wdegree,0);
+% Creation of W5
+W5 = [Wp511, Wp512;
+      Wp512, Wp522];
+
+Wc5 = [Wc511;Wc512;Wc522];
+Wp5 = [Wp511;Wp512;Wp522];
+
+% Creation of DW5
+DWTemp = jacobian(Wp5,q5);
+DW5 = [DWTemp(1)/2, DWTemp(2);
+       0,           DWTemp(4)/2];
+DW5 = DW5 + transpose(DW5);
+
+
+W = blkdiag(W1,W2,W3,W4,W5);
+DW = blkdiag(DW1,DW2,DW3,DW4,DW5);
+Wc = [Wc1;Wc2;Wc3;Wc4;Wc5];
