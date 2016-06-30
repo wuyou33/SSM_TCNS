@@ -175,8 +175,14 @@ Wc1 = [Wc111;Wc112;Wc122];
 Wp1 = [Wp111;Wp112;Wp122];
 
 DWTemp = jacobian(Wp1,q1);
-DW1     = [DWTemp(1) DWTemp(2);
-          DWTemp(2) DWTemp(4)];
+size(DWTemp)
+size(DWTemp(1))
+% DW1     = [DWTemp(1) DWTemp(2);
+%           DWTemp(2) DWTemp(4)];
+
+DW1     = [DWTemp(1)/2 DWTemp(2);
+           0           DWTemp(4)/2];
+DW1 = DW1 + transpose(DW1);
 
 [Wp211,Wc211,Wv211] = polynomial(q2,Wdegree,0);
 [Wp212,Wc212,Wv212] = polynomial(q2,Wdegree,0);
@@ -189,9 +195,14 @@ Wc2 = [Wc211;Wc212;Wc222];
 Wp2 = [Wp211;Wp212;Wp222];
 
 DWTemp = jacobian(Wp2,q2);
-DW2     = [DWTemp(1) DWTemp(2);
-    DWTemp(2) DWTemp(4)];
+% DW2     = [DWTemp(1) DWTemp(2);
+%            DWTemp(2) DWTemp(4)];
 
+
+DW2     = [DWTemp(1)/2 DWTemp(2);
+           0           DWTemp(4)/2];
+DW2 = DW2 + transpose(DW2);
+       
 [Wp311,Wc311,Wv311] = polynomial(q3,Wdegree,0);
 [Wp312,Wc312,Wv312] = polynomial(q3,Wdegree,0);
 [Wp322,Wc322,Wv322] = polynomial(q3,Wdegree,0);
@@ -203,9 +214,13 @@ Wc3 = [Wc311;Wc312;Wc322];
 Wp3 = [Wp311;Wp312;Wp322];
 
 DWTemp = jacobian(Wp3,q3);
-DW3    = [DWTemp(1) DWTemp(2);
-         DWTemp(2) DWTemp(4)];
-     
+% DW3    = [DWTemp(1) DWTemp(2);
+%          DWTemp(2) DWTemp(4)];
+
+DW3     = [DWTemp(1)/2 DWTemp(2);
+           0           DWTemp(4)/2];
+DW3 = DW3 + transpose(DW3);
+
 W = blkdiag(W1,W2,W3);
 DW = blkdiag(DW1,DW2,DW3);
 

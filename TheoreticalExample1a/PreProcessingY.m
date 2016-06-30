@@ -13,7 +13,7 @@
 
 function PreProcessingY(nr,nc)
 
-fid = fopen('CreatorY.m','w');
+fid = fopen('PreProcessedY.m','w');
 
 Variable_Y = 'Y';
 Variable_Yc = 'Yc';

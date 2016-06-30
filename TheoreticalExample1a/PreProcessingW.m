@@ -11,7 +11,7 @@
 
 function PreProcessingW(N,SystemDimension)
 
-fid = fopen('CreatorWandDW.m','w');
+fid = fopen('PreProcessedWandDW.m','w');
 
 % Writing the matrix W
 
@@ -155,7 +155,6 @@ for n = 1:N
     fprintf(fid, [Variable_DW '%s = ['], num2str(n));
     
     counter = 1;
-    RowCounter = 1;
     for nr = 1:dimW
         
         for nc = 1:dimW
@@ -169,30 +168,31 @@ for n = 1:N
                     
                 elseif nr == dimW
                     
-                    fprintf(fid, [Variable_DWTemp '(%s)];\n'], num2str(counter));
+                    fprintf(fid, [Variable_DWTemp '(%s)/2];\n'], num2str(counter));
                     
                 else
                     
                     if nc == nr
                         
-                        fprintf(fid, [Variable_DWTemp '(%s), '], num2str(counter));
-                        RowCounter = nr + 1;
+                        fprintf(fid, [Variable_DWTemp '(%s)/2, '], num2str(counter));
                     
                     else
                         
-                        fprintf(fid, [Variable_DWTemp '(%s), '], num2str(counter));
+                        fprintf(fid, [Variable_DWTemp '(%s),   '], num2str(counter));
                         
                     end
                 
                 end
                 
-                counter = counter + 1;
+
                 
             else
                 
-                fprintf(fid, [Variable_DWTemp '(%s), '], num2str(RowCounter));
+                fprintf(fid, '0,           ');
                 
             end
+            
+            counter = counter + 1;
             
         end
         
