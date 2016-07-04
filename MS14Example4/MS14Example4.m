@@ -57,17 +57,16 @@ end
 
 function [out]=sys(t,input)
 
-x = input(1);
-y = input(2);
-s = input(3);
+x1 = input(1);
+x2 = input(2);
 
-global k1 k2 delta u
+global k1 k2 delta
 
-xdot = -delta*x + k2*y - k2*s*y + u;
-ydot = -k1*y + k2*s*x;
-sdot = k1*y - k2*s*x;
+load('MS14Output')
 
-out = [xdot,ydot,sdot]';
+f = [-x1 - x1^3 + x2^2;0]  + [0;1]*Y;
+
+out = [f(1);f(2)];
 
 end
 
@@ -75,47 +74,21 @@ function [W,Y] = LMIOptimization
 
 global k1 k2 delta
 
+d = 0;
 lambda = 1;
 
-u = sdpvar(1);
-
-x1 = sdpvar(1);
-x2 = sdpvar(1);
-
-q = [x1;x2];
-
-x1dot = -x1 - x1^3 + x2^2;
-x2dot = u;
-
-f = [x1dot;x2dot];
+PreProcessedSys
 
 A = jacobian(f,q);
 B = jacobian(f,u);
 
 Wdegree = 2;
 
-[Wp11,Wc11,Wv11] = polynomial(q,Wdegree,0);
-[Wp12,Wc12,Wv12] = polynomial(q,Wdegree,0);
-[Wp22,Wc22,Wv22] = polynomial(q,Wdegree,0);
-[Wp23,Wc23,Wv23] = polynomial(q,Wdegree,0);
-
-W  = [Wp11 Wp12;
-      Wp12 Wp22];
-
-Wc = [Wc11;Wc12;Wc22];
-Wp = [Wp11;Wp12;Wp22];
-
-DWTemp = jacobian(Wp,q);
-DW     = [DWTemp(1) DWTemp(2);
-          DWTemp(2) DWTemp(4)];
+PreProcessedWandDW
 
 Ydegree = 2;
 
-[Y1,Yc1,Yv1]    = polynomial(q,Ydegree,0);
-[Y2,Yc2,Yv2]    = polynomial(q,Ydegree,0); 
-
-Y  = [Y1 Y2];
-Yc = [Yc1;Yc2];
+PreProcessedY
 
 LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
 
@@ -126,29 +99,35 @@ checkset(Constraints)
 % set required solver
 coefList = [Wc;Yc];
 options = sdpsettings('solver','mosek');
+tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
-% optimize(Constraints,[],options);
-
-verifiedW11 = clean(replace(W(1,1), coefList, double(coefList)), eps);
-verifiedW12 = clean(replace(W(1,2), coefList, double(coefList)), eps);
-verifiedW21 = clean(replace(W(2,1), coefList, double(coefList)), eps);
-verifiedW22 = clean(replace(W(2,2), coefList, double(coefList)), eps);
-
-verifiedY1 = clean(replace(Y(1,1), coefList, double(coefList)), eps);
-verifiedY2 = clean(replace(Y(1,2), coefList, double(coefList)), eps);
+LMISolvingTime = toc
 
 
-W11 = sdisplay(verifiedW11)
-W12 = sdisplay(verifiedW12)
+prec = 1e-6;
 
-W21 = sdisplay(verifiedW21)
-W22 = sdisplay(verifiedW22)
+verifiedW11 = clean(replace(W(1,1), coefList, double(coefList)), prec);
+verifiedW12 = clean(replace(W(1,2), coefList, double(coefList)), prec);
+verifiedW21 = clean(replace(W(2,1), coefList, double(coefList)), prec);
+verifiedW22 = clean(replace(W(2,2), coefList, double(coefList)), prec);
+
+verifiedY1 = clean(replace(Y(1,1), coefList, double(coefList)), prec);
+verifiedY2 = clean(replace(Y(1,2), coefList, double(coefList)), prec);
+
+
+W11 = sdisplay(verifiedW11);
+W12 = sdisplay(verifiedW12);
+
+W21 = sdisplay(verifiedW21);
+W22 = sdisplay(verifiedW22);
 
 W = [W11 W12;
-     W21 W22]
+     W21 W22];
  
-Y1 = sdisplay(verifiedY1)
-Y2 = sdisplay(verifiedY2)
+Y1 = sdisplay(verifiedY1);
+Y2 = sdisplay(verifiedY2);
 
-Y = [Y1 Y2]
+Y = [Y1 Y2];
+
+save('MS14Output','W','Y')
 end

@@ -147,12 +147,10 @@ for n = 1:N
     % Writes the code to compute DW as the Jacobian of W
     fprintf(fid, '%% Creation of DW%s\n',num2str(n));
     
-    fprintf(fid, 'DWTemp = jacobian(');
-    fprintf(fid, [Variable_Wp '%s,'], num2str(n));
-    fprintf(fid, 'q%s);\n', num2str(n));
+    fprintf(fid, 'DWTemp = jacobian(Wp%s,q%s);\n',num2str(n),num2str(n));
     
     % Writes the matrix DW whose elements are the elements of the vector DWTemp
-    fprintf(fid, [Variable_DW '%s = ['], num2str(n));
+    fprintf(fid, 'DW%s = [', num2str(n));
     
     counter = 1;
     for nr = 1:dimW
@@ -163,36 +161,34 @@ for n = 1:N
                 
                 if nc == dimW && nr < dimW
                     
-                    fprintf(fid, [Variable_DWTemp '(%s);\n'], num2str(counter));
+                    fprintf(fid, 'DWTemp(%s,:)*f%s;\n', num2str(counter),num2str(n));
                     fprintf(fid,'       ');
                     
                 elseif nr == dimW
                     
-                    fprintf(fid, [Variable_DWTemp '(%s)/2];\n'], num2str(counter));
+                    fprintf(fid, 'DWTemp(%s,:)/2*f%s];\n', num2str(counter),num2str(n));
                     
                 else
                     
                     if nc == nr
                         
-                        fprintf(fid, [Variable_DWTemp '(%s)/2, '], num2str(counter));
+                        fprintf(fid, 'DWTemp(%s,:)/2*f%s, ', num2str(counter),num2str(n));
                     
                     else
                         
-                        fprintf(fid, [Variable_DWTemp '(%s),   '], num2str(counter));
+                        fprintf(fid, 'DWTemp(%s,:)*f%s,   ', num2str(counter),num2str(n));
                         
                     end
                 
                 end
                 
 
-                
+                counter = counter + 1;
             else
                 
-                fprintf(fid, '0,           ');
+                fprintf(fid, '0,                ');
                 
             end
-            
-            counter = counter + 1;
             
         end
         

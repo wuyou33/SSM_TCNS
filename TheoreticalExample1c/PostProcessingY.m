@@ -1,8 +1,11 @@
-function PostProcessingY(NumberOfRows,NumberOfColumns)
+function PostProcessingY(LinesVectorB,L,prec)
 
 fid = fopen('PostProcessedY.m','w');
 
 fprintf(fid, '%% Rewriting the matrix W\n');
+
+NumberOfColumns = LinesVectorB;
+NumberOfRows = size(L,1);
 
 for nr = 1:NumberOfRows
     
@@ -10,7 +13,7 @@ for nr = 1:NumberOfRows
         
             
             fprintf(fid, 'VerifiedY%s%s = ', num2str(nr),num2str(nc));
-            fprintf(fid, 'clean(replace(Y(%s,%s), coefList, double(coefList)), eps);\n', num2str(nr),num2str(nc));
+            fprintf(fid, 'clean(replace(Y(%s,%s), coefList, double(coefList)), %s);\n', num2str(nr),num2str(nc),num2str(prec));
             fprintf(fid, 'Y%s%s = ', num2str(nr),num2str(nc));
             fprintf(fid, 'sdisplay(VerifiedY%s%s);\n\n', num2str(nr),num2str(nc));
             
@@ -42,5 +45,5 @@ for nr = 1:NumberOfRows
     end
 end
     
-
+fclose(fid);
 end

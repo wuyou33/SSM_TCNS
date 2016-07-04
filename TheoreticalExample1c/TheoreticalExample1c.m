@@ -11,7 +11,7 @@ function main
 clear all
 close all
 clc
-yalmip clear
+yalmip('clear')
 
 % Set axis of graphs to LaTeX
 set(groot, 'defaultAxesTickLabelInterpreter','latex');
@@ -20,10 +20,13 @@ set(groot, 'defaultLegendInterpreter','latex');
 
 % System Parameters
 
-global u d
+global u d NAgents nr nc
 
 u = 0;
 d = 1e-2;
+% d = 0
+
+NAgents = 4;
 
 xIC = rand(3,1)*100;
 yIC = rand(3,1)*100;
@@ -34,11 +37,10 @@ time = 0:1e-1:5e1;
 % [time,simout] = ode45(@sys,time,IC);
 % PlotSimulation(time,simout)
 
-[W,Y,coefList,LMISolvingTime.L] = LMIOptimization;
-[W,Y] = postprocessing(W,Y,coefList)
-
-save('TheoreticalExample1aOutput','W','Y','LMISolvingTime','L')
-
+LMIOptimization;
+load('TheoreticalExample1cOutput.mat')
+W
+Y
 end
 
 function []=PlotSimulation(time,simout)
@@ -119,18 +121,17 @@ end
 
 function [W,Y,coefList,LMISolvingTime,L] = LMIOptimization
 
-global d
+global d NAgents nr nc
 
 lambda = 1;
 
-% L = [1 -1 0; -1 2 -1; 0 -1 1];
-
-NAgents = 5;
-
-L = LaplacianGenerator(NAgents)
+% L = LaplacianGenerator(NAgents)
+L = LinearLaplacianGenerator(NAgents)
 
 PreProcessingSys(L)
 PreProcessedSys
+
+% L = [1 -1 0; -1 2 -1; 0 -1 1];
 
 A = jacobian(f,q);
 B = jacobian(f,u);
@@ -144,26 +145,31 @@ PreProcessedWandDW
 
 Ydegree = 2;
 
-[nr,nc] = size(B');
+LinesVectorB = size(B,1);
 
-PreProcessingY(nr,nc)
+PreProcessingY(LinesVectorB,L,'Decentralized')
 PreProcessedY
 
-% Dependent only on the neighnbors
+
+% Dependent only on the neighbors
 % Y  = [Y11 Y12 Y13 Y14 0   0;
 %       Y21 Y22 Y23 Y24 Y25 Y26;
 %       0   0   Y33 Y34 Y35 Y36];
-% 
+%   
+% Yc = [Yc11; Yc12; Yc13; Yc14; 0; 0;
+%       Yc21; Yc22; Yc23; Yc24; Yc25; Yc26;
+%       0; 0; Yc33; Yc34; Yc35; Yc36];
+
 % System 2 controls everyone
 % Y  = [Y11 Y12 0   0   0   0;
 %       Y21 Y22 Y23 Y24 Y25 Y26;
 %       0   0   0   0   Y35 Y36];
-% 
+%
 % Full Decentralization
 % Y  = [Y11 Y12 0   0   0   0;
 %       0   0   Y23 Y24 0   0;
 %       0   0   0   0   Y35 Y36];
-  
+
 LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
 
 % The decision variables are the coefficients of the polynomials
@@ -178,15 +184,14 @@ tic
 LMISolvingTime = toc
 % optimize(Constraints,[],options);
 
-end
-
-function [W,Y] = postprocessing(W,Y,coefList)
-
-PostProcessingW(3,2)
+prec = 1e-6;
+PostProcessingW(NAgents,2,prec)
 PostProcessedWandDW
 
-PostProcessingW(3,6)
+PostProcessingY(LinesVectorB,L,prec)
 PostProcessedY
+
+save('TheoreticalExample1cOutput','W','Y','LMISolvingTime','L')
 end
 
 function L=LaplacianGenerator(NAgents)
@@ -195,24 +200,63 @@ L = randi([-1,0],NAgents);
 
 for RowCounter = 1:NAgents
     
-        for ColumnCounter = 1:NAgents
-            
-             if ColumnCounter <= RowCounter
-             
-                 L(RowCounter,ColumnCounter) = 0;
-                 
-             end
+    for ColumnCounter = 1:NAgents
         
+        if ColumnCounter <= RowCounter
+            
+            L(RowCounter,ColumnCounter) = 0;
+            
         end
         
+    end
+    
 end
 
 L = L + transpose(L);
 
 for Counter = 1:NAgents
     
-      L(Counter,Counter) = max(1,-sum(L(Counter,:)) + L(Counter,Counter));
+    L(Counter,Counter) = max(1,-sum(L(Counter,:)) + L(Counter,Counter));
     
 end
+
+end
+
+function L=LinearLaplacianGenerator(NAgents)
+
+L = zeros(NAgents,NAgents);
+
+for RowCounter = 1:NAgents
+    
+    for ColumnCounter = 1:NAgents
+        
+        if ColumnCounter >= RowCounter
+            
+            if ColumnCounter == RowCounter
+                
+                if RowCounter == 1 || RowCounter == NAgents
+                    
+                    L(RowCounter,ColumnCounter) = 1/2;
+                    
+                else
+                    
+                    L(RowCounter,ColumnCounter) = 1;
+                    
+                end
+                
+            elseif ColumnCounter == RowCounter - 1 || ColumnCounter == RowCounter + 1
+                
+                L(RowCounter,ColumnCounter) = -1;
+                
+            end
+            
+        end
+        
+    end
+    
+end
+
+L = L + transpose(L);
+
 
 end

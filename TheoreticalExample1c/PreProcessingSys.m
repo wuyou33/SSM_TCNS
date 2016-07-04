@@ -74,17 +74,17 @@ fprintf(fid, '\n');
 
 for RowCounter=1:NAgen
     
-    fprintf(fid, 'x%sdot = -x%s - x%s.^3 + y%s.^2 -d*(', num2str(RowCounter),num2str(RowCounter),num2str(RowCounter),num2str(RowCounter));
+    fprintf(fid, 'x%sdot = -x%s - x%s^3 + y%s^2 -d*(', num2str(RowCounter),num2str(RowCounter),num2str(RowCounter),num2str(RowCounter));
     
     for ColumnCounter = 1:NAgen
         
         if L(RowCounter,ColumnCounter) < 0
         
-            fprintf(fid, '%s*x%s.^3', num2str(L(RowCounter,ColumnCounter)),num2str(ColumnCounter));
+            fprintf(fid, '%s*x%s^3', num2str(L(RowCounter,ColumnCounter)),num2str(ColumnCounter));
             
         else
             
-            fprintf(fid, '+%s*x%s.^3', num2str(L(RowCounter,ColumnCounter)),num2str(ColumnCounter));
+            fprintf(fid, '+%s*x%s^3', num2str(L(RowCounter,ColumnCounter)),num2str(ColumnCounter));
             
         end
         

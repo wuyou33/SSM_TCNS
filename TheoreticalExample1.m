@@ -23,7 +23,7 @@ set(groot, 'defaultLegendInterpreter','latex');
 global u d
 
 u = 0;
-d = 1;
+d = 1e-2;
 
 xIC = rand(3,1)*100;
 yIC = rand(3,1)*100;
@@ -37,6 +37,7 @@ time = 0:1e-1:5e1;
 [W,Y,coefList] = LMIOptimization;
 [W,Y] = postprocessing(W,Y,coefList)
 
+save('TheoreticalExample1Output','W','Y')
 end
 
 function []=PlotSimulation(time,simout)
@@ -143,9 +144,9 @@ x = [x1;x2;x3];
 y = [y1;y2;y3];
 q = [q1;q2;q3];
 
-x1dot = -x1 - x1^3 + y1^2 + d*(x1 - 2*x1 + x2);
-x2dot = -x2 - x2^3 + y2^2 + d*(x1 - 2*x2 + x3);
-x3dot = -x3 - x3^3 + y3^2 + d*(x2 - 2*x3 + x3);
+x1dot = -x1 - x1^3 + y1^2 + d*(x1^3 - 2*x1^3 + x2^3);
+x2dot = -x2 - x2^3 + y2^2 + d*(x1^3 - 2*x2^3 + x3^3);
+x3dot = -x3 - x3^3 + y3^2 + d*(x2^3 - 2*x3^3 + x3^3);
 
 y1dot = u1;
 y2dot = u2;
@@ -175,11 +176,6 @@ Wc1 = [Wc111;Wc112;Wc122];
 Wp1 = [Wp111;Wp112;Wp122];
 
 DWTemp = jacobian(Wp1,q1);
-size(DWTemp)
-size(DWTemp(1))
-% DW1     = [DWTemp(1) DWTemp(2);
-%           DWTemp(2) DWTemp(4)];
-
 DW1     = [DWTemp(1)/2 DWTemp(2);
            0           DWTemp(4)/2];
 DW1 = DW1 + transpose(DW1);
@@ -195,10 +191,6 @@ Wc2 = [Wc211;Wc212;Wc222];
 Wp2 = [Wp211;Wp212;Wp222];
 
 DWTemp = jacobian(Wp2,q2);
-% DW2     = [DWTemp(1) DWTemp(2);
-%            DWTemp(2) DWTemp(4)];
-
-
 DW2     = [DWTemp(1)/2 DWTemp(2);
            0           DWTemp(4)/2];
 DW2 = DW2 + transpose(DW2);
@@ -214,8 +206,6 @@ Wc3 = [Wc311;Wc312;Wc322];
 Wp3 = [Wp311;Wp312;Wp322];
 
 DWTemp = jacobian(Wp3,q3);
-% DW3    = [DWTemp(1) DWTemp(2);
-%          DWTemp(2) DWTemp(4)];
 
 DW3     = [DWTemp(1)/2 DWTemp(2);
            0           DWTemp(4)/2];
@@ -253,20 +243,20 @@ Y  = [Y11 Y12 Y13 Y14 Y15 Y16;
       Y21 Y22 Y23 Y24 Y25 Y26;
       Y31 Y32 Y33 Y34 Y35 Y36];
 
-% Dependent only on the neighnbors
-Y  = [Y11 Y12 Y13 Y14 0   0;
-      Y21 Y22 Y23 Y24 Y25 Y26;
-      0   0   Y33 Y34 Y35 Y36];
-
-% System 2 controls everyone
-Y  = [Y11 Y12 0   0   0   0;
-      Y21 Y22 Y23 Y24 Y25 Y26;
-      0   0   0   0   Y35 Y36];
-
-% Full Decentralization
-Y  = [Y11 Y12 0   0   0   0;
-      0   0   Y23 Y24 0   0;
-      0   0   0   0   Y35 Y36];
+% % Dependent only on the neighnbors
+% Y  = [Y11 Y12 Y13 Y14 0   0;
+%       Y21 Y22 Y23 Y24 Y25 Y26;
+%       0   0   Y33 Y34 Y35 Y36];
+% 
+% % System 2 controls everyone
+% Y  = [Y11 Y12 0   0   0   0;
+%       Y21 Y22 Y23 Y24 Y25 Y26;
+%       0   0   0   0   Y35 Y36];
+% 
+% % Full Decentralization
+% Y  = [Y11 Y12 0   0   0   0;
+%       0   0   Y23 Y24 0   0;
+%       0   0   0   0   Y35 Y36];
 
   
 Yc  = [Yc11; Yc12; Yc13; Yc14; Yc15; Yc16;
@@ -332,15 +322,15 @@ verifiedY35 = clean(replace(Y(3,5), coefList, double(coefList)), eps);
 verifiedY36 = clean(replace(Y(3,6), coefList, double(coefList)), eps);
 
 
-W11 = sdisplay(verifiedW11);
-W12 = sdisplay(verifiedW12);
+W11 = sdisplay(verifiedW11)
+W12 = sdisplay(verifiedW12)
 W13 = sdisplay(verifiedW13);
 W14 = sdisplay(verifiedW14);
 W15 = sdisplay(verifiedW15);
 W16 = sdisplay(verifiedW16);
 
-W21 = sdisplay(verifiedW21);
-W22 = sdisplay(verifiedW22);
+W21 = sdisplay(verifiedW21)
+W22 = sdisplay(verifiedW22)
 
 W33 = sdisplay(verifiedW33);
 W34 = sdisplay(verifiedW34);

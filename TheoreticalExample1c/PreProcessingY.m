@@ -9,63 +9,141 @@
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Note: input should be size(B')
+% Note: Works only for Linear Graphs!
 
-function PreProcessingY(nr,nc)
+function PreProcessingY(LinesVectorB,L,Option)
 
 fid = fopen('PreProcessedY.m','w');
 
-Variable_Y = 'Y';
-Variable_Yc = 'Yc';
+NAgents = size(L,1);
+LinesVectorBi = LinesVectorB/NAgents; % Number of lines of each vector Bi
 
-% Writes the line of code
-% [Yij,Ycij,Yvij] = polynomial(qn,Wdegree,0);
-% Note Y is written as a polynomial in the variable q
-
-for i = 1:nr
+for RowCounter = 1:NAgents
     
-    fprintf(fid, '\n');
+    fprintf(fid, '\n %% Creation of Variable Y%s\n\n',num2str(RowCounter));
     
-    for j = 1:nc
+    for ColumnCounter = 1:LinesVectorB
         
-        fprintf(fid, '[');
-        fprintf(fid, [Variable_Y '%s%s,'],  num2str(i),num2str(j));
-        fprintf(fid, [Variable_Yc '%s%s,'], num2str(i),num2str(j));
-        fprintf(fid, 'Yv%s%s]',              num2str(i),num2str(j));
-        fprintf(fid, ' = polynomial(');
-        fprintf(fid, 'q%s,', num2str(i));
+        fprintf(fid, '[Y%s%s,Yc%s%s,Yv%s%s] = polynomial(',  num2str(RowCounter),num2str(ColumnCounter),num2str(RowCounter),num2str(ColumnCounter),num2str(RowCounter),num2str(ColumnCounter));
+        
+        % size(B') variables
+        if strcmp(Option,'General') 
+            
+            fprintf(fid, 'q,');
+        
+        % Each variable Y depends on the system i and its neighbor
+        elseif strcmp(Option,'Neighbor')
+                
+                if RowCounter > 1 && RowCounter < NAgents
+                    
+                    fprintf(fid, '[q%s;q%s;q%s],',num2str(RowCounter-1),num2str(RowCounter),num2str(RowCounter+1));
+                    
+                elseif RowCounter == 1
+                    
+                    fprintf(fid, '[q%s;q%s],',num2str(RowCounter),num2str(RowCounter + 1));
+                    
+                else
+                    
+                    fprintf(fid, '[q%s;q%s],',num2str(RowCounter - 1),num2str(RowCounter));
+                    
+                end
+                    
+            
+            
+        else
+            
+            % Each variable Y depends on the system i
+            if strcmp(Option,'Decentralized')
+                
+                fprintf(fid, 'q%s,',num2str(RowCounter));
+                
+            end
+            
+        end
+        
         fprintf(fid, 'Ydegree,0);\n');
         
     end
     
+    
 end
 
-% Writes the vector Yc = [Ycij];
+fprintf(fid, '\n %% Creation of Vector Yc\n\n');
 
 fprintf(fid, '\n');
 fprintf(fid, 'Yc = [');
-for i = 1:nr
+for RowCounter = 1:NAgents
     
-    if i > 1
+    if RowCounter > 1
         
         fprintf(fid,'      ');
     end
     
-    for j = 1:nc
+    for ColumnCounter = 1:LinesVectorB
         
-        if j < nc
+        if strcmp(Option,'General')
             
-            fprintf(fid, [Variable_Yc '%s%s; '], num2str(i),num2str(j));
+            fprintf(fid, 'Yc%s%s',num2str(RowCounter),num2str(ColumnCounter));
+            
+        elseif strcmp(Option,'Neighbor')
+            
+            if L(RowCounter,ceil(ColumnCounter/LinesVectorBi)) ~= 0
+                
+                fprintf(fid, 'Yc%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                
+            else
+                
+                % It cannot be zero!
+                % fprintf(fid, '0   ');
+                fprintf(fid, 'Yc%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                
+            end
             
         else
             
-            if i == nr
+            if strcmp(Option,'Decentralized')
                 
-                 fprintf(fid, [Variable_Yc '%s%s];\n'], num2str(i),num2str(j));
+                if ColumnCounter > 2^(RowCounter - 1) && ColumnCounter <= 2^(RowCounter - 1) + LinesVectorBi && RowCounter > 1
+                    
+                    fprintf(fid, 'Yc%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                    
+                elseif RowCounter == 1 && ColumnCounter <= LinesVectorBi
+                    
+                    fprintf(fid, 'Yc%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                    
+                else
+                    
+                    if RowCounter == NAgents && ColumnCounter > LinesVectorB - LinesVectorBi
+                        
+                        fprintf(fid, 'Yc%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                        
+                    else
+                        
+                        % It cannot be zero!
+                        % fprintf(fid, '0   ');
+                        fprintf(fid, 'Yc%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                        
+                    end
+                    
+                end
+                
+            end
+            
+        end
+        
+        if ColumnCounter < LinesVectorB
+            
+            fprintf(fid, '; ');
+            
+        else
+            
+            if RowCounter == NAgents
+                
+                 fprintf(fid, '];\n');
             
             else
                 
-                fprintf(fid, [Variable_Yc '%s%s;\n'], num2str(i),num2str(j));
+                fprintf(fid, ';\n');
                 
             end
             
@@ -75,32 +153,78 @@ for i = 1:nr
     
 end
 
-% Writes the matrix Y = [Yij];
+fprintf(fid, '\n %% Creation of Matrix Y\n\n');
 
 fprintf(fid, '\n');
 fprintf(fid, 'Y = [');
-for i = 1:nr
+for RowCounter = 1:NAgents
     
-    if i > 1
+    if RowCounter > 1
         
         fprintf(fid,'     ');
     end
     
-    for j = 1:nc
+    for ColumnCounter = 1:LinesVectorB
         
-        if j < nc
+        if strcmp(Option,'General') 
             
-            fprintf(fid, [Variable_Y '%s%s, '], num2str(i),num2str(j));
+            fprintf(fid, 'Y%s%s',num2str(RowCounter),num2str(ColumnCounter));
+            
+        elseif strcmp(Option,'Neighbor')
+            
+            if L(RowCounter,ceil(ColumnCounter/LinesVectorBi)) ~= 0
+                
+                fprintf(fid, 'Y%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                
+            else
+                
+                fprintf(fid, '0  ');
+                
+            end
             
         else
             
-            if i == nr
+            if strcmp(Option,'Decentralized')
                 
-                 fprintf(fid, [Variable_Y '%s%s];\n'], num2str(i),num2str(j));
+                if ColumnCounter > 2^(RowCounter - 1) && ColumnCounter <= 2^(RowCounter - 1) + LinesVectorBi && RowCounter > 1
+                    
+                    fprintf(fid, 'Y%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                    
+                elseif RowCounter == 1 && ColumnCounter <= LinesVectorBi
+                    
+                    fprintf(fid, 'Y%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                    
+                else
+                    
+                    if RowCounter == NAgents && ColumnCounter > LinesVectorB - LinesVectorBi
+                        
+                        fprintf(fid, 'Y%s%s',num2str(RowCounter),num2str(ColumnCounter));
+                        
+                    else
+                        
+                        fprintf(fid, '0  ');
+                        
+                    end
+                    
+                end
+                
+            end
+            
+        end
+        
+        if ColumnCounter < LinesVectorB
+            
+            fprintf(fid, ', ');
+            
+        else
+            
+            if RowCounter == NAgents
+                
+                 fprintf(fid, '];\n');
             
             else
                 
-                fprintf(fid, [Variable_Y '%s%s;\n'], num2str(i),num2str(j));
+                fprintf(fid, ';\n');
                 
             end
             

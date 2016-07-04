@@ -23,7 +23,7 @@ set(groot, 'defaultLegendInterpreter','latex');
 global u d
 
 u = 0;
-d = 1;
+d = 1e-2;
 
 xIC = rand(3,1)*100;
 yIC = rand(3,1)*100;
@@ -145,9 +145,9 @@ x = [x1;x2;x3];
 y = [y1;y2;y3];
 q = [q1;q2;q3];
 
-x1dot = -x1 - x1^3 + y1^2 + d*(x1 - 2*x1 + x2);
-x2dot = -x2 - x2^3 + y2^2 + d*(x1 - 2*x2 + x3);
-x3dot = -x3 - x3^3 + y3^2 + d*(x2 - 2*x3 + x3);
+x1dot = -x1 - x1^3 + y1^2 + d*(x1^3 - 2*x1^3 + x2^3);
+x2dot = -x2 - x2^3 + y2^2 + d*(x1^3 - 2*x2^3 + x3^3);
+x3dot = -x3 - x3^3 + y3^2 + d*(x2^3 - 2*x3^3 + x3^3);
 
 y1dot = u1;
 y2dot = u2;
