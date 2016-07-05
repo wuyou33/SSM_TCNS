@@ -662,6 +662,108 @@ The detailed proof of Corollary \ref{cor:distributed computation} is provided in
 
 \section{Illustration}\label{sec:Illustration}
 
+Let $N>0$ be a constant integer, for each index $i\in\mathbb{N}_{[1,N]}$, consider the system given by
+\begin{equation}\label{eq:example}
+	\left\{\begin{array}{rcl}
+		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
+		\dot{y}_i&=&u_i,
+	\end{array}\right.
+\end{equation}
+where for convenience $x_0=x_1$ and $x_N=x_{N+1}$.
+
+For each index $i\in\mathbb{N}_{[1,N]}$, define the vectors $q_i=(x_i,y_i)$, $\breve{q}_i=(x_{i-1},x_{i+1})$ and let $q=(q_1,\ldots,q_N)$. Denote also
+\begin{align*}
+	f_i(q_i,\breve{q}_i)=&\begin{bmatrix}
+		-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
+		0
+	\end{bmatrix}\\
+	B_i=&\begin{bmatrix}
+	0\\ 1
+	\end{bmatrix}.
+\end{align*}
+
+Note that system \eqref{eq:example} is not feedback linearizable in the sense of \cite{Isidori:1995}, because the vector fields
+\begin{align*}
+	B=&\mathbin{\mathtt{diag}}(B_1,\ldots,B_N),\\
+	\dfrac{\partial f}{\partial q}B-\dfrac{\partial B}{\partial q}f=&\mathbin{\mathtt{diag}}\left(\begin{bmatrix}
+	2y_1\\0
+	\end{bmatrix},\ldots,\begin{bmatrix}
+	2y_N\\0
+	\end{bmatrix}\right)
+\end{align*}
+are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only action of the controller on the $x$-subsystem is capable of is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component.
+
+Employing the method provided in Theorem~\ref{thm:main result}, the LMI \eqref{eq:LMI formulation} has been solved with optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek for a network composed of four systems (i.e., $N=4$) and for three different constraints on the matrix $Y$.
+
+In all cases, the matrix $W$ has a diagonal structure as follows
+\begin{equation*}
+ W=\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),
+\end{equation*}
+the definition of the matrices $W_a$ and $W_b$ differs, according to each case considered.
+
+In the first one, no constraints were imposed on the matrix $Y$. The parser took 97 seconds to solve the  LMI \eqref{eq:LMI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:LMI formulation} are
+\begin{equation*}
+		W_a=\mathbin{\mathtt{diag}}\left(
+ 1.27,1.53\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.53\right)
+\end{equation*}
+and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:general} with elements
+\begin{align*}
+ \overline{Y}_{ij}=&-3y_i-0.08x_iy_i\\
+ \underline{Y}_{ij}=&-2+0.009x_i-1.2\sum_{k=1}^4 y_k^2+x_k^2.
+\end{align*}
+
+\begin{figure*}
+\begin{equation}\label{eq:example:Y:general}
+		Y=\scalebox{0.75}{$\begin{bmatrix}
+			\overline{Y}_{11},&\underline{Y}_{12},&-0.004y_1,&0,&-0.04y_1+0.003x_3y_1,&0.005y_1y_3,&-0.007y_1+0.001x_4y_1,&0\\
+			-0.008y_2-0.002x_1y_2,&0,&\overline{Y}_{23},&\underline{Y}_{24},&-0.007y_2-0.004x_3y_2,&0,&-0.04y_2-0.004x_4y_2,&0.005y_2y_4\\
+			-0.04y_3-0.004x_1y_3,&0,&-0.008y_3+0.004x_2y_3,&0,&\overline{Y}_{35},&\underline{Y}_{36},&-0.008y_3+0.002x_4y_3,&0\\
+			-0.009y_4+0.001x_1y_4,&0,&-0.04-0.003x_2y_4,&0,&-0.004y_4&0,&\overline{Y}_{47},&\underline{Y}_{48}
+		\end{bmatrix}$}
+\end{equation}
+\end{figure*}
+
+In the second case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The time taken by the parser to solve the LMI \eqref{eq:LMI formulation} was 98 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:LMI formulation} are
+\begin{equation*}
+		W_a=\mathbin{\mathtt{diag}}\left(
+ 1.32,1.59\right)\quad\text{and}\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.61\right).
+\end{equation*}
+and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:neighbor} with elements
+\begin{align*}
+	Y_{ij}=&-3y_i-0.03x_iy_i&i,j\in\mathbb{N}_{[1,4]}\\
+	Y_{12}=&-4-0.01x_1-y_1^2-y_2^2-2x_1^2-x_2^2\\	
+	Y_{24}=&-3-0.01x_2-y_1^2-y_2^2-y_3^2-x_1^2-x_2^2-x_3^2\\	
+	Y_{36}=&-3-0.01x_3-y_2^2-y_3^2-y_4^2-x_2^2-x_3^2-x_4^2\\	
+	Y_{48}=&-4-0.01x_4-y_4^2-y_3^2-2x_4^2-x_3^2
+\end{align*}
+
+\begin{figure*}
+\begin{equation}\label{eq:example:Y:neighbor}
+	Y=\scalebox{0.75}{$\begin{bmatrix}
+	Y_{11},&Y_{12},&-0.01y_2+0.03x_2y_1,&0,&0,&0,&0,&0\\
+	-0.01y_2-0.002x_1y_2,&0,&Y_{23},&Y_{24},&-0.01y_2+0.03x_3y_2,&0,&0,&0\\
+	0,&0,&-0.01y_3+0.03x_2y_3,&0,&Y_{35},&Y_{36},&-0.01y_3-0.002x_4y_3,&0\\
+	0,&0,&0,&0,&-0.01y_4+0.03x_3y_4,&0,&Y_{47},&Y_{48}
+	\end{bmatrix}$}
+\end{equation}
+\end{figure*}
+ 
+
+In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the LMI \eqref{eq:LMI formulation} was 101 seconds. In this case, $\mathscr{K}_Y(i)=\{j\in\mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}$, where $\mathscr{K}(i)=\{i\}$. Imposing $Y\in\Xi_Y$ and solving the LMI \eqref{eq:LMI formulation} the following matrices were obtained
+\begin{align*}
+ W=&\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),\\
+ Y=&\mathbin{\mathtt{diag}}\left(Y_1,Y_2,Y_3,Y_4\right)
+\end{align*}
+where
+\begin{equation*}
+		W_a=\mathbin{\mathtt{diag}}\left(
+ 1.43,1.17\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.03,2.17\right)
+\end{equation*}
+and, for each index $i\in\mathbb{N}_{[1,4]}$,
+\begin{align*}
+ Y_i=[-4.33y_i+0.04x_iy_i,\\
+ -7.78-&0.01x_i-2.73y_i^2-2.98x_i^2].
+\end{align*}
 
 \section{Proof of the Results}\label{sec:Proof of the Results}
 

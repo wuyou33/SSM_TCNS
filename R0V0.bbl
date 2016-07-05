@@ -16,40 +16,6 @@
   {}
 \endgroup
 
-\entry{BlondelTsitsiklis1997}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Blondel}{B.}%
-     {V.}{V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Tsitsiklis}{T.}%
-     {J.~N.}{J.~N.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{BVTJN1}
-  \strng{fullhash}{BVTJN1}
-  \verb{doi}
-  \verb 10.1137/s0363012994272630
-  \endverb
-  \field{number}{6}
-  \field{pages}{2118\bibrangedash 2127}
-  \field{title}{{NP}-{H}ardness of {S}ome {L}inear {C}ontrol {D}esign
-  {P}roblems}
-  \field{volume}{35}
-  \verb{file}
-  \verb :C\:\\Users\\humberto\\Dropbox\\Library\\Periodicals\\SIAM Journal on C
-  \verb ontrol and Optimization\\Blondel, V.\; Tsitsiklis, J. N. -- NP-Hardness
-  \verb  of Some Linear Control Design Problems.pdf:PDF
-  \endverb
-  \field{journaltitle}{{SIAM} {J}. {C}ontrol {O}ptim.}
-  \field{year}{1997}
-  \warn{\item Can't use 'journaltitle' + 'journal' \item Invalid format of
-  field 'month'}
-\endentry
-
 \entry{Teschl2012}{book}{}
   \name{author}{1}{}{%
     {{}%
@@ -128,8 +94,7 @@
   \endverb
   \field{number}{3}
   \field{pages}{614\bibrangedash 628}
-  \field{title}{A {D}ifferential {L}yapunov {F}ramework for {C}ontraction
-  {A}nalysis}
+  \field{title}{A Differential Lyapunov Framework for Contraction Analysis}
   \field{volume}{59}
   \field{journaltitle}{{IEEE} Transactions on Automatic Control}
   \field{eprinttype}{arXiv}
@@ -149,6 +114,9 @@
      {R.}{R.}%
      {}{}%
      {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Electrical {\&} Electronics Engineers ({IEEE})}%
   }
   \strng{namehash}{FFSR1}
   \strng{fullhash}{FFSR1}
@@ -183,26 +151,6 @@
   \strng{fullhash}{BA1}
   \field{title}{Local Stabilizability of Nonlinear Control Systems}
   \field{year}{1992}
-\endentry
-
-\entry{Briat2015}{book}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Briat}{B.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Springer}%
-  }
-  \strng{namehash}{BC1}
-  \strng{fullhash}{BC1}
-  \verb{doi}
-  \verb 10.1007/978-3-662-44050-6
-  \endverb
-  \field{title}{Linear Parameter-Varying and Time-Delay Systems}
-  \field{year}{2015}
 \endentry
 
 \entry{Lohmiller1998}{article}{}
@@ -385,7 +333,7 @@
   }
   \strng{namehash}{BWM1}
   \strng{fullhash}{BWM1}
-  \field{title}{An Introduction to Differentiable Manifolds and {R}iemannian
+  \field{title}{An Introduction to Differentiable Manifolds and Riemann
   Geometry}
   \field{year}{1986}
 \endentry
@@ -416,7 +364,7 @@
   \field{title}{The Bounded Real Lemma for Internally Positive Systems and
   H-Infinity Structured Static State Feedback}
   \field{volume}{56}
-  \field{journaltitle}{{IEEE} {T}rans. {A}utom. {C}ontrol}
+  \field{journaltitle}{IEEE Trans. Autom. Control}
   \field{year}{2011}
   \warn{\item Invalid format of field 'month'}
 \endentry
@@ -532,72 +480,77 @@
   \warn{\item Invalid format of field 'month'}
 \endentry
 
-\entry{Goodwin1965}{article}{}
+\entry{Isidori:1995}{book}{}
   \name{author}{1}{}{%
     {{}%
-     {Goodwin}{G.}%
-     {B.~C.}{B.~C.}%
+     {Isidori}{I.}%
+     {A.}{A.}%
      {}{}%
      {}{}}%
   }
-  \strng{namehash}{GBC1}
-  \strng{fullhash}{GBC1}
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{IA1}
+  \strng{fullhash}{IA1}
   \verb{doi}
-  \verb 10.1016/0065-2571(65)90067-1
+  \verb 10.1007/978-1-84628-615-5
   \endverb
-  \field{pages}{425\bibrangedash 438}
-  \field{title}{Oscillatory behavior in enzymatic control processes}
-  \field{volume}{3}
-  \field{journaltitle}{Advances in Enzyme Regulation}
-  \field{year}{1965}
+  \field{series}{Communications and Control Engineering}
+  \field{title}{Nonlinear Control Systems}
+  \field{year}{1995}
+\endentry
+
+\entry{Loefberg2004}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {L\"{o}fberg}{L.}%
+     {J.}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LJ1}
+  \strng{fullhash}{LJ1}
+  \field{booktitle}{Proceedings of the IEEE International Symposium on Computer
+  Aided Control Systems Design}
+  \verb{doi}
+  \verb 10.1109/cacsd.2004.1393890
+  \endverb
+  \field{pages}{284\bibrangedash 289}
+  \field{title}{{YALMIP} : a toolbox for modeling and optimization in {MATLAB}}
+  \verb{url}
+  \verb http://dx.doi.org/10.1109/CACSD.2004.1393890
+  \endverb
+  \list{location}{1}{%
+    {Taipei, Rep. of China}%
+  }
+  \field{year}{2004}
   \warn{\item Invalid format of field 'month'}
 \endentry
 
-\entry{Aminzare2014a}{article}{}
-  \name{author}{2}{}{%
+\entry{Loefberg2009}{article}{}
+  \name{author}{1}{}{%
     {{}%
-     {Aminzare}{A.}%
-     {Z.}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Sontag}{S.}%
-     {E.~D.}{E.~D.}%
+     {L\"{o}fberg}{L.}%
+     {J.}{J.}%
      {}{}%
      {}{}}%
   }
   \list{publisher}{1}{%
     {Institute of Electrical {\&} Electronics Engineers ({IEEE})}%
   }
-  \strng{namehash}{AZSED1}
-  \strng{fullhash}{AZSED1}
+  \strng{namehash}{LJ1}
+  \strng{fullhash}{LJ1}
   \verb{doi}
-  \verb 10.1109/tnse.2015.2395075
+  \verb 10.1109/tac.2009.2017144
   \endverb
-  \field{number}{2}
-  \field{pages}{91\bibrangedash 106}
-  \field{title}{Synchronization of Diffusively-Connected Nonlinear Systems:
-  Results Based on Contractions with Respect to General Norms}
-  \field{volume}{1}
-  \field{journaltitle}{{IEEE} Transactions on Network Science and Engineering}
-  \field{year}{2014}
-\endentry
-
-\entry{Ingalls2013}{book}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Ingalls}{I.}%
-     {B.~P.}{B.~P.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {MIT Press}%
-  }
-  \strng{namehash}{IBP1}
-  \strng{fullhash}{IBP1}
-  \field{title}{Mathematical Modeling in Systems Biology}
-  \field{year}{2013}
+  \field{number}{5}
+  \field{pages}{1007\bibrangedash 1011}
+  \field{title}{Pre- and Post-Processing Sum-of-Squares Programs in Practice}
+  \field{volume}{54}
+  \field{journaltitle}{IEEE Trans. Autom. Control}
+  \field{year}{2009}
+  \warn{\item Invalid format of field 'month'}
 \endentry
 
 \lossort
