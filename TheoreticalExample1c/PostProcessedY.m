@@ -1,98 +1,98 @@
 % Rewriting the matrix W
-VerifiedY11 = clean(replace(Y(1,1), coefList, double(coefList)), 1e-06);
+VerifiedY11 = clean(replace(Y(1,1), coefList, double(coefList)), 0.001);
 Y11 = sdisplay(VerifiedY11);
 
-VerifiedY12 = clean(replace(Y(1,2), coefList, double(coefList)), 1e-06);
+VerifiedY12 = clean(replace(Y(1,2), coefList, double(coefList)), 0.001);
 Y12 = sdisplay(VerifiedY12);
 
-VerifiedY13 = clean(replace(Y(1,3), coefList, double(coefList)), 1e-06);
+VerifiedY13 = clean(replace(Y(1,3), coefList, double(coefList)), 0.001);
 Y13 = sdisplay(VerifiedY13);
 
-VerifiedY14 = clean(replace(Y(1,4), coefList, double(coefList)), 1e-06);
+VerifiedY14 = clean(replace(Y(1,4), coefList, double(coefList)), 0.001);
 Y14 = sdisplay(VerifiedY14);
 
-VerifiedY15 = clean(replace(Y(1,5), coefList, double(coefList)), 1e-06);
+VerifiedY15 = clean(replace(Y(1,5), coefList, double(coefList)), 0.001);
 Y15 = sdisplay(VerifiedY15);
 
-VerifiedY16 = clean(replace(Y(1,6), coefList, double(coefList)), 1e-06);
+VerifiedY16 = clean(replace(Y(1,6), coefList, double(coefList)), 0.001);
 Y16 = sdisplay(VerifiedY16);
 
-VerifiedY17 = clean(replace(Y(1,7), coefList, double(coefList)), 1e-06);
+VerifiedY17 = clean(replace(Y(1,7), coefList, double(coefList)), 0.001);
 Y17 = sdisplay(VerifiedY17);
 
-VerifiedY18 = clean(replace(Y(1,8), coefList, double(coefList)), 1e-06);
+VerifiedY18 = clean(replace(Y(1,8), coefList, double(coefList)), 0.001);
 Y18 = sdisplay(VerifiedY18);
 
-VerifiedY21 = clean(replace(Y(2,1), coefList, double(coefList)), 1e-06);
+VerifiedY21 = clean(replace(Y(2,1), coefList, double(coefList)), 0.001);
 Y21 = sdisplay(VerifiedY21);
 
-VerifiedY22 = clean(replace(Y(2,2), coefList, double(coefList)), 1e-06);
+VerifiedY22 = clean(replace(Y(2,2), coefList, double(coefList)), 0.001);
 Y22 = sdisplay(VerifiedY22);
 
-VerifiedY23 = clean(replace(Y(2,3), coefList, double(coefList)), 1e-06);
+VerifiedY23 = clean(replace(Y(2,3), coefList, double(coefList)), 0.001);
 Y23 = sdisplay(VerifiedY23);
 
-VerifiedY24 = clean(replace(Y(2,4), coefList, double(coefList)), 1e-06);
+VerifiedY24 = clean(replace(Y(2,4), coefList, double(coefList)), 0.001);
 Y24 = sdisplay(VerifiedY24);
 
-VerifiedY25 = clean(replace(Y(2,5), coefList, double(coefList)), 1e-06);
+VerifiedY25 = clean(replace(Y(2,5), coefList, double(coefList)), 0.001);
 Y25 = sdisplay(VerifiedY25);
 
-VerifiedY26 = clean(replace(Y(2,6), coefList, double(coefList)), 1e-06);
+VerifiedY26 = clean(replace(Y(2,6), coefList, double(coefList)), 0.001);
 Y26 = sdisplay(VerifiedY26);
 
-VerifiedY27 = clean(replace(Y(2,7), coefList, double(coefList)), 1e-06);
+VerifiedY27 = clean(replace(Y(2,7), coefList, double(coefList)), 0.001);
 Y27 = sdisplay(VerifiedY27);
 
-VerifiedY28 = clean(replace(Y(2,8), coefList, double(coefList)), 1e-06);
+VerifiedY28 = clean(replace(Y(2,8), coefList, double(coefList)), 0.001);
 Y28 = sdisplay(VerifiedY28);
 
-VerifiedY31 = clean(replace(Y(3,1), coefList, double(coefList)), 1e-06);
+VerifiedY31 = clean(replace(Y(3,1), coefList, double(coefList)), 0.001);
 Y31 = sdisplay(VerifiedY31);
 
-VerifiedY32 = clean(replace(Y(3,2), coefList, double(coefList)), 1e-06);
+VerifiedY32 = clean(replace(Y(3,2), coefList, double(coefList)), 0.001);
 Y32 = sdisplay(VerifiedY32);
 
-VerifiedY33 = clean(replace(Y(3,3), coefList, double(coefList)), 1e-06);
+VerifiedY33 = clean(replace(Y(3,3), coefList, double(coefList)), 0.001);
 Y33 = sdisplay(VerifiedY33);
 
-VerifiedY34 = clean(replace(Y(3,4), coefList, double(coefList)), 1e-06);
+VerifiedY34 = clean(replace(Y(3,4), coefList, double(coefList)), 0.001);
 Y34 = sdisplay(VerifiedY34);
 
-VerifiedY35 = clean(replace(Y(3,5), coefList, double(coefList)), 1e-06);
+VerifiedY35 = clean(replace(Y(3,5), coefList, double(coefList)), 0.001);
 Y35 = sdisplay(VerifiedY35);
 
-VerifiedY36 = clean(replace(Y(3,6), coefList, double(coefList)), 1e-06);
+VerifiedY36 = clean(replace(Y(3,6), coefList, double(coefList)), 0.001);
 Y36 = sdisplay(VerifiedY36);
 
-VerifiedY37 = clean(replace(Y(3,7), coefList, double(coefList)), 1e-06);
+VerifiedY37 = clean(replace(Y(3,7), coefList, double(coefList)), 0.001);
 Y37 = sdisplay(VerifiedY37);
 
-VerifiedY38 = clean(replace(Y(3,8), coefList, double(coefList)), 1e-06);
+VerifiedY38 = clean(replace(Y(3,8), coefList, double(coefList)), 0.001);
 Y38 = sdisplay(VerifiedY38);
 
-VerifiedY41 = clean(replace(Y(4,1), coefList, double(coefList)), 1e-06);
+VerifiedY41 = clean(replace(Y(4,1), coefList, double(coefList)), 0.001);
 Y41 = sdisplay(VerifiedY41);
 
-VerifiedY42 = clean(replace(Y(4,2), coefList, double(coefList)), 1e-06);
+VerifiedY42 = clean(replace(Y(4,2), coefList, double(coefList)), 0.001);
 Y42 = sdisplay(VerifiedY42);
 
-VerifiedY43 = clean(replace(Y(4,3), coefList, double(coefList)), 1e-06);
+VerifiedY43 = clean(replace(Y(4,3), coefList, double(coefList)), 0.001);
 Y43 = sdisplay(VerifiedY43);
 
-VerifiedY44 = clean(replace(Y(4,4), coefList, double(coefList)), 1e-06);
+VerifiedY44 = clean(replace(Y(4,4), coefList, double(coefList)), 0.001);
 Y44 = sdisplay(VerifiedY44);
 
-VerifiedY45 = clean(replace(Y(4,5), coefList, double(coefList)), 1e-06);
+VerifiedY45 = clean(replace(Y(4,5), coefList, double(coefList)), 0.001);
 Y45 = sdisplay(VerifiedY45);
 
-VerifiedY46 = clean(replace(Y(4,6), coefList, double(coefList)), 1e-06);
+VerifiedY46 = clean(replace(Y(4,6), coefList, double(coefList)), 0.001);
 Y46 = sdisplay(VerifiedY46);
 
-VerifiedY47 = clean(replace(Y(4,7), coefList, double(coefList)), 1e-06);
+VerifiedY47 = clean(replace(Y(4,7), coefList, double(coefList)), 0.001);
 Y47 = sdisplay(VerifiedY47);
 
-VerifiedY48 = clean(replace(Y(4,8), coefList, double(coefList)), 1e-06);
+VerifiedY48 = clean(replace(Y(4,8), coefList, double(coefList)), 0.001);
 Y48 = sdisplay(VerifiedY48);
 
 Y = [Y11, Y12, Y13, Y14, Y15, Y16, Y17, Y18;

@@ -147,7 +147,7 @@ Ydegree = 2;
 
 LinesVectorB = size(B,1);
 
-PreProcessingY(LinesVectorB,L,'Decentralized')
+PreProcessingY(LinesVectorB,L,'General')
 PreProcessedY
 
 
@@ -184,7 +184,7 @@ tic
 LMISolvingTime = toc
 % optimize(Constraints,[],options);
 
-prec = 1e-6;
+prec = 1e-3;
 PostProcessingW(NAgents,2,prec)
 PostProcessedWandDW
 
