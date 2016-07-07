@@ -20,31 +20,44 @@ set(groot, 'defaultLegendInterpreter','latex');
 
 % System Parameters
 
-global u d NAgents nr nc Option
+global u d NAgents nr nc Option Simulation L
 
-u = 0;
+Simulation = 1;
+
 d = 1e-2;
 % d = 0
 
 % Possible choices are: General, Decentralized and Neighbor
 Option  = 'Decentralized';
-NAgents = 4;
+NAgents = 3;
+u = zeros(NAgents,1);
 
-xIC = rand(3,1)*100;
-yIC = rand(3,1)*100;
+L = LinearLaplacianGenerator(NAgents);
 
-IC = [xIC;yIC];
-
-time = 0:1e-1:5e1;
-% [time,simout] = ode45(@sys,time,IC);
-% PlotSimulation(time,simout)
-
-LMIOptimization;
-%load('TheoreticalExample1cOutput.mat')
-fname = sprintf('Output%dAgents%s',NAgents,Option);
-load(fname)
-W
-Y
+if Simulation == 0
+    LMIOptimization;
+    load('TheoreticalExample1cOutput.mat')
+    fname = sprintf('Output%dAgents%s',NAgents,Option);
+    load(fname)
+    W
+    Y
+else
+    
+    xIC = rand(NAgents,1)*100;
+    yIC = rand(NAgents,1)*100;
+    
+    IC = [xIC;yIC];
+    
+    time = 0:1e-1:5e1;
+    [time,simout] = ode45(@sys,time,IC);
+    
+    fname = sprintf('Simulation%dAgents%s',NAgents,Option);
+    save(fname,'time','simout')
+    
+    load(fname)
+    PlotSimulation(time,simout)
+    
+end
 end
 
 function []=PlotSimulation(time,simout)
@@ -63,13 +76,11 @@ set(gca, 'FontSize', 14)
 axis tight
 grid on
 
-
 subplot(2,1,2),plot(time,simout(:,4),'c-','LineWidth',2);
 hold on
-subplot(2,1,2),plot(time,simout(:,5),'m-','LineWidth',2);
+subplot(2,1,2),plot(time,simout(:,5),'c-','LineWidth',2);
 hold on
-subplot(2,1,2),plot(time,simout(:,6),'k-','LineWidth',2);
-grid on
+subplot(2,1,2),plot(time,simout(:,6),'m-','LineWidth',2);
 grid on
 xlabel('Time $t$','interpreter','latex','fontsize',14);
 ylabel('$y_i(t)$','interpreter','latex','fontsize',14);
@@ -98,41 +109,24 @@ end
 
 function [out]=sys(t,input)
 
-x1 = input(1);
-x2 = input(2);
-x3 = input(3);
+global d u L Simulation
 
-y1 = input(4);
-y2 = input(5);
-y3 = input(6);
-
-global d u
-
-x1dot = -x1 - x1^3 + y1^2 + d*(x1 - 2*x1 + x2);
-x2dot = -x2 - x2^3 + y2^2 + d*(x1 - 2*x2 + x3);
-x3dot = -x3 - x3^3 + y3^2 + d*(x2 - 2*x3 + x3);
-
-y1dot = u;
-y2dot = u;
-y3dot = u;
-
-xdot = [x1dot;x2dot;x3dot];
-ydot = [y1dot;y2dot;y3dot];
+PreProcessingSys(L,Simulation)
+PreProcessedSys
 
 out = [xdot;ydot];
 
 end
 
-function [W,Y,coefList,LMISolvingTime,L] = LMIOptimization
+function [W,Y,coefList,LMISolvingTime] = LMIOptimization
 
-global d NAgents nr nc Option
+global d NAgents nr nc Option Simulation L
 
 lambda = 1;
 
 % L = LaplacianGenerator(NAgents)
-L = LinearLaplacianGenerator(NAgents)
 
-PreProcessingSys(L)
+PreProcessingSys(L,Simulation)
 PreProcessedSys
 
 % L = [1 -1 0; -1 2 -1; 0 -1 1];

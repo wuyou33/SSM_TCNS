@@ -17,12 +17,6 @@ Y15 = sdisplay(VerifiedY15);
 VerifiedY16 = clean(replace(Y(1,6), coefList, double(coefList)), 0.001);
 Y16 = sdisplay(VerifiedY16);
 
-VerifiedY17 = clean(replace(Y(1,7), coefList, double(coefList)), 0.001);
-Y17 = sdisplay(VerifiedY17);
-
-VerifiedY18 = clean(replace(Y(1,8), coefList, double(coefList)), 0.001);
-Y18 = sdisplay(VerifiedY18);
-
 VerifiedY21 = clean(replace(Y(2,1), coefList, double(coefList)), 0.001);
 Y21 = sdisplay(VerifiedY21);
 
@@ -40,12 +34,6 @@ Y25 = sdisplay(VerifiedY25);
 
 VerifiedY26 = clean(replace(Y(2,6), coefList, double(coefList)), 0.001);
 Y26 = sdisplay(VerifiedY26);
-
-VerifiedY27 = clean(replace(Y(2,7), coefList, double(coefList)), 0.001);
-Y27 = sdisplay(VerifiedY27);
-
-VerifiedY28 = clean(replace(Y(2,8), coefList, double(coefList)), 0.001);
-Y28 = sdisplay(VerifiedY28);
 
 VerifiedY31 = clean(replace(Y(3,1), coefList, double(coefList)), 0.001);
 Y31 = sdisplay(VerifiedY31);
@@ -65,37 +53,6 @@ Y35 = sdisplay(VerifiedY35);
 VerifiedY36 = clean(replace(Y(3,6), coefList, double(coefList)), 0.001);
 Y36 = sdisplay(VerifiedY36);
 
-VerifiedY37 = clean(replace(Y(3,7), coefList, double(coefList)), 0.001);
-Y37 = sdisplay(VerifiedY37);
-
-VerifiedY38 = clean(replace(Y(3,8), coefList, double(coefList)), 0.001);
-Y38 = sdisplay(VerifiedY38);
-
-VerifiedY41 = clean(replace(Y(4,1), coefList, double(coefList)), 0.001);
-Y41 = sdisplay(VerifiedY41);
-
-VerifiedY42 = clean(replace(Y(4,2), coefList, double(coefList)), 0.001);
-Y42 = sdisplay(VerifiedY42);
-
-VerifiedY43 = clean(replace(Y(4,3), coefList, double(coefList)), 0.001);
-Y43 = sdisplay(VerifiedY43);
-
-VerifiedY44 = clean(replace(Y(4,4), coefList, double(coefList)), 0.001);
-Y44 = sdisplay(VerifiedY44);
-
-VerifiedY45 = clean(replace(Y(4,5), coefList, double(coefList)), 0.001);
-Y45 = sdisplay(VerifiedY45);
-
-VerifiedY46 = clean(replace(Y(4,6), coefList, double(coefList)), 0.001);
-Y46 = sdisplay(VerifiedY46);
-
-VerifiedY47 = clean(replace(Y(4,7), coefList, double(coefList)), 0.001);
-Y47 = sdisplay(VerifiedY47);
-
-VerifiedY48 = clean(replace(Y(4,8), coefList, double(coefList)), 0.001);
-Y48 = sdisplay(VerifiedY48);
-
-Y = [Y11, Y12, Y13, Y14, Y15, Y16, Y17, Y18;
-     Y21, Y22, Y23, Y24, Y25, Y26, Y27, Y28;
-     Y31, Y32, Y33, Y34, Y35, Y36, Y37, Y38;
-     Y41, Y42, Y43, Y44, Y45, Y46, Y47, Y48];
+Y = [Y11, Y12, Y13, Y14, Y15, Y16;
+     Y21, Y22, Y23, Y24, Y25, Y26;
+     Y31, Y32, Y33, Y34, Y35, Y36];
