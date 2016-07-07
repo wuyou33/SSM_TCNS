@@ -20,12 +20,14 @@ set(groot, 'defaultLegendInterpreter','latex');
 
 % System Parameters
 
-global u d NAgents nr nc
+global u d NAgents nr nc Option
 
 u = 0;
 d = 1e-2;
 % d = 0
 
+% Possible choices are: General, Decentralized and Neighbor
+Option  = 'Decentralized';
 NAgents = 4;
 
 xIC = rand(3,1)*100;
@@ -38,7 +40,9 @@ time = 0:1e-1:5e1;
 % PlotSimulation(time,simout)
 
 LMIOptimization;
-load('TheoreticalExample1cOutput.mat')
+%load('TheoreticalExample1cOutput.mat')
+fname = sprintf('Output%dAgents%s',NAgents,Option);
+load(fname)
 W
 Y
 end
@@ -121,7 +125,7 @@ end
 
 function [W,Y,coefList,LMISolvingTime,L] = LMIOptimization
 
-global d NAgents nr nc
+global d NAgents nr nc Option
 
 lambda = 1;
 
@@ -147,28 +151,8 @@ Ydegree = 2;
 
 LinesVectorB = size(B,1);
 
-PreProcessingY(LinesVectorB,L,'General')
+PreProcessingY(LinesVectorB,L,Option)
 PreProcessedY
-
-
-% Dependent only on the neighbors
-% Y  = [Y11 Y12 Y13 Y14 0   0;
-%       Y21 Y22 Y23 Y24 Y25 Y26;
-%       0   0   Y33 Y34 Y35 Y36];
-%   
-% Yc = [Yc11; Yc12; Yc13; Yc14; 0; 0;
-%       Yc21; Yc22; Yc23; Yc24; Yc25; Yc26;
-%       0; 0; Yc33; Yc34; Yc35; Yc36];
-
-% System 2 controls everyone
-% Y  = [Y11 Y12 0   0   0   0;
-%       Y21 Y22 Y23 Y24 Y25 Y26;
-%       0   0   0   0   Y35 Y36];
-%
-% Full Decentralization
-% Y  = [Y11 Y12 0   0   0   0;
-%       0   0   Y23 Y24 0   0;
-%       0   0   0   0   Y35 Y36];
 
 LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
 
@@ -185,13 +169,14 @@ LMISolvingTime = toc
 % optimize(Constraints,[],options);
 
 prec = 1e-3;
-PostProcessingW(NAgents,2,prec)
+PostProcessingW(NAgents,2,prec,Option)
 PostProcessedWandDW
 
 PostProcessingY(LinesVectorB,L,prec)
 PostProcessedY
 
-save('TheoreticalExample1cOutput','W','Y','LMISolvingTime','L')
+fname = sprintf('Output%dAgents%s',NAgents,Option);
+save(fname,'W','Y','LMISolvingTime','L')
 end
 
 function L=LaplacianGenerator(NAgents)
