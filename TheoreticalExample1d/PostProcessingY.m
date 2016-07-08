@@ -1,48 +1,14 @@
-function PostProcessingY(LinesVectorB,L,prec)
+function PostProcessingY(NumberOfAgents,prec)
 
 fid = fopen('PostProcessedY.m','w');
 
-fprintf(fid, '%% Rewriting the matrix W\n');
-
-NumberOfColumns = LinesVectorB;
-NumberOfRows = size(L,1);
-
-for nr = 1:NumberOfRows
-    
-    for nc = 1:NumberOfColumns
+for nr = 1:NumberOfAgents
         
-            
-            fprintf(fid, 'VerifiedY%s%s = ', num2str(nr),num2str(nc));
-            fprintf(fid, 'clean(replace(Y(%s,%s), coefList, double(coefList)), %s);\n', num2str(nr),num2str(nc),num2str(prec));
-            fprintf(fid, 'Y%s%s = ', num2str(nr),num2str(nc));
-            fprintf(fid, 'sdisplay(VerifiedY%s%s);\n\n', num2str(nr),num2str(nc));
-            
+        fprintf(fid, 'VerifiedY%s = ', num2str(nr));
+        fprintf(fid, 'clean(replace(Y%s, coefList, double(coefList)), %s);\n', num2str(nr),num2str(prec));
+        fprintf(fid, 'Y%s = ', num2str(nr));
+        fprintf(fid, 'sdisplay(VerifiedY%s);\n\n', num2str(nr));
         
-    end
-end
-
-fprintf(fid, 'Y = [');
-
-for nr = 1:NumberOfRows
-    
-    for nc = 1:NumberOfColumns
-        
-             if nc == NumberOfColumns && nr == NumberOfRows
-                 
-                 fprintf(fid, 'Y%s%s];\n', num2str(nr),num2str(nc));
-                 
-             elseif nc == NumberOfColumns
-            
-                 fprintf(fid, 'Y%s%s;\n', num2str(nr),num2str(nc));
-                 fprintf(fid, '     ');
-                 
-             else
-                 
-                 fprintf(fid, 'Y%s%s, ', num2str(nr),num2str(nc));
-                 
-             end
-            
-    end
 end
     
 fclose(fid);

@@ -2,8 +2,6 @@ function PreProcessingSys(L,Simulation)
 
 fid = fopen('PreProcessedSys.m','w');
 
-
-
 NAgen  = size(L,1);
 
 Counter = 1;
@@ -204,6 +202,6 @@ else
     
 end
 
-fclose('all');
+fclose(fid);
 
 end

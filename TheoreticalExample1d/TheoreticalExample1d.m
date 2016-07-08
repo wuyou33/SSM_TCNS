@@ -24,23 +24,27 @@ global u d NAgents nr nc Option Simulation L
 
 Simulation = 0;
 
-d = 1e-2;
-% d = 0
+d = 1e-4; % Max value for feasibility
 
 % Possible choices are: General, Decentralized and Neighbor
 Option  = 'Decentralized';
-NAgents = 6;
+
+if strcmp(Option,'General') + strcmp(Option,'Decentralized') + strcmp(Option,'Neighbor') == 0
+    
+    disp('Chose an option: General, Decentralized or Neighbor');
+    return
+    
+end
+
+NAgents = 10;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);
 
 if Simulation == 0
     LMIOptimization;
-    load('TheoreticalExample1cOutput.mat')
     fname = sprintf('Output%dAgents%s',NAgents,Option);
     load(fname)
-    W
-    Y
 else
     
     xIC = rand(NAgents,1)*100;
@@ -120,86 +124,48 @@ end
 
 function [W,Y,coefList,LMISolvingTime] = LMIOptimization
 
-global d NAgents nr nc Option Simulation L
+global d NAgents Option Simulation L
 
 lambda = 1;
 
 % L = LaplacianGenerator(NAgents)
 
-PreProcessingSys(L,Simulation)
+PreProcessingSys(L,Simulation,d)
 PreProcessedSys
-
-% L = [1 -1 0; -1 2 -1; 0 -1 1];
-
-A = jacobian(f,q);
-B = jacobian(f,u);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wdegree = 2;
 
-PreProcessingW(NAgents,2)
+PreProcessingW(NAgents,2,Wdegree,Option)
 PreProcessedWandDW
 
 Ydegree = 2;
 
-LinesVectorB = size(B,1);
-
-PreProcessingY(LinesVectorB,L,Option)
+PreProcessingY(NAgents,2,Ydegree,Option)
 PreProcessedY
 
-LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
+PreProcessingLfW(NAgents,lambda)
+PreProcessedLfW
 
-% The decision variables are the coefficients of the polynomials
-Constraints = [sos(W-eye(length(q)));sos(-LfW+eye(length(q)))];
-% Constraints = [W-eye(length(q))>=0;-LfW+eye(length(q))>=0];
 checkset(Constraints)
-% set required solver
 coefList = [Wc;Yc];
-options = sdpsettings('solver','mosek'.'verbose);
+options = sdpsettings('solver','mosek','verbose',1);
 tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
 LMISolvingTime = toc
-% optimize(Constraints,[],options);
 
-prec = 1e-3;
-PostProcessingW(NAgents,2,prec,Option)
+prec = 1e-6;
+PostProcessingW(NAgents,prec)
 PostProcessedWandDW
 
-PostProcessingY(LinesVectorB,L,prec)
+PostProcessingY(NAgents,prec)
 PostProcessedY
 
 fname = sprintf('Output%dAgents%s',NAgents,Option);
-save(fname,'W','Y','LMISolvingTime','L')
-end
 
-function L=LaplacianGenerator(NAgents)
-
-L = randi([-1,0],NAgents);
-
-for RowCounter = 1:NAgents
-    
-    for ColumnCounter = 1:NAgents
-        
-        if ColumnCounter <= RowCounter
-            
-            L(RowCounter,ColumnCounter) = 0;
-            
-        end
-        
-    end
-    
-end
-
-L = L + transpose(L);
-
-for Counter = 1:NAgents
-    
-    L(Counter,Counter) = max(1,-sum(L(Counter,:)) + L(Counter,Counter));
-    
-end
+save(fname)
 
 end
+
 
 function L=LinearLaplacianGenerator(NAgents)
 

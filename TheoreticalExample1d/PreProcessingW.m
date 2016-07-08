@@ -8,8 +8,7 @@
 % Author: Humberto Stein Shiromoto                                        %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-function PreProcessingW(N,SystemDimension)
+function PreProcessingW(NumberOfAgents,SystemDimension,Wdegree,Option)
 
 fid = fopen('PreProcessedWandDW.m','w');
 
@@ -24,7 +23,7 @@ Variable_DW = 'DW';
 
 dimW = SystemDimension;
 
-for n = 1:N
+for n = 1:NumberOfAgents
     
     % Writes the line of code
     % [Wpn11,Wcn11,Wvn11] = polynomial(qn,Wdegree,0);
@@ -42,8 +41,34 @@ for n = 1:N
                 fprintf(fid, [Variable_Wc '%s%s%s,'], num2str(n),num2str(nr),num2str(nc));
                 fprintf(fid, [Variable_Wv '%s%s%s]'], num2str(n),num2str(nr),num2str(nc));
                 fprintf(fid, ' = polynomial(');
-                fprintf(fid, 'q%s,', num2str(n));
-                fprintf(fid, 'Wdegree,0);\n');
+                
+                if strcmp(Option,'General')
+                    
+                    fprintf(fid, 'q,');
+                    
+                elseif strcmp(Option,'Decentralized')
+                    
+                    fprintf(fid, 'q%s,', num2str(n));
+                    
+                else
+                    
+                    if n == 1
+                        
+                        fprintf(fid, '[q%s;q%s],', num2str(n),num2str(n+1));
+                        
+                    elseif n == NumberOfAgents
+                        
+                        fprintf(fid, '[q%s;q%s],', num2str(n-1),num2str(n));
+                        
+                    else
+                        
+                        fprintf(fid, '[q%s;q%s;q%s],', num2str(n-1),num2str(n),num2str(n+1));
+                        
+                    end
+                    
+                end
+                
+                fprintf(fid, '%f,0);\n',Wdegree);
             
             end
             
@@ -147,9 +172,61 @@ for n = 1:N
     % Writes the code to compute DW as the Jacobian of W
     fprintf(fid, '%% Creation of DW%s\n',num2str(n));
     
-    fprintf(fid, 'DWTemp = jacobian(Wp%s,q%s);\n',num2str(n),num2str(n));
+    if strcmp(Option,'General')
+        
+        fprintf(fid, 'DWTemp = jacobian(Wp%s,q);\n',num2str(n));
+    
+    elseif strcmp(Option,'Decentralized')
+        
+        fprintf(fid, 'DWTemp = jacobian(Wp%s,q%s);\n',num2str(n),num2str(n));
+        
+    else
+        
+        if n == 1
+                        
+                        fprintf(fid, 'DWTemp = jacobian(Wp%s,[q%s;q%s]);\n', num2str(n),num2str(n),num2str(n+1));
+                        
+                    elseif n == NumberOfAgents
+                        
+                        fprintf(fid, 'DWTemp = jacobian(Wp%s,[q%s;q%s]);\n', num2str(n),num2str(n-1),num2str(n));
+                        
+                    else
+                        
+                        fprintf(fid, 'DWTemp = jacobian(Wp%s,[q%s;q%s;q%s]);\n', num2str(n),num2str(n-1),num2str(n),num2str(n+1));
+                        
+                    end
+        
+    end
     
     % Writes the matrix DW whose elements are the elements of the vector DWTemp
+    
+    if strcmp(Option,'General')
+        
+        fprintf(fid,'v = f;\n');
+        
+    elseif strcmp(Option,'Decentralized')
+        
+        fprintf(fid,'v = f%s;\n',num2str(n));
+        
+    else
+        
+        if n == 1
+            
+            fprintf(fid, 'v = [f%s;f%s];\n', num2str(n),num2str(n+1));
+            
+        elseif n == NumberOfAgents
+            
+            fprintf(fid, 'v = [f%s;f%s];\n', num2str(n-1),num2str(n));
+            
+        else
+            
+            fprintf(fid, 'v = [f%s;f%s;f%s];\n', num2str(n-1),num2str(n),num2str(n+1));
+            
+        end
+        
+    end
+    
+    fprintf(fid, '\n');
     fprintf(fid, 'DW%s = [', num2str(n));
     
     counter = 1;
@@ -161,22 +238,22 @@ for n = 1:N
                 
                 if nc == dimW && nr < dimW
                     
-                    fprintf(fid, 'DWTemp(%s,:)*f%s;\n', num2str(counter),num2str(n));
+                    fprintf(fid, 'DWTemp(%s,:)*v;\n', num2str(counter));
                     fprintf(fid,'       ');
                     
                 elseif nr == dimW
                     
-                    fprintf(fid, 'DWTemp(%s,:)/2*f%s];\n', num2str(counter),num2str(n));
+                    fprintf(fid, 'DWTemp(%s,:)/2*v];\n', num2str(counter));
                     
                 else
                     
                     if nc == nr
                         
-                        fprintf(fid, 'DWTemp(%s,:)/2*f%s, ', num2str(counter),num2str(n));
+                        fprintf(fid, 'DWTemp(%s,:)/2*v, ', num2str(counter));
                     
                     else
                         
-                        fprintf(fid, 'DWTemp(%s,:)*f%s,   ', num2str(counter),num2str(n));
+                        fprintf(fid, 'DWTemp(%s,:)*v,   ', num2str(counter));
                         
                     end
                 
@@ -201,35 +278,11 @@ for n = 1:N
     fprintf(fid, '\n\n', num2str(n));
 end
 
-% Writes W as block-diagonal matrix composed of the Wn's
-fprintf(fid, 'W = blkdiag(');
-for n = 1:N
-    
-    if n < N
-        fprintf(fid, [Variable_W '%s,'], num2str(n));
-    else
-        fprintf(fid, [Variable_W '%s);\n'], num2str(n));
-    end
-    
-end
-
-% Writes DW as block-diagonal matrix composed of the DWn's
-fprintf(fid, 'DW = blkdiag(');
-for n = 1:N
-    
-    if n < N
-        fprintf(fid, [Variable_DW '%s,'], num2str(n));
-    else
-        fprintf(fid, [Variable_DW '%s);\n'], num2str(n));
-    end
-    
-end
-
 % Writes Wc a vector obtained by concatenating all Wc's
 fprintf(fid, 'Wc = [');
-for n = 1:N
+for n = 1:NumberOfAgents
     
-    if n < N
+    if n < NumberOfAgents
         fprintf(fid, [Variable_Wc '%s;'], num2str(n));
     else
         fprintf(fid, [Variable_Wc '%s];\n'], num2str(n));
@@ -239,3 +292,4 @@ end
 
 fclose(fid);
 
+end
