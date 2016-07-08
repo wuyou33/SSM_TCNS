@@ -29,7 +29,7 @@ d = 1e-2;
 
 % Possible choices are: General, Decentralized and Neighbor
 Option  = 'Decentralized';
-NAgents = 3;
+NAgents = 6;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);
@@ -156,7 +156,7 @@ Constraints = [sos(W-eye(length(q)));sos(-LfW+eye(length(q)))];
 checkset(Constraints)
 % set required solver
 coefList = [Wc;Yc];
-options = sdpsettings('solver','mosek');
+options = sdpsettings('solver','mosek'.'verbose);
 tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
 LMISolvingTime = toc
