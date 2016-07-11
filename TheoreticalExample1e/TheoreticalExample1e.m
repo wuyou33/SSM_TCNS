@@ -30,7 +30,7 @@ if strcmp(Option,'General') + strcmp(Option,'Decentralized') + strcmp(Option,'Ne
     
 end
 
-NAgents = 2^1
+NAgents = 2^6
 d = 1e-4; % Max value for feasibility of the LMI optimization
 
 
