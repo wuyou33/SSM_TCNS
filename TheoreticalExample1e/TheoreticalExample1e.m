@@ -21,7 +21,7 @@ global u d NAgents nr nc Option Simulation L
 Simulation = 0;
 
 % Possible choices are: General, Decentralized and Neighbor
-Option  = 'Decentralized';
+Option  = 'General';
 
 if strcmp(Option,'General') + strcmp(Option,'Decentralized') + strcmp(Option,'Neighbor') == 0
     
@@ -30,7 +30,7 @@ if strcmp(Option,'General') + strcmp(Option,'Decentralized') + strcmp(Option,'Ne
     
 end
 
-NAgents = 2^6
+NAgents = 2^1
 d = 1e-4; % Max value for feasibility of the LMI optimization
 
 
@@ -144,7 +144,9 @@ Ydegree = 2;
 PreProcessingY(NAgents,2,Ydegree,Option)
 PreProcessedY
 
-PreProcessingLfW(NAgents,lambda)
+ScalingFactor = 1e-2;
+
+PreProcessingLfW(NAgents,lambda,ScalingFactor)
 PreProcessedLfW
 
 checkset(Constraints)

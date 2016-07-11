@@ -70,42 +70,6 @@ DW4 = [DWTemp(1,:)/2*f4, DWTemp(2,:)*f4;
 DW4 = DW4 + transpose(DW4);
 
 
-% Creation of W5 and DW5
-[Wp511,Wc511,Wv511] = polynomial(q5,Wdegree,0);
-[Wp512,Wc512,Wv512] = polynomial(q5,Wdegree,0);
-[Wp522,Wc522,Wv522] = polynomial(q5,Wdegree,0);
-% Creation of W5
-W5 = [Wp511, Wp512;
-      Wp512, Wp522];
-
-Wc5 = [Wc511;Wc512;Wc522];
-Wp5 = [Wp511;Wp512;Wp522];
-
-% Creation of DW5
-DWTemp = jacobian(Wp5,q5);
-DW5 = [DWTemp(1,:)/2*f5, DWTemp(2,:)*f5;
-       0,                DWTemp(3,:)/2*f5];
-DW5 = DW5 + transpose(DW5);
-
-
-% Creation of W6 and DW6
-[Wp611,Wc611,Wv611] = polynomial(q6,Wdegree,0);
-[Wp612,Wc612,Wv612] = polynomial(q6,Wdegree,0);
-[Wp622,Wc622,Wv622] = polynomial(q6,Wdegree,0);
-% Creation of W6
-W6 = [Wp611, Wp612;
-      Wp612, Wp622];
-
-Wc6 = [Wc611;Wc612;Wc622];
-Wp6 = [Wp611;Wp612;Wp622];
-
-% Creation of DW6
-DWTemp = jacobian(Wp6,q6);
-DW6 = [DWTemp(1,:)/2*f6, DWTemp(2,:)*f6;
-       0,                DWTemp(3,:)/2*f6];
-DW6 = DW6 + transpose(DW6);
-
-
-W = blkdiag(W1,W2,W3,W4,W5,W6);
-DW = blkdiag(DW1,DW2,DW3,DW4,DW5,DW6);
-Wc = [Wc1;Wc2;Wc3;Wc4;Wc5;Wc6];
+W = blkdiag(W1,W2,W3,W4);
+DW = blkdiag(DW1,DW2,DW3,DW4);
+Wc = [Wc1;Wc2;Wc3;Wc4];

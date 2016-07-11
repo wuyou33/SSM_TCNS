@@ -1,4 +1,4 @@
-function PreProcessingLfW(NumberOfAgents,lambda)
+function PreProcessingLfW(NumberOfAgents,lambda,ScalingFactor)
 
 fid = fopen('PreProcessedLfW.m','w');
 
@@ -32,7 +32,7 @@ for AgentCounter = 1:NumberOfAgents
         
     end
     
-    fprintf(fid, 'B%s*Y%s + transpose(B%s*Y%s) + 2*%d*W%s;\n', num2str(AgentCounter),num2str(AgentCounter),num2str(AgentCounter),num2str(AgentCounter),lambda,num2str(AgentCounter));
+    fprintf(fid, 'B%s*Y%s + transpose(B%s*Y%s) + 2*%f*W%s;\n', num2str(AgentCounter),num2str(AgentCounter),num2str(AgentCounter),num2str(AgentCounter),lambda,num2str(AgentCounter));
     
 end
 
@@ -44,11 +44,11 @@ for AgentCounter = 1:NumberOfAgents
     
     if AgentCounter < NumberOfAgents
         
-        fprintf(fid,'sos(W%s); sos(-LfW%s); ',num2str(AgentCounter),num2str(AgentCounter));
+        fprintf(fid,'sos(W%s-eye(2)*%f); sos(-LfW%s+eye(2)*%f); ',num2str(AgentCounter),ScalingFactor,num2str(AgentCounter),ScalingFactor);
         
     else
         
-        fprintf(fid,'sos(W%s); sos(-LfW%s)]; ',num2str(AgentCounter),num2str(AgentCounter));
+        fprintf(fid,'sos(W%s-eye(2)*%f); sos(-LfW%s+eye(2)*%f)]; ',num2str(AgentCounter),ScalingFactor,num2str(AgentCounter),ScalingFactor);
         
     end
     

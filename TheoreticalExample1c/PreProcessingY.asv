@@ -10,15 +10,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Note: Works only for Linear Graphs!
- 
-% function test
-% 
-% L = eye(5);
-% NAgents = size(L,1);
-% Option = 'Neighbor';
-% PreProcessingY1(2*NAgents,L,Option)
-% 
-% end
+
+function test
+
+end
 
 function PreProcessingY(LinesVectorB,L,Option)
 
@@ -45,7 +40,7 @@ for RowCounter = 1:NAgents
                 
                 if RowCounter > 1 && RowCounter < NAgents
                     
-                    if ColumnCounter >= (RowCounter - 1)*LinesVectorBi -1 && ColumnCounter <= (RowCounter - 1)*LinesVectorBi + 4
+                    if ColumnCounter >= (RowCounter - 1)*LinesVectorBi -1 && ColumnCounter < RowCounter*2*LinesVectorBi
                         
                         fprintf(fid, '[Y%s%s,Yc%s%s,Yv%s%s] = polynomial(',  num2str(RowCounter),num2str(ColumnCounter),num2str(RowCounter),num2str(ColumnCounter),num2str(RowCounter),num2str(ColumnCounter));
                         fprintf(fid, '[q%s;q%s;q%s],',num2str(RowCounter-1),num2str(RowCounter),num2str(RowCounter+1));
@@ -61,7 +56,7 @@ for RowCounter = 1:NAgents
                     
                 else
                     
-                    if  RowCounter == NAgents && ColumnCounter > LinesVectorB - 2*LinesVectorBi
+                    if  RowCounter == NAgents && ColumnCounter >= LinesVectorB - 2*LinesVectorBi
                         fprintf(fid, '[Y%s%s,Yc%s%s,Yv%s%s] = polynomial(',  num2str(RowCounter),num2str(ColumnCounter),num2str(RowCounter),num2str(ColumnCounter),num2str(RowCounter),num2str(ColumnCounter));
                         fprintf(fid, '[q%s;q%s],',num2str(RowCounter - 1),num2str(RowCounter));
                         fprintf(fid, 'Ydegree,0);\n');

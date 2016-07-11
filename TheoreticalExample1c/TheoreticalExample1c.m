@@ -28,15 +28,23 @@ d = 1e-2;
 % d = 0
 
 % Possible choices are: General, Decentralized and Neighbor
-Option  = 'Decentralized';
-NAgents = 6;
+Option  = 'Neighbor';
+
+if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
+        + strcmp(Option,'Neighbor') == 0
+    
+    disp('Chose an option: General, Decentralized or Neighbor');
+    return
+    
+end
+
+NAgents = 4;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);
 
 if Simulation == 0
     LMIOptimization;
-    load('TheoreticalExample1cOutput.mat')
     fname = sprintf('Output%dAgents%s',NAgents,Option);
     load(fname)
     W
