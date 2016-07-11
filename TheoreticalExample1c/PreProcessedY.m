@@ -26,19 +26,29 @@
 
  % Creation of Variable Y4
 
-[Y45,Yc45,Yv45] = polynomial([q3;q4],Ydegree,0);
-[Y46,Yc46,Yv46] = polynomial([q3;q4],Ydegree,0);
-[Y47,Yc47,Yv47] = polynomial([q3;q4],Ydegree,0);
-[Y48,Yc48,Yv48] = polynomial([q3;q4],Ydegree,0);
+[Y45,Yc45,Yv45] = polynomial([q3;q4;q5],Ydegree,0);
+[Y46,Yc46,Yv46] = polynomial([q3;q4;q5],Ydegree,0);
+[Y47,Yc47,Yv47] = polynomial([q3;q4;q5],Ydegree,0);
+[Y48,Yc48,Yv48] = polynomial([q3;q4;q5],Ydegree,0);
+[Y49,Yc49,Yv49] = polynomial([q3;q4;q5],Ydegree,0);
+[Y410,Yc410,Yv410] = polynomial([q3;q4;q5],Ydegree,0);
+
+ % Creation of Variable Y5
+
+[Y57,Yc57,Yv57] = polynomial([q4;q5],Ydegree,0);
+[Y58,Yc58,Yv58] = polynomial([q4;q5],Ydegree,0);
+[Y59,Yc59,Yv59] = polynomial([q4;q5],Ydegree,0);
+[Y510,Yc510,Yv510] = polynomial([q4;q5],Ydegree,0);
 
  % Creation of Vector Yc
 
 
-Yc = [Yc11; Yc12; Yc13; Yc14; Yc21; Yc22; Yc23; Yc24; Yc25; Yc26; Yc33; Yc34; Yc35; Yc36; Yc37; Yc38; Yc45; Yc46; Yc47; Yc48];
+Yc = [Yc11; Yc12; Yc13; Yc14; Yc21; Yc22; Yc23; Yc24; Yc25; Yc26; Yc33; Yc34; Yc35; Yc36; Yc37; Yc38; Yc45; Yc46; Yc47; Yc48; Yc49; Yc410; Yc57; Yc58; Yc59; Yc510];
  % Creation of Matrix Y
 
 
-Y = [Y11, Y12, Y13, Y14, 0  , 0  , 0  , 0  ;
-     Y21, Y22, Y23, Y24, Y25, Y26, 0  , 0  ;
-     0  , 0  , Y33, Y34, Y35, Y36, Y37, Y38;
-     0  , 0  , 0  , 0  , Y45, Y46, Y47, Y48];
+Y = [Y11, Y12, Y13, Y14, 0  , 0  , 0  , 0  , 0  , 0  ;
+     Y21, Y22, Y23, Y24, Y25, Y26, 0  , 0  , 0  , 0  ;
+     0  , 0  , Y33, Y34, Y35, Y36, Y37, Y38, 0  , 0  ;
+     0  , 0  , 0  , 0  , Y45, Y46, Y47, Y48, Y49, Y410;
+     0  , 0  , 0  , 0  , 0  , 0  , Y57, Y58, Y59, Y510];

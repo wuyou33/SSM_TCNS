@@ -8,10 +8,18 @@
 % Author: Humberto Stein Shiromoto                                        %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% function test
+% 
+% PreProcessingW1(3,2,2,1e-1)
+% 
+% end
+% 
+% function PreProcessingW1(N,SystemDimension,Wdegree,ScalingFactor)
 
-function PreProcessingW(N,SystemDimension)
+function PreProcessingW(N,SystemDimension,Wdegree,ScalingFactor)
 
-fid = fopen('PreProcessedWandDW.m','w');
+fid = fopen('PreProcessedW.m','w');
 
 % Writing the matrix W
 
@@ -43,7 +51,7 @@ for n = 1:N
                 fprintf(fid, [Variable_Wv '%s%s%s]'], num2str(n),num2str(nr),num2str(nc));
                 fprintf(fid, ' = polynomial(');
                 fprintf(fid, 'q%s,', num2str(n));
-                fprintf(fid, 'Wdegree,0);\n');
+                fprintf(fid, '%f,0);\n',Wdegree);
             
             end
             
@@ -213,6 +221,17 @@ for n = 1:N
     
 end
 
+fprintf(fid, 'WConstraints = [');
+for n = 1:N
+    
+    if n < N
+        fprintf(fid, 'sos(W%s-eye(2)*%f);', num2str(n),ScalingFactor);
+    else
+        fprintf(fid, 'sos(W%s-eye(2)*%f)];\n', num2str(n),ScalingFactor);
+    end
+    
+end
+
 % Writes DW as block-diagonal matrix composed of the DWn's
 fprintf(fid, 'DW = blkdiag(');
 for n = 1:N
@@ -239,3 +258,4 @@ end
 
 fclose(fid);
 
+end

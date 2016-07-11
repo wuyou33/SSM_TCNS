@@ -38,7 +38,7 @@ if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
     
 end
 
-NAgents = 4;
+NAgents = 5;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);
@@ -145,9 +145,11 @@ B = jacobian(f,u);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wdegree = 2;
+ScalingFactor = 1e-1;
+SystemDimension = 2;
 
-PreProcessingW(NAgents,2)
-PreProcessedWandDW
+PreProcessingW(NAgents,SystemDimension,Wdegree,ScalingFactor)
+PreProcessedW
 
 Ydegree = 2;
 
@@ -159,8 +161,7 @@ PreProcessedY
 LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
 
 % The decision variables are the coefficients of the polynomials
-Constraints = [sos(W-eye(length(q)));sos(-LfW+eye(length(q)))];
-% Constraints = [W-eye(length(q))>=0;-LfW+eye(length(q))>=0];
+Constraints = [WConstraints;sos(-LfW+ScalingFactor*eye(length(q)))];
 checkset(Constraints)
 % set required solver
 coefList = [Wc;Yc];
