@@ -1,6 +1,6 @@
 function PostProcessingW(NumberOfAgents,SystemDimension,prec,Option)
 
-fid = fopen('PostProcessedWandDW.m','w');
+fid = fopen('PostProcessedW.m','w');
 
 SysDim = SystemDimension;
 

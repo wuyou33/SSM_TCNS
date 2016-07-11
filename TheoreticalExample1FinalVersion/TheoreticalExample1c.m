@@ -28,7 +28,7 @@ d = 1e-2;
 % d = 0
 
 % Possible choices are: General, Decentralized and Neighbor
-Option  = 'Neighbor';
+Option  = 'Decentralized';
 
 if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
         + strcmp(Option,'Neighbor') == 0
@@ -38,7 +38,7 @@ if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
     
 end
 
-NAgents = 5;
+NAgents = 3;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);
@@ -132,12 +132,8 @@ global d NAgents nr nc Option Simulation L
 
 lambda = 1;
 
-% L = LaplacianGenerator(NAgents)
-
-PreProcessingSys(L,Simulation)
+PreProcessingSys(L,Simulation,d)
 PreProcessedSys
-
-% L = [1 -1 0; -1 2 -1; 0 -1 1];
 
 A = jacobian(f,q);
 B = jacobian(f,u);
@@ -145,7 +141,7 @@ B = jacobian(f,u);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wdegree = 2;
-ScalingFactor = 1e-1;
+ScalingFactor = 1;
 SystemDimension = 2;
 
 PreProcessingW(NAgents,SystemDimension,Wdegree,ScalingFactor)
@@ -161,7 +157,7 @@ PreProcessedY
 LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
 
 % The decision variables are the coefficients of the polynomials
-Constraints = [WConstraints;sos(-LfW+ScalingFactor*eye(length(q)))];
+Constraints = [WConstraints;sos(-LfW+ScalingFactor*eye(size(LfW)))];
 checkset(Constraints)
 % set required solver
 coefList = [Wc;Yc];
@@ -173,7 +169,7 @@ LMISolvingTime = toc
 
 prec = 1e-3;
 PostProcessingW(NAgents,2,prec,Option)
-PostProcessedWandDW
+PostProcessedW
 
 PostProcessingY(LinesVectorB,L,prec)
 PostProcessedY
