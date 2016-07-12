@@ -38,7 +38,7 @@ if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
     
 end
 
-NAgents = 3;
+NAgents = 4;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);
@@ -154,7 +154,9 @@ LinesVectorB = size(B,1);
 PreProcessingY(LinesVectorB,L,Option)
 PreProcessedY
 
+tic
 LfW = -DW + A*W + W*A' + B*Y + Y'*B' + 2*lambda*W;
+Temp = toc
 
 % The decision variables are the coefficients of the polynomials
 Constraints = [WConstraints;sos(-LfW+ScalingFactor*eye(size(LfW)))];
