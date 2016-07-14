@@ -53,7 +53,7 @@
 
 \usepackage[natbib=true,backend=bibtex,style=ieee,
 firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bibencoding=utf8]{biblatex}
-\addbibresource{../../../Library.bib}
+\addbibresource{../../../../Library.bib}
 \AtBeginBibliography{\small}
 
 % !!!! IF FILE NOT FOUND DOWNLOAD IT FROM
@@ -437,7 +437,25 @@ IEEE, IEEEtran, journal, \LaTeX, paper, template.
 
 \section{Introduction}
 
-For linear systems, the problem of design controllers with a prescribed structure is known to be NP-hard \cite{BlondelTsitsiklis1997}. Consequently, for nonlinear systems, it is \emph{at least} NP-hard.
+Over the years, methods for the design of controllers for dynamical systems has developed different techniques, according to the vector field that describes the system structure. In terms of computation, controller design problem are often translated in terms of dynamic programming 
+
+
+For linear systems, controller design methods include $H_\infty$ optmization \cite{Doyleetal1992} and LQR \cite{Hespanha:2009}. The design problems are usually formulated in terms of linear matrix inequalities (LMIs) and semidefinite programming \cite{Boyd1994,DullerudPaganini2000}. 
+
+In the case of nonlinear systems, systematic approaches include high-gain  \cite{GrognardSepulchreBastin1999}, backstepping \cite{Krstic1995,SteinShiromoto2013a}, and forwarding \cite{MazencPraly96}. In terms of numerical computation, techniques employed include sum-of-squares (SOS) optimization \cite{Parrilo2003}.
+
+For those system described by input-affine differential equations,  the existence of a control-Lyapunov function (CLF) satisfying the so-called \emph{small control property} provides a ``universal'' formula for a stabilizing feedback law  \cite{Sontag1983,Sontag1989a}. However, by the time that this paper was submitted, systematic methods for the search of a CLF were known only for particular systems within this class (see, for instance, \cite{MazencMalisoff2006}). In addition to the lack of a general systematic approach, the formulation of the CLF search in terms of numerical optimization leads to a problem that is not necessarily convex and not connected, in general \cite{Rantzer:2001}.
+
+An alternative to CLFs is provided by the so-called control-contraction metrics (CCMs). In this methodology the feedback law is the solution of a convex optimization problem \cite{Manchester2014a}. The obtained controller makes every solution of the closed-loop system exponentially converge to a prescribed trajectory (see a precise definition below).
+
+The drawback of methods such as CCMs, $H_\infty$ optimization and LQR is that, when the system under consideration has several states (large scale), it does not scale well. This is due to the fact that the stability verification of a system with $n$ states may require an appropriate function with $n^2$ terms (see \cite{Rantzer2015} for the case of linear systems and Lyapunov functions).
+
+Large-scale systems may appear in the form of interconnection of smaller components, for example, in applications such as traffic networks \cite{CanudasdeWitMorbidiLeonOjedaEtAl2015}, pipe networks \cite{Persis2011a} and sensor networks \cite{Pajic2011}. For such systems, a property often sought is the ability to augment or to reduce the size of the network without computing the controller for all subsystems of the network, i.e., to make the controller scalable. This property can be satisfied with decentralized controllers \cite{Siljak1991}. In terms of dynamic programming, the problem of design controllers having an arbitrary structure is known to be NP-hard \cite{BlondelTsitsiklis1997,Tanaka2011}, for linear systems. Consequently, for nonlinear systems the problem is very challenging.
+
+In the case of linear systems whose solutions evolve in the positive orthant (positive systems), the problem of design a structured stabilizing feedback law has been addressed in \cite{Tanaka2011}. Also, the authors show that the existence of such a controller is equivalent to the existence of Lyapunov function with a diagonal structure. The importance of this result for large-scale systems is highlighted in \cite{Rantzer2015}, where a structured synthesis of a controller is shown.
+
+For nonlinear systems in which some order of initial conditions is preserved along the flow of the vector field (monotone systems), 
+
 
 \paragraph{Overview.} The motivation and background needed for this paper are stated in Section \ref{sec:Background and Motivation}. The problem under consideration is formalized in Section \ref{sec:Problem Formulation}. Section \ref{sec:Results} presents the result of this paper. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. The proofs of the results are provided in Section \ref{sec:Proof of the Results}. Section \ref{sec:Conclusion} collects final remarks.
 
@@ -516,7 +534,10 @@ A suitable framework to deal with exponential convergence of pair of solutions t
 \begin{equation}\label{eq:general system:differential}
 	\dot{\delta}_x=A(x,u)\delta_x+B(x)\delta_u,
 \end{equation}
-where $\delta_x$ (resp. $\delta_u$) is a vector of the Euclidean space $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). More precisely, it is the vector tangent to a piecewise smooth curve connecting a pair of points in $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). The matrix $A\in\mathbb{R}^{n\times n}$ has components given, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, by $A_{jk}(x,u)=\tfrac{\partial[f_j+b_ju_j]}{\partial x_k}(x,u)$
+where $\delta_x$ (resp. $\delta_u$) is a vector of the Euclidean space $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). More precisely, it is the vector tangent to a piecewise smooth curve connecting a pair of points in $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). The matrix $A\in\mathbb{R}^{n\times n}$ has components given, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, by 
+\begin{equation*}
+	A_{jk}(x,u)=\dfrac{\partial[f_j+b_ju_j]}{\partial x_k}(x,u)	
+\end{equation*}
 for indexes $j,k\in\mathbb{N}_{[1,n]}$. 
 
 The resulting system composed of Equations \eqref{eq:general system} and \eqref{eq:general system:differential} is analyzed on the state space spanned by the vector $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$. 
@@ -571,13 +592,13 @@ The following result is recalled from \cite{Manchester2014a} and provides a feed
 
 Another important result of Theorem \ref{prop:CCM Existence} the feedback for system \eqref{eq:general system} obtained by integrating a feedback law designed for system \eqref{eq:general system:differential}.
 
-As remarked in \cite{Manchester2014a}, the main advantage to look for control-contraction metric with respect to a control-Lyapunov function is that the former case can be formulate in terms of a convex optimization problem \cite{Rantzer:2001}. The steps to obtain a control to system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} are shown below.
+As remarked in \cite{Manchester2014a}, the main advantage to look for control-contraction metric with respect to a control-Lyapunov function is that the former case can be formulate in terms of a convex optimization problem while the later is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} are shown below.
 
-Step 1 (Offline LMI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W=W^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following linear matrix inequality (LMI)
-\begin{equation}\label{eq:LMI formulation}
+Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W=W^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following matrix inequality (MI)
+\begin{equation}\label{eq:MI formulation}
 	-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\preceq0,
 \end{equation}
-for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, $M=W^{-1}$ is a control-contraction metric for system \eqref{eq:general system}.
+that is linear on the matrix variables $W$ and $Y$, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, $M=W^{-1}$ is a control-contraction metric for system \eqref{eq:general system}.
 
 Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system} and $K=YW^{-1}$, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every $x_0$ and $x_1\in\mathbb{R}^n$, there exist a smooth geodesic curve $\gamma:[0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
 \begin{equation}\label{eq:contracting feedback law}
@@ -587,7 +608,7 @@ where $s\in[0,1]$, is a feedback law for system \eqref{eq:general system}.
 
 {\itshape Motivation.} From the above steps, even if the problem of imposing a particular structure on $Y$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} can not be distributely computed.
 
-{\itshape Contribution.} In this paper, these limitations are addressed by imposing a block-diagonal structure over $W$. Moreover, when $W$ is row-diagonal dominant, not only the solutions to the optimization problem \eqref{eq:geodesic formulation} can be computed in parallel but also the LMI \eqref{eq:contracting feedback law}.
+{\itshape Contribution.} In this paper, these limitations are addressed by imposing a block-diagonal structure over $W$. Moreover, when $W$ is row-diagonal dominant, not only the solutions to the optimization problem \eqref{eq:geodesic formulation} can be computed in parallel but also the MI \eqref{eq:contracting feedback law}.
 
 \section{Results}\label{sec:Results}
 
@@ -597,15 +618,13 @@ where $s\in[0,1]$, is a feedback law for system \eqref{eq:general system}.
 
 Definition~\ref{def:SSCCM} implies that there exist integers $N>1$ and $n_i>0$ such that $n_1+\ldots+n_N=n$. Also, there exist smooth bounded functions $M_i:\mathbb{R}^{n_i}\to\mathbb{R}^{n_i\times n_i}$ satisfying $M_i=M_i^\top\succ0$, for every index $i\in\mathbb{N}_{[1,N]}$, and the equation
 	\begin{equation*}
-		V(x,\delta_x)=\sum_{i=1}^N \delta_{x_i}^\top M_i(x_i)\delta_{x_i},
+		V(x,\delta_x)=\sum_{i=1}^N \delta_{x_i}^\top M_i(x_i)\delta_{x_i}=\sum_{i=1}^N V_i(x_i),
 	\end{equation*}
 for every $(x_i,\delta x_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{n_i}$.
 
-Although the requirement of a control-contraction metric $M$ to have block-diagonal structure may be restrictive, for positive linear time-invariant systems the existence of a matrices $P=P^\top\succ0$ with diagonal structure is not conservative \cite{Tanaka2011}. Thus, the question of how restrictive is the requirement of $M$ to be diagonal is open. The main result of the paper is stated below.
+In other words, a sum-separable metric is the case in which the metric $V$ for system \eqref{eq:general system} is decomposed into a sum of components $V_i$, where $i\in\mathbb{N}_{[1,N]}$, each one of these components depend only on $i$-th component of the the system state $x$, i.e., $x_i\in\mathbb{R}^{n_i}$. The concept behind this definition is similar to the notion of sum-separable Lyapunov functions (see \cite{Dirr2015}). 
 
-\todo[inline]{Compare SS-CCM with SS-LF from \cite{Dirr2015,Rantzer2013}}
-
-To solve item 2 of Problem~\ref{problem formulation}, the structure on the feedback defined in Equation \eqref{eq:contracting feedback law} is obtained by imposing a a suitable constraint on the function $Y$ to be satisfied together with the LMI \eqref{eq:LMI formulation}. 
+To solve item 2 of Problem~\ref{problem formulation}, the structure on the feedback defined in Equation \eqref{eq:contracting feedback law} is obtained by imposing a a suitable constraint on the function $Y$ to be satisfied together with the MI \eqref{eq:MI formulation}. 
 
 For each index $i\in\mathbb{N}_{[1,N]}$, define the sets 
 \begin{subequations}
@@ -615,18 +634,18 @@ For each index $i\in\mathbb{N}_{[1,N]}$, define the sets
 	and
 	\begin{align*}
 		\Xi_Y=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}:\text{the}\ i\text{-th row}\ Y_i\ \\
-		\text{has the property}&\ \mathscr{K}_Y(i)\}.
+		\text{has the properties}\ \mathscr{K}_Y(i)\ &\text{and}\ \mathscr{K}(i)\}.
 	\end{align*}
 \end{subequations}
 Note that the set $\mathscr{K}_Y(i)$ is the set index for which the corresponding columns of the row-vector $Y_i$ are zero. By definition, this set is the complement of $\mathscr{K}(i)$. Consequently, given an index $j\in\mathscr{K}_Y$ and $W$ is diagonal, the $i$-th line of the vector $YW^{-1}\delta_x$ does not depend on $j$-th component of the vector $\delta_x$. As remarked in \cite{Tanaka2011}, the constraint ``$Y\in\Xi_Y$'' is linear.
 
 \begin{theorem}\label{thm:main result}
-	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the LMI \eqref{eq:LMI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
+	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
 \end{theorem}
 
 The detailed proof of Theorem \ref{thm:main result} is provided in Section \ref{sec:Proof of the Results}. 
 
-Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori} the computation of the LMI \eqref{eq:LMI formulation} is cannot be done in parallel. The next result provides sufficient conditions to solve each component \eqref{eq:LMI formulation} independently, and according to the structure defined by the set $\Xi$. Before present it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
+Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori} the computation of the MI \eqref{eq:MI formulation}  cannot be done in parallel. The next result provides sufficient conditions to solve each component \eqref{eq:MI formulation} independently, and according to the structure defined by the set $\Xi$. Before present it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
 
 Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
 	\begin{subequations}\label{eq:T}
@@ -649,18 +668,31 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 \end{definition}
 
 \begin{corollary}\label{cor:distributed computation}
-	 If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the LMI
-	\begin{equation}\label{eq:LMI formulation:i}
+	 If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI
+	\begin{equation}\label{eq:MI formulation:i}
 		T_{ii}\preceq 0
 	\end{equation}
-	for every index $i\in\mathbb{N}_{[1,N]}$, and the matrix $T$ is diagonally dominant, then pair of matrices $W$ and $Y$ is a solution to the LMI \eqref{eq:LMI formulation}.
+	for every index $i\in\mathbb{N}_{[1,N]}$, and the matrix $T$ is diagonally dominant, then pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation}.
 \end{corollary}
 
 The detailed proof of Corollary \ref{cor:distributed computation} is provided in Section \ref{sec:Proof of the Results}.
 
 \todo[inline]{See the works of Ahmadi (Princeton) on scale-diag. dom.}
 
+\subsection{Discussion}
+
+Although the requirement of a sum-separable structure seems to be restrictive, for some classes of systems this structure is equivalent to the (possibly local) stability of the origin. 
+
+For monotone systems (i.e., systems for which the some order of initial conditions is preserved along the flow of the vector field) described by a vector field that is continuously differentiable and whose gradient matrix is Hurwitz at the origin, there exists a sum-separable Lyapunov function in a neighborhood of the origin \cite[Theorem 3.4]{Dirr2015}. 
+
+For linear time-invariant systems with the property that solutions starting in the positive orthant remain in the positive orthant (also known as positive systems), the stability of the origin is equivalent to the existence of a quadratic Lyapunov function described by a matrix $P=P^\top\succ0$ with diagonal structure \cite{Tanaka2011}. 
+
+
+Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure is open. As mentioned before, the main advantage to look for control-contraction metric with respect to a control-Lyapunov function is that the former case can be formulate in terms of a convex optimization problem while the later is non-convex \cite{Rantzer:2001}.
+
 \section{Illustration}\label{sec:Illustration}
+
+A case where structured controller design is important is on distributed design for network systems.
 
 Let $N>0$ be a constant integer, for each index $i\in\mathbb{N}_{[1,N]}$, consider the system given by
 \begin{equation}\label{eq:example}
@@ -678,8 +710,8 @@ For each index $i\in\mathbb{N}_{[1,N]}$, define the vectors $q_i=(x_i,y_i)$, $\b
 		0
 	\end{bmatrix}\\
 	B_i=&\begin{bmatrix}
-	0\\ 1
-	\end{bmatrix}.
+	0, 1
+	\end{bmatrix}^\top.
 \end{align*}
 
 Note that system \eqref{eq:example} is not feedback linearizable in the sense of \cite{Isidori:1995}, because the vector fields
@@ -693,7 +725,7 @@ Note that system \eqref{eq:example} is not feedback linearizable in the sense of
 \end{align*}
 are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only action of the controller on the $x$-subsystem is capable of is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component.
 
-Employing the method provided in Theorem~\ref{thm:main result}, the LMI \eqref{eq:LMI formulation} has been solved with optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek for a network composed of four systems (i.e., $N=4$) and for three different constraints on the matrix $Y$.
+Employing the method provided in Theorem~\ref{thm:main result}, the MI \eqref{eq:MI formulation} has been solved with optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek for a network composed of four systems (i.e., $N=4$) and for three different constraints on the matrix $Y$. The hardware on which the software ran is an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b.
 
 In all cases, the matrix $W$ has a diagonal structure as follows
 \begin{equation*}
@@ -701,7 +733,7 @@ In all cases, the matrix $W$ has a diagonal structure as follows
 \end{equation*}
 the definition of the matrices $W_a$ and $W_b$ differs, according to each case considered.
 
-In the first one, no constraints were imposed on the matrix $Y$. The parser took 97 seconds to solve the  LMI \eqref{eq:LMI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:LMI formulation} are
+In the first one, no constraints were imposed on the matrix $Y$. The parser took 97 seconds to solve the  MI \eqref{eq:MI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
 \begin{equation*}
 		W_a=\mathbin{\mathtt{diag}}\left(
  1.27,1.53\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.53\right)
@@ -714,7 +746,7 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 
 \begin{figure*}
 \begin{equation}\label{eq:example:Y:general}
-		Y=\scalebox{0.75}{$\begin{bmatrix}
+		Y(q)=\scalebox{0.75}{$\begin{bmatrix}
 			\overline{Y}_{11},&\underline{Y}_{12},&-0.004y_1,&0,&-0.04y_1+0.003x_3y_1,&0.005y_1y_3,&-0.007y_1+0.001x_4y_1,&0\\
 			-0.008y_2-0.002x_1y_2,&0,&\overline{Y}_{23},&\underline{Y}_{24},&-0.007y_2-0.004x_3y_2,&0,&-0.04y_2-0.004x_4y_2,&0.005y_2y_4\\
 			-0.04y_3-0.004x_1y_3,&0,&-0.008y_3+0.004x_2y_3,&0,&\overline{Y}_{35},&\underline{Y}_{36},&-0.008y_3+0.002x_4y_3,&0\\
@@ -723,14 +755,19 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 \end{equation}
 \end{figure*}
 
-In the second case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The time taken by the parser to solve the LMI \eqref{eq:LMI formulation} was 98 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:LMI formulation} are
+In the second case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. Consequently, for each index $i\in\mathbb{N}_{[1,4]}$, the non-identically zero elements of the $i$-th line of the matrix $Y$ depend on the variables $q_{i-1}$, $q_i$ and $q_{i+1}$ (note that, for convenience $q_0=q_1$ and $q_5=q_4$).
+
+The time taken by the parser to solve the MI \eqref{eq:MI formulation} was 98 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
 \begin{equation*}
 		W_a=\mathbin{\mathtt{diag}}\left(
  1.32,1.59\right)\quad\text{and}\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.61\right).
 \end{equation*}
 and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:neighbor} with elements
+\begin{equation*}
+	Y_{ij}=-3y_i-0.03x_iy_i
+\end{equation*}
+for pair of indexes $(i,j)$ given as $(1,1)$, $(2,3)$, $(3,5)$ and $(4,6)$. Also, 
 \begin{align*}
-	Y_{ij}=&-3y_i-0.03x_iy_i&i,j\in\mathbb{N}_{[1,4]}\\
 	Y_{12}=&-4-0.01x_1-y_1^2-y_2^2-2x_1^2-x_2^2\\	
 	Y_{24}=&-3-0.01x_2-y_1^2-y_2^2-y_3^2-x_1^2-x_2^2-x_3^2\\	
 	Y_{36}=&-3-0.01x_3-y_2^2-y_3^2-y_4^2-x_2^2-x_3^2-x_4^2\\	
@@ -739,7 +776,7 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:neigh
 
 \begin{figure*}
 \begin{equation}\label{eq:example:Y:neighbor}
-	Y=\scalebox{0.75}{$\begin{bmatrix}
+	Y(q)=\scalebox{0.85}{$\begin{bmatrix}
 	Y_{11},&Y_{12},&-0.01y_2+0.03x_2y_1,&0,&0,&0,&0,&0\\
 	-0.01y_2-0.002x_1y_2,&0,&Y_{23},&Y_{24},&-0.01y_2+0.03x_3y_2,&0,&0,&0\\
 	0,&0,&-0.01y_3+0.03x_2y_3,&0,&Y_{35},&Y_{36},&-0.01y_3-0.002x_4y_3,&0\\
@@ -749,7 +786,7 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:neigh
 \end{figure*}
  
 
-In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the LMI \eqref{eq:LMI formulation} was 101 seconds. In this case, $\mathscr{K}_Y(i)=\{j\in\mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}$, where $\mathscr{K}(i)=\{i\}$. Imposing $Y\in\Xi_Y$ and solving the LMI \eqref{eq:LMI formulation} the following matrices were obtained
+In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI \eqref{eq:MI formulation} was 101 seconds. In this case, $\mathscr{K}_Y(i)=\{j\in\mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}$, where $\mathscr{K}(i)=\{i\}$. Imposing $Y\in\Xi_Y$ and solving the MI \eqref{eq:MI formulation} the following components the matrices $W$ and $Y$ were obtained
 \begin{align*}
  W=&\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),\\
  Y=&\mathbin{\mathtt{diag}}\left(Y_1,Y_2,Y_3,Y_4\right)
@@ -768,9 +805,9 @@ and, for each index $i\in\mathbb{N}_{[1,4]}$,
 \section{Proof of the Results}\label{sec:Proof of the Results}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
-	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ is a solution to the LMI \eqref{eq:LMI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
+	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ is a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
 	
-	The LMI \eqref{eq:LMI formulation} implies that the inequality
+	The MI \eqref{eq:MI formulation} implies that the inequality
 	\begin{equation*}
 		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
 	\end{equation*}
@@ -817,7 +854,7 @@ and, for each index $i\in\mathbb{N}_{[1,4]}$,
 
 
 \begin{proof}[Proof of Corollary~\ref{cor:distributed computation}]
-	By assumption, the pair of matrices $W$ and $Y$ is a solution to the LMI \eqref{eq:LMI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
+	By assumption, the pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
 	
 	Equation \eqref{eq:BDD} together with the fact that $|I_{n_i}|\leq |T_{ii}||T_{ii}^{-1}|$ implies that the inequality
 	\begin{equation}\label{eq:BDD2} 
@@ -831,11 +868,11 @@ and, for each index $i\in\mathbb{N}_{[1,4]}$,
 			T_{i1}&\cdots&T_{i(i-1)}&T_{ii}&T_{i(i+1)}&\cdots&T_{iN}
 		\end{bmatrix}\delta_\eta.
 	\end{equation*}
-	Inequalities \eqref{eq:BDD2} and \eqref{eq:LMI formulation:i} imply that the inequalities
+	Inequalities \eqref{eq:BDD2} and \eqref{eq:MI formulation:i} imply that the inequalities
 	\begin{equation*}
 		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{x_i}^\top T_{ii}\delta_{\eta_i}\leq 0
 	\end{equation*}
-	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the LMI \eqref{eq:LMI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
+	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the MI \eqref{eq:MI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
 \end{proof}
 
 

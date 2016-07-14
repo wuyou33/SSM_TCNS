@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.15)  14 JUL 2016 17:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.15)  14 JUL 2016 14:19
 entering extended mode
 **./R0V0.tex
 (R0V0.tex
@@ -1338,17 +1338,7 @@ Package biblatex Warning: BibTeX reported the following issues
 
 
 Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'CanudasdeWitMorbidiLeonOjedaEtAl2015':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Persis2011a':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Pajic2011':
+(biblatex)                with 'Willems2007':
 (biblatex)                - Invalid format of field 'month'.
 
 
@@ -1461,57 +1451,64 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 418.
 
+Underfull \hbox (badness 1460) in paragraph at lines 443--444
+[]\OT1/ptm/m/n/10 For lin-ear sys-tems, con-troller de-sign meth-ods in-clude
+ []
+
 
 LaTeX Warning: Reference `sec:Background and Motivation' on page 1 undefined on
- input line 460.
+ input line 458.
 
 
 LaTeX Warning: Reference `sec:Problem Formulation' on page 1 undefined on input
- line 460.
-
-[1{C:/Users/humberto/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+ line 458.
 
 
-]
-Underfull \hbox (badness 7433) in paragraph at lines 477--478
+Underfull \hbox (badness 7433) in paragraph at lines 475--476
 []\OT1/ptm/m/it/10 Stabilizability No-tion. \OT1/ptm/m/n/10 A for-ward com-plet
 e so-lu-tion
  []
 
-[2]pdfTeX warning (ext4): destination with the same identifier (name{equation.1
-.1}) has been already used, duplicate ignored
+[1{C:/Users/humberto/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+
+]pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1
+}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.556 		 \begin{equation}
+l.554 		 \begin{equation}
                          pdfTeX warning (ext4): destination with the same ident
 ifier (name{equation.1.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.560 	 	 \begin{equation}
-                          pdfTeX warning (ext4): destination with the same iden
-tifier (name{equation.1.1}) has been already used, duplicate ignored
+l.558 	 	 \begin{equation}
+                           [2]pdfTeX warning (ext4): destination with the same 
+identifier (name{equation.1.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.575 		\begin{equation}
+l.573 		\begin{equation}
                         \label{eq:}pdfTeX warning (ext4): destination with the 
 same identifier (name{equation.1.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.581 		\end{align}
+l.579 		\end{align}
                     [3]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 680.
+ine 678.
  [4] [5]
-Underfull \hbox (badness 1629) in paragraph at lines 915--915
+Underfull \hbox (badness 1629) in paragraph at lines 913--913
 []\OT1/ptm/m/n/9 F. Mazenc and M. Mal-isoff, ``Fur-ther Con-struc-tions of
  []
 
-[6] [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 917.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 917.
+[6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 915.
+ [7
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 915.
  (R0V0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 917.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 917.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 915.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 915.
 Package rerunfilecheck Info: File `R0V0.out' has not changed.
 (rerunfilecheck)             Checksum: 80595012BF48EB8745A63EB620A969A8;472.
 
@@ -1527,13 +1524,13 @@ Package logreq Info: Writing requests to 'R0V0.run.xml'.
  )
 (\end occurred when \iftrue on line 347 was incomplete) 
 Here is how much of TeX's memory you used:
- 23035 strings out of 493335
- 420052 string characters out of 3139251
+ 23031 strings out of 493335
+ 419926 string characters out of 3139251
  745200 words of memory out of 3000000
- 26048 multiletter control sequences out of 15000+200000
+ 26046 multiletter control sequences out of 15000+200000
  46297 words of font info for 97 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 62i,15n,80p,893b,2403s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,15n,80p,893b,2398s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX
  2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
@@ -1551,9 +1548,9 @@ bols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/rsfs/rsfs10.pfb
 s/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on R0V0.pdf (7 pages, 285991 bytes).
+Output written on R0V0.pdf (7 pages, 283795 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
- 91 named destinations out of 1000 (max. 500000)
+ 403 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
  77 words of extra memory for PDF output out of 10000 (max. 10000000)
 
