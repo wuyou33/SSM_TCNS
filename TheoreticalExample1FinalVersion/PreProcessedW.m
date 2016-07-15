@@ -52,25 +52,7 @@ DW3 = [DWTemp(1,:)/2*f3, DWTemp(2,:)*f3;
 DW3 = DW3 + transpose(DW3);
 
 
-% Creation of W4 and DW4
-[Wp411,Wc411,Wv411] = polynomial(q4,2.000000,0);
-[Wp412,Wc412,Wv412] = polynomial(q4,2.000000,0);
-[Wp422,Wc422,Wv422] = polynomial(q4,2.000000,0);
-% Creation of W4
-W4 = [Wp411, Wp412;
-      Wp412, Wp422];
-
-Wc4 = [Wc411;Wc412;Wc422];
-Wp4 = [Wp411;Wp412;Wp422];
-
-% Creation of DW4
-DWTemp = jacobian(Wp4,q4);
-DW4 = [DWTemp(1,:)/2*f4, DWTemp(2,:)*f4;
-       0,                DWTemp(3,:)/2*f4];
-DW4 = DW4 + transpose(DW4);
-
-
-W = blkdiag(W1,W2,W3,W4);
-WConstraints = [sos(W1-eye(2)*1.000000);sos(W2-eye(2)*1.000000);sos(W3-eye(2)*1.000000);sos(W4-eye(2)*1.000000)];
-DW = blkdiag(DW1,DW2,DW3,DW4);
-Wc = [Wc1;Wc2;Wc3;Wc4];
+W = blkdiag(W1,W2,W3);
+WConstraints = [sos(W1-eye(2)*1.000000);sos(W2-eye(2)*1.000000);sos(W3-eye(2)*1.000000)];
+DW = blkdiag(DW1,DW2,DW3);
+Wc = [Wc1;Wc2;Wc3];

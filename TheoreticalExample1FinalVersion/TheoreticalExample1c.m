@@ -28,7 +28,7 @@ d = 1e-2;
 % d = 0
 
 % Possible choices are: General, Decentralized and Neighbor
-Option  = 'Decentralized';
+Option  = 'General';
 
 if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
         + strcmp(Option,'Neighbor') == 0
@@ -38,7 +38,7 @@ if strcmp(Option,'General') + strcmp(Option,'Decentralized') ...
     
 end
 
-NAgents = 4;
+NAgents = 3;
 u = zeros(NAgents,1);
 
 L = LinearLaplacianGenerator(NAgents);

@@ -1,0 +1,119 @@
+ 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|   ID|                    Constraint|   Primal residual|
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|   #1|   SOS constraint (polynomial)|               NaN|
+|   #2|   SOS constraint (polynomial)|               NaN|
+|   #3|   SOS constraint (polynomial)|               NaN|
+|   #4|   SOS constraint (polynomial)|               NaN|
+|   #5|   SOS constraint (polynomial)|               NaN|
+|   #6|   SOS constraint (polynomial)|               NaN|
+|   #7|   SOS constraint (polynomial)|               NaN|
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+-------------------------------------------------------------------------
+YALMIP SOS module started...
+-------------------------------------------------------------------------
+Detected 528 parametric variables and 12 independent variables.
+Detected 0 linear inequalities, 0 equality constraints and 0 LMIs.
+Using kernel representation (options.sos.model=1).
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.0312sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.0312sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 42 monomials in R^8
+Newton polytope (6 LPs).........Keeping 13 monomials (0.0624sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.0156sec)
+Finding symmetries..............Found no symmetries (0.0468sec)
+Initially 42 monomials in R^8
+Newton polytope (6 LPs).........Keeping 13 monomials (0.0156sec)
+Finding symmetries..............Found no symmetries (0sec)
+ 
+
+MOSEK Version 7.1.0.49 (Build date: 2016-3-7 09:17:41)
+Copyright (c) 1998-2016 MOSEK ApS, Denmark. WWW: http://mosek.com
+Platform: Windows/64-X86
+
+Computer
+  Platform               : Windows/64-X86  
+
+Problem
+  Name                   :                 
+  Objective sense        : min             
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 2840            
+  Cones                  : 0               
+  Scalar variables       : 528             
+  Matrix variables       : 7               
+  Integer variables      : 0               
+
+Optimizer started.
+Conic interior-point optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Eliminator - tries                  : 0                 time                   : 0.00            
+Eliminator - elim's                 : 0               
+Lin. dep.  - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - number                 : 0               
+Presolve terminated. Time: 0.01    
+Optimizer  - threads                : 2               
+Optimizer  - solved problem         : the primal      
+Optimizer  - Constraints            : 2732
+Optimizer  - Cones                  : 0
+Optimizer  - Scalar variables       : 436               conic                  : 0               
+Optimizer  - Semi-definite variables: 7                 scalarized             : 4920            
+Factor     - setup time             : 0.19              dense det. time        : 0.00            
+Factor     - ML order time          : 0.09              GP order time          : 0.00            
+Factor     - nonzeros before factor : 1.24e+006         after factor           : 1.24e+006       
+Factor     - dense dim.             : 1                 flops                  : 8.29e+008       
+ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+0   1.5e+000 1.0e+000 1.0e+000 0.00e+000  0.000000000e+000  0.000000000e+000  1.0e+000 0.22  
+1   9.7e-001 6.3e-001 6.3e-001 -9.49e-001 0.000000000e+000  3.115225366e-001  6.3e-001 0.36  
+2   4.1e-001 2.7e-001 2.7e-001 2.01e-001  0.000000000e+000  -1.950806375e-001 2.7e-001 0.45  
+3   8.0e-002 5.2e-002 5.2e-002 9.95e-001  0.000000000e+000  -4.222753763e-002 5.2e-002 0.56  
+4   1.4e-002 9.2e-003 9.2e-003 1.30e+000  0.000000000e+000  -5.736691168e-003 9.2e-003 0.67  
+5   2.0e-003 1.3e-003 1.3e-003 1.09e+000  0.000000000e+000  -5.604618205e-004 1.3e-003 0.76  
+6   3.9e-004 2.6e-004 2.6e-004 9.06e-001  0.000000000e+000  -8.283992309e-005 2.6e-004 0.87  
+7   9.6e-005 6.2e-005 6.2e-005 1.02e+000  0.000000000e+000  -2.005813001e-005 6.2e-005 0.98  
+8   2.7e-005 1.8e-005 1.8e-005 1.05e+000  0.000000000e+000  -4.886192787e-006 1.8e-005 1.08  
+9   9.8e-006 6.3e-006 6.3e-006 1.06e+000  0.000000000e+000  -1.489434391e-006 6.3e-006 1.19  
+10  2.7e-006 1.8e-006 1.8e-006 1.07e+000  0.000000000e+000  -3.589732964e-007 1.8e-006 1.28  
+11  1.2e-006 7.5e-007 7.5e-007 9.59e-001  0.000000000e+000  -8.279341070e-008 7.5e-007 1.39  
+12  2.7e-007 1.8e-007 1.8e-007 1.15e+000  0.000000000e+000  -3.510923290e-008 1.8e-007 1.50  
+13  7.7e-008 5.0e-008 5.0e-008 9.29e-001  0.000000000e+000  -1.891686141e-009 5.0e-008 1.59  
+14  2.3e-008 1.5e-008 1.5e-008 1.07e+000  0.000000000e+000  -4.817982148e-010 1.5e-008 1.70  
+Interior-point optimizer terminated. Time: 1.70. 
+
+Optimizer terminated. Time: 1.78    
+
+Interior-point solution summary
+  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+  Solution status : OPTIMAL
+  Primal.  obj: 0.0000000000e+000   Viol.  con: 2e-008   var: 0e+000   barvar: 0e+000 
+  Dual.    obj: -4.8179821477e-010  Viol.  con: 0e+000   var: 3e-009   barvar: 1e-008 
+Optimizer summary
+  Optimizer                 -                        time: 1.78    
+    Interior-point          - iterations : 14        time: 1.70    
+      Basis identification  -                        time: 0.00    
+        Primal              - iterations : 0         time: 0.00    
+        Dual                - iterations : 0         time: 0.00    
+        Clean primal        - iterations : 0         time: 0.00    
+        Clean dual          - iterations : 0         time: 0.00    
+        Clean primal-dual   - iterations : 0         time: 0.00    
+    Simplex                 -                        time: 0.00    
+      Primal simplex        - iterations : 0         time: 0.00    
+      Dual simplex          - iterations : 0         time: 0.00    
+      Primal-dual simplex   - iterations : 0         time: 0.00    
+    Mixed integer           - relaxations: 0         time: 0.00    
+
