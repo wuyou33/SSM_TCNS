@@ -1,0 +1,1059 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{Doyleetal1992}{book}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Doyle}{D.}%
+     {J.~C.}{J.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Francis}{F.}%
+     {B.~A.}{B.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tannenbaum}{T.}%
+     {A.~R.}{A.~R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Macmillan Coll Div}%
+  }
+  \strng{namehash}{DJCFBATAR1}
+  \strng{fullhash}{DJCFBATAR1}
+  \field{title}{Feedback Control Theory}
+  \field{year}{1992}
+\endentry
+
+\entry{Hespanha:2009}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Hespanha}{H.}%
+     {J.~P.}{J.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Princeton University Press}%
+  }
+  \strng{namehash}{HJP1}
+  \strng{fullhash}{HJP1}
+  \field{title}{Linear Systems Theory}
+  \field{year}{2009}
+\endentry
+
+\entry{Boyd1994}{book}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Boyd}{B.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{El Ghaoui}}{E.}%
+     {L.}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Feron}{F.}%
+     {E.}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Balakrishnan}{B.}%
+     {V.}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Society for Industrial}%
+    {Applied Mathematics (SIAM)}%
+  }
+  \strng{namehash}{BSELFE+1}
+  \strng{fullhash}{BSELFEBV1}
+  \field{series}{Studies in Applied Mathematics}
+  \field{title}{Linear Matrix Inequalities in System and Control Theory}
+  \field{volume}{15}
+  \field{year}{1994}
+\endentry
+
+\entry{DullerudPaganini2000}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Dullerud}{D.}%
+     {G.~E.}{G.~E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Paganini}{P.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{DGEPF1}
+  \strng{fullhash}{DGEPF1}
+  \verb{doi}
+  \verb 10.1007/978-1-4757-3290-0
+  \endverb
+  \field{title}{{A} {C}ourse in {R}obust {C}ontrol {T}heory}
+  \field{year}{2000}
+\endentry
+
+\entry{GrognardSepulchreBastin1999}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Grognard}{G.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sepulchre}{S.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bastin}{B.}%
+     {G.}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GFSRBG1}
+  \strng{fullhash}{GFSRBG1}
+  \field{number}{2}
+  \field{pages}{107\bibrangedash 115}
+  \field{title}{Global stabilization of feedforward systems with exponentially
+  unstable {J}acobian linearization}
+  \field{volume}{37}
+  \field{journaltitle}{Syst. \& Contr. Lett.}
+  \field{year}{1999}
+\endentry
+
+\entry{Krstic1995}{book}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Krsti\'{c}}{K.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kanellakopoulos}{K.}%
+     {I.}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kokotovi\'{c}}{K.}%
+     {P.~V.}{P.~V.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Wiley}%
+  }
+  \strng{namehash}{KMKIKPV1}
+  \strng{fullhash}{KMKIKPV1}
+  \field{title}{Nonlinear and Adaptive Control Design}
+  \field{year}{1995}
+\endentry
+
+\entry{SteinShiromoto2013a}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {{Stein Shiromoto}}{S.}%
+     {H.}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Andrieu}{A.}%
+     {V.}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Prieur}{P.}%
+     {C.}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SHAVPC1}
+  \strng{fullhash}{SHAVPC1}
+  \verb{doi}
+  \verb 10.1109/TAC.2013.2263613
+  \endverb
+  \verb{eprint}
+  \verb 1502.03461
+  \endverb
+  \field{number}{12}
+  \field{pages}{3236\bibrangedash 3241}
+  \field{title}{Relaxed and hybridized backstepping}
+  \field{volume}{58}
+  \field{journaltitle}{IEEE Trans. Autom. Control}
+  \field{eprinttype}{arXiv}
+  \field{year}{2013}
+\endentry
+
+\entry{MazencPraly96}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Mazenc}{M.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Praly}{P.}%
+     {L.}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MFPL1}
+  \strng{fullhash}{MFPL1}
+  \field{number}{11}
+  \field{pages}{1559\bibrangedash 1578}
+  \field{title}{{Adding integrations, saturated controls, and stabilization for
+  feedforward systems}}
+  \field{volume}{41}
+  \field{journaltitle}{IEEE Trans. Autom. Control}
+  \field{year}{1996}
+\endentry
+
+\entry{Parrilo2003}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Parrilo}{P.}%
+     {P.~A.}{P.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer Science $\mathplus$ Business Media}%
+  }
+  \strng{namehash}{PPA1}
+  \strng{fullhash}{PPA1}
+  \verb{doi}
+  \verb 10.1007/s10107-003-0387-5
+  \endverb
+  \field{number}{2}
+  \field{pages}{293\bibrangedash 320}
+  \field{title}{Semidefinite programming relaxations for semialgebraic
+  problems}
+  \field{volume}{96}
+  \field{journaltitle}{Mathematical Programming}
+  \field{year}{2003}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Sontag1983}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Sontag}{S.}%
+     {E.~D.}{E.~D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SED1}
+  \strng{fullhash}{SED1}
+  \verb{doi}
+  \verb 10.1137/0321028
+  \endverb
+  \field{number}{3}
+  \field{pages}{462\bibrangedash 471}
+  \field{title}{A {L}yapunov-{L}ike {C}haracterization of {A}symptotic
+  {C}ontrollability}
+  \field{volume}{21}
+  \field{journaltitle}{{SIAM} {J}. {C}ontrol {O}ptim.}
+  \field{year}{1983}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Sontag1989a}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Sontag}{S.}%
+     {E.~D.}{E.~D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SED1}
+  \strng{fullhash}{SED1}
+  \field{title}{A `Universal' {C}onstruction of {A}rtstein's {T}heorem on
+  {N}onlinear {S}tabilization}
+  \verb{file}
+  \verb :C\:\\Users\\humberto.shiromoto\\Dropbox\\Library\\Periodicals\\System
+  \verb & Control Letters\\Sontag, E. D. - A 'universal' construction of Artste
+  \verb in's theorem on nonlinear stabilization.pdf:PDF
+  \endverb
+  \field{journaltitle}{{S}yst. \& {C}ontr. {L}ett.}
+  \field{year}{1989}
+\endentry
+
+\entry{MazencMalisoff2006}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Mazenc}{M.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Malisoff}{M.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MFMM1}
+  \strng{fullhash}{MFMM1}
+  \verb{doi}
+  \verb 10.1109/tac.2005.863500
+  \endverb
+  \field{number}{2}
+  \field{pages}{360\bibrangedash 365}
+  \field{title}{{F}urther {C}onstructions of {C}ontrol-{L}yapunov {F}unctions
+  and {S}tabilizing {F}eedbacks for {S}ystems {S}atisfying the
+  {J}urdjevic{\textendash}{Q}uinn {C}onditions}
+  \verb{url}
+  \verb http://dx.doi.org/10.1109/TAC.2005.863500
+  \endverb
+  \field{volume}{51}
+  \field{journaltitle}{{IEEE} {T}rans. {A}utom. {C}ontrol}
+  \field{year}{2006}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Rantzer:2001}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Rantzer}{R.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RA1}
+  \strng{fullhash}{RA1}
+  \verb{doi}
+  \verb 10.1016/S0167-6911(00)00087-6
+  \endverb
+  \field{pages}{161\bibrangedash 168}
+  \field{title}{A dual to {L}yapunov's stability theorem}
+  \field{volume}{42}
+  \field{journaltitle}{Syst. \& Contr. Lett.}
+  \field{year}{2001}
+\endentry
+
+\entry{Rantzer2015}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Rantzer}{R.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Elsevier {BV}}%
+  }
+  \strng{namehash}{RA1}
+  \strng{fullhash}{RA1}
+  \verb{doi}
+  \verb 10.1016/j.ejcon.2015.04.004
+  \endverb
+  \field{pages}{72\bibrangedash 80}
+  \field{title}{Scalable control of positive systems}
+  \field{volume}{24}
+  \field{journaltitle}{European Journal of Control}
+  \field{year}{2015}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{CanudasdeWitMorbidiLeonOjedaEtAl2015}{article}{}
+  \name{author}{6}{}{%
+    {{}%
+     {{Canudas de Wit}}{C.}%
+     {C.}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Morbidi}{M.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{Leon Ojeda}}{L.}%
+     {L.}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kibangou}{K.}%
+     {A.~Y.}{A.~Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bellicot}{B.}%
+     {I.}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bellemain}{B.}%
+     {P.}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CCMFLL+1}
+  \strng{fullhash}{CCMFLLKAYBIBP1}
+  \verb{doi}
+  \verb 10.1109/mcs.2015.2406657
+  \endverb
+  \field{number}{3}
+  \field{pages}{23\bibrangedash 39}
+  \field{title}{Grenoble {T}raffic {L}ab: {A}n {E}xperimental {P}latform for
+  {A}dvanced {T}raffic {M}onitoring and {F}orecasting}
+  \field{volume}{35}
+  \field{journaltitle}{{IEEE} {C}ontrol {S}ystems {M}agazine}
+  \field{year}{2015}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Persis2011a}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Persis}{P.}%
+     {C.}{C.}%
+     {de}{d.}%
+     {}{}}%
+    {{}%
+     {Kallesoe}{K.}%
+     {C.~S.}{C.~S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Electrical {\&} Electronics Engineers ({IEEE})}%
+  }
+  \strng{namehash}{PCdKCS1}
+  \strng{fullhash}{PCdKCS1}
+  \verb{doi}
+  \verb 10.1109/tcst.2010.2094619
+  \endverb
+  \field{number}{6}
+  \field{pages}{1371\bibrangedash 1383}
+  \field{title}{Pressure Regulation in Nonlinear Hydraulic Networks by Positive
+  and Quantized Controls}
+  \field{volume}{19}
+  \field{journaltitle}{{IEEE} Transactions on Control Systems Technology}
+  \field{year}{2011}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Pajic2011}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Pajic}{P.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sundaram}{S.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pappas}{P.}%
+     {G.~J.}{G.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mangharam}{M.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Electrical {\&} Electronics Engineers ({IEEE})}%
+  }
+  \strng{namehash}{PMSSPGJ+1}
+  \strng{fullhash}{PMSSPGJMR1}
+  \verb{doi}
+  \verb 10.1109/tac.2011.2163864
+  \endverb
+  \field{number}{10}
+  \field{pages}{2305\bibrangedash 2318}
+  \field{title}{The Wireless Control Network: A New Approach for Control Over
+  Networks}
+  \field{volume}{56}
+  \field{journaltitle}{IEEE Trans. Autom. Control}
+  \field{year}{2011}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Siljak1991}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {\v{S}iljak}{v.}%
+     {D.~D.}{D.~D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Academic Press}%
+  }
+  \strng{namehash}{vDD1}
+  \strng{fullhash}{vDD1}
+  \field{title}{{D}ecentralized {C}ontrol of {C}omplex {S}ystems}
+  \field{year}{1991}
+\endentry
+
+\entry{BlondelTsitsiklis1997}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Blondel}{B.}%
+     {V.}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tsitsiklis}{T.}%
+     {J.~N.}{J.~N.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BVTJN1}
+  \strng{fullhash}{BVTJN1}
+  \verb{doi}
+  \verb 10.1137/s0363012994272630
+  \endverb
+  \field{number}{6}
+  \field{pages}{2118\bibrangedash 2127}
+  \field{title}{{NP}-{H}ardness of {S}ome {L}inear {C}ontrol {D}esign
+  {P}roblems}
+  \field{volume}{35}
+  \verb{file}
+  \verb :C\:\\Users\\humberto\\Dropbox\\Library\\Periodicals\\SIAM Journal on C
+  \verb ontrol and Optimization\\Blondel, V.\; Tsitsiklis, J. N. -- NP-Hardness
+  \verb  of Some Linear Control Design Problems.pdf:PDF
+  \endverb
+  \field{journaltitle}{{SIAM} {J}. {C}ontrol {O}ptim.}
+  \field{year}{1997}
+  \warn{\item Can't use 'journaltitle' + 'journal' \item Invalid format of
+  field 'month'}
+\endentry
+
+\entry{Tanaka2011}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Tanaka}{T.}%
+     {T.}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Langbort}{L.}%
+     {C.}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Electrical {\&} Electronics Engineers ({IEEE})}%
+  }
+  \strng{namehash}{TTLC1}
+  \strng{fullhash}{TTLC1}
+  \verb{doi}
+  \verb 10.1109/tac.2011.2157394
+  \endverb
+  \field{number}{9}
+  \field{pages}{2218\bibrangedash 2223}
+  \field{title}{The Bounded Real Lemma for Internally Positive Systems and
+  H-Infinity Structured Static State Feedback}
+  \field{volume}{56}
+  \field{journaltitle}{{IEEE} {T}rans. {A}utom. {C}ontrol}
+  \field{year}{2011}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Teschl2012}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Teschl}{T.}%
+     {G.}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {American Mathematical Society}%
+  }
+  \strng{namehash}{TG1}
+  \strng{fullhash}{TG1}
+  \field{title}{Ordinary differential equations and dynamical systems}
+  \field{volume}{1XX}
+  \field{year}{2012}
+\endentry
+
+\entry{Manchester2014a}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Manchester}{M.}%
+     {I.~R.}{I.~R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Slotine}{S.}%
+     {J.-J.~E.}{J.-J.~E.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MIRSJJE1}
+  \strng{fullhash}{MIRSJJE1}
+  \field{booktitle}{Proceedings of the 19th {IFAC} World Congress}
+  \verb{doi}
+  \verb 10.3182/20140824-6-za-1003.02100
+  \endverb
+  \verb{eprint}
+  \verb 1503.03144
+  \endverb
+  \field{number}{1}
+  \field{pages}{8223\bibrangedash 8228}
+  \field{title}{Control Contraction Metrics and Universal Stabilizability}
+  \field{volume}{19}
+  \list{location}{1}{%
+    {Cape Town, South Africa}%
+  }
+  \field{eprinttype}{arXiv}
+  \field{year}{2014}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Forni2014}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Forni}{F.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sepulchre}{S.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Electrical {\&} Electronics Engineers ({IEEE})}%
+  }
+  \strng{namehash}{FFSR1}
+  \strng{fullhash}{FFSR1}
+  \verb{doi}
+  \verb 10.1109/tac.2013.2285771
+  \endverb
+  \verb{eprint}
+  \verb 1208.2943
+  \endverb
+  \field{number}{3}
+  \field{pages}{614\bibrangedash 628}
+  \field{title}{A {D}ifferential {L}yapunov {F}ramework for {C}ontraction
+  {A}nalysis}
+  \field{volume}{59}
+  \field{journaltitle}{{IEEE} Transactions on Automatic Control}
+  \field{eprinttype}{arXiv}
+  \field{year}{2014}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Forni2014a}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Forni}{F.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sepulchre}{S.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{FFSR1}
+  \strng{fullhash}{FFSR1}
+  \field{booktitle}{Proceedings of the 53rd {IEEE} Conference on Decision and
+  Control}
+  \verb{doi}
+  \verb 10.1109/cdc.2014.7039987
+  \endverb
+  \verb{eprint}
+  \verb 1409.4712
+  \endverb
+  \field{pages}{3848\bibrangedash 3859}
+  \field{title}{Differential analysis of nonlinear systems: Revisiting the
+  pendulum example}
+  \field{eprinttype}{arXiv}
+  \field{year}{2014}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Bacciotti:1992}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Bacciotti}{B.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {World Scientific Publishing Company}%
+  }
+  \strng{namehash}{BA1}
+  \strng{fullhash}{BA1}
+  \field{title}{Local Stabilizability of Nonlinear Control Systems}
+  \field{year}{1992}
+\endentry
+
+\entry{Briat2015}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Briat}{B.}%
+     {C.}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{BC1}
+  \strng{fullhash}{BC1}
+  \verb{doi}
+  \verb 10.1007/978-3-662-44050-6
+  \endverb
+  \field{title}{Linear Parameter-Varying and Time-Delay Systems}
+  \field{year}{2015}
+\endentry
+
+\entry{Lohmiller1998}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Lohmiller}{L.}%
+     {W.}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Slotine}{S.}%
+     {J.-J.}{J.-J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LWSJJ1}
+  \strng{fullhash}{LWSJJ1}
+  \verb{doi}
+  \verb 10.1016/S0005-1098(98)00019-3
+  \endverb
+  \field{number}{6}
+  \field{pages}{683\bibrangedash 696}
+  \field{title}{On Contraction Analysis for Nonlinear Systems}
+  \field{volume}{34}
+  \field{journaltitle}{Automatica}
+  \field{year}{1998}
+\endentry
+
+\entry{Sontag2010}{incollection}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Sontag}{S.}%
+     {Eduardo~D.}{E.~D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{SED2}
+  \strng{fullhash}{SED2}
+  \field{booktitle}{Perspectives in Mathematical System Theory, Control, and
+  Signal Processing}
+  \verb{doi}
+  \verb 10.1007/978-3-540-93918-4_20
+  \endverb
+  \field{pages}{217\bibrangedash 228}
+  \field{title}{Contractive Systems with Inputs}
+  \field{year}{2010}
+\endentry
+
+\entry{Lewis1951}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Lewis}{L.}%
+     {D.~C.}{D.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{JSTOR}}%
+  }
+  \strng{namehash}{LDC1}
+  \strng{fullhash}{LDC1}
+  \verb{doi}
+  \verb 10.2307/2372159
+  \endverb
+  \field{number}{1}
+  \field{pages}{48\bibrangedash 58}
+  \field{title}{Differential Equations Referred to a Variable Metric}
+  \field{volume}{73}
+  \field{journaltitle}{American Journal of Mathematics}
+  \field{year}{1951}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Reich2005}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Reich}{R.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shoikhet}{S.}%
+     {D.}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Imperial College Press}%
+  }
+  \strng{namehash}{RSSD1}
+  \strng{fullhash}{RSSD1}
+  \field{title}{Nonlinear Semigroups, Fixed Points, and Geometry of Domains in
+  Banach Spaces}
+  \field{year}{2005}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Isac2008}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Isac}{I.}%
+     {G.}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nemeth}{N.}%
+     {S.~Z.}{S.~Z.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{IGNSZ1}
+  \strng{fullhash}{IGNSZ1}
+  \verb{doi}
+  \verb 10.1007/978-0-387-73988-5
+  \endverb
+  \field{title}{Scalar and Asymptotic Scalar Derivatives: Theory and
+  Applications}
+  \field{volume}{13}
+  \field{year}{2008}
+\endentry
+
+\entry{CalafioreGhaoui2014}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Calafiore}{C.}%
+     {G.}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{El Ghaoui}}{E.}%
+     {L.}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Cambridge University Press}%
+  }
+  \strng{namehash}{CGEL1}
+  \strng{fullhash}{CGEL1}
+  \field{title}{Optimization Models}
+  \field{year}{2014}
+\endentry
+
+\entry{Boothby1986}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Boothby}{B.}%
+     {W.~M.}{W.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Academic Press}%
+  }
+  \strng{namehash}{BWM1}
+  \strng{fullhash}{BWM1}
+  \field{title}{An Introduction to Differentiable Manifolds and {R}iemannian
+  Geometry}
+  \field{year}{1986}
+\endentry
+
+\entry{Dirr2015}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Dirr}{D.}%
+     {G.}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ito}{I.}%
+     {H.}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rantzer}{R.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {R\"{u}ffer}{R.}%
+     {B.~S.}{B.~S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {American Institute of Mathematical Sciences ({AIMS})}%
+  }
+  \strng{namehash}{DGIHRA+1}
+  \strng{fullhash}{DGIHRARBS1}
+  \verb{doi}
+  \verb 10.3934/dcdsb.2015.20.2497
+  \endverb
+  \field{number}{8}
+  \field{pages}{2497\bibrangedash 2526}
+  \field{title}{Separable Lyapunov functions for monotone systems:
+  Constructions and limitations}
+  \field{volume}{20}
+  \field{journaltitle}{Discrete and Continuous Dynamical Systems Series B
+  ({DCDS-B})}
+  \field{year}{2015}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{ZhangLiChen2006}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Zhang}{Z.}%
+     {C.-Y.}{C.-Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Li}{L.}%
+     {Y.-T.}{Y.-T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chen}{C.}%
+     {F.}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Elsevier {BV}}%
+  }
+  \strng{namehash}{ZCYLYTCF1}
+  \strng{fullhash}{ZCYLYTCF1}
+  \verb{doi}
+  \verb 10.1016/j.laa.2005.10.046
+  \endverb
+  \field{number}{2-3}
+  \field{pages}{533\bibrangedash 546}
+  \field{title}{On Schur complement of block diagonally dominant matrices}
+  \field{volume}{414}
+  \field{journaltitle}{Linear Algebra and its Applications}
+  \field{year}{2006}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Isidori:1995}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Isidori}{I.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{IA1}
+  \strng{fullhash}{IA1}
+  \verb{doi}
+  \verb 10.1007/978-1-84628-615-5
+  \endverb
+  \field{series}{Communications and Control Engineering}
+  \field{title}{Nonlinear Control Systems}
+  \field{year}{1995}
+\endentry
+
+\entry{Loefberg2004}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {L\"{o}fberg}{L.}%
+     {J.}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LJ1}
+  \strng{fullhash}{LJ1}
+  \field{booktitle}{Proceedings of the IEEE International Symposium on Computer
+  Aided Control Systems Design}
+  \verb{doi}
+  \verb 10.1109/cacsd.2004.1393890
+  \endverb
+  \field{pages}{284\bibrangedash 289}
+  \field{title}{{YALMIP} : a toolbox for modeling and optimization in {MATLAB}}
+  \verb{url}
+  \verb http://dx.doi.org/10.1109/CACSD.2004.1393890
+  \endverb
+  \list{location}{1}{%
+    {Taipei, Rep. of China}%
+  }
+  \field{year}{2004}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{Loefberg2009}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {L\"{o}fberg}{L.}%
+     {J.}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Electrical {\&} Electronics Engineers ({IEEE})}%
+  }
+  \strng{namehash}{LJ1}
+  \strng{fullhash}{LJ1}
+  \verb{doi}
+  \verb 10.1109/tac.2009.2017144
+  \endverb
+  \field{number}{5}
+  \field{pages}{1007\bibrangedash 1011}
+  \field{title}{Pre- and Post-Processing Sum-of-Squares Programs in Practice}
+  \field{volume}{54}
+  \field{journaltitle}{IEEE Trans. Autom. Control}
+  \field{year}{2009}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

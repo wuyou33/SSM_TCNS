@@ -68,7 +68,7 @@ firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bib
   \usepackage{xcolor}
   \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
-  \graphicspath{{./imgs/}}
+  \graphicspath{{./imgs}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
@@ -340,7 +340,7 @@ pdfproducer={LaTeX}
 
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor ORCID}
+\hyphenation{op-tical net-works semi-conduc-tor}
 
 \usepackage{todonotes}
 
@@ -367,7 +367,7 @@ pdfproducer={LaTeX}
 \author{Humberto~Stein Shiromoto,~\IEEEmembership{Member,~IEEE,}
         Ian~R. Manchester,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
 \thanks{Both authors are with the Department of Aerospace, Mechanical, and Mechatronic Engineering and The Australian Centre for Field Robotics. Address: The
-Rose Street Building J04, The University of Sydney, NSW 2006, Australia. Corresponding author: humberto.shiromoto@ieee.org. ORCID: 0000-0002-0883-0231, }% <-this % stops a space
+Rose Street Building J04, The University of Sydney, NSW 2006, Australia. Corresponding author: humberto.shiromoto@ieee.org.}% <-this % stops a space
 }
 
 % note the % following the last \IEEEmembership and also \thanks - 
@@ -410,12 +410,12 @@ Rose Street Building J04, The University of Sydney, NSW 2006, Australia. Corresp
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this paper, input-affine nonlinear systems are considered. The problem under consideration is to design structured (for instance, decentralized or distributed) controllers for this class of systems. Although control-Lyapunov functions are the natural candidate to design these feedback laws, in terms of dynamical programming, the search for these functions is non-convex \cite{Rantzer:2001}. On the other hand, control-contraction metrics provide controllers that render pairs of solutions exponentially converge to each other. Moreover, the search for a structured controller and a suitable metric can be formulated in terms of a convex optimization problem. Under block-diagonal dominance conditions, this convex optimization problem can also be distributed. An example illustrate the approach for a network system.
+The abstract goes here.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Network Systems
+IEEE, IEEEtran, journal, \LaTeX, paper, template.
 \end{IEEEkeywords}
 
 
@@ -437,40 +437,31 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \section{Introduction}
 
-Over the years, methods for the design of controllers for dynamical systems has developed different techniques, according to the vector field that describes the system structure. The main concept employed for the control of dynamic systems is the Lyapunov's stability theory \cite{Bhatia1970,Rouche:1977}. In terms of computation, controller design problems are often translated in terms of dynamic programming.
+Over the years, methods for the design of controllers for dynamical systems has developed different techniques, according to the vector field that describes the system structure. In terms of computation, controller design problem are often translated in terms of dynamic programming 
 
 
-For linear systems, controller design methods include $H_\infty$ optmization \cite{Doyleetal1992} and LQR \cite{Hespanha:2009}. The design problems are usually formulated in terms of linear matrix inequalities (LMIs) and semidefinite programming \cite{Boyd1994,DullerudPaganini2000}. In the case of nonlinear systems, design approaches include high-gain  \cite{GrognardSepulchreBastin1999}, backstepping \cite{Krstic1995}, and forwarding \cite{MazencPraly96}. These methods depend on the structure of the vector field and may fail to be applied when appropriate conditions are not met \cite{SteinShiromoto2013a}. In terms of numerical computation, often the techniques employed for feedback synthesis include sum-of-squares (SOS) optimization \cite{Parrilo2003}.
+For linear systems, controller design methods include $H_\infty$ optmization \cite{Doyleetal1992} and LQR \cite{Hespanha:2009}. The design problems are usually formulated in terms of linear matrix inequalities (LMIs) and semidefinite programming \cite{Boyd1994,DullerudPaganini2000}. 
 
-For those systems described by input-affine differential equations,  the existence of a control-Lyapunov function (CLF) satisfying the so-called \emph{small control property} provides a ``universal'' formula for a stabilizing feedback law  \cite{Sontag1983,Sontag1989a}. However, by the time that this paper was submitted, systematic methods for the search of a CLF were known only for particular systems within this class (see, for instance, \cite{MazencMalisoff2006}). In addition to the lack of a general systematic approach, the search for a CLF in terms of numerical optimization leads to a problem that is not necessarily convex nor connected \cite{Rantzer:2001}.
+In the case of nonlinear systems, systematic approaches include high-gain  \cite{GrognardSepulchreBastin1999}, backstepping \cite{Krstic1995,SteinShiromoto2013a}, and forwarding \cite{MazencPraly96}. In terms of numerical computation, techniques employed include sum-of-squares (SOS) optimization \cite{Parrilo2003}.
 
-An alternative to CLFs is provided by the so-called control-contraction metrics (CCMs). One of the main advantages of CCMs over CLFs is that the feedback law is obtained by solving a convex optimization problem \cite{Manchester2014a}, due to fact that the \emph{differential / variational} formulation of the system is considered. The obtained controller makes every solution of the closed-loop system exponentially converge to a prescribed trajectory (see a precise definition below). This stability notion is related to contraction theory (an incremental stability property \cite{Angeli2002,Lohmiller1998,Rueffer2013,Sontag2010,Forni2014}) which can be traced back to the work \cite{Lewis1949}.
+For those system described by input-affine differential equations,  the existence of a control-Lyapunov function (CLF) satisfying the so-called \emph{small control property} provides a ``universal'' formula for a stabilizing feedback law  \cite{Sontag1983,Sontag1989a}. However, by the time that this paper was submitted, systematic methods for the search of a CLF were known only for particular systems within this class (see, for instance, \cite{MazencMalisoff2006}). In addition to the lack of a general systematic approach, the formulation of the CLF search in terms of numerical optimization leads to a problem that is not necessarily convex and not connected, in general \cite{Rantzer:2001}.
 
-The drawback of methods such as CCMs, $H_\infty$ optimization and LQR is that, when the system under consideration has several states (large scale), it does not scale well. This is due to the fact that the stability verification of a system with $n$ states may require a function with $n^2$ terms (see \cite{Rantzer2015} for the case of linear systems and Lyapunov functions).
+An alternative to CLFs is provided by the so-called control-contraction metrics (CCMs). In this methodology the feedback law is the solution of a convex optimization problem \cite{Manchester2014a}. The obtained controller makes every solution of the closed-loop system exponentially converge to a prescribed trajectory (see a precise definition below).
 
-Large-scale systems may appear in the form of interconnection of smaller components, for example, in applications such as traffic networks \cite{CanudasdeWitMorbidiLeonOjedaEtAl2015}, pipe networks \cite{Persis2011a} and sensor networks \cite{Pajic2011}. For such systems, a property often sought is the ability to augment or to reduce the size of the network without computing the controller for all subsystems, i.e., to make the controller scalable. In some cases, this property is satisfied by desnigning controllers with particular structures (see \cite{Siljak1991,Bai2011} for distributed controllers). 
+The drawback of methods such as CCMs, $H_\infty$ optimization and LQR is that, when the system under consideration has several states (large scale), it does not scale well. This is due to the fact that the stability verification of a system with $n$ states may require an appropriate function with $n^2$ terms (see \cite{Rantzer2015} for the case of linear systems and Lyapunov functions).
 
-In terms of dynamic programming, the problem of design controllers having an arbitrary structure is known to be NP-hard \cite{BlondelTsitsiklis1997,Tanaka2011}, for linear systems. Consequently, for nonlinear systems the problem is very challenging.
+Large-scale systems may appear in the form of interconnection of smaller components, for example, in applications such as traffic networks \cite{CanudasdeWitMorbidiLeonOjedaEtAl2015}, pipe networks \cite{Persis2011a} and sensor networks \cite{Pajic2011}. For such systems, a property often sought is the ability to augment or to reduce the size of the network without computing the controller for all subsystems of the network, i.e., to make the controller scalable. This property can be satisfied with decentralized controllers \cite{Siljak1991}. In terms of dynamic programming, the problem of design controllers having an arbitrary structure is known to be NP-hard \cite{BlondelTsitsiklis1997,Tanaka2011}, for linear systems. Consequently, for nonlinear systems the problem is very challenging.
 
-In the case of linear systems whose solutions evolve in the positive orthant (positive systems), the problem of design a structured stabilizing feedback law has been addressed in \cite{Tanaka2011}. Also, the authors show that the existence of such a controller is equivalent to the existence of Lyapunov function with a diagonal structure. The importance of this result for large-scale systems is highlighted in \cite{Rantzer2015}, where sparsity is explored to reduce the number of LMIs to be solved.
+In the case of linear systems whose solutions evolve in the positive orthant (positive systems), the problem of design a structured stabilizing feedback law has been addressed in \cite{Tanaka2011}. Also, the authors show that the existence of such a controller is equivalent to the existence of Lyapunov function with a diagonal structure. The importance of this result for large-scale systems is highlighted in \cite{Rantzer2015}, where a structured synthesis of a controller is shown.
 
-For nonlinear systems described by a non-fully connected graph, the design of structured controllers could be simplified by choosing structured Lyapunov functions (see \cite{Dirr2015} and references therein). However, the search for a general Lyapunov function is a non-trivial problem by itself \cite{MalisoffMazenc2009}. The case can be even worse, when structural constraints are considered.
+For nonlinear systems in which some order of initial conditions is preserved along the flow of the vector field (monotone systems), 
 
-For this reason, the structured design of feedback laws for nonlinear systems is investigated with CCMs satisfying structural constraints, in this work. The systems under consideration are continuously differentiable and affine in the input. One of the key elements employed to design these controllers is the concept of a Riemannian metric (see the definition below) which is employed similarly to Lyapunov functions to measure the exponential convergence of pairs of solutions. Employing CCMs that can be decomposed into the sum of smaller elements, the design of a structured feedback law allowing exponential convergence of solution is obtained in two steps. 
 
-The first step consists of an off-line computation. The original system is extended with its \emph{differential / variational} formulation (see definition below). The exponential convergence is reformulated in terms of stability of the origin for the extended system. This stability problem is written in terms of a convex optimization problem under the prescribed structural constraint. The solution consists of a pair of matrices: the Riemannian metric and the \emph{differential / variational} feedback law. The second step consists of an on-line integration. The obtained \emph{differential / variational} controller is integrated along geodesics (see definition below).
-
-Although this method is applicable to systems described a strongly connected graph, it is particularly useful for such systems, as the number of equations needed to verify stability is smaller. 
-
-At this point, the three contributions of this work can be highlighted. First, using the methodology for synthesis of CCMs introduced in \cite{Manchester2014a} and imposing a (block-)diagonal structure constraint, a feedback law with suitable structure is obtained for nonlinear systems. Second, because the CCM has a (block-)diagonal structure, the computation of the online integration phase, which corresponds to an optimization problem, can distributed. Third, when the system is described a non-strongly connected graph, the structure imposed on the CCM allows to reduce the number of equations need verify stability. Note that the proposed method provides an explicit formula for the controller, since it is constructive.
-
-Other works related to analysis under structural constraints to achieve exponential convergence of solutions do exist in the literature. These are mostly related to network systems. For contraction analysis, see \cite{Aminzare2014a} for analysis according to different network topologies and \cite{Andrieu2016} for transversal contraction analysis. This paper contrast with these works mainly in two points: 1) A  methodology for the design of structured controllers is proposed; 2) Due the formulation of the stabilization problem as a convex optimization problem, not only a explicit formula of a structured controller is obtained but also a metric.
-
-\paragraph{Overview.} The motivation and the problem formulation are provided in Section \ref{sec:Problem Formulation and Motivation}. The background needed for this paper is stated in Section \ref{sec:background}. Section \ref{sec:Results} presents the result of this paper. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. The proofs of the results are provided in Section \ref{sec:Proof of the Results}. Section \ref{sec:Conclusion} collects final remarks.
+\paragraph{Overview.} The motivation and background needed for this paper are stated in Section \ref{sec:Background and Motivation}. The problem under consideration is formalized in Section \ref{sec:Problem Formulation}. Section \ref{sec:Results} presents the result of this paper. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. The proofs of the results are provided in Section \ref{sec:Proof of the Results}. Section \ref{sec:Conclusion} collects final remarks.
 
 \paragraph{Notation.} Let $N\in\mathbb{N}$ be a constant value. The notation $\mathbb{N}_{[1,N]}$ stands for the set $\{i\in\mathbb{N}:1\leq i\leq N\}$. Let $c\in\mathbb{R}$ be a constant value. The notation $\mathbb{R}_{[1,c]}$ (resp. $\mathbb{R}_{\diamond c}$) stands for the set $\{x\in\mathbb{R}:1\leq x\leq c\}$ (resp.  $\{x\in\mathbb{R}:x\diamond c\}$, where $\diamond$ is a comparison operator, i.e., $\diamond\in\{<,\geq,=,\ \text{etc}\}$). A matrix $M\in\mathbb{R}^{n\times n}$ with zero elements except (possibly) those  $m_{ii},\ldots,m_{nn}$ on the diagonal is denoted as $\mathbin{\mathtt{diag}}(m_{ii},\ldots,m_{nn})$. The notation $M\succ 0$ (resp. $M\succeq 0$) stands for $M$ being positive (resp. semi) definite.
 
-The notation $\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ stands for the class of functions $u:\mathbb{R}\to\mathbb{R}^m$ that are locally essentially bounded. Given differentiable functions $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $f:\mathbb{R}^n\to\mathbb{R}^n$ the notation $\partial_fM$ stands for matrix with dimension $n\times n$ and with $(i,j)$ element given by $\frac{\partial m_{ij}}{\partial x}(x)f(x)$. The notation $f'$ stands for the total derivative of $f$.
+The notation $\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ stands for the class of functions $u:\mathbb{R}\to\mathbb{R}^m$ that are locally essentially bounded. Given differentiable functions $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $f:\mathbb{R}^n\to\mathbb{R}^n$ the notation $\partial_fM$ stands for matrix with dimension $n\times n$ and with $(i,j)$ element given by $\frac{\partial m_{ij}}{\partial x}(x)f(x)$.
 
 
 \subsection{Problem Formulation and Motivation}\label{sec:Problem Formulation and Motivation}
@@ -521,15 +512,12 @@ At this point, the problem under consideration in this paper can be stated as fo
 
 
 The property described in item 2 of Problem \ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology) for network systems rendering it universally stabilizable. Consider the network composed of systems described by the following equation.
-\begin{equation}\label{eq:example}
-	\left\{\begin{array}{rcl}
-		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
-		\dot{y}_i&=&u_i,
-	\end{array}\right.
+\begin{equation}\label{eq:example system:i}
+	\dot{x}_i=??
 \end{equation}
-Section \ref{sec:Illustration} shows how the approach proposed in this work is employed to design a decentralized controller for the network composed by interconnections of system \eqref{eq:example}.
+Section \ref{sec:Illustration} shows how the approach proposed in this work is employed to design a decentralized controller for the network composed by interconnections of system \eqref{eq:example system:i}.
 
-\subsection{Background}\label{sec:background}
+\subsection{Background}
 
 {\itshape Riemannian metrics and differential formulation.} A Riemannian metric is a positive-definite bilinear form that depends smoothly on $x\in\mathbb{R}^n$. In a particular coordinate system, for any pair of vectors $\delta_0,\delta_1$ of $\mathbb{R}^n$ the metric is defined as the inner product $\langle\delta_0,\delta_{ 1}\rangle_x=\delta_0^\top M(x)\delta_1$, where $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ is a smooth function. Consequently, local notions of norm $|\delta_x|_x=\sqrt{\langle\delta_x,\delta_x\rangle_x}$ and orthogonality $\langle\delta_0,\delta_1\rangle_x=0$ can be defined. The metric is said to be \emph{bounded} if there exists constant values $\underline{m}>0$ and $\overline{m}>0$ such that, for every $x\in\mathbb{R}^n$, $\underline{m}I_n\leq M(x)\leq \overline{m}I_n$, where $I_n\in\mathbb{R}^{n\times n}$ is the identity matrix.
 
@@ -542,7 +530,7 @@ The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{di
 	\mathbin{\mathtt{dist}}(x_0,x_1)=\inf_{\gamma\in\Gamma(x_0,x_1)}\ell(\gamma).
 \end{equation}
 
-A suitable notion to deal with exponential convergence of pair of solutions to \eqref{eq:general system} is provided by the \emph{differential} (also known as variational or prolonged) dynamical system
+A suitable framework to deal with exponential convergence of pair of solutions to \eqref{eq:general system} is provided by the \emph{differential} (also known as variational or prolonged) dynamical system
 \begin{equation}\label{eq:general system:differential}
 	\dot{\delta}_x=A(x,u)\delta_x+B(x)\delta_u,
 \end{equation}
@@ -594,14 +582,15 @@ For the class of systems considered in this paper, the following kind of metric 
 		holds, where $\dot{M}:=\partial_{f+Bu}M$.
 	\end{subequations}
 \end{definition}
-The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition for exponential convergence of solutions. Given a control-contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides stabilizing a feedback law of the form $\delta_u=K\delta_x$ for system \eqref{eq:general system:differential} defined for every $\delta_x\in\mathbb{R}^n$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
+The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition for contraction. Given a control-contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides stabilizing a feedback law of the form $\delta_u=K\delta_x$ for system \eqref{eq:general system:differential} defined for every $\delta_x\in\mathbb{R}^n$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
 
 The following result is recalled from \cite{Manchester2014a} and provides a feedback law for system \eqref{eq:general system} given a feedback law for system \eqref{eq:general system:differential}.
 
 \begin{theorem}\label{prop:CCM Existence}
-	If there exists a control-contraction metric for system \eqref{eq:general system}, then a feedback law that is a solution to item 1 of Problem~\ref{problem formulation} is obtained by integrating the feedback law for system \eqref{eq:general system:differential}.
+	If there exists a control-contraction metric for system \eqref{eq:general system}, then there exists a solution to item 1 of Problem~\ref{problem formulation}.
 \end{theorem}
 
+Another important result of Theorem \ref{prop:CCM Existence} the feedback for system \eqref{eq:general system} obtained by integrating a feedback law designed for system \eqref{eq:general system:differential}.
 
 As remarked in \cite{Manchester2014a}, the main advantage to look for control-contraction metric with respect to a control-Lyapunov function is that the former case can be formulate in terms of a convex optimization problem while the later is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} are shown below.
 
@@ -688,6 +677,8 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 
 The detailed proof of Corollary \ref{cor:distributed computation} is provided in Section \ref{sec:Proof of the Results}.
 
+\todo[inline]{See the works of Ahmadi (Princeton) on scale-diag. dom.}
+
 \subsection{Discussion}
 
 Although the requirement of a sum-separable structure seems to be restrictive, for some classes of systems this structure is equivalent to the (possibly local) stability of the origin. 
@@ -703,14 +694,8 @@ Based on these paragraphs, the question of how restrictive is the requirement of
 
 A case where structured controller design is important is on distributed design for network systems.
 
-Let $N>0$ be a constant integer, for each index $i\in\mathbb{N}_{[1,N]}$, consider the following graph
-\begin{figure}[htpb!]
-	\centering
-	\input{./imgs/GraphStructure.pdf_tex}
-	\caption{Graph describing the network composed of systems of the form \eqref{eq:example}.}
-\end{figure}
-that described the network resulting of connecting agents whose dynamics is described by the system
-\begin{equation}\tag{\ref{eq:example}}
+Let $N>0$ be a constant integer, for each index $i\in\mathbb{N}_{[1,N]}$, consider the system given by
+\begin{equation}\label{eq:example}
 	\left\{\begin{array}{rcl}
 		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
 		\dot{y}_i&=&u_i,
@@ -740,85 +725,68 @@ Note that system \eqref{eq:example} is not feedback linearizable in the sense of
 \end{align*}
 are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only action of the controller on the $x$-subsystem is capable of is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component.
 
-When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved with the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. When no structural constraints are imposed on $Y$, this verification can lead $n^2$ equations to be solved. This motivates the approach proposed in this paper.
+Employing the method provided in Theorem~\ref{thm:main result}, the MI \eqref{eq:MI formulation} has been solved with optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek for a network composed of four systems (i.e., $N=4$) and for three different constraints on the matrix $Y$. The hardware on which the software ran is an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b.
 
-To show the advantages of the method proposed in this paper, a benchmark was run for a network composes by $N=4$ systems and in three scenarios, according to the constraints imposed on the matrix $Y$. Namely, the unconstrained case, the ``neighbor case'', and the fully decentralized (diagonal) case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor case'' and up to $N=512$ systems for the fully decentralized (diagonal) case.
-
-In all cases, the matrix $W$ was required to have a block-diagonal structure as follows
+In all cases, the matrix $W$ has a diagonal structure as follows
 \begin{equation*}
  W=\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),
 \end{equation*}
 the definition of the matrices $W_a$ and $W_b$ differs, according to each case considered.
 
-In the first one, no constraints were imposed on the matrix $Y$ and it was defined as a full matrix. Note that 
-
-The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to \eqref{eq:MI formulation} are
+In the first one, no constraints were imposed on the matrix $Y$. The parser took 97 seconds to solve the  MI \eqref{eq:MI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
 \begin{equation*}
 		W_a=\mathbin{\mathtt{diag}}\left(
  1.27,1.53\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.53\right)
 \end{equation*}
 and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:general} with elements
 \begin{align*}
- \overline{Y}_{ij}(q)=&-3y_i-0.08x_iy_i\\
- \underline{Y}_{ij}(q)=&-2+0.009x_i-1.2\sum_{k=1}^4 y_k^2+x_k^2.
+ \overline{Y}_{ij}=&-3y_i-0.08x_iy_i\\
+ \underline{Y}_{ij}=&-2+0.009x_i-1.2\sum_{k=1}^4 y_k^2+x_k^2.
 \end{align*}
 
 \begin{figure*}
 \begin{equation}\label{eq:example:Y:general}
 		Y(q)=\scalebox{0.75}{$\begin{bmatrix}
-			\overline{Y}_{11},&\underline{Y}_{12},&-0.004y_1,&0,&-0.04y_1-0.003x_3y_1,&0.005y_1y_3,&-0.006y_1+0.001x_4y_1,&0\\
-			-0.006y_2,&0,&\overline{Y}_{23},&\underline{Y}_{24},&-0.009y_2-0.001x_3y_21,&0,&-0.04y_2-0.004x_4y_2,&0.005y_2y_4\\
-			-0.04y_3-0.004x_1y_3,&0,&-0.008y_3+0.001x_2y_3,&0,&\overline{Y}_{35},&\underline{Y}_{36},&-0.006y_3,&0\\
-			-0.006y_4+0.001x_1y_4,&0,&-0.04-0.003x_2y_4,&0,&-0.004y_4&0,&\overline{Y}_{47},&\underline{Y}_{48}
+			\overline{Y}_{11},&\underline{Y}_{12},&-0.004y_1,&0,&-0.04y_1+0.003x_3y_1,&0.005y_1y_3,&-0.007y_1+0.001x_4y_1,&0\\
+			-0.008y_2-0.002x_1y_2,&0,&\overline{Y}_{23},&\underline{Y}_{24},&-0.007y_2-0.004x_3y_2,&0,&-0.04y_2-0.004x_4y_2,&0.005y_2y_4\\
+			-0.04y_3-0.004x_1y_3,&0,&-0.008y_3+0.004x_2y_3,&0,&\overline{Y}_{35},&\underline{Y}_{36},&-0.008y_3+0.002x_4y_3,&0\\
+			-0.009y_4+0.001x_1y_4,&0,&-0.04-0.003x_2y_4,&0,&-0.004y_4&0,&\overline{Y}_{47},&\underline{Y}_{48}
 		\end{bmatrix}$}
 \end{equation}
 \end{figure*}
 
-For the remaining cases, the constraints imposed on the matrix $Y$ is such that the matrix of the left-hand-side of the MI \eqref{eq:MI formulation} is given by
-\begin{equation*}
-	\mathbin{\mathtt{diag}}\left(\begin{bmatrix}
-		T_{11}&T_{12}\\
-		T_{12}^\top&T_{22}
-	\end{bmatrix},\cdots,\begin{bmatrix}
-		T_{(N-1)(N-1)}&T_{(N-1)N}\\
-		T_{(N-1)N}^\top&T_{NN}
-	\end{bmatrix}\right).
-\end{equation*}
-This implies that sparsity can be exploited to decrease the number of verifications.
+In the second case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. Consequently, for each index $i\in\mathbb{N}_{[1,4]}$, the non-identically zero elements of the $i$-th line of the matrix $Y$ depend on the variables $q_{i-1}$, $q_i$ and $q_{i+1}$ (note that, for convenience $q_0=q_1$ and $q_5=q_4$).
 
-In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. Consequently, for each index $i\in\mathbb{N}_{[1,4]}$, the non-identically zero elements of the $i$-th line of the matrix $Y$ depend on the variables $q_{i-1}$, $q_i$ and $q_{i+1}$ (note that, for convenience $q_0=q_1$ and $q_5=q_4$).
-
-
-The time taken by the parser to solve the MI \eqref{eq:MI formulation}, in this case, was 3.5 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
+The time taken by the parser to solve the MI \eqref{eq:MI formulation} was 98 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
 \begin{equation*}
 		W_a=\mathbin{\mathtt{diag}}\left(
- 1.32,1.7\right)\quad\text{and}\quad W_b=\mathbin{\mathtt{diag}}\left(1.2,1.6\right).
+ 1.32,1.59\right)\quad\text{and}\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.61\right).
 \end{equation*}
 and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:neighbor} with elements
 \begin{equation*}
-	Y_{ij}(q_i,\breve{q}_i)=-3.3y_i-0.09x_iy_i
+	Y_{ij}=-3y_i-0.03x_iy_i
 \end{equation*}
 for pair of indexes $(i,j)$ given as $(1,1)$, $(2,3)$, $(3,5)$ and $(4,6)$. Also, 
 \begin{align*}
-	Y_{12}(q_i,\breve{q}_i)=&-2.8-0.01x_1-2(y_1^2+y_2^2+x_1^2+x_2^2)\\	
-	Y_{24}(q_i,\breve{q}_i)=&-3-2(y_1^2+y_2^2+y_3^2+x_1^2+x_2^2+x_3^2)\\	
-	Y_{36}(q_i,\breve{q}_i)=&-3-2(y_2^2+y_3^2+y_4^2+x_2^2+x_3^2+x_4^2)\\	
-	Y_{48}(q_i,\breve{q}_i)=&-2.5-0.01x_4-1.5(y_3^2+y_4^2+x_3^2+x_4^2)
+	Y_{12}=&-4-0.01x_1-y_1^2-y_2^2-2x_1^2-x_2^2\\	
+	Y_{24}=&-3-0.01x_2-y_1^2-y_2^2-y_3^2-x_1^2-x_2^2-x_3^2\\	
+	Y_{36}=&-3-0.01x_3-y_2^2-y_3^2-y_4^2-x_2^2-x_3^2-x_4^2\\	
+	Y_{48}=&-4-0.01x_4-y_4^2-y_3^2-2x_4^2-x_3^2
 \end{align*}
 
 \begin{figure*}
 \begin{equation}\label{eq:example:Y:neighbor}
 	Y(q)=\scalebox{0.85}{$\begin{bmatrix}
-	Y_{11},&Y_{12},&-0.001y_1,&0,&0,&0,&0,&0\\
-	-0.001(y_2+x_1y_2),&0,&Y_{23},&Y_{24},&-0.003y_2,&0,&0,&0\\
-	0,&0,&-0.002y_3,&0,&Y_{35},&Y_{36},&-0.002y_3,&0\\
-	0,&0,&0,&0,&-0.003y_4,&0,&Y_{47},&Y_{48}
+	Y_{11},&Y_{12},&-0.01y_2+0.03x_2y_1,&0,&0,&0,&0,&0\\
+	-0.01y_2-0.002x_1y_2,&0,&Y_{23},&Y_{24},&-0.01y_2+0.03x_3y_2,&0,&0,&0\\
+	0,&0,&-0.01y_3+0.03x_2y_3,&0,&Y_{35},&Y_{36},&-0.01y_3-0.002x_4y_3,&0\\
+	0,&0,&0,&0,&-0.01y_4+0.03x_3y_4,&0,&Y_{47},&Y_{48}
 	\end{bmatrix}$}
 \end{equation}
 \end{figure*}
  
 
-In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI \eqref{eq:MI formulation} was 2.6 seconds. In this case, $\mathscr{K}_Y(i)=\{j\in\mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}$, where $\mathscr{K}(i)=\{i\}$. Imposing $Y\in\Xi_Y$ and solving the MI \eqref{eq:MI formulation} the following components the matrices $W$ and $Y$ were obtained
+In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI \eqref{eq:MI formulation} was 101 seconds. In this case, $\mathscr{K}_Y(i)=\{j\in\mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}$, where $\mathscr{K}(i)=\{i\}$. Imposing $Y\in\Xi_Y$ and solving the MI \eqref{eq:MI formulation} the following components the matrices $W$ and $Y$ were obtained
 \begin{align*}
  W=&\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),\\
  Y=&\mathbin{\mathtt{diag}}\left(Y_1,Y_2,Y_3,Y_4\right)
@@ -826,43 +794,13 @@ In the last case, the fully decentralized scenario has been considered. The time
 where
 \begin{equation*}
 		W_a=\mathbin{\mathtt{diag}}\left(
- 1.4,1.6\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.2,1.6\right)
+ 1.43,1.17\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.03,2.17\right)
 \end{equation*}
-and, for each index $i=1,4$,
+and, for each index $i\in\mathbb{N}_{[1,4]}$,
 \begin{align*}
- Y_i(q_i)=[-3.1y_i+0.06x_iy_i,-3.6-0.02x_i-2.3y_i^2-2.4x_i^2]
+ Y_i=[-4.33y_i+0.04x_iy_i,\\
+ -7.78-&0.01x_i-2.73y_i^2-2.98x_i^2].
 \end{align*}
-and, for each index $i=2,3$,
-\begin{align*}
- Y_i(q_i)=[-3.1y_i,-3.8-2.1y_i^2-2.2x_i^2].
-\end{align*}
-
-
-Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI formulation} for the three cases considered in this illustration: unconstrained, ``neighbor'' (the feedback law of system $i$ depends only on $q_i$ and $\breve{q}_i$) and fully decentralized (the feedback law of system $i$ depends on $q_i $ only).
-
-\begin{figure}[htpb!]
-	\centering
-	\includegraphics[width=\columnwidth]{./imgs/ParserTime}
-	\caption{Time take by the parser to solve the MI \eqref{eq:MI formulation} for the three cases under consideration. The number of agents started with one system and double each time. Axes are on log scale.}
-	\label{fig:time graph}
-\end{figure}
-
-From the graph shown in Figure \ref{fig:time graph}, for $N=1,2$, the time taken by the parser to solve the MI \eqref{eq:MI formulation} is of the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor''-constrained case which, in turn, takes more time than the fully decentralized-constrained case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, each element of $Y$ was defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$. While, for the fully decentralized case, $Y$ was defined as a polynomial of second degree on the variable $q_i$ only.
-
-Regarding the on-line integration phase, since the matrices $W$ computed in each case are constant, for each index $i\in\mathbb{N}_{[1,4]}$, the geodesic curve connecting the origin to a point $q_i\in\mathbb{R}^2$ is a straight line: $\gamma_i(s)=sq_i$, for every $s\in[0,1]$. For each case, and for each index $i\in\mathbb{N}_{[1,4]}$, the feedback law given by the formula
-\begin{equation*}
-	k= \int_0^1Y(sq)W^{-1}q\,ds.
-\end{equation*}
-Given the structure of the matrices $Y$ and $W$, each line $i\in\mathbb{N}_{[1,4]}$ has the following structure
-\begin{equation*}
-k_i=\begin{cases}
-	\displaystyle\int_0^1Y_i(sq)W_i^{-1}q_i\,ds,&\text{if unconstrained}\\
-	\displaystyle\int_0^1Y_i(sq_i,s\breve{q}_i)W_i^{-1}q_i\,ds,&\text{if ``neighbor''}\\
-	\displaystyle\int_0^1Y_i(sq_i)W_i^{-1}q_i\,ds,&\text{if fully decentralized.}
-\end{cases}
-\end{equation*}
-Moreover, the computed feedback law $k$ globally exponentially uniformly stabilizes the origin for the network resulting from the interconnection of systems \eqref{eq:example}.
-
 
 \section{Proof of the Results}\label{sec:Proof of the Results}
 
@@ -939,16 +877,6 @@ Moreover, the computed feedback law $k$ globally exponentially uniformly stabili
 
 
 \section{Conclusion}\label{sec:Conclusion}
-
-In this work, input-affine nonlinear systems were considered. The considered problem was the design of structured feedback laws. The methodology employed for synthesis was based on control-contraction metrics which provides a controller ensuring exponential convergence of pairs of solutions.
-
-In terms of dynamic programming, employing control-contraction metrics allows one to formulate the search for the controller as a convex optimization problem. Although this is one of its main advantages in comparison to the search of control-Lyapunov functions, it does not scale well.
-
-For systems described by a non-fully connected graph, the approach presented in this paper exploits the sparsity to design feedback law with a prescribed structure. More precisely, by imposing a block-diagonal structure on the matrix describing the metric, a structured controller can be synthesized. Moreover, the on-line integration phase can be done in parallel, because each block defines a metric to the corresponding component of the state space where the geodesic is computed by optimization.
-
-The authors plan to extend this work for the synthesis of event-based controllers, and the analysis of disturbances like time delays.
-
-{\itshape Acknowledgments.} The authors thank the anonymous reviewers.
 
 \appendices
 

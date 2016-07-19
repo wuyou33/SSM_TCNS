@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.15)  19 JUL 2016 10:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.15)  14 JUL 2016 17:30
 entering extended mode
 **./R0V0.tex
 (R0V0.tex
@@ -1333,31 +1333,6 @@ Package biblatex Warning: BibTeX reported the following issues
 
 
 Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Manchester2014a':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Angeli2002':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Rueffer2013':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Forni2014':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Lewis1949':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
 (biblatex)                with 'Rantzer2015':
 (biblatex)                - Invalid format of field 'month'.
 
@@ -1389,7 +1364,12 @@ Package biblatex Warning: BibTeX reported the following issues
 
 
 Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Dirr2015':
+(biblatex)                with 'Manchester2014a':
+(biblatex)                - Invalid format of field 'month'.
+
+
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with 'Forni2014':
 (biblatex)                - Invalid format of field 'month'.
 
 
@@ -1405,6 +1385,11 @@ Package biblatex Warning: BibTeX reported the following issues
 
 Package biblatex Warning: BibTeX reported the following issues
 (biblatex)                with 'Reich2005':
+(biblatex)                - Invalid format of field 'month'.
+
+
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with 'Dirr2015':
 (biblatex)                - Invalid format of field 'month'.
 
 
@@ -1458,29 +1443,37 @@ LaTeX Info: Redefining \nameref on input line 347.
 \openout5 = `R0V0.out'.
 
  ABD: EveryShipout initializing macros
-Underfull \hbox (badness 1661) in paragraph at lines 409--409
-\OT1/ptm/m/n/8 Aus-tralia. Cor-re-spond-ing au-thor: hum-berto.shiromoto@ieee.o
-rg. ORCID:
- []
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 418.
 
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 443.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 443.
+LaTeX Font Info:    Try loading font information for U+msa on input line 418.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 443.
+LaTeX Font Info:    Try loading font information for U+msb on input line 418.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{C:/Users/humberto/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 418.
+
+
+LaTeX Warning: Reference `sec:Background and Motivation' on page 1 undefined on
+ input line 460.
+
+
+LaTeX Warning: Reference `sec:Problem Formulation' on page 1 undefined on input
+ line 460.
+
+[1{C:/Users/humberto/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-Underfull \hbox (badness 7433) in paragraph at lines 486--487
+Underfull \hbox (badness 7433) in paragraph at lines 477--478
 []\OT1/ptm/m/it/10 Stabilizability No-tion. \OT1/ptm/m/n/10 A for-ward com-plet
 e so-lu-tion
  []
@@ -1489,126 +1482,41 @@ e so-lu-tion
 .1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.568 		 \begin{equation}
+l.556 		 \begin{equation}
                          pdfTeX warning (ext4): destination with the same ident
 ifier (name{equation.1.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.572 	 	 \begin{equation}
+l.560 	 	 \begin{equation}
                           pdfTeX warning (ext4): destination with the same iden
 tifier (name{equation.1.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.587 		\begin{equation}
-                        \label{eq:} [3]pdfTeX warning (ext4): destination with 
-the same identifier (name{equation.1.2}) has been already used, duplicate ignor
-ed
+l.575 		\begin{equation}
+                        \label{eq:}pdfTeX warning (ext4): destination with the 
+same identifier (name{equation.1.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.593 		\end{align}
-                    [4] (imgs/GraphStructure.pdf_tex
-<./imgs/GraphStructure.pdf, id=279, page=1, 199.25385pt x 40.42691pt>
-File: ./imgs/GraphStructure.pdf Graphic file (type pdf)
-
-<use ./imgs/GraphStructure.pdf, page 1>
-Package pdftex.def Info: ./imgs/GraphStructure.pdf, page1 used on input line 54
-.
-(pdftex.def)             Requested size: 199.25383pt x 40.42741pt.
-
-<./imgs/GraphStructure.pdf, id=280, page=2, 199.25385pt x 40.42691pt>
-File: ./imgs/GraphStructure.pdf Graphic file (type pdf)
-
-<use ./imgs/GraphStructure.pdf, page 2>
-Package pdftex.def Info: ./imgs/GraphStructure.pdf, page2 used on input line 56
-.
-(pdftex.def)             Requested size: 199.25383pt x 40.42741pt.
-
-<./imgs/GraphStructure.pdf, id=281, page=3, 199.25385pt x 40.42691pt>
-File: ./imgs/GraphStructure.pdf Graphic file (type pdf)
-
-<use ./imgs/GraphStructure.pdf, page 3>
-Package pdftex.def Info: ./imgs/GraphStructure.pdf, page3 used on input line 58
-.
-(pdftex.def)             Requested size: 199.25383pt x 40.42741pt.
-
-<./imgs/GraphStructure.pdf, id=282, page=4, 199.25385pt x 40.42691pt>
-File: ./imgs/GraphStructure.pdf Graphic file (type pdf)
-
-<use ./imgs/GraphStructure.pdf, page 4>
-Package pdftex.def Info: ./imgs/GraphStructure.pdf, page4 used on input line 60
-.
-(pdftex.def)             Requested size: 199.25383pt x 40.42741pt.
-
-<./imgs/GraphStructure.pdf, id=283, page=5, 199.25385pt x 40.42691pt>
-File: ./imgs/GraphStructure.pdf Graphic file (type pdf)
-
-<use ./imgs/GraphStructure.pdf, page 5>
-Package pdftex.def Info: ./imgs/GraphStructure.pdf, page5 used on input line 62
-.
-(pdftex.def)             Requested size: 199.25383pt x 40.42741pt.
-) [5 <./imgs/GraphStructure.pdf> <./imgs/GraphStructure.pdf
-
-pdfTeX warning: pdflatex (file ./imgs/GraphStructure.pdf): PDF inclusion: multi
-ple pdfs with page group included in a single page
-> <./imgs/GraphStructure.pdf
-
-pdfTeX warning: pdflatex (file ./imgs/GraphStructure.pdf): PDF inclusion: multi
-ple pdfs with page group included in a single page
-> <./imgs/GraphStructure.pdf
-
-pdfTeX warning: pdflatex (file ./imgs/GraphStructure.pdf): PDF inclusion: multi
-ple pdfs with page group included in a single page
-> <./imgs/GraphStructure.pdf
-
-pdfTeX warning: pdflatex (file ./imgs/GraphStructure.pdf): PDF inclusion: multi
-ple pdfs with page group included in a single page
->]pdfTeX warning (ext4): destination with the same identifier (name{equation.3.
-14}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.767 \begin{equation}
-                      \label{eq:example:Y:general}
-Overfull \hbox (1.65279pt too wide) in paragraph at lines 834--834
-[] 
- []
-
-Package epstopdf Info: Source file: <./imgs/ParserTime.eps>
-(epstopdf)                    date: 2016-07-19 09:15:07
-(epstopdf)                    size: 122842 bytes
-(epstopdf)             Output file: <./imgs/ParserTime-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-07-19 09:15:46
-(epstopdf)                    size: 9909 bytes
-(epstopdf)             Command: <epstopdf --outfile=./imgs/ParserTime-eps-conve
-rted-to.pdf ./imgs/ParserTime.eps>
-(epstopdf)             \includegraphics on input line 845.
-Package epstopdf Info: Output file is already uptodate.
-<./imgs/ParserTime-eps-converted-to.pdf, id=324, 421.575pt x 316.18124pt>
-File: ./imgs/ParserTime-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./imgs/ParserTime-eps-converted-to.pdf>
-Package pdftex.def Info: ./imgs/ParserTime-eps-converted-to.pdf used on input l
-ine 845.
-(pdftex.def)             Requested size: 252.0pt x 189.00099pt.
- [6] [7 <./imgs/ParserTime-eps-converted-to.pdf>]
-Underfull \hbox (badness 1629) in paragraph at lines 987--987
+l.581 		\end{align}
+                    [3]
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 680.
+ [4] [5]
+Underfull \hbox (badness 1629) in paragraph at lines 915--915
 []\OT1/ptm/m/n/9 F. Mazenc and M. Mal-isoff, ``Fur-ther Con-struc-tions of
  []
 
-[8]
-Underfull \hbox (badness 4156) in paragraph at lines 987--987
-[]\OT1/ptm/m/n/9 Z. Am-in-zare and E. D. Son-tag, ``Syn-chro-niza-tion of
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 989.
-[9
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 989.
+[6] [7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 917.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 917.
  (R0V0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 989.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 989.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 917.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 917.
 Package rerunfilecheck Info: File `R0V0.out' has not changed.
 (rerunfilecheck)             Checksum: 80595012BF48EB8745A63EB620A969A8;472.
+
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1619,13 +1527,13 @@ Package logreq Info: Writing requests to 'R0V0.run.xml'.
  )
 (\end occurred when \iftrue on line 347 was incomplete) 
 Here is how much of TeX's memory you used:
- 23020 strings out of 493335
- 419774 string characters out of 3139251
- 746201 words of memory out of 3000000
- 26018 multiletter control sequences out of 15000+200000
- 41240 words of font info for 81 fonts, out of 3000000 for 9000
- 1145 hyphenation exceptions out of 8191
- 62i,15n,56p,893b,2395s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 23035 strings out of 493335
+ 420052 string characters out of 3139251
+ 745200 words of memory out of 3000000
+ 26048 multiletter control sequences out of 15000+200000
+ 46297 words of font info for 97 fonts, out of 3000000 for 9000
+ 1144 hyphenation exceptions out of 8191
+ 62i,15n,80p,893b,2403s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX
  2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
@@ -1643,9 +1551,9 @@ bols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/rsfs/rsfs10.pfb
 s/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on R0V0.pdf (9 pages, 316352 bytes).
+Output written on R0V0.pdf (7 pages, 285991 bytes).
 PDF statistics:
- 468 PDF objects out of 1000 (max. 8388607)
- 102 named destinations out of 1000 (max. 500000)
- 107 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 411 PDF objects out of 1000 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 
