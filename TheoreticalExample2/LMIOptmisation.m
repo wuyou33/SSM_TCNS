@@ -1,4 +1,4 @@
-function test
+function caller
 clear all
 close all
 clc
@@ -41,7 +41,7 @@ if NumberOfAgents > 512 && strcmp(Option,'Diagonal')
 end
 
 LaplacianMatrix = LinearLaplacianGenerator(NumberOfAgents);
-LMIOptimisation1(LaplacianMatrix,Option,lambda)
+LMIOptimisation(LaplacianMatrix,Option,lambda)
 
 diary off
 
@@ -49,9 +49,7 @@ pause(60)
 
 end
 
-function LMIOptimisation1(LaplacianMatrix,Option,lambda)
-
-%     function LMIOptmisation(LaplacianMatrix,Option,lambda)
+function LMIOptimisation(LaplacianMatrix,Option,lambda)
 
 global Simulation SystemStates SystemInputs SystemParameters
 
