@@ -13,26 +13,39 @@ SystemInputs = ['u'];
 SystemParameters = ['d'];
 d = 1e-2;
 lambda = 1;
-Option       = 'Neighbor';
-NumberOfAgents = 64
+Option       = 'General';
+
+NumberOfAgents = 5
 
 fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
 diary(fname)
 diary on
 
-if NumberOfAgents > 4 && strcmp(Option,'Diagonal') + strcmp(Option,'Neighbor') == 0
+if NumberOfAgents > 5 && strcmp(Option,'Diagonal') + strcmp(Option,'Neighbor') == 0
     
-    disp('This option requires lots of RAM memory for more than 4 agents.')
-    disp('Chose Option = Diagonal and run it with more than 4 agents or')
-    disp('Chose another option and run with less than 4 agents')
+    disp('This option requires lots of RAM memory for more than 5 agents.')
+    disp('Chose Option = Diagonal or Neighbor to run with more than 5 agents or')
     return
     
+end
+
+if NumberOfAgents > 256 && strcmp(Option,'Neighbor')
+    disp('This option requires lots of RAM memory for more than 256 agents.')
+    disp('Chose Option = Diagonal and run it with more than 256 agents or')
+    return
+end
+
+if NumberOfAgents > 512 && strcmp(Option,'Diagonal')
+    disp('This option requires lots of RAM memory for more than 512 agents.')
+    return
 end
 
 LaplacianMatrix = LinearLaplacianGenerator(NumberOfAgents);
 LMIOptimisation1(LaplacianMatrix,Option,lambda)
 
 diary off
+
+pause(60)
 
 end
 

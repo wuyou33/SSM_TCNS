@@ -1,0 +1,2136 @@
+ 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|     ID|                    Constraint|   Primal residual|
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|     #1|   SOS constraint (polynomial)|               NaN|
+|     #2|   SOS constraint (polynomial)|               NaN|
+|     #3|   SOS constraint (polynomial)|               NaN|
+|     #4|   SOS constraint (polynomial)|               NaN|
+|     #5|   SOS constraint (polynomial)|               NaN|
+|     #6|   SOS constraint (polynomial)|               NaN|
+|     #7|   SOS constraint (polynomial)|               NaN|
+|     #8|   SOS constraint (polynomial)|               NaN|
+|     #9|   SOS constraint (polynomial)|               NaN|
+|    #10|   SOS constraint (polynomial)|               NaN|
+|    #11|   SOS constraint (polynomial)|               NaN|
+|    #12|   SOS constraint (polynomial)|               NaN|
+|    #13|   SOS constraint (polynomial)|               NaN|
+|    #14|   SOS constraint (polynomial)|               NaN|
+|    #15|   SOS constraint (polynomial)|               NaN|
+|    #16|   SOS constraint (polynomial)|               NaN|
+|    #17|   SOS constraint (polynomial)|               NaN|
+|    #18|   SOS constraint (polynomial)|               NaN|
+|    #19|   SOS constraint (polynomial)|               NaN|
+|    #20|   SOS constraint (polynomial)|               NaN|
+|    #21|   SOS constraint (polynomial)|               NaN|
+|    #22|   SOS constraint (polynomial)|               NaN|
+|    #23|   SOS constraint (polynomial)|               NaN|
+|    #24|   SOS constraint (polynomial)|               NaN|
+|    #25|   SOS constraint (polynomial)|               NaN|
+|    #26|   SOS constraint (polynomial)|               NaN|
+|    #27|   SOS constraint (polynomial)|               NaN|
+|    #28|   SOS constraint (polynomial)|               NaN|
+|    #29|   SOS constraint (polynomial)|               NaN|
+|    #30|   SOS constraint (polynomial)|               NaN|
+|    #31|   SOS constraint (polynomial)|               NaN|
+|    #32|   SOS constraint (polynomial)|               NaN|
+|    #33|   SOS constraint (polynomial)|               NaN|
+|    #34|   SOS constraint (polynomial)|               NaN|
+|    #35|   SOS constraint (polynomial)|               NaN|
+|    #36|   SOS constraint (polynomial)|               NaN|
+|    #37|   SOS constraint (polynomial)|               NaN|
+|    #38|   SOS constraint (polynomial)|               NaN|
+|    #39|   SOS constraint (polynomial)|               NaN|
+|    #40|   SOS constraint (polynomial)|               NaN|
+|    #41|   SOS constraint (polynomial)|               NaN|
+|    #42|   SOS constraint (polynomial)|               NaN|
+|    #43|   SOS constraint (polynomial)|               NaN|
+|    #44|   SOS constraint (polynomial)|               NaN|
+|    #45|   SOS constraint (polynomial)|               NaN|
+|    #46|   SOS constraint (polynomial)|               NaN|
+|    #47|   SOS constraint (polynomial)|               NaN|
+|    #48|   SOS constraint (polynomial)|               NaN|
+|    #49|   SOS constraint (polynomial)|               NaN|
+|    #50|   SOS constraint (polynomial)|               NaN|
+|    #51|   SOS constraint (polynomial)|               NaN|
+|    #52|   SOS constraint (polynomial)|               NaN|
+|    #53|   SOS constraint (polynomial)|               NaN|
+|    #54|   SOS constraint (polynomial)|               NaN|
+|    #55|   SOS constraint (polynomial)|               NaN|
+|    #56|   SOS constraint (polynomial)|               NaN|
+|    #57|   SOS constraint (polynomial)|               NaN|
+|    #58|   SOS constraint (polynomial)|               NaN|
+|    #59|   SOS constraint (polynomial)|               NaN|
+|    #60|   SOS constraint (polynomial)|               NaN|
+|    #61|   SOS constraint (polynomial)|               NaN|
+|    #62|   SOS constraint (polynomial)|               NaN|
+|    #63|   SOS constraint (polynomial)|               NaN|
+|    #64|   SOS constraint (polynomial)|               NaN|
+|    #65|   SOS constraint (polynomial)|               NaN|
+|    #66|   SOS constraint (polynomial)|               NaN|
+|    #67|   SOS constraint (polynomial)|               NaN|
+|    #68|   SOS constraint (polynomial)|               NaN|
+|    #69|   SOS constraint (polynomial)|               NaN|
+|    #70|   SOS constraint (polynomial)|               NaN|
+|    #71|   SOS constraint (polynomial)|               NaN|
+|    #72|   SOS constraint (polynomial)|               NaN|
+|    #73|   SOS constraint (polynomial)|               NaN|
+|    #74|   SOS constraint (polynomial)|               NaN|
+|    #75|   SOS constraint (polynomial)|               NaN|
+|    #76|   SOS constraint (polynomial)|               NaN|
+|    #77|   SOS constraint (polynomial)|               NaN|
+|    #78|   SOS constraint (polynomial)|               NaN|
+|    #79|   SOS constraint (polynomial)|               NaN|
+|    #80|   SOS constraint (polynomial)|               NaN|
+|    #81|   SOS constraint (polynomial)|               NaN|
+|    #82|   SOS constraint (polynomial)|               NaN|
+|    #83|   SOS constraint (polynomial)|               NaN|
+|    #84|   SOS constraint (polynomial)|               NaN|
+|    #85|   SOS constraint (polynomial)|               NaN|
+|    #86|   SOS constraint (polynomial)|               NaN|
+|    #87|   SOS constraint (polynomial)|               NaN|
+|    #88|   SOS constraint (polynomial)|               NaN|
+|    #89|   SOS constraint (polynomial)|               NaN|
+|    #90|   SOS constraint (polynomial)|               NaN|
+|    #91|   SOS constraint (polynomial)|               NaN|
+|    #92|   SOS constraint (polynomial)|               NaN|
+|    #93|   SOS constraint (polynomial)|               NaN|
+|    #94|   SOS constraint (polynomial)|               NaN|
+|    #95|   SOS constraint (polynomial)|               NaN|
+|    #96|   SOS constraint (polynomial)|               NaN|
+|    #97|   SOS constraint (polynomial)|               NaN|
+|    #98|   SOS constraint (polynomial)|               NaN|
+|    #99|   SOS constraint (polynomial)|               NaN|
+|   #100|   SOS constraint (polynomial)|               NaN|
+|   #101|   SOS constraint (polynomial)|               NaN|
+|   #102|   SOS constraint (polynomial)|               NaN|
+|   #103|   SOS constraint (polynomial)|               NaN|
+|   #104|   SOS constraint (polynomial)|               NaN|
+|   #105|   SOS constraint (polynomial)|               NaN|
+|   #106|   SOS constraint (polynomial)|               NaN|
+|   #107|   SOS constraint (polynomial)|               NaN|
+|   #108|   SOS constraint (polynomial)|               NaN|
+|   #109|   SOS constraint (polynomial)|               NaN|
+|   #110|   SOS constraint (polynomial)|               NaN|
+|   #111|   SOS constraint (polynomial)|               NaN|
+|   #112|   SOS constraint (polynomial)|               NaN|
+|   #113|   SOS constraint (polynomial)|               NaN|
+|   #114|   SOS constraint (polynomial)|               NaN|
+|   #115|   SOS constraint (polynomial)|               NaN|
+|   #116|   SOS constraint (polynomial)|               NaN|
+|   #117|   SOS constraint (polynomial)|               NaN|
+|   #118|   SOS constraint (polynomial)|               NaN|
+|   #119|   SOS constraint (polynomial)|               NaN|
+|   #120|   SOS constraint (polynomial)|               NaN|
+|   #121|   SOS constraint (polynomial)|               NaN|
+|   #122|   SOS constraint (polynomial)|               NaN|
+|   #123|   SOS constraint (polynomial)|               NaN|
+|   #124|   SOS constraint (polynomial)|               NaN|
+|   #125|   SOS constraint (polynomial)|               NaN|
+|   #126|   SOS constraint (polynomial)|               NaN|
+|   #127|   SOS constraint (polynomial)|               NaN|
+|   #128|   SOS constraint (polynomial)|               NaN|
+|   #129|   SOS constraint (polynomial)|               NaN|
+|   #130|   SOS constraint (polynomial)|               NaN|
+|   #131|   SOS constraint (polynomial)|               NaN|
+|   #132|   SOS constraint (polynomial)|               NaN|
+|   #133|   SOS constraint (polynomial)|               NaN|
+|   #134|   SOS constraint (polynomial)|               NaN|
+|   #135|   SOS constraint (polynomial)|               NaN|
+|   #136|   SOS constraint (polynomial)|               NaN|
+|   #137|   SOS constraint (polynomial)|               NaN|
+|   #138|   SOS constraint (polynomial)|               NaN|
+|   #139|   SOS constraint (polynomial)|               NaN|
+|   #140|   SOS constraint (polynomial)|               NaN|
+|   #141|   SOS constraint (polynomial)|               NaN|
+|   #142|   SOS constraint (polynomial)|               NaN|
+|   #143|   SOS constraint (polynomial)|               NaN|
+|   #144|   SOS constraint (polynomial)|               NaN|
+|   #145|   SOS constraint (polynomial)|               NaN|
+|   #146|   SOS constraint (polynomial)|               NaN|
+|   #147|   SOS constraint (polynomial)|               NaN|
+|   #148|   SOS constraint (polynomial)|               NaN|
+|   #149|   SOS constraint (polynomial)|               NaN|
+|   #150|   SOS constraint (polynomial)|               NaN|
+|   #151|   SOS constraint (polynomial)|               NaN|
+|   #152|   SOS constraint (polynomial)|               NaN|
+|   #153|   SOS constraint (polynomial)|               NaN|
+|   #154|   SOS constraint (polynomial)|               NaN|
+|   #155|   SOS constraint (polynomial)|               NaN|
+|   #156|   SOS constraint (polynomial)|               NaN|
+|   #157|   SOS constraint (polynomial)|               NaN|
+|   #158|   SOS constraint (polynomial)|               NaN|
+|   #159|   SOS constraint (polynomial)|               NaN|
+|   #160|   SOS constraint (polynomial)|               NaN|
+|   #161|   SOS constraint (polynomial)|               NaN|
+|   #162|   SOS constraint (polynomial)|               NaN|
+|   #163|   SOS constraint (polynomial)|               NaN|
+|   #164|   SOS constraint (polynomial)|               NaN|
+|   #165|   SOS constraint (polynomial)|               NaN|
+|   #166|   SOS constraint (polynomial)|               NaN|
+|   #167|   SOS constraint (polynomial)|               NaN|
+|   #168|   SOS constraint (polynomial)|               NaN|
+|   #169|   SOS constraint (polynomial)|               NaN|
+|   #170|   SOS constraint (polynomial)|               NaN|
+|   #171|   SOS constraint (polynomial)|               NaN|
+|   #172|   SOS constraint (polynomial)|               NaN|
+|   #173|   SOS constraint (polynomial)|               NaN|
+|   #174|   SOS constraint (polynomial)|               NaN|
+|   #175|   SOS constraint (polynomial)|               NaN|
+|   #176|   SOS constraint (polynomial)|               NaN|
+|   #177|   SOS constraint (polynomial)|               NaN|
+|   #178|   SOS constraint (polynomial)|               NaN|
+|   #179|   SOS constraint (polynomial)|               NaN|
+|   #180|   SOS constraint (polynomial)|               NaN|
+|   #181|   SOS constraint (polynomial)|               NaN|
+|   #182|   SOS constraint (polynomial)|               NaN|
+|   #183|   SOS constraint (polynomial)|               NaN|
+|   #184|   SOS constraint (polynomial)|               NaN|
+|   #185|   SOS constraint (polynomial)|               NaN|
+|   #186|   SOS constraint (polynomial)|               NaN|
+|   #187|   SOS constraint (polynomial)|               NaN|
+|   #188|   SOS constraint (polynomial)|               NaN|
+|   #189|   SOS constraint (polynomial)|               NaN|
+|   #190|   SOS constraint (polynomial)|               NaN|
+|   #191|   SOS constraint (polynomial)|               NaN|
+|   #192|   SOS constraint (polynomial)|               NaN|
+|   #193|   SOS constraint (polynomial)|               NaN|
+|   #194|   SOS constraint (polynomial)|               NaN|
+|   #195|   SOS constraint (polynomial)|               NaN|
+|   #196|   SOS constraint (polynomial)|               NaN|
+|   #197|   SOS constraint (polynomial)|               NaN|
+|   #198|   SOS constraint (polynomial)|               NaN|
+|   #199|   SOS constraint (polynomial)|               NaN|
+|   #200|   SOS constraint (polynomial)|               NaN|
+|   #201|   SOS constraint (polynomial)|               NaN|
+|   #202|   SOS constraint (polynomial)|               NaN|
+|   #203|   SOS constraint (polynomial)|               NaN|
+|   #204|   SOS constraint (polynomial)|               NaN|
+|   #205|   SOS constraint (polynomial)|               NaN|
+|   #206|   SOS constraint (polynomial)|               NaN|
+|   #207|   SOS constraint (polynomial)|               NaN|
+|   #208|   SOS constraint (polynomial)|               NaN|
+|   #209|   SOS constraint (polynomial)|               NaN|
+|   #210|   SOS constraint (polynomial)|               NaN|
+|   #211|   SOS constraint (polynomial)|               NaN|
+|   #212|   SOS constraint (polynomial)|               NaN|
+|   #213|   SOS constraint (polynomial)|               NaN|
+|   #214|   SOS constraint (polynomial)|               NaN|
+|   #215|   SOS constraint (polynomial)|               NaN|
+|   #216|   SOS constraint (polynomial)|               NaN|
+|   #217|   SOS constraint (polynomial)|               NaN|
+|   #218|   SOS constraint (polynomial)|               NaN|
+|   #219|   SOS constraint (polynomial)|               NaN|
+|   #220|   SOS constraint (polynomial)|               NaN|
+|   #221|   SOS constraint (polynomial)|               NaN|
+|   #222|   SOS constraint (polynomial)|               NaN|
+|   #223|   SOS constraint (polynomial)|               NaN|
+|   #224|   SOS constraint (polynomial)|               NaN|
+|   #225|   SOS constraint (polynomial)|               NaN|
+|   #226|   SOS constraint (polynomial)|               NaN|
+|   #227|   SOS constraint (polynomial)|               NaN|
+|   #228|   SOS constraint (polynomial)|               NaN|
+|   #229|   SOS constraint (polynomial)|               NaN|
+|   #230|   SOS constraint (polynomial)|               NaN|
+|   #231|   SOS constraint (polynomial)|               NaN|
+|   #232|   SOS constraint (polynomial)|               NaN|
+|   #233|   SOS constraint (polynomial)|               NaN|
+|   #234|   SOS constraint (polynomial)|               NaN|
+|   #235|   SOS constraint (polynomial)|               NaN|
+|   #236|   SOS constraint (polynomial)|               NaN|
+|   #237|   SOS constraint (polynomial)|               NaN|
+|   #238|   SOS constraint (polynomial)|               NaN|
+|   #239|   SOS constraint (polynomial)|               NaN|
+|   #240|   SOS constraint (polynomial)|               NaN|
+|   #241|   SOS constraint (polynomial)|               NaN|
+|   #242|   SOS constraint (polynomial)|               NaN|
+|   #243|   SOS constraint (polynomial)|               NaN|
+|   #244|   SOS constraint (polynomial)|               NaN|
+|   #245|   SOS constraint (polynomial)|               NaN|
+|   #246|   SOS constraint (polynomial)|               NaN|
+|   #247|   SOS constraint (polynomial)|               NaN|
+|   #248|   SOS constraint (polynomial)|               NaN|
+|   #249|   SOS constraint (polynomial)|               NaN|
+|   #250|   SOS constraint (polynomial)|               NaN|
+|   #251|   SOS constraint (polynomial)|               NaN|
+|   #252|   SOS constraint (polynomial)|               NaN|
+|   #253|   SOS constraint (polynomial)|               NaN|
+|   #254|   SOS constraint (polynomial)|               NaN|
+|   #255|   SOS constraint (polynomial)|               NaN|
+|   #256|   SOS constraint (polynomial)|               NaN|
+|   #257|   SOS constraint (polynomial)|               NaN|
+|   #258|   SOS constraint (polynomial)|               NaN|
+|   #259|   SOS constraint (polynomial)|               NaN|
+|   #260|   SOS constraint (polynomial)|               NaN|
+|   #261|   SOS constraint (polynomial)|               NaN|
+|   #262|   SOS constraint (polynomial)|               NaN|
+|   #263|   SOS constraint (polynomial)|               NaN|
+|   #264|   SOS constraint (polynomial)|               NaN|
+|   #265|   SOS constraint (polynomial)|               NaN|
+|   #266|   SOS constraint (polynomial)|               NaN|
+|   #267|   SOS constraint (polynomial)|               NaN|
+|   #268|   SOS constraint (polynomial)|               NaN|
+|   #269|   SOS constraint (polynomial)|               NaN|
+|   #270|   SOS constraint (polynomial)|               NaN|
+|   #271|   SOS constraint (polynomial)|               NaN|
+|   #272|   SOS constraint (polynomial)|               NaN|
+|   #273|   SOS constraint (polynomial)|               NaN|
+|   #274|   SOS constraint (polynomial)|               NaN|
+|   #275|   SOS constraint (polynomial)|               NaN|
+|   #276|   SOS constraint (polynomial)|               NaN|
+|   #277|   SOS constraint (polynomial)|               NaN|
+|   #278|   SOS constraint (polynomial)|               NaN|
+|   #279|   SOS constraint (polynomial)|               NaN|
+|   #280|   SOS constraint (polynomial)|               NaN|
+|   #281|   SOS constraint (polynomial)|               NaN|
+|   #282|   SOS constraint (polynomial)|               NaN|
+|   #283|   SOS constraint (polynomial)|               NaN|
+|   #284|   SOS constraint (polynomial)|               NaN|
+|   #285|   SOS constraint (polynomial)|               NaN|
+|   #286|   SOS constraint (polynomial)|               NaN|
+|   #287|   SOS constraint (polynomial)|               NaN|
+|   #288|   SOS constraint (polynomial)|               NaN|
+|   #289|   SOS constraint (polynomial)|               NaN|
+|   #290|   SOS constraint (polynomial)|               NaN|
+|   #291|   SOS constraint (polynomial)|               NaN|
+|   #292|   SOS constraint (polynomial)|               NaN|
+|   #293|   SOS constraint (polynomial)|               NaN|
+|   #294|   SOS constraint (polynomial)|               NaN|
+|   #295|   SOS constraint (polynomial)|               NaN|
+|   #296|   SOS constraint (polynomial)|               NaN|
+|   #297|   SOS constraint (polynomial)|               NaN|
+|   #298|   SOS constraint (polynomial)|               NaN|
+|   #299|   SOS constraint (polynomial)|               NaN|
+|   #300|   SOS constraint (polynomial)|               NaN|
+|   #301|   SOS constraint (polynomial)|               NaN|
+|   #302|   SOS constraint (polynomial)|               NaN|
+|   #303|   SOS constraint (polynomial)|               NaN|
+|   #304|   SOS constraint (polynomial)|               NaN|
+|   #305|   SOS constraint (polynomial)|               NaN|
+|   #306|   SOS constraint (polynomial)|               NaN|
+|   #307|   SOS constraint (polynomial)|               NaN|
+|   #308|   SOS constraint (polynomial)|               NaN|
+|   #309|   SOS constraint (polynomial)|               NaN|
+|   #310|   SOS constraint (polynomial)|               NaN|
+|   #311|   SOS constraint (polynomial)|               NaN|
+|   #312|   SOS constraint (polynomial)|               NaN|
+|   #313|   SOS constraint (polynomial)|               NaN|
+|   #314|   SOS constraint (polynomial)|               NaN|
+|   #315|   SOS constraint (polynomial)|               NaN|
+|   #316|   SOS constraint (polynomial)|               NaN|
+|   #317|   SOS constraint (polynomial)|               NaN|
+|   #318|   SOS constraint (polynomial)|               NaN|
+|   #319|   SOS constraint (polynomial)|               NaN|
+|   #320|   SOS constraint (polynomial)|               NaN|
+|   #321|   SOS constraint (polynomial)|               NaN|
+|   #322|   SOS constraint (polynomial)|               NaN|
+|   #323|   SOS constraint (polynomial)|               NaN|
+|   #324|   SOS constraint (polynomial)|               NaN|
+|   #325|   SOS constraint (polynomial)|               NaN|
+|   #326|   SOS constraint (polynomial)|               NaN|
+|   #327|   SOS constraint (polynomial)|               NaN|
+|   #328|   SOS constraint (polynomial)|               NaN|
+|   #329|   SOS constraint (polynomial)|               NaN|
+|   #330|   SOS constraint (polynomial)|               NaN|
+|   #331|   SOS constraint (polynomial)|               NaN|
+|   #332|   SOS constraint (polynomial)|               NaN|
+|   #333|   SOS constraint (polynomial)|               NaN|
+|   #334|   SOS constraint (polynomial)|               NaN|
+|   #335|   SOS constraint (polynomial)|               NaN|
+|   #336|   SOS constraint (polynomial)|               NaN|
+|   #337|   SOS constraint (polynomial)|               NaN|
+|   #338|   SOS constraint (polynomial)|               NaN|
+|   #339|   SOS constraint (polynomial)|               NaN|
+|   #340|   SOS constraint (polynomial)|               NaN|
+|   #341|   SOS constraint (polynomial)|               NaN|
+|   #342|   SOS constraint (polynomial)|               NaN|
+|   #343|   SOS constraint (polynomial)|               NaN|
+|   #344|   SOS constraint (polynomial)|               NaN|
+|   #345|   SOS constraint (polynomial)|               NaN|
+|   #346|   SOS constraint (polynomial)|               NaN|
+|   #347|   SOS constraint (polynomial)|               NaN|
+|   #348|   SOS constraint (polynomial)|               NaN|
+|   #349|   SOS constraint (polynomial)|               NaN|
+|   #350|   SOS constraint (polynomial)|               NaN|
+|   #351|   SOS constraint (polynomial)|               NaN|
+|   #352|   SOS constraint (polynomial)|               NaN|
+|   #353|   SOS constraint (polynomial)|               NaN|
+|   #354|   SOS constraint (polynomial)|               NaN|
+|   #355|   SOS constraint (polynomial)|               NaN|
+|   #356|   SOS constraint (polynomial)|               NaN|
+|   #357|   SOS constraint (polynomial)|               NaN|
+|   #358|   SOS constraint (polynomial)|               NaN|
+|   #359|   SOS constraint (polynomial)|               NaN|
+|   #360|   SOS constraint (polynomial)|               NaN|
+|   #361|   SOS constraint (polynomial)|               NaN|
+|   #362|   SOS constraint (polynomial)|               NaN|
+|   #363|   SOS constraint (polynomial)|               NaN|
+|   #364|   SOS constraint (polynomial)|               NaN|
+|   #365|   SOS constraint (polynomial)|               NaN|
+|   #366|   SOS constraint (polynomial)|               NaN|
+|   #367|   SOS constraint (polynomial)|               NaN|
+|   #368|   SOS constraint (polynomial)|               NaN|
+|   #369|   SOS constraint (polynomial)|               NaN|
+|   #370|   SOS constraint (polynomial)|               NaN|
+|   #371|   SOS constraint (polynomial)|               NaN|
+|   #372|   SOS constraint (polynomial)|               NaN|
+|   #373|   SOS constraint (polynomial)|               NaN|
+|   #374|   SOS constraint (polynomial)|               NaN|
+|   #375|   SOS constraint (polynomial)|               NaN|
+|   #376|   SOS constraint (polynomial)|               NaN|
+|   #377|   SOS constraint (polynomial)|               NaN|
+|   #378|   SOS constraint (polynomial)|               NaN|
+|   #379|   SOS constraint (polynomial)|               NaN|
+|   #380|   SOS constraint (polynomial)|               NaN|
+|   #381|   SOS constraint (polynomial)|               NaN|
+|   #382|   SOS constraint (polynomial)|               NaN|
+|   #383|   SOS constraint (polynomial)|               NaN|
+|   #384|   SOS constraint (polynomial)|               NaN|
+|   #385|   SOS constraint (polynomial)|               NaN|
+|   #386|   SOS constraint (polynomial)|               NaN|
+|   #387|   SOS constraint (polynomial)|               NaN|
+|   #388|   SOS constraint (polynomial)|               NaN|
+|   #389|   SOS constraint (polynomial)|               NaN|
+|   #390|   SOS constraint (polynomial)|               NaN|
+|   #391|   SOS constraint (polynomial)|               NaN|
+|   #392|   SOS constraint (polynomial)|               NaN|
+|   #393|   SOS constraint (polynomial)|               NaN|
+|   #394|   SOS constraint (polynomial)|               NaN|
+|   #395|   SOS constraint (polynomial)|               NaN|
+|   #396|   SOS constraint (polynomial)|               NaN|
+|   #397|   SOS constraint (polynomial)|               NaN|
+|   #398|   SOS constraint (polynomial)|               NaN|
+|   #399|   SOS constraint (polynomial)|               NaN|
+|   #400|   SOS constraint (polynomial)|               NaN|
+|   #401|   SOS constraint (polynomial)|               NaN|
+|   #402|   SOS constraint (polynomial)|               NaN|
+|   #403|   SOS constraint (polynomial)|               NaN|
+|   #404|   SOS constraint (polynomial)|               NaN|
+|   #405|   SOS constraint (polynomial)|               NaN|
+|   #406|   SOS constraint (polynomial)|               NaN|
+|   #407|   SOS constraint (polynomial)|               NaN|
+|   #408|   SOS constraint (polynomial)|               NaN|
+|   #409|   SOS constraint (polynomial)|               NaN|
+|   #410|   SOS constraint (polynomial)|               NaN|
+|   #411|   SOS constraint (polynomial)|               NaN|
+|   #412|   SOS constraint (polynomial)|               NaN|
+|   #413|   SOS constraint (polynomial)|               NaN|
+|   #414|   SOS constraint (polynomial)|               NaN|
+|   #415|   SOS constraint (polynomial)|               NaN|
+|   #416|   SOS constraint (polynomial)|               NaN|
+|   #417|   SOS constraint (polynomial)|               NaN|
+|   #418|   SOS constraint (polynomial)|               NaN|
+|   #419|   SOS constraint (polynomial)|               NaN|
+|   #420|   SOS constraint (polynomial)|               NaN|
+|   #421|   SOS constraint (polynomial)|               NaN|
+|   #422|   SOS constraint (polynomial)|               NaN|
+|   #423|   SOS constraint (polynomial)|               NaN|
+|   #424|   SOS constraint (polynomial)|               NaN|
+|   #425|   SOS constraint (polynomial)|               NaN|
+|   #426|   SOS constraint (polynomial)|               NaN|
+|   #427|   SOS constraint (polynomial)|               NaN|
+|   #428|   SOS constraint (polynomial)|               NaN|
+|   #429|   SOS constraint (polynomial)|               NaN|
+|   #430|   SOS constraint (polynomial)|               NaN|
+|   #431|   SOS constraint (polynomial)|               NaN|
+|   #432|   SOS constraint (polynomial)|               NaN|
+|   #433|   SOS constraint (polynomial)|               NaN|
+|   #434|   SOS constraint (polynomial)|               NaN|
+|   #435|   SOS constraint (polynomial)|               NaN|
+|   #436|   SOS constraint (polynomial)|               NaN|
+|   #437|   SOS constraint (polynomial)|               NaN|
+|   #438|   SOS constraint (polynomial)|               NaN|
+|   #439|   SOS constraint (polynomial)|               NaN|
+|   #440|   SOS constraint (polynomial)|               NaN|
+|   #441|   SOS constraint (polynomial)|               NaN|
+|   #442|   SOS constraint (polynomial)|               NaN|
+|   #443|   SOS constraint (polynomial)|               NaN|
+|   #444|   SOS constraint (polynomial)|               NaN|
+|   #445|   SOS constraint (polynomial)|               NaN|
+|   #446|   SOS constraint (polynomial)|               NaN|
+|   #447|   SOS constraint (polynomial)|               NaN|
+|   #448|   SOS constraint (polynomial)|               NaN|
+|   #449|   SOS constraint (polynomial)|               NaN|
+|   #450|   SOS constraint (polynomial)|               NaN|
+|   #451|   SOS constraint (polynomial)|               NaN|
+|   #452|   SOS constraint (polynomial)|               NaN|
+|   #453|   SOS constraint (polynomial)|               NaN|
+|   #454|   SOS constraint (polynomial)|               NaN|
+|   #455|   SOS constraint (polynomial)|               NaN|
+|   #456|   SOS constraint (polynomial)|               NaN|
+|   #457|   SOS constraint (polynomial)|               NaN|
+|   #458|   SOS constraint (polynomial)|               NaN|
+|   #459|   SOS constraint (polynomial)|               NaN|
+|   #460|   SOS constraint (polynomial)|               NaN|
+|   #461|   SOS constraint (polynomial)|               NaN|
+|   #462|   SOS constraint (polynomial)|               NaN|
+|   #463|   SOS constraint (polynomial)|               NaN|
+|   #464|   SOS constraint (polynomial)|               NaN|
+|   #465|   SOS constraint (polynomial)|               NaN|
+|   #466|   SOS constraint (polynomial)|               NaN|
+|   #467|   SOS constraint (polynomial)|               NaN|
+|   #468|   SOS constraint (polynomial)|               NaN|
+|   #469|   SOS constraint (polynomial)|               NaN|
+|   #470|   SOS constraint (polynomial)|               NaN|
+|   #471|   SOS constraint (polynomial)|               NaN|
+|   #472|   SOS constraint (polynomial)|               NaN|
+|   #473|   SOS constraint (polynomial)|               NaN|
+|   #474|   SOS constraint (polynomial)|               NaN|
+|   #475|   SOS constraint (polynomial)|               NaN|
+|   #476|   SOS constraint (polynomial)|               NaN|
+|   #477|   SOS constraint (polynomial)|               NaN|
+|   #478|   SOS constraint (polynomial)|               NaN|
+|   #479|   SOS constraint (polynomial)|               NaN|
+|   #480|   SOS constraint (polynomial)|               NaN|
+|   #481|   SOS constraint (polynomial)|               NaN|
+|   #482|   SOS constraint (polynomial)|               NaN|
+|   #483|   SOS constraint (polynomial)|               NaN|
+|   #484|   SOS constraint (polynomial)|               NaN|
+|   #485|   SOS constraint (polynomial)|               NaN|
+|   #486|   SOS constraint (polynomial)|               NaN|
+|   #487|   SOS constraint (polynomial)|               NaN|
+|   #488|   SOS constraint (polynomial)|               NaN|
+|   #489|   SOS constraint (polynomial)|               NaN|
+|   #490|   SOS constraint (polynomial)|               NaN|
+|   #491|   SOS constraint (polynomial)|               NaN|
+|   #492|   SOS constraint (polynomial)|               NaN|
+|   #493|   SOS constraint (polynomial)|               NaN|
+|   #494|   SOS constraint (polynomial)|               NaN|
+|   #495|   SOS constraint (polynomial)|               NaN|
+|   #496|   SOS constraint (polynomial)|               NaN|
+|   #497|   SOS constraint (polynomial)|               NaN|
+|   #498|   SOS constraint (polynomial)|               NaN|
+|   #499|   SOS constraint (polynomial)|               NaN|
+|   #500|   SOS constraint (polynomial)|               NaN|
+|   #501|   SOS constraint (polynomial)|               NaN|
+|   #502|   SOS constraint (polynomial)|               NaN|
+|   #503|   SOS constraint (polynomial)|               NaN|
+|   #504|   SOS constraint (polynomial)|               NaN|
+|   #505|   SOS constraint (polynomial)|               NaN|
+|   #506|   SOS constraint (polynomial)|               NaN|
+|   #507|   SOS constraint (polynomial)|               NaN|
+|   #508|   SOS constraint (polynomial)|               NaN|
+|   #509|   SOS constraint (polynomial)|               NaN|
+|   #510|   SOS constraint (polynomial)|               NaN|
+|   #511|   SOS constraint (polynomial)|               NaN|
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+-------------------------------------------------------------------------
+YALMIP SOS module started...
+-------------------------------------------------------------------------
+Detected 47400 parametric variables and 768 independent variables.
+Detected 0 linear inequalities, 0 equality constraints and 0 LMIs.
+Using kernel representation (options.sos.model=1).
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 3 monomials in R^2
+Newton polytope (0 LPs).........Keeping 3 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 42 monomials in R^8
+Newton polytope (6 LPs).........Keeping 13 monomials (0.09375sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.0625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.0625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.0625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.0625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.0625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.046875sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.015625sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.015625sec)
+Finding symmetries..............Found no symmetries (0.03125sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.0625sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.03125sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 62 monomials in R^10
+Newton polytope (8 LPs).........Keeping 16 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+Initially 42 monomials in R^8
+Newton polytope (6 LPs).........Keeping 13 monomials (0.046875sec)
+Finding symmetries..............Found no symmetries (0sec)
+ 
+
+MOSEK Version 7.1.0.53 (Build date: 2016-5-11 17:32:32)
+Copyright (c) 1998-2016 MOSEK ApS, Denmark. WWW: http://mosek.com
+Platform: Windows/64-X86
+
+Computer
+  Platform               : Windows/64-X86  
+
+Problem
+  Name                   :                 
+  Objective sense        : min             
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 306248          
+  Cones                  : 0               
+  Scalar variables       : 47400           
+  Matrix variables       : 511             
+  Integer variables      : 0               
+
+Optimizer started.
+Conic interior-point optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Eliminator - tries                  : 0                 time                   : 0.00            
+Eliminator - elim's                 : 0               
+Lin. dep.  - tries                  : 1                 time                   : 0.05            
+Lin. dep.  - number                 : 0               
+Presolve terminated. Time: 0.09    
+Optimizer  - threads                : 2               
+Optimizer  - solved problem         : the primal      
+Optimizer  - Constraints            : 299588
+Optimizer  - Cones                  : 0
+Optimizer  - Scalar variables       : 39748             conic                  : 0               
+Optimizer  - Semi-definite variables: 511               scalarized             : 534372          
+Factor     - setup time             : 20.31             dense det. time        : 0.00            
+Factor     - ML order time          : 10.66             GP order time          : 0.00            
+Factor     - nonzeros before factor : 1.71e+008         after factor           : 1.72e+008       
+Factor     - dense dim.             : 1                 flops                  : 1.36e+011       
+ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+0   1.5e+000 1.0e+000 1.0e+000 0.00e+000  0.000000000e+000  0.000000000e+000  1.0e+000 20.80 
+1   1.4e+000 9.4e-001 9.4e-001 -1.16e+000 0.000000000e+000  4.919520357e-002  9.4e-001 31.86 
+2   8.6e-001 5.6e-001 5.6e-001 1.53e-001  0.000000000e+000  -2.018826604e-001 5.6e-001 43.13 
+3   2.7e-001 1.8e-001 1.8e-001 4.26e-001  0.000000000e+000  -7.244119417e-002 1.8e-001 54.45 
+4   4.4e-002 2.9e-002 2.9e-002 1.34e+000  0.000000000e+000  -1.625519391e-002 2.9e-002 65.97 
+5   8.2e-003 5.4e-003 5.4e-003 1.24e+000  0.000000000e+000  -2.496159555e-003 5.4e-003 77.27 
+6   1.3e-003 8.2e-004 8.2e-004 1.09e+000  0.000000000e+000  -2.976384298e-004 8.2e-004 88.45 
+7   2.9e-004 1.9e-004 1.9e-004 8.71e-001  0.000000000e+000  -5.183750720e-005 1.9e-004 99.81 
+8   8.4e-005 5.5e-005 5.5e-005 1.15e+000  0.000000000e+000  -1.737591202e-005 5.5e-005 111.17
+9   2.2e-005 1.4e-005 1.4e-005 8.94e-001  0.000000000e+000  -3.323009160e-006 1.4e-005 122.69
+10  8.2e-006 5.3e-006 5.3e-006 1.19e+000  0.000000000e+000  -1.407948782e-006 5.3e-006 133.97
+11  2.1e-006 1.4e-006 1.4e-006 9.31e-001  0.000000000e+000  -2.615616804e-007 1.4e-006 145.36
+12  1.1e-006 6.8e-007 6.8e-007 9.98e-001  0.000000000e+000  -1.301073598e-007 6.8e-007 156.84
+13  2.2e-007 1.4e-007 1.4e-007 9.96e-001  0.000000000e+000  -2.578568744e-008 1.4e-007 168.19
+14  7.1e-008 4.6e-008 4.6e-008 9.16e-001  0.000000000e+000  -5.348375556e-009 4.6e-008 178.81
+15  2.1e-008 1.4e-008 1.4e-008 9.66e-001  0.000000000e+000  -8.831169395e-010 1.4e-008 189.72
+Interior-point optimizer terminated. Time: 189.72. 
+
+Optimizer terminated. Time: 189.92  
+
+Interior-point solution summary
+  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+  Solution status : OPTIMAL
+  Primal.  obj: 0.0000000000e+000   Viol.  con: 2e-008   var: 0e+000   barvar: 0e+000 
+  Dual.    obj: -8.8311693963e-010  Viol.  con: 0e+000   var: 3e-010   barvar: 1e-008 
+Optimizer summary
+  Optimizer                 -                        time: 189.92  
+    Interior-point          - iterations : 15        time: 189.72  
+      Basis identification  -                        time: 0.00    
+        Primal              - iterations : 0         time: 0.00    
+        Dual                - iterations : 0         time: 0.00    
+        Clean primal        - iterations : 0         time: 0.00    
+        Clean dual          - iterations : 0         time: 0.00    
+        Clean primal-dual   - iterations : 0         time: 0.00    
+    Simplex                 -                        time: 0.00    
+      Primal simplex        - iterations : 0         time: 0.00    
+      Dual simplex          - iterations : 0         time: 0.00    
+      Primal-dual simplex   - iterations : 0         time: 0.00    
+    Mixed integer           - relaxations: 0         time: 0.00    
+
