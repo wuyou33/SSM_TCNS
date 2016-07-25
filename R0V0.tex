@@ -469,6 +469,8 @@ Other works related to analysis under structural constraints to achieve exponent
 
 The notation $\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ stands for the class of functions $u:\mathbb{R}\to\mathbb{R}^m$ that are locally essentially bounded. Given differentiable functions $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $f:\mathbb{R}^n\to\mathbb{R}^n$ the notation $\partial_fM$ stands for matrix with dimension $n\times n$ and with $(i,j)$ element given by $\frac{\partial m_{ij}}{\partial x}(x)f(x)$. The notation $f'$ stands for the total derivative of $f$.
 
+Let $N>0$ be an integer, a \emph{graph} consists of a set of \emph{nodes} $\mathscr{V}\subset\mathbb{N}_{[1,N]}$ and a set of \emph{edges} $\mathscr{E}\subset\mathscr{V}\times\mathscr{V}$ and it is denoted by the pair $(\mathscr{V},\mathscr{E})=\mathscr{G}$. A node $i\in\mathscr{V}$ is said to be \emph{adjacent} to a node $j\in\mathscr{V}$ if $(i,j)\in\mathscr{E}$, the set of nodes that are adjacent to $j$ is defined as $\mathscr{N}(j)=\{i\in\mathscr{V}:i\neq j,(i,j)\in\mathscr{E}\}$. Given two nodes $i,j\in\mathscr{V}$, and ordered sequence of edges $\left\{(k,k+1)\right\}_{k=i}^{j-1}$ is said to be a \emph{path from the node $i$ to the node $j$}. A graph is said to be \emph{strongly connected} if, for every two nodes $i,j\in\mathscr{V}$, there exists a path connecting them. It is also said to be \emph{complete} is every node is adjacent to any other node, and it is \emph{incomplete} otherwise.
+
 
 \subsection{Problem Formulation and Motivation}\label{sec:Problem Formulation and Motivation}
 
@@ -484,12 +486,12 @@ A function $u^\ast\in\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathb
 \begin{equation}\label{eq:global exponential uniform stabilizability}
 	\left|X(t,x^\ast,u^\ast)-X(t,x,k^\ast)\right|\leq Ce^{-\lambda t}|x^\ast-x|
 \end{equation}
-holds, for every $t\geq0$, and for every $x\in\mathbb{R}^n$ (\cite{Manchester2014a}). Note that this not is a particular case of \emph{incremental asymptotic stability}, the interested reader may address \cite{Forni2014,Forni2014a} for further information on this stability concept.
+holds, for every $t\geq0$, and for every $x\in\mathbb{R}^n$ (\cite{Manchester2014a}).
 
 A stronger condition than the global exponential stabilizability of a particular solution is the requirement that every forward complete solution of the system is globally exponentially stabilizable. This concept is formalized in the following definition recalled from \cite{Manchester2014a}.
 
 \begin{definition}\label{def:US}
-	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} that globally exponentially uniformly stabilizes any forward complete solution $X^\ast(\cdot,\cdot,u^\ast)$ to \eqref{eq:general system}.
+	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,\cdot,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} that globally exponentially uniformly stabilizes it.
 \end{definition}
 
 Note that Definition \ref{def:US} reduces to the notion of stabilizability of equilibria, when $x^\ast=0$ (for further reading on stabilizability, the reader may address \cite{Bacciotti:1992}).
@@ -936,10 +938,6 @@ In this work, input-affine nonlinear systems were considered. The problem was th
 In terms of dynamic programming, employing control-contraction metrics allows one to formulate the search for the controller as a convex optimization problem. Although this is one of its main advantages over the search of control-Lyapunov functions, it does not scale well.
 
 For systems described by a non-fully connected graph, the approach presented in this paper exploits sparsity to design feedback laws with a prescribed structure. More precisely, by imposing a block-diagonal structure on the matrix describing the metric, a controller with a prescribed structure can be synthesized. Moreover, the on-line integration phase computation can be in parallel, because each block defines a metric to the corresponding component of the state space where the geodesic is computed by optimization.
-
-The authors plan to extend this work for the synthesis of event-based controllers, and the analysis of disturbances such as time delays.
-
-{\itshape Acknowledgments.} The authors thank the anonymous reviewers.
 
 \appendices
 
