@@ -486,15 +486,13 @@ A function $u^\ast\in\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathb
 \begin{equation}\label{eq:global exponential uniform stabilizability}
 	\left|X(t,x^\ast,u^\ast)-X(t,x,k^\ast)\right|\leq Ce^{-\lambda t}|x^\ast-x|
 \end{equation}
-holds, for every $t\geq0$, and for every $x\in\mathbb{R}^n$ (\cite{Manchester2014a}).
+holds, for every $t\geq0$, and for every $x\in\mathbb{R}^n$ (\cite{Manchester2014a}). Equivalently, if inequality \eqref{eq:global exponential uniform stabilizability} hold, then the solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system} is said to be \emph{globally exponentially uniformly stable} for system \eqref{eq:general system} in closed loop with $k^\ast$
 
 A stronger condition than the global exponential stabilizability of a particular solution is the requirement that every forward complete solution of the system is globally exponentially stabilizable. This concept is formalized in the following definition recalled from \cite{Manchester2014a}.
 
 \begin{definition}\label{def:US}
-	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,\cdot,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} that globally exponentially uniformly stabilizes it.
+	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,\cdot,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,\cdot,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
 \end{definition}
-
-Note that Definition \ref{def:US} reduces to the notion of stabilizability of equilibria, when $x^\ast=0$ (for further reading on stabilizability, the reader may address \cite{Bacciotti:1992}).
 
 For each component $i\in\mathbb{N}_{[1,m]}$ of the feedback law $k^\ast=(k_1^\ast,\ldots,k_m^\ast)^\top$, denote the set of indexes
 \begin{equation*}
@@ -526,7 +524,7 @@ The property described in item 2 of Problem \ref{problem formulation} is particu
 		\dot{y}_i&=&u_i.
 	\end{array}\right.
 \end{equation}
-As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach cannot compute a unconstrained controller on a standard desktop machine, due to the number of variables. However, by exploring sparsity, up to 512 of theses systems can be connected and the controller can be computed. 
+As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to the number of variables. However, by exploring sparsity, up to 512 of theses systems can be connected and the controller can be computed. 
 
 \subsection{Background}\label{sec:background}
 
@@ -574,9 +572,9 @@ A sufficient condition for the stability of \eqref{eq:general system:differentia
  	 	 \end{subequations}
  	 	 holds, for every pair $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$.
 \end{definition}
-Note that a bounded Riemannian metric defined, for every $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$, as $V(x,\delta_x)=|\delta_x|_x^2$ and satisfying the set of inequalities \eqref{eq:metric} is a contraction metric for system \eqref{eq:general system}. With an abuse of concept, from now the bounded Riemannian metric defined above will be called simply as \emph{metric}.
+Note that a bounded Riemannian metric defined, for every $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$, as $V(x,\delta_x)=|\delta_x|_x^2$ and satisfying the set of inequalities \eqref{eq:metric} is a contraction metric for system \eqref{eq:general system}. For brevity, from now the bounded Riemannian metric defined above will be called simply as \emph{metric}.
 
-The existence a contraction metric for system \eqref{eq:general system} with $u\equiv0$ implies that every two solutions of this system converge to each other exponentially. The proof of this claim can be found in \cite[Theorem 1]{Lewis1951}, and \cite[Theorems 5.7 and 5.33]{Reich2005}, and \cite[Lemma 3.3]{Isac2008}.
+The existence a contraction metric for system \eqref{eq:general system} implies that every two solutions of this system converge to each other exponentially. The proof of this claim, for the case in which $u\equiv0$, can be found in \cite[Theorem 1]{Lewis1951}, and \cite[Theorems 5.7 and 5.33]{Reich2005}, and \cite[Lemma 3.3]{Isac2008}.
 
 For the class of systems considered in this paper, the following kind of metric is of interest, since it also allows the design a feedback law for system \eqref{eq:general system:differential}.
 
@@ -584,11 +582,11 @@ For the class of systems considered in this paper, the following kind of metric 
 	A metric for system \eqref{eq:general system} is said to be a \emph{control-contraction metric for system \eqref{eq:general system}} if there exists a constant value $\lambda>0$ such that the condition
 	\begin{subequations}\label{eq:Arstein-Sontag}
 		\begin{equation}\label{eq:}
-			\delta_x^\top M(x)B(x)=0
+			\delta_x\neq0,\quad\delta_x^\top M(x)B(x)=0
 		\end{equation}
 		implies that the inequality
 		\begin{align}
-			\delta_x^\top(\dot{M}+A^\top M+MA)\delta_x\leq\ -2\lambda \delta_x^\top M\delta_x\label{eq:}
+			\delta_x^\top(\dot{M}+A^\top M+MA)\delta_x<\ -2\lambda \delta_x^\top M\delta_x\label{eq:}
 		\end{align}
 		holds, where $\dot{M}:=\partial_{f+Bu}M$.
 	\end{subequations}
@@ -607,7 +605,7 @@ As remarked in \cite{Manchester2014a}, the main advantage to look for control-co
 
 Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W=W^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following matrix inequality (MI)
 \begin{equation}\label{eq:MI formulation}
-	-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\preceq0,
+	-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\prec0,
 \end{equation}
 that is linear on the matrix variables $W$ and $Y$, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, $M=W^{-1}$ is a control-contraction metric for system \eqref{eq:general system}.
 
@@ -679,7 +677,7 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 \begin{corollary}\label{cor:distributed computation}
 	 If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI
 	\begin{equation}\label{eq:MI formulation:i}
-		T_{ii}\preceq 0
+		T_{ii}\prec 0
 	\end{equation}
 	for every index $i\in\mathbb{N}_{[1,N]}$, and the matrix $T$ is diagonally dominant, then pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation}.
 \end{corollary}
@@ -737,7 +735,13 @@ Note that system \eqref{eq:example} is not feedback linearizable in the sense of
 \end{align*}
 are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only possible action by the controller on the $x$-subsystem is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component.
 
-When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved with the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. When no structural constraints are imposed on $Y$, this verification can lead $n^2$ equations to be solved. This motivates the approach proposed in this paper.
+When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved with the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. When no structural constraints are imposed on $Y$, this verification can lead to
+\begin{equation*}
+\left(\sum_{i=1}^N\begin{pmatrix}
+n_i+d\\ d
+\end{pmatrix}\right)^2
+\end{equation*}
+equations to be solved. This motivates the approach proposed in this paper.
 
 To show the advantages of the method proposed in this paper, a benchmark was run for a network composes by $N=4$ systems and in three scenarios, according to the constraints imposed on the matrix $Y$. Namely, the unconstrained case, the ``neighbor case'', and the fully decentralized (diagonal) case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor case'' and up to $N=512$ systems for the fully decentralized (diagonal) case.
 
@@ -925,7 +929,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	\end{equation*}
 	Inequalities \eqref{eq:BDD2} and \eqref{eq:MI formulation:i} imply that the inequalities
 	\begin{equation*}
-		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{\eta_i}^\top T_{ii}\delta_{\eta_i}\leq 0
+		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{\eta_i}^\top T_{ii}\delta_{\eta_i}< 0
 	\end{equation*}
 	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the MI \eqref{eq:MI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
 \end{proof}
