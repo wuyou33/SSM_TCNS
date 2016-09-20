@@ -13,9 +13,9 @@ SystemInputs = ['u'];
 SystemParameters = ['d'];
 d = 1e-2;
 lambda = 1;
-Option       = 'General';
+Option       = 'Neighbor';
 
-NumberOfAgents = 5
+NumberOfAgents = 8
 
 fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
 diary(fname)
