@@ -1,0 +1,4 @@
+*.mat
+/DiaryGeneral5Agents
+/DiaryNeighbor5Agents
+/DiaryNeighbor8Agents
