@@ -656,9 +656,55 @@ Note that the set $\mathscr{K}_Y(i)$ is the set index for which the correspondin
 	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
 \end{theorem}
 
-The detailed proof of Theorem \ref{thm:main result} is provided in Section \ref{sec:Proof of the Results}. 
+\begin{proof}[Proof of Theorem \ref{thm:main result}]
+	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ form a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
+	
+	The MI \eqref{eq:MI formulation} implies that the inequality
+	\begin{equation*}
+		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
+	\end{equation*}
+	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system}.
+	
+	It now remains to integrate $K\delta_x$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
+	\begin{equation}\label{eq:geodesic sum}
+		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds.
+	\end{equation}
 
-Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori} the computation of the MI \eqref{eq:MI formulation}  cannot be done in parallel. The next result provides sufficient conditions to solve each component \eqref{eq:MI formulation} independently, and according to the structure defined by the set $\Xi$. Before present it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
+	
+	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. More precisely, 
+	\begin{equation*}
+		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}.
+	\end{equation*}
+	Consequently, the minimization of Equation \eqref{eq:geodesic sum} can be computed separately. 
+	
+	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
+	\begin{align*}
+		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i).
+	\end{align*}
+	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
+	
+	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} is given by Equation \eqref{eq:contracting feedback law}. 
+	
+	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
+	\begin{equation}\label{eq:K ODE}
+		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast).
+	\end{equation}
+	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the smoothness of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)\to\infty$, as $s\to\bar{s}$.
+	
+	To show that a solution $k^\ast$ is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then the solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
+		
+	Since the vector field $\overline{K}$ is smooth, it is also Lipschitzian. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
+	\begin{equation*}
+		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
+	\end{equation*}
+	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely with respect to $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
+	
+	Note that, due to the structure of the matrix $K$, the feedback law $k^\ast$ defined in Equation \eqref{eq:contracting feedback law} solves item 2 of Problem~\ref{problem formulation}, i.e., $k^\ast\in\Xi$. This concludes the proof of Theorem \ref{thm:main result}.
+\end{proof}
+
+Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori} the computation of the MI \eqref{eq:MI formulation}  cannot be done in parallel. The next section provides sufficient conditions to solve each component \eqref{eq:MI formulation} independently, and according to the structure defined by the set $\Xi$. Before present it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
+
+\section{Distributed Design of Decentralized Controllers}
 
 Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
 	\begin{subequations}\label{eq:T}
@@ -671,8 +717,7 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 		T_{ij}=A_{ij}W_j+W_iA_{ji}+B_iY_{ij}+(B_jY_{ji})^\top.
 	\end{equation}
 	\end{subequations}
-	
-	\section{Distributed Design of Decentralized Controllers}
+
 
 \begin{definition}\label{def:}
 	The matrix $T$ is said to be \emph{block-diagonally dominant} if the inequality
@@ -690,7 +735,27 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 	for every index $i\in\mathbb{N}_{[1,N]}$, and the matrix $T$ is diagonally dominant, then pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation}.
 \end{corollary}
 
-The detailed proof of Corollary \ref{cor:distributed computation} is provided in Section \ref{sec:Proof of the Results}.
+\begin{proof}[Proof of Corollary~\ref{cor:distributed computation}]
+	By assumption, the pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
+	
+	Equation \eqref{eq:BDD} together with the fact that $|I_{n_i}|\leq |T_{ii}||T_{ii}^{-1}|$ implies that the inequality
+	\begin{equation}\label{eq:BDD2} 
+		\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|\leq |T_{ii}|
+	\end{equation}
+	holds, for every index $i\in\mathbb{N}_{[1,N]}$.
+	
+	For every $\delta_\eta\in\mathbb{R}^n$, consider the product $\delta_\eta^\top T\delta_\eta$. Each line $i\in\mathbb{N}_{[1,N]}$ of this product is given by
+	\begin{equation*}
+		\delta_{\eta_i}^\top\begin{bmatrix}
+			T_{i1}&\cdots&T_{i(i-1)}&T_{ii}&T_{i(i+1)}&\cdots&T_{iN}
+		\end{bmatrix}\delta_\eta.
+	\end{equation*}
+	Inequalities \eqref{eq:BDD2} and \eqref{eq:MI formulation:i} imply that the inequalities
+	\begin{equation*}
+		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{\eta_i}^\top T_{ii}\delta_{\eta_i}< 0
+	\end{equation*}
+	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the MI \eqref{eq:MI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
+\end{proof}
 
 \subsection{Discussion}
 
@@ -869,78 +934,6 @@ k_i=\begin{cases}
 \end{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
-
-
-\section{Proof of the Results}\label{sec:Proof of the Results}
-
-\begin{proof}[Proof of Theorem \ref{thm:main result}]
-	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ form a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
-	
-	The MI \eqref{eq:MI formulation} implies that the inequality
-	\begin{equation*}
-		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
-	\end{equation*}
-	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system}.
-	
-	It now remains to integrate $K\delta_x$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
-	\begin{equation}\label{eq:geodesic sum}
-		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds.
-	\end{equation}
-
-	
-	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. More precisely, 
-	\begin{equation*}
-		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}.
-	\end{equation*}
-	Consequently, the minimization of Equation \eqref{eq:geodesic sum} can be computed separately. 
-	
-	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
-	\begin{align*}
-		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i).
-	\end{align*}
-	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
-	
-	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} is given by Equation \eqref{eq:contracting feedback law}. 
-	
-	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
-	\begin{equation}\label{eq:K ODE}
-		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast).
-	\end{equation}
-	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the smoothness of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)\to\infty$, as $s\to\bar{s}$.
-	
-	To show that a solution $k^\ast$ is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then the solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
-		
-	Since the vector field $\overline{K}$ is smooth, it is also Lipschitzian. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
-	\begin{equation*}
-		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
-	\end{equation*}
-	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely with respect to $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
-	
-	Note that, due to the structure of the matrix $K$, the feedback law $k^\ast$ defined in Equation \eqref{eq:contracting feedback law} solves item 2 of Problem~\ref{problem formulation}, i.e., $k^\ast\in\Xi$. This concludes the proof of Theorem \ref{thm:main result}.
-\end{proof}
-
-
-\begin{proof}[Proof of Corollary~\ref{cor:distributed computation}]
-	By assumption, the pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
-	
-	Equation \eqref{eq:BDD} together with the fact that $|I_{n_i}|\leq |T_{ii}||T_{ii}^{-1}|$ implies that the inequality
-	\begin{equation}\label{eq:BDD2} 
-		\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|\leq |T_{ii}|
-	\end{equation}
-	holds, for every index $i\in\mathbb{N}_{[1,N]}$.
-	
-	For every $\delta_\eta\in\mathbb{R}^n$, consider the product $\delta_\eta^\top T\delta_\eta$. Each line $i\in\mathbb{N}_{[1,N]}$ of this product is given by
-	\begin{equation*}
-		\delta_{\eta_i}^\top\begin{bmatrix}
-			T_{i1}&\cdots&T_{i(i-1)}&T_{ii}&T_{i(i+1)}&\cdots&T_{iN}
-		\end{bmatrix}\delta_\eta.
-	\end{equation*}
-	Inequalities \eqref{eq:BDD2} and \eqref{eq:MI formulation:i} imply that the inequalities
-	\begin{equation*}
-		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{\eta_i}^\top T_{ii}\delta_{\eta_i}< 0
-	\end{equation*}
-	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the MI \eqref{eq:MI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
-\end{proof}
 
 
 \section{Conclusion}\label{sec:Conclusion}
