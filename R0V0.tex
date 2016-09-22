@@ -57,9 +57,9 @@
 % http://www.ctan.org/pkg/cite
 % The documentation is contained in the cite.sty file itself.
 
-\usepackage[natbib=true,backend=bibtex,style=ieee,
+\usepackage[natbib=true,backend=biber,style=ieee,
 firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bibencoding=utf8]{biblatex}
-\addbibresource{../../../../Library.bib}
+\addbibresource[location=remote]{https://www.dropbox.com/s/r00o9lw76cksxvj/Library.bib?dl=1} 
 \AtBeginBibliography{\small}
 
 % !!!! IF FILE NOT FOUND DOWNLOAD IT FROM
@@ -559,7 +559,7 @@ The resulting system composed of Equations \eqref{eq:general system} and \eqref{
 
 Similarly to \eqref{eq:general system}, given a control $\delta_u$ for system \eqref{eq:general system:differential}, the solution to \eqref{eq:general system:differential} computed at time $t\geq0$ with $(x,u)\in\mathbb{R}^n\times\mathbb{R}^n$ and issuing from the  initial condition $\delta_x\in\mathbb{R}^n$ is denoted by $\Delta_x(t,x,\delta_x,u,\delta_u)$. 
 
-Lyapunov stability notions of solutions to \eqref{eq:general system:differential} are similar to those of linear parameter-varying systems (LPVS) (see \cite[Ch. 2 and 3]{Briat2015} for more information on LPVS). 
+Lyapunov stability notions of solutions to \eqref{eq:general system:differential} are similar to those of linear time-varying systems (LTIS) (see \cite{Hespanha:2009} for more information on LTIS). 
 
 The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. If every solution $|\Delta_x(t,x,\delta_x,u,\delta u)|\to0$ exponentially as $t\to\infty$, then every pair of solutions to \eqref{eq:general system} converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
 
