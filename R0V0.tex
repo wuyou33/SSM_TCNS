@@ -625,7 +625,7 @@ From the above steps, even if the problem of imposing a particular structure on 
 
 In this paper, these limitations are addressed by imposing a block-diagonal structure over $W$. Moreover, when $W$ is row-diagonal dominant, not only the solutions to the optimization problem \eqref{eq:geodesic formulation} can be computed in parallel but also the MI \eqref{eq:MI formulation}.
 
-\section{Results}\label{sec:Results}
+\section{Design of Decentralized Controllers}\label{sec:Design of Decentralized Controllers}
 
 \begin{definition}\label{def:SSCCM}
 	A control-contraction metric $V$ for system \eqref{eq:general system} receives the adjective \emph{sum-separable} if $M$ has a block-diagonal structure. 
@@ -671,6 +671,8 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 		T_{ij}=A_{ij}W_j+W_iA_{ji}+B_iY_{ij}+(B_jY_{ji})^\top.
 	\end{equation}
 	\end{subequations}
+	
+	\section{Distributed Design of Decentralized Controllers}
 
 \begin{definition}\label{def:}
 	The matrix $T$ is said to be \emph{block-diagonally dominant} if the inequality
