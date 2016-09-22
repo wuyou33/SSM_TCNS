@@ -741,11 +741,17 @@ Note that system \eqref{eq:example} is not feedback linearizable in the sense of
 \end{align*}
 are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only possible action by the controller on the $x$-subsystem is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component.
 
-When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved with the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. When no structural constraints are imposed on $Y$, this verification can lead to
+When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved with the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
 \begin{equation*}
-\left(\sum_{i=1}^N\begin{pmatrix}
-n_i+d\\ d
-\end{pmatrix}\right)^2
+		\begin{pmatrix}
+n+d\\ d
+\end{pmatrix}\;.
+\end{equation*}
+Consequently, when no structural constraints are imposed on $Y$, this verification can lead to
+\begin{equation*}
+N^2\begin{pmatrix}
+n+d\\ d
+\end{pmatrix}^2
 \end{equation*}
 equations to be solved. This motivates the approach proposed in this paper.
 
