@@ -525,10 +525,10 @@ At this point, the problem under consideration in this paper can be stated as fo
 
 The property described in item 2 of Problem \ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology). Consider the network composed of systems described by the following equation.
 \begin{equation}\label{eq:example}
-	\left\{\begin{array}{rcl}
+	\scalebox{0.95}{$\left\{\begin{array}{rcl}
 		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
 		\dot{y}_i&=&u_i.
-	\end{array}\right.
+	\end{array}\right.$}
 \end{equation}
 As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to the number of variables. However, by exploring sparsity, up to 512 of theses systems can be connected and the controller can be computed. 
 
@@ -706,6 +706,10 @@ Although Theorem \ref{thm:main result} provides a methodology to design distribu
 
 \section{Distributed Design of Decentralized Controllers}
 
+Before showing how the MI \eqref{eq:MI formulation} can be computed in parallel, some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015}. 
+
+Consider a graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{clique tree} is a tree that has cliques as its nodes. An algorithm to compute the number of cliques is provided in \cite{BronKerbosch1973}.
+
 Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
 	\begin{subequations}\label{eq:T}
 	\begin{align}
@@ -768,7 +772,7 @@ For linear time-invariant systems with the property that solutions starting in t
 
 Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control-contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
 
-\section{Illustration}\label{sec:Illustration}
+\section{Numerical Experiment}\label{sec:Illustration}
 
 A case where structured controller design is relevant is on distributed design for network systems. Let $N>0$ be a constant integer, consider the graph describing the network structure in Figure~\ref{fig:graph}.
 \begin{figure}[htpb!]
@@ -779,10 +783,10 @@ A case where structured controller design is relevant is on distributed design f
 \end{figure}
 For each index $i\in\mathbb{N}_{[1,N]}$, the agents dynamics is described by the system
 \begin{equation}\tag{\ref{eq:example}}
-	\left\{\begin{array}{rcl}
+	\scalebox{0.95}{$\left\{\begin{array}{rcl}
 		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
 		\dot{y}_i&=&u_i,
-	\end{array}\right.
+	\end{array}\right.$}
 \end{equation}
 where for convenience $x_0=x_1$ and $x_N=x_{N+1}$.
 
