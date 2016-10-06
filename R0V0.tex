@@ -507,9 +507,10 @@ For each component $i\in\mathbb{N}_{[1,m]}$ of the feedback law $k^\ast=(k_1^\as
 The definition of the set $\mathscr{K}(\cdot)$ encompasses different structures. For instance when $m=n$, full decentralization implies that, for each index $i\in\mathbb{N}_{[1,n]}$, the component $k_i^\ast$ of the function $k^\ast$ depends only on $x_i$. This is formalized by letting $\mathscr{K}(i)=\{i\}$. Moreover, at points where $k_i^\ast$ is differentiable, the explicit dependence on $x_i$ means that, for every index $j\in\mathbb{N}_{[1,n]}$ with $j\neq i$, $\partial k_i^\ast/\partial x_j\equiv0$.
 
 Define also the set of feedback laws
-\begin{equation*}
-	\Xi=\left\{k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\to\mathbb{R}^m:k_i^\ast\ \text{has the property}\ \mathscr{K}(i)\right\}.
-\end{equation*}
+\begin{align*}
+	\Xi=\{k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\to\mathbb{R}^m:\forall i\in\mathbb{N}_{[1,m]},k_i^\ast\ \text{depends on}\\
+	 \text{the components of}\ x\ \text{with indexes given by}\ \mathscr{K}(i)\}.
+\end{align*}
 
 At this point, the problem under consideration in this paper can be stated as follows.
 
