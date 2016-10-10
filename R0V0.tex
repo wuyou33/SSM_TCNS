@@ -157,19 +157,19 @@ pdfproducer={LaTeX}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{corollary}{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{assumption}[theorem]{Assumption}
-\newtheorem{problem}[theorem]{Problem}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{problem}{Problem}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
@@ -497,29 +497,13 @@ holds, for every $t\geq0$, and for every $x\in\mathbb{R}^n$ (\cite{Manchester201
 A stronger condition than the global exponential stabilizability of a particular solution is the requirement that every forward complete solution of the system is globally exponentially stabilizable. This concept is formalized in the following definition recalled from \cite{Manchester2014a}.
 
 \begin{definition}\label{def:US}
-	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,\cdot,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,\cdot,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
+	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,x^\ast,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
 \end{definition}
-
-For each component $i\in\mathbb{N}_{[1,m]}$ of the feedback law $k^\ast=(k_1^\ast,\ldots,k_m^\ast)^\top$, denote the set of indexes
-\begin{equation*}
-	\mathscr{K}(i)=\left\{j\in\mathbb{N}_{[1,n]}:k_i^\ast\ \text{depends explicitely on}\ x_j \right\}.
-\end{equation*}
-The definition of the set $\mathscr{K}(\cdot)$ encompasses different structures. For instance when $m=n$, full decentralization implies that, for each index $i\in\mathbb{N}_{[1,n]}$, the component $k_i^\ast$ of the function $k^\ast$ depends only on $x_i$. This is formalized by letting $\mathscr{K}(i)=\{i\}$. Moreover, at points where $k_i^\ast$ is differentiable, the explicit dependence on $x_i$ means that, for every index $j\in\mathbb{N}_{[1,n]}$ with $j\neq i$, $\partial k_i^\ast/\partial x_j\equiv0$.
-
-Define also the set of feedback laws
-\begin{align*}
-	\Xi=\{k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\to\mathbb{R}^m:\forall i\in\mathbb{N}_{[1,m]},k_i^\ast\ \text{depends on}\\
-	 \text{the components of}\ x\ \text{with indexes given by}\ \mathscr{K}(i)\}.
-\end{align*}
 
 At this point, the problem under consideration in this paper can be stated as follows.
 
-\begin{problem}\label{problem formulation}\hfill
-	\begin{enumerate}
-		\item Find a feedback law rendering system \eqref{eq:general system} universally stable;
-		
-		\item The function $k^\ast$ belongs to the set $\Xi$.
-		\end{enumerate}
+\begin{problem}\label{problem formulation}
+	For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into the set $\mathscr{K}(i)\subset\mathbb{N}_{[1,N]}$.
 \end{problem}
 
 
