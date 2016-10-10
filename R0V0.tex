@@ -623,17 +623,21 @@ for every $(x_i,\delta x_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{n_i}$. In other 
 
 To address the constraint on the component of $k^\ast$ described in Problem~\ref{problem formulation}, the structure on the feedback defined in Equation \eqref{eq:contracting feedback law} is obtained by imposing a a suitable constraint on the function $Y$ to be satisfied together with the MI \eqref{eq:MI formulation}. 
 
-For each index $i\in\mathbb{N}_{[1,N]}$, define the sets 
+Following the notation introduced in \cite{Tanaka2011}, For each index $i\in\mathbb{N}_{[1,N]}$, define the sets 
 \begin{subequations}
-	\begin{equation*}
-		\mathscr{K}_Y(i)=\{j\in \mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}
-	\end{equation*}
-	and
 	\begin{align*}
-		\Xi_Y=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}:\text{the}\ i\text{-th row}\ Y_i\ \\
-		\text{has the properties}\ \mathscr{K}_Y(i)\ &\text{and}\ \mathscr{K}(i)\}.
+		\Xi=&\ \{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ |\mathbin{\mathtt{col}}(Y,j)\in\mathbf{C}_j,\\
+		&\ \forall j\in\mathbb{N}_{[1,N]}\}\;,
 	\end{align*}
 \end{subequations}
+where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $Y$, and the set $\mathbf{C}_j$ is the space spanned by the sparsity vector $v_j\in\mathbb{R}^{n}$. The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential}. 
+
+It remains to specify the dependence of each component of the matrix $Y$ on the elements of the state-space variable. To that end, let the set
+\begin{align*}
+		\mathbf{Y}_i=\{Y_{ij}:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ | \arg(Y_{ij})\in\mathbf{X}_i\}\;,
+\end{align*}
+where the set $\mathbf{X}_i$ is the space spanned by components of $x$ defined by the set $\mathscr{K}(i)$.
+
 Note that the set $\mathscr{K}_Y(i)$ is the set index for which the corresponding columns of the row-vector $Y_i$ are zero. By definition, this set is the complement of $\mathscr{K}(i)$. Consequently, given an index $j\in\mathscr{K}_Y$ and $W$ is diagonal, the $i$-th line of the vector $YW^{-1}\delta_x$ does not depend on $j$-th component of the vector $\delta_x$. As remarked in \cite{Tanaka2011}, the constraint ``$Y\in\Xi_Y$'' is linear.
 
 \begin{theorem}\label{thm:main result}
