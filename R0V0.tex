@@ -654,7 +654,7 @@ For each index $i\in\mathbb{N}_{[1,N]}$, define the sets
 Note that the set $\mathscr{K}_Y(i)$ is the set index for which the corresponding columns of the row-vector $Y_i$ are zero. By definition, this set is the complement of $\mathscr{K}(i)$. Consequently, given an index $j\in\mathscr{K}_Y$ and $W$ is diagonal, the $i$-th line of the vector $YW^{-1}\delta_x$ does not depend on $j$-th component of the vector $\delta_x$. As remarked in \cite{Tanaka2011}, the constraint ``$Y\in\Xi_Y$'' is linear.
 
 \begin{theorem}\label{thm:main result}
-	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
+	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
@@ -709,7 +709,7 @@ Although Theorem \ref{thm:main result} provides a methodology to design distribu
 
 Before showing how the MI \eqref{eq:MI formulation} can be computed in parallel, some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015}. 
 
-Consider a graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{clique tree} is a tree that has cliques as its nodes. An algorithm to compute the number of cliques is provided in \cite{BronKerbosch1973}.
+Consider a graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network \eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{clique tree} is a tree that has cliques as its nodes. An algorithm to compute the number of cliques is provided in \cite{BronKerbosch1973}.
 
 Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
 	\begin{subequations}\label{eq:T}
