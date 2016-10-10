@@ -157,19 +157,19 @@ pdfproducer={LaTeX}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{corollary}{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{assumption}[theorem]{Assumption}
-\newtheorem{problem}[theorem]{Problem}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{problem}{Problem}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
@@ -469,7 +469,7 @@ At this point, the three contributions of this work can be highlighted. First, u
 
 Other works related to analysis under structural constraints to achieve exponential convergence of solutions do exist in the literature. For contraction analysis, see \cite{Aminzare2014a} for analysis according to different network topologies and \cite{Andrieu2016} for transversal contraction analysis. This paper contrast with these works mainly in two points: 1) A  methodology for the design of structured controllers is proposed; 2) Due the formulation of the stabilization problem as a convex optimization problem, an explicit formula of a structured controller is obtained.
 
-\paragraph{Overview.} The motivation and the problem formulation are provided in Section \ref{sec:Problem Formulation and Motivation}. The background needed for this paper is stated in Section \ref{sec:background}. Section \ref{sec:Results} presents the main result of this paper. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. The proofs of the results are provided in Section \ref{sec:Proof of the Results}. Section \ref{sec:Conclusion} collects final remarks.
+\paragraph{Overview.} The motivation and the problem formulation are provided in Section \ref{sec:Problem Formulation and Motivation}. The background needed for this paper is stated in Section \ref{sec:background}. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. Section \ref{sec:Conclusion} collects final remarks.
 
 \paragraph{Notation.} Let $\mathbb{S}$ be a totally ordered set and $s_1,s_2,s_3\in\mathbb{S}$. The notation $\mathbb{S}_{[s_1,s_2)}$ (resp. $\mathbb{S}_{\diamond s_3}$) stands for the set $\{s\in\mathbb{S}:s_1\leq s< s_2\}$ (resp. $\{s\in\mathbb{S}:s\diamond s_3\}$, where $\diamond$ is a comparison operator, i.e., $\diamond\in\{<,\geq,=,\ \text{etc}\}$). A matrix $M\in\mathbb{R}^{n\times n}$ with zero elements except (possibly) those  $m_{ii},\ldots,m_{nn}$ on the diagonal is denoted as $\mathbin{\mathtt{diag}}(m_{ii},\ldots,m_{nn})$. The notation $M\succ 0$ (resp. $M\succeq 0$) stands for $M$ being positive (resp. semi)definite.
 
@@ -497,38 +497,22 @@ holds, for every $t\geq0$, and for every $x\in\mathbb{R}^n$ (\cite{Manchester201
 A stronger condition than the global exponential stabilizability of a particular solution is the requirement that every forward complete solution of the system is globally exponentially stabilizable. This concept is formalized in the following definition recalled from \cite{Manchester2014a}.
 
 \begin{definition}\label{def:US}
-	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,\cdot,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,\cdot,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
+	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,x^\ast,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
 \end{definition}
-
-For each component $i\in\mathbb{N}_{[1,m]}$ of the feedback law $k^\ast=(k_1^\ast,\ldots,k_m^\ast)^\top$, denote the set of indexes
-\begin{equation*}
-	\mathscr{K}(i)=\left\{j\in\mathbb{N}_{[1,n]}:k_i^\ast\ \text{depends explicitely on}\ x_j \right\}.
-\end{equation*}
-The definition of the set $\mathscr{K}(\cdot)$ encompasses different structures. For instance when $m=n$, full decentralization implies that, for each index $i\in\mathbb{N}_{[1,n]}$, the component $k_i^\ast$ of the function $k^\ast$ depends only on $x_i$. This is formalized by letting $\mathscr{K}(i)=\{i\}$. Moreover, at points where $k_i^\ast$ is differentiable, the explicit dependence on $x_i$ means that, for every index $j\in\mathbb{N}_{[1,n]}$ with $j\neq i$, $\partial k_i^\ast/\partial x_j\equiv0$.
-
-Define also the set of feedback laws
-\begin{equation*}
-	\Xi=\left\{k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\to\mathbb{R}^m:k_i^\ast\ \text{has the property}\ \mathscr{K}(i)\right\}.
-\end{equation*}
 
 At this point, the problem under consideration in this paper can be stated as follows.
 
-\begin{problem}\label{problem formulation}\hfill
-	\begin{enumerate}
-		\item Find a feedback law rendering system \eqref{eq:general system} universally stable;
-		
-		\item The function $k^\ast$ belongs to the set $\Xi$.
-		\end{enumerate}
+\begin{problem}\label{problem formulation}
+	For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into the set $\mathscr{K}(i)\subset\mathbb{N}_{[1,N]}$.
 \end{problem}
 
 
-
-The property described in item 2 of Problem \ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology). Consider the network composed of systems described by the following equation.
+The constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology). Consider the network composed of systems described by the following equation.
 \begin{equation}\label{eq:example}
-	\left\{\begin{array}{rcl}
+	\scalebox{0.95}{$\left\{\begin{array}{rcl}
 		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
 		\dot{y}_i&=&u_i.
-	\end{array}\right.
+	\end{array}\right.$}
 \end{equation}
 As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to the number of variables. However, by exploring sparsity, up to 512 of theses systems can be connected and the controller can be computed. 
 
@@ -625,7 +609,7 @@ From the above steps, even if the problem of imposing a particular structure on 
 
 In this paper, these limitations are addressed by imposing a block-diagonal structure over $W$. Moreover, when $W$ is row-diagonal dominant, not only the solutions to the optimization problem \eqref{eq:geodesic formulation} can be computed in parallel but also the MI \eqref{eq:MI formulation}.
 
-\section{Results}\label{sec:Results}
+\section{Design of Decentralized Controllers}\label{sec:Design of Decentralized Controllers}
 
 \begin{definition}\label{def:SSCCM}
 	A control-contraction metric $V$ for system \eqref{eq:general system} receives the adjective \emph{sum-separable} if $M$ has a block-diagonal structure. 
@@ -637,7 +621,7 @@ Definition~\ref{def:SSCCM} implies that there exist integers $N>1$ and $n_i>0$ s
 	\end{equation*}
 for every $(x_i,\delta x_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{n_i}$. In other words, the metric $V$ for system \eqref{eq:general system} is decomposed into a sum of components $V_i$, where $i\in\mathbb{N}_{[1,N]}$, each one of these depend only on $i$-th component of the the system state $x$, i.e., $x_i\in\mathbb{R}^{n_i}$. The concept behind this definition is similar to the notion of sum-separable Lyapunov functions (see \cite{Dirr2015}). 
 
-To solve item 2 of Problem~\ref{problem formulation}, the structure on the feedback defined in Equation \eqref{eq:contracting feedback law} is obtained by imposing a a suitable constraint on the function $Y$ to be satisfied together with the MI \eqref{eq:MI formulation}. 
+To address the constraint on the component of $k^\ast$ described in Problem~\ref{problem formulation}, the structure on the feedback defined in Equation \eqref{eq:contracting feedback law} is obtained by imposing a a suitable constraint on the function $Y$ to be satisfied together with the MI \eqref{eq:MI formulation}. 
 
 For each index $i\in\mathbb{N}_{[1,N]}$, define the sets 
 \begin{subequations}
@@ -653,12 +637,62 @@ For each index $i\in\mathbb{N}_{[1,N]}$, define the sets
 Note that the set $\mathscr{K}_Y(i)$ is the set index for which the corresponding columns of the row-vector $Y_i$ are zero. By definition, this set is the complement of $\mathscr{K}(i)$. Consequently, given an index $j\in\mathscr{K}_Y$ and $W$ is diagonal, the $i$-th line of the vector $YW^{-1}\delta_x$ does not depend on $j$-th component of the vector $\delta_x$. As remarked in \cite{Tanaka2011}, the constraint ``$Y\in\Xi_Y$'' is linear.
 
 \begin{theorem}\label{thm:main result}
-	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
+	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
 \end{theorem}
 
-The detailed proof of Theorem \ref{thm:main result} is provided in Section \ref{sec:Proof of the Results}. 
+\begin{proof}[Proof of Theorem \ref{thm:main result}]
+	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ form a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
+	
+	The MI \eqref{eq:MI formulation} implies that the inequality
+	\begin{equation*}
+		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
+	\end{equation*}
+	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system}.
+	
+	It now remains to integrate $K\delta_x$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
+	\begin{equation}\label{eq:geodesic sum}
+		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds.
+	\end{equation}
 
-Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori} the computation of the MI \eqref{eq:MI formulation}  cannot be done in parallel. The next result provides sufficient conditions to solve each component \eqref{eq:MI formulation} independently, and according to the structure defined by the set $\Xi$. Before present it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
+	
+	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. More precisely, 
+	\begin{equation*}
+		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}.
+	\end{equation*}
+	Consequently, the minimization of Equation \eqref{eq:geodesic sum} can be computed separately. 
+	
+	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
+	\begin{align*}
+		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i).
+	\end{align*}
+	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
+	
+	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} is given by Equation \eqref{eq:contracting feedback law}. 
+	
+	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
+	\begin{equation}\label{eq:K ODE}
+		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast).
+	\end{equation}
+	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the smoothness of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)\to\infty$, as $s\to\bar{s}$.
+	
+	To show that a solution $k^\ast$ is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then the solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
+		
+	Since the vector field $\overline{K}$ is smooth, it is also Lipschitzian. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
+	\begin{equation*}
+		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
+	\end{equation*}
+	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely with respect to $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
+	
+	Note that, due to the structure of the matrix $K$, the feedback law $k^\ast$ defined in Equation \eqref{eq:contracting feedback law} solves item 2 of Problem~\ref{problem formulation}, i.e., $k^\ast\in\Xi$. This concludes the proof of Theorem \ref{thm:main result}.
+\end{proof}
+
+Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori} the computation of the MI \eqref{eq:MI formulation}  cannot be done in parallel. The next section provides sufficient conditions to solve each component \eqref{eq:MI formulation} independently, and according to the structure defined by the set $\Xi$. Before present it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
+
+\section{Distributed Design of Decentralized Controllers}
+
+Before showing how the MI \eqref{eq:MI formulation} can be computed in parallel, some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015}. 
+
+Consider a graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network \eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{clique tree} is a tree that has cliques as its nodes. An algorithm to compute the number of cliques is provided in \cite{BronKerbosch1973}.
 
 Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
 	\begin{subequations}\label{eq:T}
@@ -671,6 +705,7 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 		T_{ij}=A_{ij}W_j+W_iA_{ji}+B_iY_{ij}+(B_jY_{ji})^\top.
 	\end{equation}
 	\end{subequations}
+
 
 \begin{definition}\label{def:}
 	The matrix $T$ is said to be \emph{block-diagonally dominant} if the inequality
@@ -688,7 +723,27 @@ Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\t
 	for every index $i\in\mathbb{N}_{[1,N]}$, and the matrix $T$ is diagonally dominant, then pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation}.
 \end{corollary}
 
-The detailed proof of Corollary \ref{cor:distributed computation} is provided in Section \ref{sec:Proof of the Results}.
+\begin{proof}[Proof of Corollary~\ref{cor:distributed computation}]
+	By assumption, the pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
+	
+	Equation \eqref{eq:BDD} together with the fact that $|I_{n_i}|\leq |T_{ii}||T_{ii}^{-1}|$ implies that the inequality
+	\begin{equation}\label{eq:BDD2} 
+		\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|\leq |T_{ii}|
+	\end{equation}
+	holds, for every index $i\in\mathbb{N}_{[1,N]}$.
+	
+	For every $\delta_\eta\in\mathbb{R}^n$, consider the product $\delta_\eta^\top T\delta_\eta$. Each line $i\in\mathbb{N}_{[1,N]}$ of this product is given by
+	\begin{equation*}
+		\delta_{\eta_i}^\top\begin{bmatrix}
+			T_{i1}&\cdots&T_{i(i-1)}&T_{ii}&T_{i(i+1)}&\cdots&T_{iN}
+		\end{bmatrix}\delta_\eta.
+	\end{equation*}
+	Inequalities \eqref{eq:BDD2} and \eqref{eq:MI formulation:i} imply that the inequalities
+	\begin{equation*}
+		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{\eta_i}^\top T_{ii}\delta_{\eta_i}< 0
+	\end{equation*}
+	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the MI \eqref{eq:MI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
+\end{proof}
 
 \subsection{Discussion}
 
@@ -701,7 +756,7 @@ For linear time-invariant systems with the property that solutions starting in t
 
 Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control-contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
 
-\section{Illustration}\label{sec:Illustration}
+\section{Numerical Experiment}\label{sec:Illustration}
 
 A case where structured controller design is relevant is on distributed design for network systems. Let $N>0$ be a constant integer, consider the graph describing the network structure in Figure~\ref{fig:graph}.
 \begin{figure}[htpb!]
@@ -712,10 +767,10 @@ A case where structured controller design is relevant is on distributed design f
 \end{figure}
 For each index $i\in\mathbb{N}_{[1,N]}$, the agents dynamics is described by the system
 \begin{equation}\tag{\ref{eq:example}}
-	\left\{\begin{array}{rcl}
+	\scalebox{0.95}{$\left\{\begin{array}{rcl}
 		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
 		\dot{y}_i&=&u_i,
-	\end{array}\right.
+	\end{array}\right.$}
 \end{equation}
 where for convenience $x_0=x_1$ and $x_N=x_{N+1}$.
 
@@ -745,9 +800,9 @@ When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials, t
 \begin{equation*}
 		\begin{pmatrix}
 n+d\\ d
-\end{pmatrix}\;.
+\end{pmatrix}
 \end{equation*}
-Consequently, when no structural constraints are imposed on $Y$, this verification can lead to
+\cite{Waki2006}. Consequently, when no structural constraints are imposed on $Y$, this verification can lead to
 \begin{equation*}
 N^2\begin{pmatrix}
 n+d\\ d
@@ -873,78 +928,6 @@ k_i=\begin{cases}
 \end{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
-
-
-\section{Proof of the Results}\label{sec:Proof of the Results}
-
-\begin{proof}[Proof of Theorem \ref{thm:main result}]
-	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ form a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
-	
-	The MI \eqref{eq:MI formulation} implies that the inequality
-	\begin{equation*}
-		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
-	\end{equation*}
-	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system}.
-	
-	It now remains to integrate $K\delta_x$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
-	\begin{equation}\label{eq:geodesic sum}
-		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds.
-	\end{equation}
-
-	
-	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. More precisely, 
-	\begin{equation*}
-		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}.
-	\end{equation*}
-	Consequently, the minimization of Equation \eqref{eq:geodesic sum} can be computed separately. 
-	
-	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
-	\begin{align*}
-		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i).
-	\end{align*}
-	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
-	
-	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} is given by Equation \eqref{eq:contracting feedback law}. 
-	
-	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
-	\begin{equation}\label{eq:K ODE}
-		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast).
-	\end{equation}
-	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the smoothness of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)\to\infty$, as $s\to\bar{s}$.
-	
-	To show that a solution $k^\ast$ is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then the solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
-		
-	Since the vector field $\overline{K}$ is smooth, it is also Lipschitzian. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
-	\begin{equation*}
-		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
-	\end{equation*}
-	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely with respect to $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
-	
-	Note that, due to the structure of the matrix $K$, the feedback law $k^\ast$ defined in Equation \eqref{eq:contracting feedback law} solves item 2 of Problem~\ref{problem formulation}, i.e., $k^\ast\in\Xi$. This concludes the proof of Theorem \ref{thm:main result}.
-\end{proof}
-
-
-\begin{proof}[Proof of Corollary~\ref{cor:distributed computation}]
-	By assumption, the pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
-	
-	Equation \eqref{eq:BDD} together with the fact that $|I_{n_i}|\leq |T_{ii}||T_{ii}^{-1}|$ implies that the inequality
-	\begin{equation}\label{eq:BDD2} 
-		\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|\leq |T_{ii}|
-	\end{equation}
-	holds, for every index $i\in\mathbb{N}_{[1,N]}$.
-	
-	For every $\delta_\eta\in\mathbb{R}^n$, consider the product $\delta_\eta^\top T\delta_\eta$. Each line $i\in\mathbb{N}_{[1,N]}$ of this product is given by
-	\begin{equation*}
-		\delta_{\eta_i}^\top\begin{bmatrix}
-			T_{i1}&\cdots&T_{i(i-1)}&T_{ii}&T_{i(i+1)}&\cdots&T_{iN}
-		\end{bmatrix}\delta_\eta.
-	\end{equation*}
-	Inequalities \eqref{eq:BDD2} and \eqref{eq:MI formulation:i} imply that the inequalities
-	\begin{equation*}
-		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{\eta_i}^\top T_{ii}\delta_{\eta_i}< 0
-	\end{equation*}
-	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the MI \eqref{eq:MI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
-\end{proof}
 
 
 \section{Conclusion}\label{sec:Conclusion}
