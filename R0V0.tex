@@ -721,57 +721,6 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
 	This concludes the proof.
 \end{proof}
 
-Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
-	\begin{subequations}\label{eq:T}
-	\begin{align}
-		T_{ii}=-\dot{W}_i+A_{ii}W_i+W_iA_i^\top+B_iY_{ii}+(B_iY_{ii})^\top\nonumber\\
-		+2\lambda_i W_i
-	\end{align}
-	and
-	\begin{equation}
-		T_{ij}=A_{ij}W_j+W_iA_{ji}+B_iY_{ij}+(B_jY_{ji})^\top.
-	\end{equation}
-	\end{subequations}
-
-
-\begin{definition}\label{def:}
-	The matrix $T$ is said to be \emph{block-diagonally dominant} if the inequality
-	\begin{equation}\label{eq:BDD}
-		|T_{ii}^{-1}|^{-1}\geq\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|,
-	\end{equation}
-	holds, for every index $i\in\mathbb{N}_{[1,N]}$ and for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$.
-\end{definition}
-
-\begin{corollary}\label{cor:distributed computation}
-	 If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI
-	\begin{equation}\label{eq:MI formulation:i}
-		T_{ii}\prec 0
-	\end{equation}
-	for every index $i\in\mathbb{N}_{[1,N]}$, and the matrix $T$ is diagonally dominant, then pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation}.
-\end{corollary}
-
-\begin{proof}[Proof of Corollary~\ref{cor:distributed computation}]
-	By assumption, the pair of matrices $W$ and $Y$ is a solution to the MI \eqref{eq:MI formulation:i} and the matrix $T$ with components defined by the set of equations \eqref{eq:T} is block-diagonally dominant.
-	
-	Equation \eqref{eq:BDD} together with the fact that $|I_{n_i}|\leq |T_{ii}||T_{ii}^{-1}|$ implies that the inequality
-	\begin{equation}\label{eq:BDD2} 
-		\sum_{\substack{j=1\\ j\neq i}}^N|T_{ij}|\leq |T_{ii}|
-	\end{equation}
-	holds, for every index $i\in\mathbb{N}_{[1,N]}$.
-	
-	For every $\delta_\eta\in\mathbb{R}^n$, consider the product $\delta_\eta^\top T\delta_\eta$. Each line $i\in\mathbb{N}_{[1,N]}$ of this product is given by
-	\begin{equation*}
-		\delta_{\eta_i}^\top\begin{bmatrix}
-			T_{i1}&\cdots&T_{i(i-1)}&T_{ii}&T_{i(i+1)}&\cdots&T_{iN}
-		\end{bmatrix}\delta_\eta.
-	\end{equation*}
-	Inequalities \eqref{eq:BDD2} and \eqref{eq:MI formulation:i} imply that the inequalities
-	\begin{equation*}
-		\sum_{\substack{j=1\\ j\neq i}}^N\delta_{\eta_i}^\top T_{ij}\delta_{x_j}\leq \delta_{\eta_i}^\top T_{ii}\delta_{\eta_i}< 0
-	\end{equation*}
-	hold, for every $\delta_\eta\in\mathbb{R}^n$. Consequently, the inequality $\delta_\eta^\top T\delta_\eta\leq 0$ holds, for every $\delta_\eta\in\mathbb{R}^n$. This later inequality is equivalent to the MI \eqref{eq:MI formulation}. This concludes the proof of Corollary~\ref{cor:distributed computation}.
-\end{proof}
-
 \subsection{Discussion}
 
 Although the requirement of a sum-separable structure seems to be restrictive, this structure is equivalent to the (possibly local) stability of the origin, for some classes of systems.
