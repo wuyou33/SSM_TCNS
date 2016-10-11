@@ -626,9 +626,8 @@ To address the constraint on the component of $k^\ast$ described in Problem~\ref
 Following the notation introduced in \cite{Tanaka2011}, for each index $i\in\mathbb{N}_{[1,N]}$, define the set 
 \begin{subequations}
 	\begin{align*}
-		\Xi=&\ \{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ |\mathbin{\mathtt{col}}(Y,j)\in\mathbf{C}_j,\\
-		&\ \arg(Y_{ij})\in\mathbf{X}_k,\forall i\in\mathbb{N}_{[1,m]},\forall j\in\mathbb{N}_{[1,n]},\\
-		&\ k\in\mathbb{N}_{[1,N]}\}\;,
+		\Xi=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ |\mathbin{\mathtt{col}}(Y,j)\in\mathbf{C}_j,\\
+		\arg(Y_{ij})\in\mathbf{X}_k,\forall i\in\mathbb{N}_{[1,m]},\forall j\in\mathbb{N}_{[1,n]},k\in\mathbb{N}_{[1,N]}\}\;,
 	\end{align*}
 \end{subequations}
 where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $Y$, the set $\mathbf{C}_j$ is the space spanned by the sparsity vector $v_j\in\mathbb{R}^{n}$, and the set $\mathbf{X}_k$ is the space spanned by components of $x$ defined by the set $\mathscr{K}(k)$.
@@ -709,7 +708,17 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
 	\end{equation*}	
 	where $\mathbin{\mathtt{row}}(E_k,m)$ stands for the $m$-th row of the matrix $E_k$, and $I_n$ is the identity matrix with dimension $n$.
 	
-   
+   Denote the left-hand side of the MI~\eqref{eq:MI formulation} by $T$. The existence of $p$ cliques implies that there exist matrices $F_1,\ldots,F_p$ such that the equation
+   \begin{equation*}
+   	 T=\sum_{k=1}^p E_k^\top F_k E_k
+  	\end{equation*}
+  	holds. 
+  	
+  	Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into the set of matrix inequalities
+  	\begin{equation*}
+  		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,p]}\;.
+	\end{equation*}
+	This concludes the proof.
 \end{proof}
 
 Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
