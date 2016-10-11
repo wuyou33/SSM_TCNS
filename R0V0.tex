@@ -623,25 +623,26 @@ for every $(x_i,\delta x_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{n_i}$. In other 
 
 To address the constraint on the component of $k^\ast$ described in Problem~\ref{problem formulation}, the structure on the feedback defined in Equation \eqref{eq:contracting feedback law} is obtained by imposing a a suitable constraint on the function $Y$ to be satisfied together with the MI \eqref{eq:MI formulation}. 
 
-For each index $i\in\mathbb{N}_{[1,N]}$, define the sets 
+Following the notation introduced in \cite{Tanaka2011}, for each index $i\in\mathbb{N}_{[1,N]}$, define the set 
 \begin{subequations}
-	\begin{equation*}
-		\mathscr{K}_Y(i)=\{j\in \mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}
-	\end{equation*}
-	and
 	\begin{align*}
-		\Xi_Y=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}:\text{the}\ i\text{-th row}\ Y_i\ \\
-		\text{has the properties}\ \mathscr{K}_Y(i)\ &\text{and}\ \mathscr{K}(i)\}.
+		\Xi=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ |\mathbin{\mathtt{col}}(Y,j)\in\mathbf{C}_j,\\
+		\arg(Y_{ij})\in\mathbf{X}_k,\forall i\in\mathbb{N}_{[1,m]},\forall j\in\mathbb{N}_{[1,n]},k\in\mathbb{N}_{[1,N]}\}\;,
 	\end{align*}
 \end{subequations}
-Note that the set $\mathscr{K}_Y(i)$ is the set index for which the corresponding columns of the row-vector $Y_i$ are zero. By definition, this set is the complement of $\mathscr{K}(i)$. Consequently, given an index $j\in\mathscr{K}_Y$ and $W$ is diagonal, the $i$-th line of the vector $YW^{-1}\delta_x$ does not depend on $j$-th component of the vector $\delta_x$. As remarked in \cite{Tanaka2011}, the constraint ``$Y\in\Xi_Y$'' is linear.
+where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $Y$, the set $\mathbf{C}_j$ is the space spanned by the sparsity vector $v_j\in\mathbb{R}^{n}$, and the set $\mathbf{X}_k$ is the space spanned by components of $x$ defined by the set $\mathscr{K}(k)$.
+
+The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the set $\mathbf{X}_i$ is empty, for all indexes $i\in\mathbb{N}_{[1,N]}$, and the set $\Xi$ reduces to the set $\mathcal{K}$ defined in \cite{Tanaka2011}.
+
+In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{N}_{[1,N]}$,  the set $\Xi$ is defined with $\mathbf{C}_j=\{e_j\}$, $\mathscr{K}(i)=\{i\}$ and $\mathbf{X}_i=\{x_i\}$.
+
 
 \begin{theorem}\label{thm:main result}
-	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi_Y$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
+	If there exist a smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
-	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ form a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi_Y$.
+	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m$ form a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi$.
 	
 	The MI \eqref{eq:MI formulation} implies that the inequality
 	\begin{equation*}
@@ -692,7 +693,33 @@ Although Theorem \ref{thm:main result} provides a methodology to design distribu
 
 Before showing how the MI \eqref{eq:MI formulation} can be computed in parallel, some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015}. 
 
-Consider a graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network \eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{clique tree} is a tree that has cliques as its nodes. An algorithm to compute the number of cliques is provided in \cite{BronKerbosch1973}.
+Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network \eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{clique tree} is a tree that has cliques as its nodes. 
+
+\begin{proposition}\label{prop:}
+	Let $p\in\mathbb{N}_{>0}$ be the number of cliques of the graph $\mathscr{G}$. Then, the MI~\eqref{eq:MI formulation} can be decomposed into $p$ matrix inequalities with smaller dimension.
+\end{proposition}
+
+\begin{proof}
+	The number of cliques $p$ in the $\mathscr{G}$ can be computed using the algorithm \cite{BronKerbosch1973}. The remainder of this proof is based on Section~II of \cite{PakazadHanssonAndersenEtAl2015}.
+	
+	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the cliques of the $\mathscr{G}$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, define the matrix $E_k\in\mathbb{R}^{\mathbin{\mathtt{card}}(\mathscr{C}_k)\times n}$ as
+	\begin{equation*}
+		\mathbin{\mathtt{row}}(E_k,m)=\mathbin{\mathtt{row}}(I_n,m),\forall m\in\mathbb{N}_{[1,\mathbin{\mathtt{card}}(\mathscr{C}_k)]}\;,
+	\end{equation*}	
+	where $\mathbin{\mathtt{row}}(E_k,m)$ stands for the $m$-th row of the matrix $E_k$, and $I_n$ is the identity matrix with dimension $n$.
+	
+   Denote the left-hand side of the MI~\eqref{eq:MI formulation} by $T$. The existence of $p$ cliques implies that there exist matrices $F_1,\ldots,F_p$ such that the equation
+   \begin{equation*}
+   	 T=\sum_{k=1}^p E_k^\top F_k E_k
+  	\end{equation*}
+  	holds. 
+  	
+  	Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into the set of matrix inequalities
+  	\begin{equation*}
+  		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,p]}\;.
+	\end{equation*}
+	This concludes the proof.
+\end{proof}
 
 Consider the smooth function $T:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times n}$ with elements $i,j\in\mathbb{N}_{[1,N]}$ defined as
 	\begin{subequations}\label{eq:T}
