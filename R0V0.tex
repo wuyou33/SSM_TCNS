@@ -627,10 +627,10 @@ Following the notation introduced in \cite{Tanaka2011}, for each index $i\in\mat
 \begin{subequations}
 	\begin{align*}
 		\Xi=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ |\mathbin{\mathtt{col}}(Y,j)\in\mathbf{C}_j,\\
-		\arg(Y_{ij})\in\mathbf{X}_k,\forall i\in\mathbb{N}_{[1,m]},\forall j\in\mathbb{N}_{[1,n]},k\in\mathbb{N}_{[1,N]}\}\;,
+		\arg(Y_{ij})\in\mathbf{X}(\mathscr{K}(k)),\forall i\in\mathbb{N}_{[1,m]},\forall j\in\mathbb{N}_{[1,n]},k\in\mathbb{N}_{[1,N]}\}\;,
 	\end{align*}
 \end{subequations}
-where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $Y$, the set $\mathbf{C}_j$ is the space spanned by the sparsity vector $v_j\in\mathbb{R}^{n}$, and the set $\mathbf{X}_k$ is the space spanned by components of $x$ defined by the set $\mathscr{K}(k)$.
+where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $Y$, the set $\mathbf{C}_j$ is the space spanned by the sparsity vector $v_j\in\mathbb{R}^{n}$, and the set $\mathbf{X}(\mathscr{K}(k))$ is the space spanned by components of $x$ defined by the set $\mathscr{K}(k)$.
 
 The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the set $\mathbf{X}_i$ is empty, for all indexes $i\in\mathbb{N}_{[1,N]}$, and the set $\Xi$ reduces to the set $\mathcal{K}$ defined in \cite{Tanaka2011}.
 
@@ -702,13 +702,13 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
 \begin{proof}
 	The number of cliques $p$ in the $\mathscr{G}$ can be computed using the algorithm \cite{BronKerbosch1973}. The remainder of this proof is based on Section~II of \cite{PakazadHanssonAndersenEtAl2015}.
 	
-	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the cliques of the $\mathscr{G}$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, define the matrix $E_k\in\mathbb{R}^{\mathbin{\mathtt{card}}(\mathscr{C}_k)\times n}$ as
+	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the cliques of the $\mathscr{G}$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, let the integer $\dim_k$ denote the dimension of the set $\mathbf{X}(\mathbin{\mathtt{card}}(\mathscr{C}_k))$ and define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ as
 	\begin{equation*}
-		\mathbin{\mathtt{row}}(E_k,m)=\mathbin{\mathtt{row}}(I_n,m),\forall m\in\mathbb{N}_{[1,\mathbin{\mathtt{card}}(\mathscr{C}_k)]}\;,
+		\mathbin{\mathtt{row}}(E_k,m)=\mathbin{\mathtt{row}}(I_n,m),\forall m\in\mathbb{N}_{[1,\dim_k]}\;,
 	\end{equation*}	
 	where $\mathbin{\mathtt{row}}(E_k,m)$ stands for the $m$-th row of the matrix $E_k$, and $I_n$ is the identity matrix with dimension $n$.
 	
-   Denote the left-hand side of the MI~\eqref{eq:MI formulation} by $T$. The existence of $p$ cliques implies that there exist matrices $F_1,\ldots,F_p$ such that the equation
+   Denote the left-hand side of the MI~\eqref{eq:MI formulation} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\dim_k}\to\mathbb{R}^{\dim_k\times \dim_k}$, where $k\in\mathbb{N}_{[1,p]}$, such that the equation
    \begin{equation*}
    	 T=\sum_{k=1}^p E_k^\top F_k E_k
   	\end{equation*}
