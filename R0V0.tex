@@ -702,11 +702,7 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
 \begin{proof}
 	The number of cliques $p$ in the $\mathscr{G}$ can be computed using the algorithm \cite{BronKerbosch1973}. The remainder of this proof is based on Section~II of \cite{PakazadHanssonAndersenEtAl2015}.
 	
-	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the cliques of the $\mathscr{G}$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, let the integer $\dim_k$ denote the dimension of the set $\mathbf{X}(\mathbin{\mathtt{card}}(\mathscr{C}_k))$ and define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ as
-	\begin{equation*}
-		\mathbin{\mathtt{row}}(E_k,m)=\mathbin{\mathtt{row}}(I_n,m),\forall m\in\mathbb{N}_{[1,\dim_k]}\;,
-	\end{equation*}	
-	where $\mathbin{\mathtt{row}}(E_k,m)$ stands for the $m$-th row of the matrix $E_k$, and $I_n$ is the identity matrix with dimension $n$.
+	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the cliques of the $\mathscr{G}$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, let the integer $\dim_k$ denote the dimension of the set $\mathbf{X}(\mathscr{C}_k)$ and define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
 	
    Denote the left-hand side of the MI~\eqref{eq:MI formulation} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\dim_k}\to\mathbb{R}^{\dim_k\times \dim_k}$, where $k\in\mathbb{N}_{[1,p]}$, such that the equation
    \begin{equation*}
