@@ -482,7 +482,7 @@ Let $N>0$ be an integer, a \emph{graph} consists of a set of \emph{nodes} $\math
 
 Consider the class of systems described by the differential equation
 \begin{equation}\label{eq:general system}
-	\dot{x}(t)=f(x(t))+B(x(t))u(t),	
+	\dot{x}(t)=f(x(t))+B(x(t))u(t)\;,	
 \end{equation}
 where, for every positive times $t$, the \emph{system state} $x(t)$ and the \emph{system input variable} $u(t)$ evolve in the Euclidean spaces $\mathbb{R}^n$ and $\mathbb{R}^m$, respectively. The functions $f:\mathbb{R}^n\to\mathbb{R}^n$ and $B:\mathbb{R}^n\to\mathbb{R}^m$ are assumed to be smooth, i.e., infinitely differentiable and to satisfy $f(0)=0$ and $B(0)=0$. From now on the dependence on the time $t$ will be omitted.
 
@@ -490,7 +490,7 @@ A function $u^\ast\in\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathb
 
 A forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system} is said to be  \emph{globally exponentially uniformly stabilizable} with \emph{rate} $\lambda>0$ if there exist a constant value $C>0$ and a feedback law $k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\times\{X^\ast\}\times\{u^\ast\}\to\mathbb{R}^m$, denoted as $k^\ast$, such that the inequality
 \begin{equation}\label{eq:global exponential uniform stabilizability}
-	\left|X(t,x^\ast,u^\ast)-X(t,x,k^\ast)\right|\leq Ce^{-\lambda t}|x^\ast-x|
+	\left|X^\ast(t,x^\ast,u^\ast)-X(t,x,k^\ast)\right|\leq Ce^{-\lambda t}|x^\ast-x|
 \end{equation}
 holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\cite{Manchester2014a}). Equivalently, if inequality~\eqref{eq:global exponential uniform stabilizability} holds, then the solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system} is said to be \emph{globally exponentially uniformly stable} for system \eqref{eq:general system} in closed loop with $k^\ast$
 
@@ -511,7 +511,7 @@ The constraint on the components of $k^\ast$ described in Problem~\ref{problem f
 \begin{equation}\label{eq:example}
 	\scalebox{0.95}{$\left\{\begin{array}{rcl}
 		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
-		\dot{y}_i&=&u_i.
+		\dot{y}_i&=&u_i\;.
 	\end{array}\right.$}
 \end{equation}
 As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to the number of variables. However, by exploring sparsity, up to 512 of theses systems can be connected and the controller can be computed. 
@@ -531,7 +531,7 @@ The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{di
 
 A suitable notion to deal with exponential convergence of pair of solutions to \eqref{eq:general system} is provided by the \emph{differential} (also known as variational or prolonged) dynamical system
 \begin{equation}\label{eq:general system:differential}
-	\dot{\delta}_x=A(x,u)\delta_x+B(x)\delta_u,
+	\dot{\delta}_x=A(x,u)\delta_x+B(x)\delta_u\;,
 \end{equation}
 where $\delta_x$ (resp. $\delta_u$) is a vector of the Euclidean space $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). More precisely, it is the vector tangent to a piecewise smooth curve connecting a pair of points in $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). The matrix $A\in\mathbb{R}^{n\times n}$ has components given, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, by 
 \begin{equation*}
@@ -553,7 +553,7 @@ A sufficient condition for the stability of \eqref{eq:general system:differentia
 		 A smooth function $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ is said to be a \emph{metric for system \eqref{eq:general system}} if there exist constant values $\underline{c}>$ and $\overline{c}>$ such that the inequality
 		 \begin{subequations}\label{eq:metric}
 		 \begin{equation}
-		 	\underline{c}|\delta_x|^2\leq V(x,\delta_x)\leq \overline{c}|\delta_x|^2,
+		 	\underline{c}|\delta_x|^2\leq V(x,\delta_x)\leq \overline{c}|\delta_x|^2\;,
 	 	 \end{equation}
 	 	 holds, for every $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. A metric system \eqref{eq:general system} receives the adjective \emph{contraction} if there exists a value $\lambda>0$ such that the inequality
 	 	 \begin{equation}
@@ -615,7 +615,7 @@ In this paper, these limitations are addressed by imposing a block-diagonal stru
 
 Definition~\ref{def:SSCCM} implies that there exist $N>1$ integers $n_i>0$ such that $n_1+\ldots+n_N=n$. Also, there exist smooth bounded functions $M_i:\mathbb{R}^{n_i}\to\mathbb{R}^{n_i\times n_i}$ satisfying $M_i=M_i^\top\succ0$, for every index $i\in\mathbb{N}_{[1,N]}$, and the equation
 	\begin{equation*}
-		V(x,\delta_x)=\sum_{i=1}^N \delta_{x_i}^\top M_i(x_i)\delta_{x_i}=\sum_{i=1}^N V_i(x_i),
+		V(x,\delta_x)=\sum_{i=1}^N \delta_{x_i}^\top M_i(x_i)\delta_{x_i}=\sum_{i=1}^N V_i(x_i)\;,
 	\end{equation*}
 for every $(x_i,\delta x_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{n_i}$. In other words, the metric $V$ for system \eqref{eq:general system} is decomposed into a sum of components $V_i$, where $i\in\mathbb{N}_{[1,N]}$, each one of these depend only on $i$-th component of the the system state $x$, i.e., $x_i\in\mathbb{R}^{n_i}$. The concept behind this definition is similar to the notion of sum-separable Lyapunov functions (see \cite{Dirr2015}). 
 
@@ -650,19 +650,19 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	It remains to integrate $K\delta_x$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
 	\begin{equation}\label{eq:geodesic sum}
-		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds.
+		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds\;.
 	\end{equation}
 
 	
 	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. More precisely, 
 	\begin{equation*}
-		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}.
+		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
 	\end{equation*}
 	Consequently, the minimization of Equation~\eqref{eq:geodesic sum} can be computed in parallel. 
 	
 	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
 	\begin{align*}
-		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i).
+		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i)\;.
 	\end{align*}
 	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
 	
@@ -670,7 +670,7 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
 	\begin{equation}\label{eq:K ODE}
-		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast).
+		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast)\;.
 	\end{equation}
 	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the smoothness of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)\to\infty$, as $s\to\bar{s}$.
 	
