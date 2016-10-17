@@ -545,7 +545,7 @@ Similarly to \eqref{eq:general system}, given a control $\delta_u$ for system \e
 
 Lyapunov stability notions of solutions to \eqref{eq:general system:differential} are similar to those of linear time-varying systems (LTIS) (see \cite{Hespanha:2009} for more information on LTIS). 
 
-The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. If every solution $|\Delta_x(t,x,\delta_x,u,\delta u)|\to0$ exponentially as $t\to\infty$, then every pair of solutions to \eqref{eq:general system} converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
+The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. If the norm of every solution $\Delta_x(t,x,\delta_x,u,\delta u)$ converges to zero exponentially, as the time tends to infinity, then every pair of solutions to \eqref{eq:general system} converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
 
 A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
 
@@ -583,10 +583,10 @@ For the class of systems considered in this paper, the following kind of metric 
 \end{definition}
 The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition to the  exponential convergence of solutions. Given a control-contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides stabilizing a feedback law of the form $\delta_u=K\delta_x$ for system \eqref{eq:general system:differential} defined for every $\delta_x\in\mathbb{R}^n$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
 
-The following result is recalled from \cite{Manchester2014a} and provides a feedback law for system \eqref{eq:general system} given a feedback law for system \eqref{eq:general system:differential}.
+The following result is recalled from \cite{Manchester2014a} and provides a feedback law for system~\eqref{eq:general system} given a feedback law for system~\eqref{eq:general system:differential}.
 
 \begin{theorem}\label{prop:CCM Existence}
-	If there exists a control-contraction metric for system \eqref{eq:general system}, then a feedback law for system~\eqref{eq:general system} is obtained by integrating the feedback law for system~\eqref{eq:general system:differential} along geodesics.
+	If there exists a control-contraction metric for system \eqref{eq:general system}, then there exists a differential feedback law for system~\eqref{eq:general system:differential} rendering the equilibrium of the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop. Moreover, a stabilizing feedback law for system~\eqref{eq:general system} is obtained by integrating the differential feedback law for system~\eqref{eq:general system:differential} along geodesics.
 \end{theorem}
 
 As remarked in \cite{Manchester2014a}, the main advantage to look for control-contraction metric over control-Lyapunov functions is that the former case can be formulate in terms of a convex optimization problem while the later is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system~\eqref{eq:general system} are recalled below.
@@ -597,11 +597,17 @@ Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$
 \end{equation}
 Note that \eqref{eq:MI formulation} is linear on the matrix variables $W$ and $Y$, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the MI~\eqref{eq:MI formulation} can be solved with positive semidefinite programming techniques.
 
-Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system} and $K=YW^{-1}$, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every $x_0$ and $x_1\in\mathbb{R}^n$, there exist a smooth geodesic curve $\gamma:[0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
+Once a solution to MI~\eqref{eq:MI formulation} has been computed, the function defined, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, by
+	\begin{equation}\label{eq:differential feedback law}
+		\delta_k=Y(x,u)W^{-1}(x)\delta_x:=K(x,u)\delta_x
+	\end{equation}
+	is a differential feedback law that renders the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop with $\delta_k$.
+
+Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system}, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every $x_0$ and $x_1\in\mathbb{R}^n$, there exist a smooth geodesic curve $\gamma:[0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
 \begin{equation}\label{eq:contracting feedback law}
 	k^\ast(t,s)=u^\ast(t)+\int_0^s K(\gamma(\sigma),k^\ast(t,\sigma))\gamma'(\sigma)\,d\sigma\;,
 \end{equation}
-where $s\in[0,1]$, is a feedback law for system \eqref{eq:general system}.
+where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^\ast$ to system~\eqref{eq:general system} globally exponentially stable.
 
 From the above steps, even if the problem of imposing a particular structure on $Y$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} can not be distributely computed.
 
@@ -646,9 +652,11 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	\begin{equation*}
 		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
 	\end{equation*}
-	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system}.
+	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system} and, according to Theorem~\ref{prop:CCM Existence}, \eqref{eq:differential feedback law} is a differential feedback rendering the equilibrium of the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop.
 	
-	It remains to integrate $K\delta_x$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
+	
+	
+	It remains to integrate $\delta_k$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
 	\begin{equation}\label{eq:geodesic sum}
 		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds\;.
 	\end{equation}
@@ -666,15 +674,15 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	\end{align*}
 	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
 	
-	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system \eqref{eq:general system} that solves item 1 of Problem~\ref{problem formulation} is given by Equation \eqref{eq:contracting feedback law}. 
+	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system~\eqref{eq:general system} is given by Equation~\eqref{eq:contracting feedback law}. 
 	
 	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
 	\begin{equation}\label{eq:K ODE}
 		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast)\;.
 	\end{equation}
-	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the smoothness of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)\to\infty$, as $s\to\bar{s}$.
+	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the regularity of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)$ tends to infinity, as $s$ tends to $\bar{s}$.
 	
-	To show that a solution $k^\ast$ is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
+	To show that a solution $k^\ast$ to Equation~\eqref{eq:K ODE} is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
 		
 	Since the vector field $\overline{K}$ is smooth, it is also Lipschitzian. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
 	\begin{equation*}
@@ -682,7 +690,13 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	\end{equation*}
 	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely with respect to $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
 	
-	Note that, due to the structure of the matrix $K$, the feedback law $k^\ast$ defined in Equation \eqref{eq:contracting feedback law} solves item 2 of Problem~\ref{problem formulation}, i.e., $k^\ast\in\Xi$. This concludes the proof of Theorem \ref{thm:main result}.
+	Note that, due to the structure of the matrix $K$, for each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$ defined by  Equation~\eqref{eq:contracting feedback law} is given by
+	\begin{equation*}
+		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(\sigma),k_i^\ast(t,s))\widetilde{\gamma}_i'(\sigma)\,d\sigma\;,
+	\end{equation*}
+	where $\widetilde{\gamma}_i(\cdot)\in\mathbf{X}(\mathscr{K}(i))$.
+	
+	Problem~\ref{problem formulation}. This concludes the proof of Theorem \ref{thm:main result}.
 \end{proof}
 
 Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, the computation of the MI \eqref{eq:MI formulation}  cannot be done in parallel. The next section provides sufficient conditions to solve each component \eqref{eq:MI formulation} independently, and according to the structure defined by the set $\Xi$. Before presenting it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
