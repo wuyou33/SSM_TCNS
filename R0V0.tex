@@ -638,7 +638,7 @@ where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $
 
 The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the set $\mathbf{X}_i$ is empty, for all indexes $i\in\mathbb{N}_{[1,N]}$, and $\Xi$ reduces to the set $\mathcal{K}$ defined in \cite{Tanaka2011}.
 
-In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{N}_{[1,N]}$,  the set $\Xi$ is defined with $\mathbf{C}_j=\{e_j\}$, $\mathscr{K}(i)=\{i\}$ and $\mathbf{X}_i=\{x_i\}$.
+In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{N}_{[1,N]}$,  the set $\Xi$ is defined with $\mathbf{C}_j=\{e_j\}$, $\mathscr{K}(i)=\{i\}$ and $\mathbf{X}(\mathscr{K}(i))=\{x_i\}$.
 
 
 \begin{theorem}\label{thm:main result}
@@ -690,13 +690,12 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	\end{equation*}
 	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely with respect to $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
 	
-	Note that, due to the structure of the matrix $K$, for each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$ defined by  Equation~\eqref{eq:contracting feedback law} is given by
+	Note that, due to the constraint $Y\in\Xi$ and the fact that $W$ is diagonal, each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$, defined by  Equation~\eqref{eq:contracting feedback law}, is given by
 	\begin{equation*}
 		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(\sigma),k_i^\ast(t,s))\widetilde{\gamma}_i'(\sigma)\,d\sigma\;,
 	\end{equation*}
 	where $\widetilde{\gamma}_i(\cdot)\in\mathbf{X}(\mathscr{K}(i))$.
-	
-	Problem~\ref{problem formulation}. This concludes the proof of Theorem \ref{thm:main result}.
+	Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. This concludes the proof of Theorem \ref{thm:main result}.
 \end{proof}
 
 Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, the computation of the MI \eqref{eq:MI formulation}  cannot be done in parallel. The next section provides sufficient conditions to solve each component \eqref{eq:MI formulation} independently, and according to the structure defined by the set $\Xi$. Before presenting it, the following concept of block-diagonally dominant matrix is recalled from \cite{ZhangLiChen2006}.
