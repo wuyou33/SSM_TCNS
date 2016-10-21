@@ -518,7 +518,7 @@ As explained in Section \ref{sec:Illustration}, when more than five of these sys
 
 \subsection{Background}\label{sec:background}
 
-A \emph{Riemannian metric on $\mathbb{R}^n$} is a positive-definite bilinear form that depends smoothly on $x\in\mathbb{R}^n$. In a particular coordinate system, for any pair of vectors $\delta_0,\delta_1$ of $\mathbb{R}^n$ the \emph{metric} is defined as the inner product $\langle\delta_0,\delta_{ 1}\rangle_x=\delta_0^\top M(x)\delta_1$, where $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ is a smooth function. Consequently, local notions of norm $|\delta_0|_x^2=\langle\delta_0,\delta_0\rangle_x=:V(x,\delta_0)$ and orthogonality $\langle\delta_0,\delta_1\rangle_x=0$ can be defined. The metric is said to be \emph{bounded} if there exists constant values $\underline{m}>0$ and $\overline{m}>0$ such that, for every $x\in\mathbb{R}^n$, $\underline{m}I_n\leq M(x)\leq \overline{m}I_n$, where $I_n\in\mathbb{R}^{n\times n}$ is the identity matrix. From now, metric stands for a bounded Riemannian metric.
+A \emph{Riemannian metric on $\mathbb{R}^n$} is a symmetric positive-definite bilinear form that depends smoothly on $x\in\mathbb{R}^n$. In a particular coordinate system, for any pair of vectors $\delta_0,\delta_1$ of $\mathbb{R}^n$ the \emph{metric} is defined as the inner product $\langle\delta_0,\delta_{ 1}\rangle_x=\delta_0^\top M(x)\delta_1$, where $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ is a smooth function. Consequently, local notions of norm $|\delta_0|_x^2=\langle\delta_0,\delta_0\rangle_x=:V(x,\delta_0)$ and orthogonality $\langle\delta_0,\delta_1\rangle_x=0$ can be defined. The metric is said to be \emph{bounded} if there exists constant values $\underline{m}>0$ and $\overline{m}>0$ such that, for every $x\in\mathbb{R}^n$, $\underline{m}I_n\leq M(x)\leq \overline{m}I_n$, where $I_n\in\mathbb{R}^{n\times n}$ is the identity matrix. From now, metric stands for a bounded Riemannian metric.
 
 Let $\Gamma(x_0,x_1)$ be the set of piecewise-smooth curves $\gamma:[0,1]\to\mathbb{R}^n$ connecting $x_0=\gamma(0)$ to $x_1=\gamma(1)$. The \emph{length} and \emph{energy} of $\gamma$ are, respectively, defined by the values
 \begin{align*}
@@ -687,7 +687,7 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	Note that, due to the constraint $Y\in\Xi$ and the fact that $W$ is diagonal, each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$, defined by  Equation~\eqref{eq:contracting feedback law}, is given by
 	\begin{equation*}
-		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(\sigma),k_i^\ast(t,s))\widetilde{\gamma}_i'(\sigma)\,d\sigma\;,
+		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(\sigma),k_i^\ast(t,s))\frac{\partial\widetilde{\gamma}_i}{\partial \sigma}(\sigma)\,d\sigma\;,
 	\end{equation*}
 	where $\widetilde{\gamma}_i(\cdot)\in\mathbf{X}(\mathscr{K}(i))$.
 	Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. This concludes the proof of Theorem \ref{thm:main result}.
