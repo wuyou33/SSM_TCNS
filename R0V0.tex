@@ -521,9 +521,10 @@ As explained in Section \ref{sec:Illustration}, when more than five of these sys
 A \emph{Riemannian metric on $\mathbb{R}^n$} is a positive-definite bilinear form that depends smoothly on $x\in\mathbb{R}^n$. In a particular coordinate system, for any pair of vectors $\delta_0,\delta_1$ of $\mathbb{R}^n$ the \emph{metric} is defined as the inner product $\langle\delta_0,\delta_{ 1}\rangle_x=\delta_0^\top M(x)\delta_1$, where $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ is a smooth function. Consequently, local notions of norm $|\delta_0|_x^2=\langle\delta_0,\delta_0\rangle_x=:V(x,\delta_0)$ and orthogonality $\langle\delta_0,\delta_1\rangle_x=0$ can be defined. The metric is said to be \emph{bounded} if there exists constant values $\underline{m}>0$ and $\overline{m}>0$ such that, for every $x\in\mathbb{R}^n$, $\underline{m}I_n\leq M(x)\leq \overline{m}I_n$, where $I_n\in\mathbb{R}^{n\times n}$ is the identity matrix. From now, metric stands for a bounded Riemannian metric.
 
 Let $\Gamma(x_0,x_1)$ be the set of piecewise-smooth curves $\gamma:[0,1]\to\mathbb{R}^n$ connecting $x_0=\gamma(0)$ to $x_1=\gamma(1)$. The \emph{length} and \emph{energy} of $\gamma$ are, respectively, defined by the values
-\begin{equation*}
-	\ell(\gamma)=\int_0^1|\gamma'(s)|_{\gamma(s)}\,ds\ \text{and}\ e(\gamma)=\int_0^1|\gamma'(s)|_{\gamma(s)}^2\,ds\;.
-\end{equation*}
+\begin{align*}
+	\ell(\gamma)=&\ \int_0^1\left|\gamma_s(s)\right|_{\gamma(s)}\,ds\\
+	e(\gamma)=&\ \int_0^1V\left(\gamma(s),\gamma_s(s)\right)\,ds\;.
+\end{align*}
 The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{dist}}(x_0,x_1)$, is defined as the curve with the smallest length connecting them. This curve is said to be a \emph{geodesic} and it is the solution to the optimization problem
 \begin{equation}\label{eq:geodesic formulation}
 	\mathbin{\mathtt{dist}}(x_0,x_1)=\inf_{\gamma\in\Gamma(x_0,x_1)}\ell(\gamma)\;.
@@ -599,7 +600,7 @@ Once a solution to MI~\eqref{eq:MI formulation} has been computed, the function 
 
 Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system}, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every $x_0$ and $x_1\in\mathbb{R}^n$, there exist a smooth geodesic curve $\gamma:[0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
 \begin{equation}\label{eq:contracting feedback law}
-	k^\ast(t,s)=u^\ast(t)+\int_0^s K(\gamma(\sigma),k^\ast(t,\sigma))\gamma'(\sigma)\,d\sigma\;,
+	k^\ast(t,\sigma)=u^\ast(t)+\int_0^\sigma K(\gamma(s),k^\ast(t,s))\gamma_s(s)\,ds\;,
 \end{equation}
 where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^\ast$ to system~\eqref{eq:general system} globally exponentially stable.
 
@@ -636,7 +637,7 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 
 
 \begin{theorem}\label{thm:main result}
-	If there exist smooth functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ such that $W=W^\top\succ0$, $W$ is block-diagonal, $Y\in\Xi$ and the pair $(W,Y)$ is a solution to the MI \eqref{eq:MI formulation}, then there exists a solution to Problem~\ref{problem formulation}.
+	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system:differential}, then there exists a solution to Problem~\ref{problem formulation}.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
@@ -652,7 +653,7 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	It remains to integrate $\delta_k$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
 	\begin{equation}\label{eq:geodesic sum}
-		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N \varphi_i'(s_i)^\top M_i(\varphi_i(s_i))\varphi_i'(s_i)}\,ds\;.
+		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N V_i\left(\varphi_i(s_i),\tfrac{\partial \varphi_i}{\partial s_i}(s_i)\right)}\,ds\;.
 	\end{equation}
 
 	
@@ -672,7 +673,7 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
 	\begin{equation}\label{eq:K ODE}
-		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma'(s)=:\overline{K}(t,s,k^\ast)\;.
+		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma_s(s)=:\overline{K}(t,s,k^\ast)\;.
 	\end{equation}
 	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the regularity of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)$ tends to infinity, as $s$ tends to $\bar{s}$.
 	
