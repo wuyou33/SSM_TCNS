@@ -651,17 +651,17 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	
 	
-	It remains to integrate $\delta_k$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the length of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
+	It remains to integrate $\delta_k$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the energy of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
 	\begin{equation}\label{eq:geodesic sum}
-		\ell(\varphi)=\int_0^1\sqrt{\sum_{i=1}^N V_i\left(\varphi_i(s_i),\tfrac{\partial \varphi_i}{\partial s_i}(s_i)\right)}\,ds\;.
+		e(\varphi)=\int_0^1\sum_{i=1}^N V_i\left(\varphi_i(s_i),\tfrac{\partial \varphi_i}{\partial s_i}(s_i)\right)\,ds\;.
 	\end{equation}
 
 	
-	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. More precisely, 
+	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. Moreover, for a geodesic curve $\gamma$, $e(\gamma)=\ell(\gamma)$. Consequently,
 	\begin{equation*}
-		\gamma=\arg\inf\ell(\varphi)\Leftrightarrow\gamma_i=\arg\inf e(\varphi_i),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
+		\gamma_i=\arg\inf e(\varphi_i)\Leftrightarrow\gamma=\arg\inf\ell(\varphi),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
 	\end{equation*}
-	Consequently, the minimization of Equation~\eqref{eq:geodesic sum} can be computed in parallel. 
+	Thus, the minimization of Equation~\eqref{eq:geodesic sum} can be computed in parallel. 
 	
 	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
 	\begin{align*}
