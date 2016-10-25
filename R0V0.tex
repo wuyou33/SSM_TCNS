@@ -523,9 +523,9 @@ A \emph{Riemannian metric on $\mathbb{R}^n$} is a symmetric positive-definite bi
 Let $\Gamma(x_0,x_1)$ be the set of piecewise-smooth curves $\gamma:[0,1]\to\mathbb{R}^n$ connecting $x_0=\gamma(0)$ to $x_1=\gamma(1)$. The \emph{length} and \emph{energy} of $\gamma$ are, respectively, defined by the values
 \begin{align*}
 	\ell(\gamma)=&\ \int_0^1\left|\gamma_s(s)\right|_{\gamma(s)}\,ds\\
-	e(\gamma)=&\ \int_0^1V\left(\gamma(s),\gamma_s(s)\right)\,ds\;.
+	e(\gamma)=&\ \int_0^1V\left(\gamma(s),\gamma_s(s)\right)\,ds\;,
 \end{align*}
-The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{dist}}(x_0,x_1)$, is defined as the curve with the smallest length connecting them. This curve is said to be a \emph{geodesic} and it is the solution to the optimization problem
+where the notation $\gamma_s$ stands for the derivative $\tfrac{\partial\gamma}{\partial s}$. The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{dist}}(x_0,x_1)$, is defined as the curve with the smallest length connecting them. This curve is said to be a \emph{geodesic} and it is the solution to the optimization problem
 \begin{equation}\label{eq:geodesic formulation}
 	\mathbin{\mathtt{dist}}(x_0,x_1)=\inf_{\gamma\in\Gamma(x_0,x_1)}\ell(\gamma)\;.
 \end{equation}
@@ -653,7 +653,7 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	It remains to integrate $\delta_k$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the energy of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
 	\begin{equation}\label{eq:geodesic sum}
-		e(\varphi)=\int_0^1\sum_{i=1}^N V_i\left(\varphi_i(s_i),\tfrac{\partial \varphi_i}{\partial s_i}(s_i)\right)\,ds\;.
+		e(\varphi)=\int_0^1\sum_{i=1}^N V_i\left(\varphi_i(s_i),\frac{\partial \varphi_i}{\partial s_i}(s_i)\right)\,ds\;.
 	\end{equation}
 
 	
@@ -697,9 +697,11 @@ Although Theorem \ref{thm:main result} provides a methodology to design distribu
 
 \section{Distributed Design of Decentralized Controllers}
 
-Before showing how the MI \eqref{eq:MI formulation} can be computed in parallel, some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015}. 
+Before showing how the MI \eqref{eq:MI formulation} can be computed in parallel, some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}. 
 
-Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network \eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. 
+Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. Let $k\in\mathbb{N}_{[1,N]}$ be a constant value and $\{1,\ldots,k\}$ be a path. A \emph{chord} of a path is any edge joining two nonconsecutive nodes.  
+
+A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. 
 
 \begin{proposition}\label{prop:}
 	Let $p\in\mathbb{N}_{>0}$ be the number of cliques of the graph $\mathscr{G}$. Then, the MI~\eqref{eq:MI formulation} can be decomposed into $p$ matrix inequalities with smaller dimension.
