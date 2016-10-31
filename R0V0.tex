@@ -727,10 +727,12 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
 
 Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedding}. The above procedure can be applied for the chordal embedded graphs.
 
+\todo[inline]{Scalable diagonal dominance}
+
 Although the decomposition of the MI~\eqref{eq:MI formulation} into smaller components can distribute the burden of computation. These components (matrices) may still have a large dimension. However, by employing an appropriate choice for the basis of squared polynomials, the dimension of the matrix can be smaller \cite{AhmadiHall2016}. To that end, the following class of matrices is recalled from \cite{AhmadiHall2016}.
 
-\begin{definition}\label{def:}
-	a
+\begin{definition}
+	A matrix $M\in\mathbb{R}^{n\times n}$ is said to be \emph{diagonally dominant} if, for every index $i\in\mathbb{N}_{[1,n]}$, the inequality $2|a_{ii}|\geq\sum_{i=1}^n |a_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} if there exists a diagonal matrix $D$ such that $DAD$ is diagonally dominant.
 \end{definition}
 
 
