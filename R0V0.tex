@@ -704,7 +704,7 @@ For large scale systems, the dimension of the matrices $W$ and $Y$ can be a prob
 
 Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denote as $\mathscr{T}(\mathscr{G})$.
 
-\begin{proposition}\label{prop:}
+\begin{proposition}\label{prop:clique tree decomposition}
 	Let $p\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI formulation} can be decomposed into $p$ matrix inequalities with smaller dimension.
 \end{proposition}
 
@@ -719,9 +719,9 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
   	\end{equation*}
   	
   	Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into the set of matrix inequalities
-  	\begin{equation*}
+  	\begin{equation}\label{eq:MIF}
   		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,p]}\;.
-	\end{equation*}
+	\end{equation}
 	This concludes the proof.
 \end{proof}
 
@@ -729,12 +729,19 @@ Note that if a graph is not chordal, it is possible to make it chordal by adding
 
 \todo[inline]{Scalable diagonal dominance}
 
-Although the decomposition of the MI~\eqref{eq:MI formulation} into smaller components can distribute the burden of computation. These components (matrices) may still have a large dimension. However, by employing an appropriate choice for the basis of squared polynomials, the dimension of the matrix can be smaller \cite{AhmadiHall2016}. To that end, the following class of matrices is recalled from \cite{AhmadiHall2016}.
+Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. The negative definiteness of the $F$ can be shown using sum-of-squares optimization. To this end, a vector of monomials $z$ such that $-z^\top F z>0$ need to be found. This the objective of the remainder of this section.
 
-\begin{definition}
-	A matrix $M\in\mathbb{R}^{n\times n}$ is said to be \emph{diagonally dominant} if, for every index $i\in\mathbb{N}_{[1,n]}$, the inequality $2|a_{ii}|\geq\sum_{i=1}^n |a_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} if there exists a diagonal matrix $D$ such that $DAD$ is diagonally dominant.
+\begin{definition}\label{def:SDD}
+	A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $2|a_{ii}|\geq\sum_{i=1}^h |a_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
 \end{definition}
 
+The set of dd (resp. sdd) matrices $D\in\mathbb{R}^{h\times h}$ described in Definition~\ref{def:SDD} is denoted by $DD$ (resp. $SDD$). Let $z$ be a vector of all monomials on the variable $x$ of degree exactly $d$.
+
+\begin{definition}\label{def:sdsos}
+	A form $p:\mathbb{R}^h\to\mathbb{R}_{\geq0}$ is said to be a (resp. \emph{scaled-})\emph{diagonally-dominant-sum-of-squares} (dsos) (resp. (sdsos)) if there exists a (resp. scalable) diagonally dominant matrix $D$ such that $p=z^\top Dz$.
+\end{definition}
+
+Consider the class of polynomials $p$ defined by $\mathcal{S}\mathcal{D}\mathcal{S}\mathcal{O}\mathcal{S}(U)=\{p:p = zU^\top DUz, \text{ for some sdd matrix } D\}$. The feasibility verification of the MI~\ref{eq:MI formulation} over $\mathcal{S}\mathcal{D}\mathcal{S}\mathcal{O}\mathcal{S}(U)$
 
 \begin{algorithm}
         \caption{Some alg}
