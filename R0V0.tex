@@ -729,19 +729,41 @@ Note that if a graph is not chordal, it is possible to make it chordal by adding
 
 \todo[inline]{Scalable diagonal dominance}
 
-Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. The negative definiteness of the $F$ can be shown using sum-of-squares optimization. To this end, a vector of monomials $z$ such that $-z^\top F z>0$ need to be found. This the objective of the remainder of this section.
+Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the matrix $F$ has some structure on its diagonal, then the negative definiteness can be shown using a the optimization method proposed in \cite{AhmadiHall2016}.
 
 \begin{definition}\label{def:SDD}
-	A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $2|a_{ii}|\geq\sum_{i=1}^h |a_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
+	A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $2|a_{ii}|\geq\sum_{i=1}^h |a_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}\in\mathbb{R}_{\geq0}^{h\times h}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
 \end{definition}
 
-The set of dd (resp. sdd) matrices $D\in\mathbb{R}^{h\times h}$ described in Definition~\ref{def:SDD} is denoted by $DD$ (resp. $SDD$). Let $z$ be a vector of all monomials on the variable $x$ of degree exactly $d$.
+The set of dd (resp. sdd) matrices $D\in\mathbb{R}^{h\times h}$ described in Definition~\ref{def:SDD} is denoted by $DD_h$ (resp. $SDD_h$). Denote the set of positive definite matrices parameterized by a matrix $U\in\mathbb{R}^{h\times h}$, i.e.,
+\begin{subequations}
+		\begin{equation}\label{eq:}
+			\mathbf{DD}(U)=\{P\succ0,P\in\mathbb{R}^{h\times h}:P=UDU, D\in DD_h\}
+		\end{equation}
+		\begin{equation}\label{eq:}
+			\mathbf{SDD}(U)=\{P\succ0,P\in\mathbb{R}^{h\times h}:P=UDU, D\in SDD_h\}
+		\end{equation}
+\end{subequations}
 
-\begin{definition}\label{def:sdsos}
-	A form $p:\mathbb{R}^h\to\mathbb{R}_{\geq0}$ is said to be a (resp. \emph{scaled-})\emph{diagonally-dominant-sum-of-squares} (dsos) (resp. (sdsos)) if there exists a (resp. scalable) diagonally dominant matrix $D$ such that $p=z^\top Dz$.
-\end{definition}
+The MI~\eqref{eq:MIF} can be casted into the following second-order cone programming
+\begin{subequations}
+\begin{equation}\label{eq:DSOS}
+\begin{array}{rl}
+SDSOS_l:=\underset{}{\min} & t \\
+\text{subject to} &  -F_l\in\mathbf{SDD}(U_l)\;,
+\end{array}
+\end{equation}
+which consists of verifying the feasibility $-F_l\in\mathbf{SDD}(U_l)$, where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is defined as
+\begin{equation}
+\begin{array}{rcl}
+	U_0&=&\ I_h\\
+	U_{l+1}&=&\mathbin{\mathtt{chol}}(F_l)\;.
+\end{array}
+\end{equation}
+\end{subequations}
 
-Consider the class of polynomials $p$ defined by $\mathcal{S}\mathcal{D}\mathcal{S}\mathcal{O}\mathcal{S}(U)=\{p:p = zU^\top DUz, \text{ for some sdd matrix } D\}$. The feasibility verification of the MI~\ref{eq:MI formulation} over $\mathcal{S}\mathcal{D}\mathcal{S}\mathcal{O}\mathcal{S}(U)$
+
+As shown in \cite{AhmadiHall2016} if there exists a solution to \eqref{eq:DSOS} with $l=0$, then
 
 \begin{algorithm}
         \caption{Some alg}
