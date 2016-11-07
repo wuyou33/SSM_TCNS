@@ -729,23 +729,17 @@ Note that if a graph is not chordal, it is possible to make it chordal by adding
 
 \todo[inline]{Scalable diagonal dominance}
 
-Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the matrix $F$ has some structure on its diagonal, then the negative definiteness can be shown using a the optimization method proposed in \cite{AhmadiHall2016}.
+Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the matrix $F$ has some structure on its diagonal, then the negative definiteness can be shown using the optimization method proposed in \cite{AhmadiHall2016}.
 
 \begin{definition}\label{def:SDD}
 	A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $2|a_{ii}|\geq\sum_{i=1}^h |a_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}\in\mathbb{R}_{\geq0}^{h\times h}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
 \end{definition}
 
-The set of dd (resp. sdd) matrices $D\in\mathbb{R}^{h\times h}$ described in Definition~\ref{def:SDD} is denoted by $DD_h$ (resp. $SDD_h$). Denote the set of positive definite matrices parameterized by a matrix $U\in\mathbb{R}^{h\times h}$, i.e.,
-\begin{subequations}
-		\begin{equation}\label{eq:}
-			\mathbf{DD}(U)=\{P\succ0,P\in\mathbb{R}^{h\times h}:P=UDU, D\in DD_h\}
-		\end{equation}
+The set of scalable diagonally dominant matrices $D\in\mathbb{R}^{h\times h}$ described in Definition~\ref{def:SDD} is denoted by $SDD_h$. Let
 		\begin{equation}\label{eq:}
 			\mathbf{SDD}(U)=\{P\succ0,P\in\mathbb{R}^{h\times h}:P=UDU, D\in SDD_h\}
 		\end{equation}
-\end{subequations}
-
-The MI~\eqref{eq:MIF} can be casted into the following second-order cone programming
+be the set of positive definite matrices parameterized by a matrix $U\in\mathbb{R}^{h\times h}$. If the MI~\eqref{eq:MIF} can be casted into the following second-order cone programming
 \begin{subequations}
 \begin{equation}\label{eq:DSOS}
 \begin{array}{rl}
