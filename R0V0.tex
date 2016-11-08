@@ -523,14 +523,14 @@ As explained in Section \ref{sec:Illustration}, when more than five of these sys
 
 A \emph{Riemannian metric on $\mathbb{R}^n$} is a symmetric positive-definite bilinear form that depends smoothly on $x\in\mathbb{R}^n$. In a particular coordinate system, for any pair of vectors $\delta_0,\delta_1$ of $\mathbb{R}^n$ the \emph{metric} is defined as the inner product $\langle\delta_0,\delta_{ 1}\rangle_x=\delta_0^\top M(x)\delta_1$, where $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ is a smooth function. Consequently, local notions of norm $|\delta_0|_x^2=\langle\delta_0,\delta_0\rangle_x=:V(x,\delta_0)$ and orthogonality $\langle\delta_0,\delta_1\rangle_x=0$ can be defined. The metric is said to be \emph{bounded} if there exists constant values $\underline{m}>0$ and $\overline{m}>0$ such that, for every $x\in\mathbb{R}^n$, $\underline{m}I_n\leq M(x)\leq \overline{m}I_n$, where $I_n\in\mathbb{R}^{n\times n}$ is the identity matrix. From now, metric stands for a bounded Riemannian metric.
 
-Let $\Gamma(x_0,x_1)$ be the set of piecewise-smooth curves $\gamma:[0,1]\to\mathbb{R}^n$ connecting $x_0=\gamma(0)$ to $x_1=\gamma(1)$. The \emph{length} and \emph{energy} of $\gamma$ are, respectively, defined by the values
+Let $\Gamma(x_0,x_1)$ be the set of piecewise-smooth curves $c:[0,1]\to\mathbb{R}^n$ connecting $x_0=c(0)$ to $x_1=c(1)$. The \emph{length} and \emph{energy} of $c$ are, respectively, defined by the values
 \begin{align*}
-	\ell(\gamma)=&\ \int_0^1\left|\gamma_s(s)\right|_{\gamma(s)}\,ds\\
-	e(\gamma)=&\ \int_0^1V\left(\gamma(s),\gamma_s(s)\right)\,ds\;,
+	\ell(\gamma)=&\ \int_0^1\left|c_s(s)\right|_{c(s)}\,ds\\
+	e(\gamma)=&\ \int_0^1V\left(c(s),c_s(s)\right)\,ds\;,
 \end{align*}
-where the notation $\gamma_s$ stands for the derivative $\tfrac{\partial\gamma}{\partial s}$. The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{dist}}(x_0,x_1)$, is defined as the curve with the smallest length connecting them. This curve is said to be a \emph{geodesic} and it is the solution to the optimization problem
+where the notation $c_s$ stands for the derivative $\tfrac{\partial c}{\partial s}$. The Riemannian distance between $x_0$ and $x_1$, denoted as $\mathbin{\mathtt{dist}}(x_0,x_1)$, is defined as the curve with the smallest length connecting them. This curve is said to be a \emph{geodesic} and it is the solution to the optimization problem
 \begin{equation}\label{eq:geodesic formulation}
-	\mathbin{\mathtt{dist}}(x_0,x_1)=\inf_{\gamma\in\Gamma(x_0,x_1)}\ell(\gamma)\;.
+	\mathbin{\mathtt{dist}}(x_0,x_1)=\inf_{c\in\Gamma(x_0,x_1)}\ell(c)\;.
 \end{equation}
 
 A suitable notion to deal with exponential convergence of pair of solutions to \eqref{eq:general system} is provided by the \emph{differential} (also known as variational or prolonged) dynamical system
@@ -601,9 +601,9 @@ Once a solution to MI~\eqref{eq:MI formulation} has been computed, the function 
 	\end{equation}
 	is a differential feedback law that renders the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop with $\delta_k$.
 
-Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system}, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every $x_0$ and $x_1\in\mathbb{R}^n$, there exist a smooth geodesic curve $\gamma:[0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
+Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system}, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every pair of solutions $X(\cdot,x,u)$ and $X^\ast(\cdot,x^\ast,u^\ast)\in\mathbb{R}^n$, and at each time instant $t\geq0$,  there exist a smooth geodesic curve $\gamma:\{t\}\times [0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
 \begin{equation}\label{eq:contracting feedback law}
-	k^\ast(t,\sigma)=u^\ast(t)+\int_0^\sigma K(\gamma(s),k^\ast(t,s))\gamma_s(s)\,ds\;,
+	k^\ast(t,\sigma)=u^\ast(t)+\int_0^\sigma K(\gamma(t,s),k^\ast(t,s))\gamma_s(t,s)\,ds\;,
 \end{equation}
 where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^\ast$ to system~\eqref{eq:general system} globally exponentially stable.
 
@@ -654,21 +654,21 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	
 	
-	It remains to integrate $\delta_k$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the energy of any curve $\varphi:[0,1]\to\mathbb{R}^n$ satisfies the following equation
+	It remains to integrate $\delta_k$ to obtain a feedback law for system \eqref{eq:general system} satisfying the constraints of Problem \ref{problem formulation}. Because $M$ is a block-diagonal matrix, the energy of any curve $c:[0,1]\to\mathbb{R}^n$ satisfies the following equation
 	\begin{equation}\label{eq:geodesic sum}
-		e(\varphi)=\int_0^1\sum_{i=1}^N V_i\left(\varphi_i(s_i),\frac{\partial \varphi_i}{\partial s_i}(s_i)\right)\,ds\;.
+		e(c)=\int_0^1\sum_{i=1}^N V_i\left(c_i(s_i),\frac{\partial c_i}{\partial s_i}(s_i)\right)\,ds\;.
 	\end{equation}
 
 	
 	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. Moreover, for a geodesic curve $\gamma$, $e(\gamma)=\ell(\gamma)$. Consequently,
 	\begin{equation*}
-		\gamma_i=\arg\inf e(\varphi_i)\Leftrightarrow\gamma=\arg\inf\ell(\varphi),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
+		\gamma_i=\arg\inf e(c_i)\Leftrightarrow\gamma=\arg\inf\ell(c),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
 	\end{equation*}
 	Thus, the minimization of Equation~\eqref{eq:geodesic sum} can be computed in parallel. 
 	
 	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
 	\begin{align*}
-		\gamma_i=\arg\inf_{\varphi_i\in\Gamma(x_i^\ast,x_i)} e(\varphi_i)\;.
+		\gamma_i=\arg\inf_{c_i\in\Gamma(x_i^\ast,x_i)} e(c_i)\;.
 	\end{align*}
 	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
 	
@@ -676,7 +676,7 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
 	\begin{equation}\label{eq:K ODE}
-		\frac{dk^\ast}{ds}(t,s)=K(\gamma(s),k^\ast(t,s))\gamma_s(s)=:\overline{K}(t,s,k^\ast)\;.
+		\tfrac{dk^\ast}{ds}(t,s)=K(\gamma(t,s),k^\ast(t,s))\gamma_s(t,s)=:\overline{K}(t,s,k^\ast)\;.
 	\end{equation}
 	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the regularity of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)$ tends to infinity, as $s$ tends to $\bar{s}$.
 	
@@ -690,13 +690,15 @@ In case of full decentralization with $n_i=m_i=1$, for every index $i\in\mathbb{
 	
 	Note that, due to the constraint $Y\in\Xi$ and the fact that $W$ is diagonal, each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$, defined by  Equation~\eqref{eq:contracting feedback law}, is given by
 	\begin{equation*}
-		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(\sigma),k_i^\ast(t,s))\frac{\partial\widetilde{\gamma}_i}{\partial \sigma}(\sigma)\,d\sigma\;,
+		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma),k_i^\ast(t,\sigma))\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
 	\end{equation*}
 	where $\widetilde{\gamma}_i(\cdot)\in\mathbf{X}(\mathscr{K}(i))$.
 	Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. This concludes the proof of Theorem \ref{thm:main result}.
 \end{proof}
 
-Although Theorem \ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, the computation of the MI \eqref{eq:MI formulation} not has been said about the parallel compution of the MI~\eqref{eq:MI formulation}. The next section provides sufficient conditions to parallelize the search for a solution to the MI~ \eqref{eq:MI formulation}.
+Based on \cite{Manchester2014a}, the energy function also provides a control-Lyapunov function for system~\eqref{eq:general system} which can be employed to design a distributed controller for system~\eqref{eq:general system}.
+
+Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, the computation of the MI \eqref{eq:MI formulation} not has been said about the parallel compution of the MI~\eqref{eq:MI formulation}. The next section provides sufficient conditions to parallelize the search for a solution to the MI~ \eqref{eq:MI formulation}.
 
 \section{Distributed Design of Decentralized Controllers}
 
@@ -727,24 +729,25 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
 
 Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedding}. The above procedure can be applied for the chordal embedded graphs.
 
-\todo[inline]{Scalable diagonal dominance}
-
-Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the matrix $F$ has some structure on its diagonal, then the negative definiteness can be shown using the optimization method proposed in \cite{AhmadiHall2016}.
+Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the search for the matrix $F$ is restricted to have some structure on the diagonal, then the negative definiteness can be shown using the optimization method proposed in \cite{AhmadiHall2016}.
 
 \begin{definition}\label{def:SDD}
-	A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $2|a_{ii}|\geq\sum_{i=1}^h |a_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}\in\mathbb{R}_{\geq0}^{h\times h}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
+	A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $|D_{ii}|\geq\sum_{i=1}^h |D_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}\in\mathbb{R}_{\geq0}^{h\times h}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
 \end{definition}
 
-The set of scalable diagonally dominant matrices $D\in\mathbb{R}^{h\times h}$ described in Definition~\ref{def:SDD} is denoted by $SDD_h$. Let
-		\begin{equation}\label{eq:}
-			\mathbf{SDD}(U)=\{P\succ0,P\in\mathbb{R}^{h\times h}:P=UDU, D\in SDD_h\}
-		\end{equation}
-be the set of positive definite matrices parameterized by a matrix $U\in\mathbb{R}^{h\times h}$. If the MI~\eqref{eq:MIF} can be casted into the following second-order cone programming
+The set of scalable diagonally dominant matrices is denoted by $SDD_h$. Let
+		\begin{align*}
+			\mathbf{SDD}(U)=\{P\succ0,P\in\mathbb{R}^{h\times h}:P=U^\top DU,\\
+			 D\in SDD_h\}
+		\end{align*}
+be the set of positive definite matrices parameterized by a matrix $U\in\mathbb{R}^{h\times h}$. 
+
+Whenever the matrix $A$ is scalable diagonally dominant and the choice for $Y$ preserves this structure, the MI~\eqref{eq:MIF} can be cast into the following programming
 \begin{subequations}
 \begin{equation}\label{eq:DSOS}
 \begin{array}{rl}
-SDSOS_l:=\underset{}{\min} & t \\
-\text{subject to} &  -F_l\in\mathbf{SDD}(U_l)\;,
+SDSOS_l:=\underset{}{\min} & t^2 \\
+\text{subject to} &  -F_l\in\mathbf{SDD}(U_l)
 \end{array}
 \end{equation}
 which consists of verifying the feasibility $-F_l\in\mathbf{SDD}(U_l)$, where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is defined as
@@ -755,20 +758,9 @@ which consists of verifying the feasibility $-F_l\in\mathbf{SDD}(U_l)$, where th
 \end{array}
 \end{equation}
 \end{subequations}
+Note that, when the requirement of $A$ is diagonally dominant can be interpreted as the network having a weak coupling.
 
 
-As shown in \cite{AhmadiHall2016} if there exists a solution to \eqref{eq:DSOS} with $l=0$, then
-
-\begin{algorithm}
-        \caption{Some alg}
-        \begin{algorithmic}[1]	
-            \REQUIRE $U_0=I$
-            \STATE d = a + b + c
-            \STATE d = d/2
-            \STATE d = d/3
-            \RETURN d
-        \end{algorithmic}
-    \end{algorithm}
 
 
 \subsection{Discussion}
