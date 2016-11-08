@@ -6,6 +6,8 @@
 % 																			   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pdfoutput=1 % to upload to arXiv with the hyperref package
+
 \documentclass[10pt,twocolumn,twoside]{IEEEtran}
 
 % Some very useful LaTeX packages include:
@@ -114,7 +116,7 @@ firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bib
 
 % *** CROSS-REF PACKAGES ***
 
-\usepackage{hyperref}% backref linktocpage pagebackref
+\usepackage[hyperindex,breaklinks]{hyperref}% backref linktocpage pagebackref
 %
 \hypersetup{
 % Uncomment the line below to remove all links (to references, figures, tables, etc)
@@ -124,7 +126,7 @@ colorlinks=true, linktocpage=true, pdfstartpage=1, pdfstartview=FitV,
 %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV, 
 breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,
 plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,
-hypertexnames=true, pdfhighlight=/O, urlcolor=red!50!black, linkcolor=blue!75!black, citecolor=green!50!black,
+hypertexnames=true, pdfhighlight=/O, urlcolor=red!50!black, linkcolor=green!50!black, citecolor=green!50!black,
 %
 % PDF file meta-information
 %
