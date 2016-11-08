@@ -826,7 +826,7 @@ n+d\\ d
 \end{equation*}
 \cite{Waki2006}. Consequently, when no structural constraints are imposed on $Y$, this verification can lead to
 \begin{equation*}
-N^2\begin{pmatrix}
+N\dfrac{N+1}{2}\begin{pmatrix}
 n+d\\ d
 \end{pmatrix}^2
 \end{equation*}
@@ -834,13 +834,13 @@ equations to be solved. This motivates the approach proposed in this paper.
 
 To show the advantages of the method proposed in this paper, a benchmark was run for a network composes by $N=4$ systems and in three scenarios, according to the constraints imposed on the matrix $Y$. Namely, the unconstrained case, the ``neighbor case'', and the fully decentralized (diagonal) case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor case'' and up to $N=512$ systems for the fully decentralized (diagonal) case.
 
-In all cases, the matrix $W$ was required to have a block-diagonal structure as follows
+In all cases, the computed matrix $W$ has a block-diagonal structure as follows
 \begin{equation*}
  W=\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),
 \end{equation*}
 the definition of the matrices $W_a$ and $W_b$ differs, according to each case considered.
 
-In the first one, no constraints were imposed on the matrix $Y$ (it was defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $j\in\mathbb{N}_{[1,8]}$, $\mathbf{C}_j=\mathbb{R}^8$, and for each $i$ $\mathbf{X}(\mathscr{K}(k))=\{x\}$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to \eqref{eq:MI formulation} are
+In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $j\in\mathbb{N}_{[1,8]}$, $\mathbf{C}_j=\mathbb{R}^8$, and $\mathbf{X}(\mathscr{K}(k))=\{x\}$, for each $k\in\mathbb{N}_{[1,4]}$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to \eqref{eq:MI formulation} are
 \begin{equation*}
 		W_a=\mathbin{\mathtt{diag}}\left(
  1.27,1.53\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.53\right)
@@ -862,7 +862,9 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 \end{equation}
 \end{figure*}
 
-For the remaining cases, the constraints imposed on the matrix $Y$ are such that the matrix of the left-hand-side of the MI \eqref{eq:MI formulation} is given by
+For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example}. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. 
+
+The constraints imposed on the matrix $Y$ are such that the matrix of the left-hand-side of the MI \eqref{eq:MI formulation} is given by
 \begin{equation*}
 	\mathbin{\mathtt{diag}}\left(\begin{bmatrix}
 		T_{11}&T_{12}\\
@@ -872,9 +874,14 @@ For the remaining cases, the constraints imposed on the matrix $Y$ are such that
 		T_{(N-1)N}^\top&T_{NN}
 	\end{bmatrix}\right).
 \end{equation*}
-This implies that sparsity can be exploited to decrease the number of equations needed to verify the MI \eqref{eq:MI formulation}.
 
-In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. Consequently, for each index $i\in\mathbb{N}_{[1,4]}$, the non-identically zero elements of the $i$-th line of the matrix $Y$ depend on the variables $q_{i-1}$, $q_i$ and $q_{i+1}$ (note that, for convenience, $q_0:=q_1$ and $q_5:=q_4$).
+In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. 
+
+\todo[inline]{From here}
+
+For each $j\in\mathbb{N}$, $\mathbf{C}_j$
+
+Consequently, for each index $i\in\mathbb{N}_{[1,4]}$, the non-identically zero elements of the $i$-th line of the matrix $Y$ depend on the variables $q_{i-1}$, $q_i$ and $q_{i+1}$ (note that, for convenience, $q_0:=q_1$ and $q_5:=q_4$).
 
 
 The time taken by the parser to solve the MI \eqref{eq:MI formulation}, in this case, was 3.5 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
