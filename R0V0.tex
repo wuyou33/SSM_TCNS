@@ -856,14 +856,12 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 \end{equation}
 \end{figure*}
 
-For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example}. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. 
-
-The constraints imposed on the matrix $Y$ are such that the matrix of the left-hand-side of the MI \eqref{eq:MI formulation} is given by
+For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example}. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into $N-1$ cliques  described by the matrix
 \begin{equation*}
-	\mathbin{\mathtt{diag}}\left(\begin{bmatrix}
-		T_{11}&T_{12}\\
-		T_{12}^\top&T_{22}
-	\end{bmatrix}\right).
+	F_k=\begin{bmatrix}
+		F_{11}&F_{12}\\
+		F_{12}^\top&F_{22}
+	\end{bmatrix}\;.
 \end{equation*}
 
 In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. The sets $\mathbf{C}_j$, $j\in\mathbb{N}_{[1,8]}$, are defined as
@@ -905,7 +903,14 @@ for pair of indexes $(i,j)$ given as $(1,1)$, $(2,3)$, $(3,5)$ and $(4,6)$. Also
 \end{figure*}
  
 
-In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI \eqref{eq:MI formulation} was 2.6 seconds. In this case, $\mathscr{K}_Y(i)=\{j\in\mathbb{N}_{[1,N]}\setminus\mathscr{K}(i):Y_{ij}\equiv0\}$, where $\mathscr{K}(i)=\{i\}$. Solving the MI \eqref{eq:MI formulation} the following components the matrices $W$ and $Y$ were obtained
+In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI~\eqref{eq:MI formulation} was 2.6 seconds. In this case, $\mathscr{K}(i)=\{i\}$, 
+\begin{equation*}
+	\begin{array}{rl}
+		\mathbf{C}_1=\mathbf{C}_2=\{e_1\},&\mathbf{C}_3=\mathbf{C}_4=\{e_2\},\\
+		\mathbf{C}_5=\mathbf{C}_6=\{e_3\},&\mathbf{C}_7=\mathbf{C}_8=\{e_4\}
+	\end{array}
+\end{equation*}
+Solving the MI \eqref{eq:MI formulation} the following components the matrices $W$ and $Y$ were obtained
 \begin{align*}
  W=&\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),\\
  Y=&\mathbin{\mathtt{diag}}\left(Y_1,Y_2,Y_3,Y_4\right)
