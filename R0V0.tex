@@ -731,11 +731,9 @@ Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topolo
 
 Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedding}. The above procedure can be applied for the chordal embedded graphs.
 
-Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the search for the matrix $F$ is restricted to have some structure on the diagonal, then the negative definiteness can be shown using the optimization method proposed in \cite{AhmadiHall2016}.
+Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the vector fields $f$ and $B$ are polynomials and the search for the matrix $F$ is restricted to have appropriate diagonal structure, then the negative definiteness can be shown using the optimization method proposed in \cite{AhmadiHall2016}.
 
-\begin{definition}\label{def:SDD}
-	A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $|D_{ii}|\geq\sum_{i=1}^h |D_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}\in\mathbb{R}_{\geq0}^{h\times h}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
-\end{definition}
+A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $|D_{ii}|\geq\sum_{i=1}^h |D_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}\in\mathbb{R}_{\geq0}^{h\times h}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
 
 The set of scalable diagonally dominant matrices is denoted by $SDD_h$. Let
 		\begin{align*}
@@ -744,15 +742,14 @@ The set of scalable diagonally dominant matrices is denoted by $SDD_h$. Let
 		\end{align*}
 be the set of positive definite matrices parameterized by a matrix $U\in\mathbb{R}^{h\times h}$. 
 
-Whenever the matrix $A$ is scalable diagonally dominant and the choice for $Y$ preserves this structure, the MI~\eqref{eq:MIF} can be cast into the following programming
+Whenever the matrix $A$ is scalable diagonally dominant and the choice for $Y$ preserves this structure, the MI~\eqref{eq:MIF} can be relaxed into the following sum-of-squares feasibility program:
 \begin{subequations}
 \begin{equation}\label{eq:DSOS}
-\begin{array}{rl}
-SDSOS_l:=\underset{}{\min} & t^2 \\
-\text{subject to} &  -F_l\in\mathbf{SDD}(U_l)
+\begin{array}{rcl}
+-F_l&\in&\mathbf{SDD}(U_l)\;,
 \end{array}
 \end{equation}
-which consists of verifying the feasibility $-F_l\in\mathbf{SDD}(U_l)$, where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is defined as
+where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is defined as
 \begin{equation}
 \begin{array}{rcl}
 	U_0&=&\ I_h\\
@@ -830,7 +827,7 @@ N\dfrac{N+1}{2}\begin{pmatrix}
 n+d\\ d
 \end{pmatrix}^2
 \end{equation*}
-equations to be solved. This motivates the approach proposed in this paper.
+monomials to be computed. This motivates the approach proposed in this paper.
 
 To show the advantages of the method proposed in this paper, a benchmark was run for a network composes by $N=4$ systems and in three scenarios, according to the constraints imposed on the matrix $Y$. Namely, the unconstrained case, the ``neighbor case'', and the fully decentralized (diagonal) case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor case'' and up to $N=512$ systems for the fully decentralized (diagonal) case.
 
@@ -875,11 +872,16 @@ The constraints imposed on the matrix $Y$ are such that the matrix of the left-h
 	\end{bmatrix}\right).
 \end{equation*}
 
-In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. 
+In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. The sets $\mathbf{C}_j$, $j\in\mathbb{N}_{[1,8]}$, are defined as
+\begin{equation*}
+	\begin{array}{rcl}
+		\mathbf{C}_1=\mathbf{C}_2=\begin{bmatrix}1, 1, 0, 0\end{bmatrix}^\top
+	\end{array} 
+\end{equation*}
 
 \todo[inline]{From here}
 
-For each $j\in\mathbb{N}$, $\mathbf{C}_j$
+For each 
 
 Consequently, for each index $i\in\mathbb{N}_{[1,4]}$, the non-identically zero elements of the $i$-th line of the matrix $Y$ depend on the variables $q_{i-1}$, $q_i$ and $q_{i+1}$ (note that, for convenience, $q_0:=q_1$ and $q_5:=q_4$).
 
