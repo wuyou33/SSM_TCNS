@@ -874,17 +874,13 @@ The constraints imposed on the matrix $Y$ are such that the matrix of the left-h
 
 In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. The sets $\mathbf{C}_j$, $j\in\mathbb{N}_{[1,8]}$, are defined as
 \begin{equation*}
-	\begin{array}{rcl}
-		\mathbf{C}_1=\mathbf{C}_2=\begin{bmatrix}1, 1, 0, 0\end{bmatrix}^\top
+	\begin{array}{rl}
+		\mathbf{C}_1=\mathbf{C}_2=\left\{\begin{bmatrix}1, 1, 0, 0\end{bmatrix}^\top\right\},&\mathbf{C}_3=\mathbf{C}_4=\left\{\begin{bmatrix}1, 1, 1, 0\end{bmatrix}^\top\right\},\\
+		\mathbf{C}_5=\mathbf{C}_6=\left\{\begin{bmatrix}0, 1, 1, 1\end{bmatrix}^\top\right\},&		    \mathbf{C}_7=\mathbf{C}_8=\left\{\begin{bmatrix}0, 0, 1, 1\end{bmatrix}^\top\right\}\;.
 	\end{array} 
 \end{equation*}
 
-\todo[inline]{From here}
-
-For each 
-
-Consequently, for each index $i\in\mathbb{N}_{[1,4]}$, the non-identically zero elements of the $i$-th line of the matrix $Y$ depend on the variables $q_{i-1}$, $q_i$ and $q_{i+1}$ (note that, for convenience, $q_0:=q_1$ and $q_5:=q_4$).
-
+The sets $\mathbf{X}(\mathscr{K}(\cdot))$ are defined as $\mathbf{X}(\mathscr{K}(1))=\{q_1,q_2\}$,  $\mathbf{X}(\mathscr{K}(2))=\{q_1,q_2,q_3\}$, $\mathbf{X}(\mathscr{K}(3))=\{q_2,q_3,q_4\}$ and $\mathbf{X}(\mathscr{K}(4))=\{q_3,q_4\}$.
 
 The time taken by the parser to solve the MI \eqref{eq:MI formulation}, in this case, was 3.5 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
 \begin{equation*}
