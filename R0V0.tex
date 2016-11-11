@@ -756,8 +756,22 @@ where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is de
 \end{subequations}
 Note that, when the requirement of $A$ is diagonally dominant can be interpreted as the network having a weak coupling.
 
+The alternating direction method of multipliers (ADMM) provides a framework to solve the MI~\eqref{eq:MI formulation} in parallel \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this framework, define the sets $\mathbf{Y}^n=\{Y\in\mathbb{R}^{m\times n}\}$, $\mathbf{S}_{\succ0}^n=\{W\in\mathbb{R}^{n\times n}:W\succ0,W=W^\top\}$, $\mathbf{T}=\{(W_1,\ldots,W_N,Y)\in \mathbb{R}^{n_i\times n_i}\times \mathbb{R}^{m\times n}:\mathbin{\mathtt{diag}}(W_1,\ldots,W_N),T\prec0\}$. For a set $\mathbf{G}$ define the indicator function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
+\begin{equation*}
+	H(\mathbf{G},g)=\begin{cases}
+									0,&g\in \mathbf{G}\\
+									\infty,&\text{Otherwise.}
+								\end{cases}
+\end{equation*}
 
-
+The MI~\eqref{eq:MI formulation} can be cast into the following optimization problem
+\begin{equation*}
+	\begin{array}{rl}
+		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N,Z_{N+1}))+\sum_{i=1}^N H(\mathbf{S}_{\succ0}^{n_i},W_i)\\
+		\text{subject to}&W_i-Z_i=0,\quad \forall i\in\mathbb{N}_{[1,N]}\\
+		&Y-Z_{N+1}=0
+	\end{array}
+\end{equation*}
 
 \subsection{Discussion}
 
