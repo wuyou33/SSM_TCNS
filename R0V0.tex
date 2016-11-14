@@ -505,6 +505,12 @@ A stronger condition than the global exponential stabilizability of a particular
 	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,x^\ast,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
 \end{definition}
 
+Let $N>0$ be an integer, for each index $i\in\mathbb{N}_{[1,N]}$, system~\eqref{eq:general system} can be decomposed into smaller components as follows.
+\begin{equation}\label{eq:subsystem}
+	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
+\end{equation}
+where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}.
+
 At this point, the problem under consideration in this paper can be stated as follows.
 
 \begin{problem}\label{problem formulation}
@@ -551,14 +557,14 @@ Similarly to \eqref{eq:general system}, given a control $\delta_u$ for system \e
 
 Lyapunov stability notions of solutions to \eqref{eq:general system:differential} are similar to those of linear time-varying systems (LTVS) (see \cite{Hespanha:2009} for more information on LTVS). 
 
-The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. If the norm of every solution $\Delta_x(t,x,\delta_x,u,\delta u)$ converges to zero exponentially, as the time tends to infinity, then every pair of solutions to \eqref{eq:general system} converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
+The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively. If the norm of every solution $\Delta_x(t,x,\delta_x,u,\delta_u)$ converges to zero exponentially, as the time tends to infinity, then every pair of solutions to \eqref{eq:general system} converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
 
 A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
 
 \begin{definition}\label{def:}
 		 A metric $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ receives the adjective \emph{contraction} if for fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively, there exists a value $\lambda>0$ such that the inequality
 	 	 \begin{equation}
-	 	 	\frac{dV}{dt}(X(t,x,u),\Delta(t,x,\delta x,u,\delta u))\leq -\lambda V(x,\delta_x)
+	 	 	\tfrac{dV}{dt}(X(t,x,u),\Delta(t,x,\delta_x,u,\delta_u))\leq -\lambda V(x,\delta_x)
  	 	 \end{equation}
  	 	 holds, for every pair $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$.
 \end{definition}
@@ -695,7 +701,16 @@ The set $\Xi$ defines the topology of the differential feedback law to be design
 	Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. This concludes the proof of Theorem \ref{thm:main result}.
 \end{proof}
 
-Based on \cite{Manchester2014a}, the energy function also provides a control-Lyapunov function for system~\eqref{eq:general system} which can be employed to design a distributed controller for system~\eqref{eq:general system}.
+Based on \cite{Manchester2014a}, the energy function also provides a control-Lyapunov function for system~\eqref{eq:general system} that can be employed to design a distributed controller for system~\eqref{eq:general system}. More precisely, from the first variation of the energy function, the time derivative of $e$ yields the equation
+\begin{align}
+	\dfrac{1}{2}De^+(X^\ast,X)=\langle \gamma_s(t,0),\dot{X}^\ast\rangle_{X^\ast}-\langle \gamma_s(t,1),f(x)\rangle_{X}\nonumber\\
+	-\langle \gamma_s(t,1),B(x)u\rangle_{X}\,\label{eq:CLF derivative}
+\end{align}
+where $De^+$ stands for the Dini's upper right-hand time derivative of the energy $e$ along the solutions $X$ and $X^\ast$. A distributed controller can be obtained by finding the appropriate feedback law for system~\eqref{eq:general system} rendering \eqref{eq:CLF derivative} negative definite. This can be achieved by noticing that \eqref{eq:CLF derivative} is the sum of $N$ terms of the form
+\begin{align*}
+	\tfrac{\partial \gamma_i}{\partial s_i}(t,0)M_i(X_i^\ast)X_i^\ast-\tfrac{\partial \gamma_i}{\partial s_i}(t,1)M_i(X_i)f_i(X_i,\breve{X}_i)\\
+	-\tfrac{\partial \gamma_i}{\partial s_i}(t,1)M_i(X_i)B_i(X_i)u_i\;.
+\end{align*}
 
 Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, the computation of the MI \eqref{eq:MI formulation} not has been said about the parallel compution of the MI~\eqref{eq:MI formulation}. The next section provides sufficient conditions to parallelize the search for a solution to the MI~ \eqref{eq:MI formulation}.
 
@@ -756,7 +771,7 @@ where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is de
 \end{subequations}
 Note that, when the requirement of $A$ is diagonally dominant can be interpreted as the network having a weak coupling.
 
-The alternating direction method of multipliers (ADMM) provides a framework to solve the MI~\eqref{eq:MI formulation} in parallel \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this framework, define the sets $\mathbf{Y}^n=\{Y\in\mathbb{R}^{m\times n}\}$, $\mathbf{S}_{\succ0}^n=\{W\in\mathbb{R}^{n\times n}:W\succ0,W=W^\top\}$, $\mathbf{T}=\{(W_1,\ldots,W_N,Y)\in \mathbb{R}^{n_i\times n_i}\times \mathbb{R}^{m\times n}:\mathbin{\mathtt{diag}}(W_1,\ldots,W_N),T\prec0\}$. For a set $\mathbf{G}$ define the indicator function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
+The alternating direction method of multipliers (ADMM) provides a framework to solve the MI~\eqref{eq:MI formulation} in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this framework, define the sets $\mathbf{S}_{\succ0}^n=\{W\in\mathbb{R}^{n\times n}:W\succ0,W=W^\top\}$, $\mathbf{T}=\{Z\in D^{n\times n}:\exists Y\in\mathbb{R}^{m\times n}, T\prec0\}$. For a set $\mathbf{G}$ define the indicator function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
 \begin{equation*}
 	H(\mathbf{G},g)=\begin{cases}
 									0,&g\in \mathbf{G}\\
@@ -767,9 +782,14 @@ The alternating direction method of multipliers (ADMM) provides a framework to s
 The MI~\eqref{eq:MI formulation} can be cast into the following optimization problem
 \begin{equation*}
 	\begin{array}{rl}
-		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N,Z_{N+1}))+\sum_{i=1}^N H(\mathbf{S}_{\succ0}^{n_i},W_i)\\
-		\text{subject to}&W_i-Z_i=0,\quad \forall i\in\mathbb{N}_{[1,N]}\\
-		&Y-Z_{N+1}=0
+		\text{minimize}&\displaystyle H(\mathbf{T},Z)+\sum_{i=1}^N H(\mathbf{S}_{\succ0}^{n_i},W_i)\\
+		\text{subject to}&\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)-Z=0\;.
+	\end{array}
+\end{equation*}
+The ADMM algorithm can be written as
+\begin{equation*}
+	\begin{array}{rl}
+		W_i^{k+1}:=&\mathbin{\mathtt{argmin}}_{W_i}\left(H(\mathbf{S}_{\succ0}^{n_i},W_i))\right)
 	\end{array}
 \end{equation*}
 
