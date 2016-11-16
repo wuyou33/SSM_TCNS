@@ -8,3 +8,5 @@
 /PreProcessedSys.m
 /PreProcessedW.m
 /PreProcessedY.m
+*.asv
+.gitignore
