@@ -771,7 +771,7 @@ where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is de
 \end{subequations}
 Note that, when the requirement of $A$ is diagonally dominant can be interpreted as the network having a weak coupling.
 
-The alternating direction method of multipliers (ADMM) provides a framework to compute the block-diagonal matrix $W$ to satisfy the MI~\eqref{eq:MI formulation} in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this framework, define the sets $\mathbf{S}_{\succ0}^n=\{W\in\mathbb{R}^{n\times n}:W\succ0,W=W^\top\}$, $\mathbf{T}=\{W_1,\ldots,W_N:\exists Y\in\Xi,(\mathbin{\mathtt{diag}}(W_1,\ldots,W_N),Y)\text{ is a solution to \eqref{eq:MI formulation}}\}$. For a set $\mathbf{G}$ define the indicator function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
+The alternating direction method of multipliers (ADMM) provides a framework to compute the block-diagonal matrix $W$ to satisfy the MI~\eqref{eq:MI formulation} in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this framework, define the sets $\mathbf{S}_{\succ0}^n=\{W\in\mathbb{R}^{n\times n}:W\succ0,W=W^\top\}$, $\mathbf{T}=\{W_1,\ldots,W_N:\exists Y\in\Xi,(\mathbin{\mathtt{diag}}(W_1,\ldots,W_N),Y)\text{ is a solution to \eqref{eq:MI formulation}}\}$. For a set $\mathbf{G}$ define the indicator/barrier function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
 \begin{equation*}
 	H(\mathbf{G},g)=\begin{cases}
 									0,&g\in \mathbf{G}\\
@@ -791,14 +791,14 @@ The ADMM algorithm can be written as
 	\item For each $i\in\mathbb{N}_{[1,N]}$, update the matrix $W_i$ as follows.
 	\begin{equation*}
 	\begin{array}{rcl}
-		W_i^{k+1}&=&\mathbin{\mathtt{argmin}}_{W_i\in\mathbf{S}_{\succ0}^{n_i}}\left|\left|W_i^k-Z_i^k+\Lambda_i^k\right|\right|_F^2\;,
+		W_i^{k+1}&=&\mathbin{\mathtt{argmin}}_{W_i\in\mathbf{S}_{\succ0}^{n_i}}\left|\left|W_i-Z_i^k+\Lambda_i^k\right|\right|_F^2\;,
 	\end{array}
 \end{equation*}
 	where $||\cdot||_F$ stands for the Frobenius norm;
 	
 	\item If the matrices $W_1,\ldots,W_N$ belong to $T$, then a solution has been found and the algorithm can be stopped. Otherwise, solve the global problem
 	\begin{equation*}
-		Z^{k+1}=\mathbin{\mathtt{argmin}}_{Z\in\mathbf{T}}\sum_{i=1}^N\left|\left|W_i^{k+1}-Z_i^k+\Lambda_i^k\right|\right|_F^2\;;
+		Z^{k+1}=\mathbin{\mathtt{argmin}}_{Z\in\mathbf{T}}\sum_{i=1}^N\left|\left|W_i^{k+1}-Z_i+\Lambda_i^k\right|\right|_F^2\;;
 	\end{equation*}
 	\item Update $\Lambda$ and return to step 1
 	\begin{equation*}
