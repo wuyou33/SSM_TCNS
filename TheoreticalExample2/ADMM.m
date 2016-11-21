@@ -14,7 +14,7 @@ clc;
 
 FullAdMM
 
-% SimpleADMMProgram
+% BiDADMMProgram
 end
 
 function FullAdMM
@@ -59,7 +59,17 @@ while NumberOfIterations < MaxNumberOfIterations && max(abs(W1LowerBound-Z1Lower
     Wp1 = [Wp111;Wp112;Wp122];
     coefListW1 = [Wc1];
     
-    Constraints = [sos(W1-W1LowerBound)];
+    m1 = monolist(q1,2);
+    w111 = sdpvar(length(m1));
+    w112 = sdpvar(length(m1));
+    w121 = sdpvar(length(m1));
+    
+    p111 = v'*w111*v;
+    p112 = v'*w112*v;
+    p121 = v'*w121*v;
+    
+    Constraints = [w111 - 1e-3*eye(length(v))>=0,w112 - 1e-3*eye(length(v))>=0,w121 - 1e-3*eye(length(v))>=0 ];
+    Objective   = [norm([w111, w112; transpose(w112), w121],'fro')];
     % The presence of the decision variable on the objective function gives
     % problems to solve
     Objective   = norm(W1LowerBound-Z1LowerBound+Lambda1,'fro')^2;
@@ -278,6 +288,24 @@ W = [W111, W112, 0,    0;
 Z
 Lambda
 % norm(W-Z,'fro')
+
+end
+
+function BiDADMMProgram
+
+x = sdpvar(1,1);
+y = sdpvar(1,1);
+v = monolist([x y],2);
+Q = sdpvar(length(v));
+p_sos = v'*Q*v;
+
+F = [Q-1e-3*eye(length(v)) >= 0];
+optimize(F,norm(Q,'fro'),sdpsettings('dualize',1))
+Q = value(Q)
+[~,NotPositiveDefinite] = chol(Q);
+if NotPositiveDefinite ~= 0
+    display('Q is not PD')
+end
 
 end
 
