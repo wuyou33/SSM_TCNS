@@ -48,6 +48,7 @@
 \usepackage[english]{babel}
 \usepackage{mathrsfs} 
 
+\usepackage{enumerate}
 
 % *** CITATION PACKAGES ***
 %
@@ -517,14 +518,19 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 \begin{equation}\label{eq:subsystem}
 	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
 \end{equation}
-where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}.
+where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Using this decomposition, the interconnection of system~\eqref{eq:general system} is described by the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$.
 
 \mypara At this point, the problem under consideration in this paper can be stated as follows.
 
 \begin{problem}\label{problem formulation}
-	For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into the set $\mathscr{K}(i)\subset\mathbb{N}_{[1,N]}$.
+	\begin{enumerate}[{P}$_1$.]\hfill
+		\item For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into a set $\mathscr{K}(i)$ of graph nodes;
+		
+		\item Given a graph $\mathscr{G}_c=(\mathscr{V}_c,\mathscr{E}_c)$ describing the communication network among the components of the controller, the set $\mathscr{K}(i)$ is composed of elements from $\mathscr{E}_c$.
+	\end{enumerate}
 \end{problem}
 
+\mypara In other words, item P$_1$ of Problem~\ref{problem formulation} states that the controller is decomposed into smaller components. Each of these depends on the states  prescribed by the set $\mathscr{K}$. Item P$_2$ of Problem~\ref{problem formulation} states that this set may not necessarily correspond to the states which system~\eqref{eq:subsystem} depends on. This item addresses the case in which there exists a difference between the communication topology of the network represented by Equation~\eqref{eq:general system} and the communication topology of the distributed controller.
 
 \mypara The constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology). Consider the network composed of systems described by the following equation.
 \begin{equation}\label{eq:example}
@@ -570,9 +576,9 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 \mypara A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
 
 \begin{definition}\label{def:}
-		 A metric $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ receives the adjective \emph{contraction} if for fixed controls $u$ and $\delta u$ for systems \eqref{eq:general system} and \eqref{eq:general system:differential}, respectively, there exists a value $\lambda>0$ such that the inequality
+		 A metric $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ receives the adjective \emph{contraction} if, for fixed controls $u\equiv0$ and $\delta_u\equiv0$ for systems~\eqref{eq:general system} and \eqref{eq:general system:differential}, there exists a value $\lambda>0$ such that the inequality
 	 	 \begin{equation}
-	 	 	\tfrac{dV}{dt}(X(t,x,u),\Delta(t,x,\delta_x,u,\delta_u))\leq -\lambda V(x,\delta_x)
+	 	 	\tfrac{dV}{dt}(X(t,x,u),\Delta(t,x,\delta_x,0,0))\leq -\lambda V(x,\delta_x)
  	 	 \end{equation}
  	 	 holds, for every pair $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$.
 \end{definition}
@@ -722,7 +728,7 @@ where $De^+$ stands for the Dini's upper right-hand time derivative of the energ
 
 \mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, the computation of the MI \eqref{eq:MI formulation} not has been said about the parallel compution of the MI~\eqref{eq:MI formulation}. The next section provides sufficient conditions to parallelize the search for a solution to the MI~ \eqref{eq:MI formulation}.
 
-\section{Distributed Design of Decentralized Controllers}
+\section{Distributed Design of Distributed Controllers}
 
 \mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem for the computation of a solution to the MI~\eqref{eq:MI formulation}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. For this reason, the computation of a solution to MI~\eqref{eq:MI formulation} need to be done parallel. To this end some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}. 
 
@@ -817,7 +823,7 @@ Note that steps 1 and 3 are computed in parellel while step 2 requires to gather
 
 \subsection{Discussion}
 
-\mypara Although the requirement of a sum-separable structure seems to be restrictive, this structure is equivalent to the (possibly local) stability of the origin, for some classes of systems.
+\mypara Although the requirement of a sum-separable structure seems to be restrictive, this structure is equivalent to the (possibly local) stabilizability of the origin, for some classes of systems.
 
 \mypara For monotone systems (i.e., systems for which the some order of initial conditions is preserved along the flow of the vector field) described by a vector field that is continuously differentiable and whose gradient matrix is Hurwitz at the origin, there exists a sum-separable Lyapunov function in a neighborhood of the origin \cite[Theorem 3.4]{Dirr2015}. 
 
