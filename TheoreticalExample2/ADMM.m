@@ -35,53 +35,66 @@ PreProcessedSys
 
 %Think on the fully distributed case
 
-Z1LowerBound = rand;
-Z2LowerBound = rand;
-W1LowerBound = rand;
-W2LowerBound = rand;
-Lambda1 = rand;
-Lambda2 = rand;
+Z1 = rand(8,8);
+Z2 = rand(8,8);
+Lambda1 = rand(8,8);
+Lambda2 = rand(8,8);
+Q1 = inf*ones(8,8);
+Q2 = inf*ones(8,8);
 NumberOfIterations = 0;
 MaxNumberOfIterations = 10;
+Precision = 1e-6;
 
-while NumberOfIterations < MaxNumberOfIterations && max(abs(W1LowerBound-Z1LowerBound),abs(W2LowerBound-Z2LowerBound)) > 1e-6
+while NumberOfIterations < MaxNumberOfIterations && max(norm(Q1-Z1+Lambda1,'fro'),norm(Q2-Z2+Lambda2,'fro')) > 1e-6
     
-    display('Optimizing for Wi ------------------------------------------')
+    display('Optimizing for W1 ------------------------------------------')
     
-    [Wp111,Wc111,Wv111] = polynomial(q1,2,0);
-    [Wp112,Wc112,Wv112] = polynomial(q1,2,0);
-    [Wp122,Wc122,Wv122] = polynomial(q1,2,0);
+    [Wp111,Wc111,Wv1] = polynomial(q1,2,0);
+    [Wp112,Wc112,~] = polynomial(q1,2,0);
+    [Wp122,Wc122,~] = polynomial(q1,2,0);
     % Creation of W1
     W1 = [Wp111, Wp112;
-          Wp112, Wp122];
-    W1LowerBound = sdpvar;
+        Wp112, Wp122];
+    
     Wc1 = [Wc111;Wc112;Wc122];
     Wp1 = [Wp111;Wp112;Wp122];
+    
+    % Creation of DW1
+    DWTemp = jacobian(Wp1,q1);
+    DW1 = [DWTemp(1,:)*f1/2, DWTemp(2,:)*f1;
+        0,                DWTemp(3,:)*f1/2];
+    DW1 = DW1 + transpose(DW1);
     coefListW1 = [Wc1];
     
-    m1 = monolist(q1,2);
-    w111 = sdpvar(length(m1));
-    w112 = sdpvar(length(m1));
-    w121 = sdpvar(length(m1));
+    v = sdpvar(2,1);
+    Q1  = sdpvar(length([Wv1;v]));
     
-    p111 = v'*w111*v;
-    p112 = v'*w112*v;
-    p121 = v'*w121*v;
+    p_sos = [Wv1;v]'*Q1*[Wv1;v];
+    p_w   = v'*W1*v;
     
-    Constraints = [w111 - 1e-3*eye(length(v))>=0,w112 - 1e-3*eye(length(v))>=0,w121 - 1e-3*eye(length(v))>=0 ];
-    Objective   = [norm([w111, w112; transpose(w112), w121],'fro')];
-    % The presence of the decision variable on the objective function gives
-    % problems to solve
-    Objective   = norm(W1LowerBound-Z1LowerBound+Lambda1,'fro')^2;
-    Options     = sdpsettings('solver','mosek','verbose',1);
-%     Diagnostics = optimize(Constraints,Objective,Options)
-    Diagnostics = solvesos(Constraints,Objective,Options,coefListW1);
-    W1LowerBound = value(W1LowerBound);
+    Constraints = [Q1>=0;coefficients(p_sos - p_w,[q1;v])==0];
+    Objective   = norm(Q1-Z1+Lambda1,'fro')^2;
+    
+    Options = sdpsettings('solver','mosek','verbose',1);
+    Diagnostics = optimize(Constraints,Objective,Options);
+    
+    Q1 = value(Q1);
+    
+    % Eliminates values that are too small
+    [~,D] = eig(Q1);
+    Indices = find(abs(D) < Precision);
+    D(Indices) = 0;
+    
+    if min(D(:)) < 0
+        display('Q1 is not SPD')
+        return;
+    end
 
 if Diagnostics.problem == 0
-    disp('Solver thinks it is feasible for W1')
+%     disp('Solver thinks it is feasible for W1')
 elseif Diagnostics.problem == 1
     disp('Solver thinks that optimize W1 it is infeasible')
+    return;
 else
     if Diagnostics.problem == -2
         disp('No suitable solver to optimize W1')
@@ -92,28 +105,55 @@ else
     end
     return;
 end
-    
-    [Wp211,Wc211,Wv211] = polynomial(q2,2,0);
-    [Wp212,Wc212,Wv212] = polynomial(q2,2,0);
-    [Wp222,Wc222,Wv222] = polynomial(q2,2,0);
-    % Creation of W1
-    W2 = [Wp211, Wp212;
-          Wp212, Wp222];
-    W2LowerBound = sdpvar;
-    Wc2 = [Wc211;Wc212;Wc222];
-    Wp2 = [Wp211;Wp212;Wp222];
-    coefListW2 = [Wc2];
-    Constraints = [sos(W2-W2LowerBound)];
-    Objective   = norm(W2LowerBound-Z2LowerBound+Lambda2,'fro')^2;
-%     Diagnostics = optimize(Constraints,Objective);
-    options = sdpsettings('solver','mosek','verbose',1);
-    Diagnostics = solvesos(Constraints,Objective,options,coefListW2);
-    W2LowerBound = value(W2LowerBound);
+
+% Solving for W2 ----------------------------------------------------------
+
+[Wp211,Wc211,Wv2] = polynomial(q2,2,0);
+[Wp212,Wc212,~] = polynomial(q2,2,0);
+[Wp222,Wc222,~] = polynomial(q2,2,0);
+% Creation of W1
+W2 = [Wp211, Wp212;
+      Wp212, Wp222];
+
+Wc2 = [Wc211;Wc212;Wc222];
+Wp2 = [Wp211;Wp212;Wp222];
+
+% Creation of DW1
+DWTemp = jacobian(Wp2,q2);
+DW2 = [DWTemp(1,:)*f2/2, DWTemp(2,:)*f2;
+    0,                DWTemp(3,:)*f2/2];
+DW2 = DW2 + transpose(DW2);
+coefListW2 = [Wc2];
+
+v = sdpvar(2,1);
+Q2  = sdpvar(length([Wv2;v]));
+
+p_sos = [Wv2;v]'*Q2*[Wv2;v];
+p_w   = v'*W2*v;
+
+Constraints = [Q2>=0;coefficients(p_sos - p_w,[q2;v])==0];
+Objective   = norm(Q2-Z2+Lambda2,'fro')^2;
+
+Options = sdpsettings('solver','mosek','verbose',1);
+Diagnostics = optimize(Constraints,Objective,Options);
+
+Q2 = value(Q2);
+
+% Eliminates values that are too small
+[~,D] = eig(Q2);
+Indices = find(abs(D) < Precision);
+D(Indices) = 0;
+
+if min(D(:)) < 0
+    display('Q2 is not SPD')
+    return;
+end
 
 if Diagnostics.problem == 0
-    disp('Solver thinks it is feasible for W2')
+%     disp('Solver thinks it is feasible for W2')
 elseif Diagnostics.problem == 1
     disp('Solver thinks that optimize W2 it is infeasible')
+    return;
 else
     if Diagnostics.problem == -2
         disp('No suitable solver to optimize W2')
@@ -133,55 +173,66 @@ end
     % Creation of Z1 and DZ1
     [Zp111,Zc111,Zv111] = polynomial(q1,2,0);
     [Zp112,Zc112,Zv112] = polynomial(q1,2,0);
-    [Zp121,Zc121,Zv121] = polynomial(q1,2,0);
     [Zp122,Zc122,Zv122] = polynomial(q1,2,0);
     % Creation of W1
     Z1 = [Zp111, Zp112;
-        Zp121, Zp122];
+          Zp112, Zp122];
     
-    Zc1 = [Zc111;Zc112;Zc121;Zc122];
-    Zp1 = [Zp111;Zp112;Zp121;Zp122];
+    Zc1 = [Zc111;Zc112;Zc122];
+    Zp1 = [Zp111;Zp112;Zp122];
     
     % Creation of DW1
     DZTemp = jacobian(Zp1,q1);
     DZ1 = [DZTemp(1,:)*f1, DZTemp(2,:)*f1;
-           DZTemp(3,:)*f1, DZTemp(4,:)*f1];
+           DZTemp(2,:)*f1, DZTemp(3,:)*f1];
     
     % Creation of Z1 and DZ1
     [Zp211,Zc211,Zv211] = polynomial(q2,2,0);
     [Zp212,Zc212,Zv212] = polynomial(q2,2,0);
-    [Zp221,Zc221,Zv221] = polynomial(q2,2,0);
     [Zp222,Zc222,Zv222] = polynomial(q2,2,0);
     % Creation of Z1
     Z2 = [Zp211, Zp212;
-        Zp221, Zp222];
+          Zp212, Zp222];
     
-    Zc2 = [Zc211;Zc212;Zc221;Zc222];
-    Zp2 = [Zp211;Zp212;Zp221;Zp222];
+    Zc2 = [Zc211;Zc212;Zc222];
+    Zp2 = [Zp211;Zp212;Zp222];
     
     % Creation of DZ1
     DZTemp = jacobian(Zp2,q2);
     DZ2 = [DZTemp(1,:)*f2, DZTemp(2,:)*f2;
-           DZTemp(3,:)*f2, DZTemp(4,:)*f2];
+           DZTemp(2,:)*f2, DZTemp(3,:)*f2];
+     
     Z  = blkdiag(Z1,Z2);
     DZ = blkdiag(DZ1,DZ2);
-    Z1LowerBound = sdpvar;
-    Z2LowerBound = sdpvar;
+    
     Zc = [Zc1;Zc2];
     coefList = [Zc];
-    MI = -DZ + A*Z + transpose(A*Z) + 2*Z;% + B*Y + transpose(B*Y);
-    Constraints = [sos(-MI)];
-    Objective   = norm(W1LowerBound-Z1LowerBound+Lambda1,'fro')^2 + norm(W2LowerBound-Z2LowerBound+Lambda2,'fro')^2;
-%     optimize(Constraints,Objective);
+    MI = -DZ + A*Z + Z*transpose(A) + 2*Z;% + B*Y + transpose(B*Y);
+    
+    v = sdpvar(4,1);
+    Var = monolist([q1;q2],4);
+    
+    Qz = sdpvar(length([Var;v]));
+    
+    p_sos = [Var;v]'*Qz*[Var;v];
+    p_z   = -v'*MI*v;
+    
+    Constraints = [Qz>=0;coefficients(p_sos - p_z,[q1;q2;v])==0];
+%     Objective   = norm(Q1-Qz1+Lambda1,'fro')^2 ...
+%                   + norm(Q2-Qz2+Lambda2,'fro')^2;
     options = sdpsettings('solver','mosek','verbose',1);
-    Diagnostics = solvesos(Constraints,Objective,options,coefList);
-    Z1LowerBound = value(Z1LowerBound);
-    Z2LowerBound = value(Z2LowerBound);
+    Diagnostics = optimize(Constraints,[],options);
+%     Constraints = [sos(-MI)];
+%     Diagnostics = solvesos(Constraints,[],options,coefList)
 
-if Diagnostics.problem == 0
+    Qz1 = value(Qz1);
+    Qz2 = value(Qz2);
+    
+    if Diagnostics.problem == 0
     disp('Solver thinks it is feasible for Z')
 elseif Diagnostics.problem == 1
     disp('Solver thinks that optimize Z it is infeasible')
+    return;
 else
     if Diagnostics.problem == -2
         disp('No suitable solver to optimize Z')
@@ -193,13 +244,20 @@ else
     return;
 end
     
-    Z1 = Z(1:2,1:2);
-    Z2 = Z(3:4,3:4);
+[~,NotPositiveDefiniteQz1] = chol(Qz1);
+[~,NotPositiveDefiniteQz2] = chol(Qz2);
+if NotPositiveDefiniteQz1 ~= 0
+    display('Qz1 is not PD')
+elseif NotPositiveDefiniteQz2 ~= 0
+    display('Qz2 is not PD')
+end
+
+
     
     display('Updating Lambda --------------------------------------------')
     
-    Lambda1 = W1LowerBound - Z1LowerBound + Lambda1
-    Lambda2 = W2LowerBound - Z2LowerBound + Lambda2
+    Lambda1 = Q1 - Qz1 + Lambda1
+    Lambda2 = Q2 - Qz2 + Lambda2
     
     NumberOfIterations = NumberOfIterations+1;
 end
@@ -291,7 +349,56 @@ Lambda
 
 end
 
-function BiDADMMProgram
+
+% Computes a positive definite matrix using SOS
+
+function PositiveDefiniteness
+
+x = sdpvar;
+y = sdpvar;
+
+[Wp11,Wc11,Wv] = polynomial([x;y],2,0);
+[Wp12,Wc12,~] = polynomial([x;y],2,0);
+[Wp22,Wc22,~] = polynomial([x;y],2,0);
+% Creation of W1
+W = [Wp11, Wp12;
+     Wp12, Wp22];
+Wc = [Wc11;Wc12;Wc22];
+coefListW = [Wc];
+
+z = sdpvar(2,1);
+Q = sdpvar(length([Wv;z]));
+p_sos = [Wv;z]'*Q*[Wv;z];
+p_w = z'*W*z;
+
+Precision = 0;
+
+F = [Q>=0,coefficients(p_sos - p_w,[x;y;z])==0];
+Objective = norm(Q,'fro')^2;
+Options = sdpsettings('solver','mosek','verbose',1);
+optimize(F,[],Options)
+
+Q = value(Q)
+[~,NotPositiveDefinite] = chol(Q(end-1:end,end-1:end));
+if NotPositiveDefinite ~= 0
+    display('Q is not PD')
+end
+
+VerifiedW11 = clean(replace(W(1,1), coefListW, double(coefListW)), 1e-6);
+VerifiedW12 = clean(replace(W(1,2), coefListW, double(coefListW)), 1e-6);
+VerifiedW22 = clean(replace(W(2,2), coefListW, double(coefListW)), 1e-6);
+
+W11 = sdisplay(VerifiedW11);
+W12 = sdisplay(VerifiedW12);
+W22 = sdisplay(VerifiedW22);
+
+W = [W11, W12;
+    W12, W22]
+end
+
+% Minimizes the Gramian of an SOS polynomial
+
+function MinimizingGramian
 
 x = sdpvar(1,1);
 y = sdpvar(1,1);
