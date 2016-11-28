@@ -12,7 +12,7 @@ clear all;
 close all;
 clc;
 
-FullAdMM
+MWE
 
 % BiDADMMProgram
 end
@@ -35,23 +35,25 @@ PreProcessedSys
 
 %Think on the fully distributed case
 
-Z1 = rand(8,8);
-Z2 = rand(8,8);
-Lambda1 = rand(8,8);
-Lambda2 = rand(8,8);
-Q1 = inf*ones(8,8);
-Q2 = inf*ones(8,8);
+PolynomialDegree = 2;
+NumberOfStates   = length(SystemStates);
+NumberOfMonomials = nchoosek(NumberOfStates + PolynomialDegree,PolynomialDegree);
+MatrixSize = NumberOfStates + NumberOfMonomials;
+Qz1 = rand(MatrixSize,MatrixSize);
+Qz2 = rand(MatrixSize,MatrixSize);
+Lambda1 = rand(MatrixSize,MatrixSize);
+Lambda2 = rand(MatrixSize,MatrixSize);
+Q1 = inf*ones(MatrixSize,MatrixSize);
+Q2 = inf*ones(MatrixSize,MatrixSize);
 NumberOfIterations = 0;
-MaxNumberOfIterations = 10;
+MaxNumberOfIterations = 100;
 Precision = 1e-6;
 
-while NumberOfIterations < MaxNumberOfIterations && max(norm(Q1-Z1+Lambda1,'fro'),norm(Q2-Z2+Lambda2,'fro')) > 1e-6
+while NumberOfIterations < MaxNumberOfIterations && max(norm(Q1-Qz1+Lambda1,'fro'),norm(Q2-Qz2+Lambda2,'fro')) > 1e-6
     
-    display('Optimizing for W1 ------------------------------------------')
-    
-    [Wp111,Wc111,Wv1] = polynomial(q1,2,0);
-    [Wp112,Wc112,~] = polynomial(q1,2,0);
-    [Wp122,Wc122,~] = polynomial(q1,2,0);
+    [Wp111,Wc111,Wv1] = polynomial(q1,PolynomialDegree,0);
+    [Wp112,Wc112,~] = polynomial(q1,PolynomialDegree,0);
+    [Wp122,Wc122,~] = polynomial(q1,PolynomialDegree,0);
     % Creation of W1
     W1 = [Wp111, Wp112;
         Wp112, Wp122];
@@ -73,9 +75,9 @@ while NumberOfIterations < MaxNumberOfIterations && max(norm(Q1-Z1+Lambda1,'fro'
     p_w   = v'*W1*v;
     
     Constraints = [Q1>=0;coefficients(p_sos - p_w,[q1;v])==0];
-    Objective   = norm(Q1-Z1+Lambda1,'fro')^2;
+    Objective   = norm(Q1-Qz1+Lambda1,'fro')^2;
     
-    Options = sdpsettings('solver','mosek','verbose',1);
+    Options = sdpsettings('solver','mosek','verbose',0);
     Diagnostics = optimize(Constraints,Objective,Options);
     
     Q1 = value(Q1);
@@ -108,9 +110,9 @@ end
 
 % Solving for W2 ----------------------------------------------------------
 
-[Wp211,Wc211,Wv2] = polynomial(q2,2,0);
-[Wp212,Wc212,~] = polynomial(q2,2,0);
-[Wp222,Wc222,~] = polynomial(q2,2,0);
+[Wp211,Wc211,Wv2] = polynomial(q2,PolynomialDegree,0);
+[Wp212,Wc212,~] = polynomial(q2,PolynomialDegree,0);
+[Wp222,Wc222,~] = polynomial(q2,PolynomialDegree,0);
 % Creation of W1
 W2 = [Wp211, Wp212;
       Wp212, Wp222];
@@ -132,9 +134,9 @@ p_sos = [Wv2;v]'*Q2*[Wv2;v];
 p_w   = v'*W2*v;
 
 Constraints = [Q2>=0;coefficients(p_sos - p_w,[q2;v])==0];
-Objective   = norm(Q2-Z2+Lambda2,'fro')^2;
+Objective   = norm(Q2-Qz2+Lambda2,'fro')^2;
 
-Options = sdpsettings('solver','mosek','verbose',1);
+Options = sdpsettings('solver','mosek','verbose',0);
 Diagnostics = optimize(Constraints,Objective,Options);
 
 Q2 = value(Q2);
@@ -168,12 +170,10 @@ end
     W = blkdiag(W1,W2);
     Lambda = blkdiag(Lambda1,Lambda2);
     
-    display('Optimizing for Z -------------------------------------------')
-    
     % Creation of Z1 and DZ1
-    [Zp111,Zc111,Zv111] = polynomial(q1,2,0);
-    [Zp112,Zc112,Zv112] = polynomial(q1,2,0);
-    [Zp122,Zc122,Zv122] = polynomial(q1,2,0);
+    [Zp111,Zc111,Zv1] = polynomial(q1,PolynomialDegree,0);
+    [Zp112,Zc112,~] = polynomial(q1,PolynomialDegree,0);
+    [Zp122,Zc122,~] = polynomial(q1,PolynomialDegree,0);
     % Creation of W1
     Z1 = [Zp111, Zp112;
           Zp112, Zp122];
@@ -187,9 +187,9 @@ end
            DZTemp(2,:)*f1, DZTemp(3,:)*f1];
     
     % Creation of Z1 and DZ1
-    [Zp211,Zc211,Zv211] = polynomial(q2,2,0);
-    [Zp212,Zc212,Zv212] = polynomial(q2,2,0);
-    [Zp222,Zc222,Zv222] = polynomial(q2,2,0);
+    [Zp211,Zc211,Zv2] = polynomial(q2,PolynomialDegree,0);
+    [Zp212,Zc212,~] = polynomial(q2,PolynomialDegree,0);
+    [Zp222,Zc222,~] = polynomial(q2,PolynomialDegree,0);
     % Creation of Z1
     Z2 = [Zp211, Zp212;
           Zp212, Zp222];
@@ -207,29 +207,29 @@ end
     
     Zc = [Zc1;Zc2];
     coefList = [Zc];
-    MI = -DZ + A*Z + Z*transpose(A) + 2*Z;% + B*Y + transpose(B*Y);
-    
-    v = sdpvar(4,1);
-    Var = monolist([q1;q2],4);
-    
-    Qz = sdpvar(length([Var;v]));
-    
-    p_sos = [Var;v]'*Qz*[Var;v];
-    p_z   = -v'*MI*v;
-    
-    Constraints = [Qz>=0;coefficients(p_sos - p_z,[q1;q2;v])==0];
-%     Objective   = norm(Q1-Qz1+Lambda1,'fro')^2 ...
-%                   + norm(Q2-Qz2+Lambda2,'fro')^2;
-    options = sdpsettings('solver','mosek','verbose',1);
-    Diagnostics = optimize(Constraints,[],options);
-%     Constraints = [sos(-MI)];
-%     Diagnostics = solvesos(Constraints,[],options,coefList)
 
-    Qz1 = value(Qz1);
-    Qz2 = value(Qz2);
+    
+%     MI = -DZ + A*Z + Z*transpose(A) + 2*Z;% + B*Y + transpose(B*Y);
+    MI = A*Z + Z*transpose(A) + 2*Z;
+    
+    v1 = sdpvar(2,1);
+    v2 = sdpvar(2,1);
+    Qz1 = sdpvar(length([Zv1;v1]));
+    Qz2 = sdpvar(length([Zv2;v2]));
+    
+    Qz = blkdiag(Qz1,Qz2);
+    
+    p_sos = [Zv1;v1;Zv2;v2]'*Qz*[Zv1;v1;Zv2;v2];
+    p_z   = -[v1;v2]'*MI*[v1;v2];
+    
+    Constraints = [Qz>=0;coefficients(p_sos - p_z,[q1;q2;v1;v2])==0];
+    Objective   = norm(Q1-Qz1+Lambda1,'fro')^2 ...
+                  + norm(Q2-Qz2+Lambda2,'fro')^2;
+    options = sdpsettings('solver','mosek','verbose',0);
+    Diagnostics = optimize(Constraints,Objective,options);
     
     if Diagnostics.problem == 0
-    disp('Solver thinks it is feasible for Z')
+%     disp('Solver thinks it is feasible for Z')
 elseif Diagnostics.problem == 1
     disp('Solver thinks that optimize Z it is infeasible')
     return;
@@ -242,27 +242,40 @@ else
         disp('Something else happened while trying to optimize Z')
     end
     return;
+    end
+
+    Qz = value(Qz);
+    Qz1 = Qz(1:MatrixSize,1:MatrixSize);
+    Qz2 = Qz(MatrixSize+1:end,MatrixSize+1:end);
+    
+% Eliminates values that are too small
+[~,D] = eig(Qz);
+Indices = find(abs(D) < Precision);
+D(Indices) = 0;
+
+if min(D(:)) < 0
+    display('Qz is not SPD')
+    return;
 end
     
-[~,NotPositiveDefiniteQz1] = chol(Qz1);
-[~,NotPositiveDefiniteQz2] = chol(Qz2);
-if NotPositiveDefiniteQz1 ~= 0
-    display('Qz1 is not PD')
-elseif NotPositiveDefiniteQz2 ~= 0
-    display('Qz2 is not PD')
-end
-
-
-    
-    display('Updating Lambda --------------------------------------------')
-    
-    Lambda1 = Q1 - Qz1 + Lambda1
-    Lambda2 = Q2 - Qz2 + Lambda2
+    Lambda1 = Q1 - Qz1 + Lambda1;
+    Lambda2 = Q2 - Qz2 + Lambda2;
     
     NumberOfIterations = NumberOfIterations+1;
 end
 
-prec = 1e-6;
+if NumberOfIterations == MaxNumberOfIterations
+    display('Max Number of Iterations Achieved !!!!!!!!!!!!!!!!!!!!!!!!!!')
+end
+
+Q1
+Q2
+Qz
+W = value(W);
+[~,p] = chol(W)
+value(Z)
+
+prec = 1e-9;
 
 VerifiedZ11 = clean(replace(Z(1,1), coefList, double(coefList)), prec);
 VerifiedZ12 = clean(replace(Z(1,2), coefList, double(coefList)), prec);
@@ -326,17 +339,6 @@ W222 = sdisplay(VerifiedW222);
 W2 = [W211, W212;
     W212, W222];
 
-% [~,NotPositiveDefiniteW] = chol(W);
-% [~,NotPositiveDefiniteZ] = chol(Z);
-% if NotPositiveDefiniteW ~= 0
-%     display('W is not PD')
-% elseif NotPositiveDefiniteZ ~= 0
-%     display('Z is not PD')
-% end
-% 
-% if NumberOfIterations >= MaxNumberOfIterations
-%     display('Maximum number of iterations achieved')
-% end
 
 
 W = [W111, W112, 0,    0;
@@ -344,8 +346,105 @@ W = [W111, W112, 0,    0;
      0,    0,    W211, W212;
      0,    0,    W212, W222]
 Z
+
 Lambda
-% norm(W-Z,'fro')
+
+end
+
+function MWE
+
+x1 = sdpvar;
+y1 = sdpvar;
+u1 = sdpvar;
+
+x2 = sdpvar;
+y2 = sdpvar;
+u2 = sdpvar;
+
+dx1 = -x1 - x1^3 + y1^2 -1e-2*(+1*x1^3 -1*x2^3);
+dy1 = u1;
+
+f1 = [dx1;0];
+b1 = [0;dy1];
+
+dx2 = -x2 - x2^3 + y2^2 -1e-2*(-1*x1^3 +1*x2^3);
+dy2 = u2;
+
+f2 = [dx2;0];
+b2 = [0;dy2];
+
+A11 = jacobian(f1+b1,[x1;y1]);
+A12 = jacobian(f1+b1,[x2;y2]);
+
+A21 = jacobian(f2+b2,[x1;y1]);
+A22 = jacobian(f2+b2,[x2;y2]);
+
+A = [A11, A12;
+     A21, A22];
+
+% Creation of W
+[Wp111,Wc111,Wv1] = polynomial([x1;y1],2,0);
+[Wp112,Wc112,~] = polynomial([x1;y1],2,0);
+[Wp122,Wc122,~] = polynomial([x1;y1],2,0);
+% Creation of W1
+W1 = [Wp111, Wp112;
+    Wp112, Wp122];
+
+Wp1 = [Wp111;Wp112;Wp122];
+Wc1 = [Wc111;Wc112;Wc122];
+
+DWTemp = jacobian(Wp1,[x1;y1]);
+DW1 = [DWTemp(1,:)*f1/2, DWTemp(2,:)*f1;
+    0,                DWTemp(3,:)*f1/2];
+DW1 = DW1 + transpose(DW1);
+
+
+[Wp211,Wc211,Wv2] = polynomial([x2;y2],2,0);
+[Wp212,Wc212,~] = polynomial([x2;y2],2,0);
+[Wp222,Wc222,~] = polynomial([x2;y2],2,0);
+% Creation of W1
+W2 = [Wp211, Wp212;
+    Wp212, Wp222];
+
+Wc2 = [Wc211;Wc212;Wc222];
+Wp2 = [Wp211;Wp212;Wp222];
+
+DWTemp = jacobian(Wp2,[x2;y2]);
+DW2 = [DWTemp(1,:)*f2/2, DWTemp(2,:)*f2;
+    0,                DWTemp(3,:)*f2/2];
+DW2 = DW2 + transpose(DW2);
+
+W = blkdiag(W1,W2);
+DW = blkdiag(DW1,DW2);
+
+MI = -DW + W*A + transpose(W*A) + 2*W;
+
+v1 = sdpvar(2,1);
+v2 = sdpvar(2,1);
+v = [v1;v2];
+Q1 = sdpvar(length([Wv1;v1]));
+Q2 = sdpvar(length([Wv2;v2]));
+Q = blkdiag(Q1,Q2);
+p_sos = [Wv1;v1;Wv2;v2]'*Q*[Wv1;v1;Wv2;v2];
+p_w   = -v'*MI*v;
+
+Constraints = [Q>=0;coefficients(p_sos - p_w,[x1;y1;x2;y2;v])==0];
+Objective   = norm(Q,'fro')^2;
+Options = sdpsettings('solver','mosek','verbose',1);
+Diagnostics = optimize(Constraints,Objective,Options);
+value(Q)
+
+% VerifiedW11 = clean(replace(W(1,1), Wc, double(Wc)), 1e-9);
+% VerifiedW12 = clean(replace(W(1,2), Wc, double(Wc)), 1e-9);
+% VerifiedW22 = clean(replace(W(2,2), Wc, double(Wc)), 1e-9);
+%
+% W11 = sdisplay(VerifiedW11);
+% W12 = sdisplay(VerifiedW12);
+% W22 = sdisplay(VerifiedW22);
+%
+% W = [W11, W12;
+%     W12, W22]
+
 
 end
 
@@ -376,13 +475,9 @@ Precision = 0;
 F = [Q>=0,coefficients(p_sos - p_w,[x;y;z])==0];
 Objective = norm(Q,'fro')^2;
 Options = sdpsettings('solver','mosek','verbose',1);
-optimize(F,[],Options)
+optimize(F,Objective,Options)
 
 Q = value(Q)
-[~,NotPositiveDefinite] = chol(Q(end-1:end,end-1:end));
-if NotPositiveDefinite ~= 0
-    display('Q is not PD')
-end
 
 VerifiedW11 = clean(replace(W(1,1), coefListW, double(coefListW)), 1e-6);
 VerifiedW12 = clean(replace(W(1,2), coefListW, double(coefListW)), 1e-6);
@@ -476,3 +571,5 @@ Z
 Lambda
 
 end
+
+
