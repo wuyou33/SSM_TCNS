@@ -11,7 +11,9 @@ function ADMM
 clear all;
 close all;
 clc;
+dbstop if error
 
+% PositiveDefiniteness
 MWE
 
 % BiDADMMProgram
@@ -353,6 +355,10 @@ end
 
 function MWE
 
+SOSSolver = 'No'
+
+% Variable Definitions ----------------------------------------------------
+
 x1 = sdpvar;
 y1 = sdpvar;
 u1 = sdpvar;
@@ -361,17 +367,19 @@ x2 = sdpvar;
 y2 = sdpvar;
 u2 = sdpvar;
 
-dx1 = -x1 - x1^3 + y1^2 -1e-2*(+1*x1^3 -1*x2^3);
-dy1 = u1;
+% System Definitions ------------------------------------------------------
 
-f1 = [dx1;0];
-b1 = [0;dy1];
+% dx1 = -x1 - x1^3 + y1^2 -0*(+1*x1^3 -1*x2^3);
+% dy1 = u1;
 
-dx2 = -x2 - x2^3 + y2^2 -1e-2*(-1*x1^3 +1*x2^3);
-dy2 = u2;
+f1 = [-x1;0];
+b1 = [0;-y1];
 
-f2 = [dx2;0];
-b2 = [0;dy2];
+% dx2 = -x2 - x2^3 + y2^2 -0*(-1*x1^3 +1*x2^3);
+% dy2 = u2;
+
+f2 = [-x2;0];
+b2 = [0;-y2];
 
 A11 = jacobian(f1+b1,[x1;y1]);
 A12 = jacobian(f1+b1,[x2;y2]);
@@ -382,11 +390,12 @@ A22 = jacobian(f2+b2,[x2;y2]);
 A = [A11, A12;
      A21, A22];
 
-% Creation of W
+
+% Creation of W -----------------------------------------------------------
 [Wp111,Wc111,Wv1] = polynomial([x1;y1],2,0);
 [Wp112,Wc112,~] = polynomial([x1;y1],2,0);
 [Wp122,Wc122,~] = polynomial([x1;y1],2,0);
-% Creation of W1
+
 W1 = [Wp111, Wp112;
     Wp112, Wp122];
 
@@ -414,10 +423,17 @@ DW2 = [DWTemp(1,:)*f2/2, DWTemp(2,:)*f2;
     0,                DWTemp(3,:)*f2/2];
 DW2 = DW2 + transpose(DW2);
 
+Wc = [Wc1;Wc2];
 W = blkdiag(W1,W2);
 DW = blkdiag(DW1,DW2);
 
-MI = -DW + W*A + transpose(W*A) + 2*W;
+% MI Formulation ----------------------------------------------------------
+
+% lambda should be smaller than 1 to avoid numerical errors
+lambda = 1e-1;
+MI = -DW + A*W + W*transpose(A) + 2*lambda*W;
+
+% SOS Formulation ---------------------------------------------------------
 
 v1 = sdpvar(2,1);
 v2 = sdpvar(2,1);
@@ -428,24 +444,94 @@ Q = blkdiag(Q1,Q2);
 p_sos = [Wv1;v1;Wv2;v2]'*Q*[Wv1;v1;Wv2;v2];
 p_w   = -v'*MI*v;
 
+% Solver ------------------------------------------------------------------
+
+% Minimum value for the precision is 1e-8. Otherwise Q is not PSD
+Precision = 1e-8;
+
+L = length([Wv1;v1]) + length([Wv2;v2]);
 Constraints = [Q>=0;coefficients(p_sos - p_w,[x1;y1;x2;y2;v])==0];
-Objective   = norm(Q,'fro')^2;
+Objective   = norm(Q-eye(L),'fro')^2;
 Options = sdpsettings('solver','mosek','verbose',1);
-Diagnostics = optimize(Constraints,Objective,Options);
-value(Q)
+if strcmp(SOSSolver,'No')
+    Diagnostics = optimize(Constraints,Objective,Options);
+else
+    Diagnostics = solvesos([sos(-MI);...
+        sos(W1-Precision*eye(2));sos(W2-Precision*eye(2))],[],Options,Wc);
+end
 
-% VerifiedW11 = clean(replace(W(1,1), Wc, double(Wc)), 1e-9);
-% VerifiedW12 = clean(replace(W(1,2), Wc, double(Wc)), 1e-9);
-% VerifiedW22 = clean(replace(W(2,2), Wc, double(Wc)), 1e-9);
-%
-% W11 = sdisplay(VerifiedW11);
-% W12 = sdisplay(VerifiedW12);
-% W22 = sdisplay(VerifiedW22);
-%
-% W = [W11, W12;
-%     W12, W22]
+if Diagnostics.problem == 1
+    disp('---------------------------------------------------------------')
+    disp('Solver thinks that optimize is infeasible')
+    keyboard
+elseif Diagnostics.problem == -2
+    disp('---------------------------------------------------------------')
+    disp('No suitable solver')
+    keyboard
+else
+    disp('---------------------------------------------------------------')
+    if Diagnostics.problem == -4
+        disp('Solver not applicable')
+        keyboard
+    elseif Diagnostics.problem ~= 0
+        disp('Something else happened')
+        keyboard
+    end
+end
+    
 
+% Verifying computed values -----------------------------------------------
 
+if strcmp(SOSSolver,'No')
+    Q=value(Q);
+    [~,D] = eig(Q);
+    Indices = find(abs(D) < Precision);
+    D(Indices) = 0;
+    
+    if min(D(:)) < 0
+        display('ERROR: Q is not PSD')
+        keyboard
+    end
+end
+
+VerifiedW11 = clean(replace(W(1,1), Wc, double(Wc)), Precision);
+VerifiedW12 = clean(replace(W(1,2), Wc, double(Wc)), Precision);
+VerifiedW13 = clean(replace(W(1,3), Wc, double(Wc)), Precision);
+VerifiedW14 = clean(replace(W(1,4), Wc, double(Wc)), Precision);
+VerifiedW21 = clean(replace(W(2,1), Wc, double(Wc)), Precision);
+VerifiedW22 = clean(replace(W(2,2), Wc, double(Wc)), Precision);
+VerifiedW23 = clean(replace(W(2,3), Wc, double(Wc)), Precision);
+VerifiedW24 = clean(replace(W(2,4), Wc, double(Wc)), Precision);
+VerifiedW31 = clean(replace(W(3,1), Wc, double(Wc)), Precision);
+VerifiedW32 = clean(replace(W(3,2), Wc, double(Wc)), Precision);
+VerifiedW33 = clean(replace(W(3,3), Wc, double(Wc)), Precision);
+VerifiedW34 = clean(replace(W(3,4), Wc, double(Wc)), Precision);
+VerifiedW41 = clean(replace(W(4,1), Wc, double(Wc)), Precision);
+VerifiedW42 = clean(replace(W(4,2), Wc, double(Wc)), Precision);
+VerifiedW43 = clean(replace(W(4,3), Wc, double(Wc)), Precision);
+VerifiedW44 = clean(replace(W(4,4), Wc, double(Wc)), Precision);
+
+W11 = sdisplay(VerifiedW11);
+W12 = sdisplay(VerifiedW12);
+W13 = sdisplay(VerifiedW13);
+W14 = sdisplay(VerifiedW14);
+W21 = sdisplay(VerifiedW21);
+W22 = sdisplay(VerifiedW22);
+W23 = sdisplay(VerifiedW23);
+W24 = sdisplay(VerifiedW24);
+W31 = sdisplay(VerifiedW31);
+W32 = sdisplay(VerifiedW32);
+W33 = sdisplay(VerifiedW33);
+W34 = sdisplay(VerifiedW34);
+W41 = sdisplay(VerifiedW41);
+W42 = sdisplay(VerifiedW42);
+W43 = sdisplay(VerifiedW43);
+W44 = sdisplay(VerifiedW44);
+
+W = [W11, W12, W13, W14;
+     W21, W22, W23, W24;
+     W31, W32, W33, W34;
+     W41, W42, W43, W44]
 end
 
 
@@ -456,32 +542,52 @@ function PositiveDefiniteness
 x = sdpvar;
 y = sdpvar;
 
+f = [-x;-y];
+A = jacobian(f,[x;y]);
+
 [Wp11,Wc11,Wv] = polynomial([x;y],2,0);
 [Wp12,Wc12,~] = polynomial([x;y],2,0);
 [Wp22,Wc22,~] = polynomial([x;y],2,0);
 % Creation of W1
 W = [Wp11, Wp12;
-     Wp12, Wp22];
+    Wp12, Wp22];
 Wc = [Wc11;Wc12;Wc22];
-coefListW = [Wc];
+Wp = [Wp11;Wp12;Wp22];
+
+DWTemp = jacobian(Wp,[x;y]);
+DW = [DWTemp(1,:)*f/2, DWTemp(2,:)*f;
+    0,                DWTemp(3,:)*f/2];
+DW = DW + transpose(DW);
+
+% Lambda must be smaller than 1
+lambda = 1e-1;
+MI = -DW + A*W + W*transpose(A) + 2*lambda*W;
 
 z = sdpvar(2,1);
 Q = sdpvar(length([Wv;z]));
 p_sos = [Wv;z]'*Q*[Wv;z];
-p_w = z'*W*z;
-
-Precision = 0;
+p_w = -z'*MI*z;
 
 F = [Q>=0,coefficients(p_sos - p_w,[x;y;z])==0];
-Objective = norm(Q,'fro')^2;
+Objective = norm(Q-eye(length([Wv;z])),'fro')^2;
 Options = sdpsettings('solver','mosek','verbose',1);
 optimize(F,Objective,Options)
 
-Q = value(Q)
+Precision = 1e-6;
 
-VerifiedW11 = clean(replace(W(1,1), coefListW, double(coefListW)), 1e-6);
-VerifiedW12 = clean(replace(W(1,2), coefListW, double(coefListW)), 1e-6);
-VerifiedW22 = clean(replace(W(2,2), coefListW, double(coefListW)), 1e-6);
+Q=value(Q)
+[~,D] = eig(Q);
+Indices = find(abs(D) < Precision);
+D(Indices) = 0;
+
+if min(D(:)) < 0
+    display('ERROR: Q is not PSD')
+    keyboard
+end
+
+VerifiedW11 = clean(replace(W(1,1), Wc, double(Wc)), 1e-6);
+VerifiedW12 = clean(replace(W(1,2), Wc, double(Wc)), 1e-6);
+VerifiedW22 = clean(replace(W(2,2), Wc, double(Wc)), 1e-6);
 
 W11 = sdisplay(VerifiedW11);
 W12 = sdisplay(VerifiedW12);
@@ -489,26 +595,6 @@ W22 = sdisplay(VerifiedW22);
 
 W = [W11, W12;
     W12, W22]
-end
-
-% Minimizes the Gramian of an SOS polynomial
-
-function MinimizingGramian
-
-x = sdpvar(1,1);
-y = sdpvar(1,1);
-v = monolist([x y],2);
-Q = sdpvar(length(v));
-p_sos = v'*Q*v;
-
-F = [Q-1e-3*eye(length(v)) >= 0];
-optimize(F,norm(Q,'fro'),sdpsettings('dualize',1))
-Q = value(Q)
-[~,NotPositiveDefinite] = chol(Q);
-if NotPositiveDefinite ~= 0
-    display('Q is not PD')
-end
-
 end
 
 function SimpleADMMProgram
