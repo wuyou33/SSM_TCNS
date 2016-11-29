@@ -15,7 +15,7 @@ d = 1e-2;
 lambda = 1;
 Option       = 'Neighbor';
 
-NumberOfAgents = 8
+NumberOfAgents = 2
 
 fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
 diary(fname)
