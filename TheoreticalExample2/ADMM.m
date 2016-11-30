@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %
-% Git Branch: ADMMGramian Composed                                        %
+% Git Branch: master                                        %
 % Description: In this branch, the gramian matrix is composed by monomials%
 % from the Ws                                                             %
 %                                                                         %
