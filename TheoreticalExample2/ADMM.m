@@ -1,3 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                         %
+% Git Branch: ADMMGramian Composed                                        %
+% Description: In this branch, the gramian matrix is composed by monomials%
+% from the Ws                                                             %
+%                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function ADMM
 
 clear all
@@ -205,44 +213,22 @@ Zc = [Zc1;Zc2];
 lambda = 1e-1;
 MI = -DZ + A*Z + Z*transpose(A) + 2*lambda*Z;
 
-s1 = sdpvar(NumberOfStates,1);
-s2 = sdpvar(NumberOfStates,1);
-s  = [s1;s2];
+v = [v1;v2];
 
-% Monomials defined by a single list
-ListOfMonomials_MI = monolist([q;s],2,1);
-ListOfMonomials_MI = ListOfMonomials_MI(2:end);
+ListOfMonomials_MI = [ListOfMonomials1;ListOfMonomials2];
 
-% Monomials defined by a concatenating 2 lists
-% ListOfMonomials_MI1 = monolist([q1;s1],2);
-% ListOfMonomials_MI2 = monolist([q2;s2],2);
-% ListOfMonomials_MI  = [ListOfMonomials_MI1;ListOfMonomials_MI1];
-
-% Definition of a single large Gramian
-% Gramian_MI = sdpvar(length(ListOfMonomials_MI));
-
-% Definition of a block-diagonal Gramian
-Gramian_MI1 = sdpvar(length(ListOfMonomials_MI)/2);
-Gramian_MI2 = sdpvar(length(ListOfMonomials_MI)/2);
+Gramian_MI1 = sdpvar(length(ListOfMonomials1));
+Gramian_MI2 = sdpvar(length(ListOfMonomials2));
 Gramian_MI  = blkdiag(Gramian_MI1,Gramian_MI2);
 
-
-% Definition of a block-diagonal Gramian
-% Gramian_MI1 = sdpvar(length(ListOfMonomials_MI1));
-% Gramian_MI2 = sdpvar(length(ListOfMonomials_MI2));
-% Gramian_MI  = blkdiag(Gramian_MI1,Gramian_MI2);
-
-p_MI = -s'*MI*s;
+p_MI = -v'*MI*v;
 p_SMI = ListOfMonomials_MI'*Gramian_MI*ListOfMonomials_MI;
 
 Options = sdpsettings('solver','mosek','verbose',1);
 
-Constraints = [Gramian_MI>=0;coefficients(p_MI-p_SMI,[q;s])==0];
-% Objective   = norm(Gramian_MI1 - Gramian_W1 + Lambda1,'fro')^2 + ...
-%               norm(Gramian_MI2 - Gramian_W2 + Lambda2,'fro')^2;
-Objective   = norm(Gramian_MI - blkdiag(Gramian_W1,Gramian_W2) ...
-              + blkdiag(Lambda1,Lambda2),'fro')^2;
-% Objective   = norm(Gramian_MI - eye(length(Gramian_MI)),'fro')^2;
+Constraints = [Gramian_MI>=0;coefficients(p_MI-p_SMI,[q;v])==0];
+Objective   = norm(Gramian_MI1 - Gramian_W1 + Lambda1,'fro')^2 + ...
+              norm(Gramian_MI2 - Gramian_W2 + Lambda2,'fro')^2;
 DiagnosticMI = optimize(Constraints,Objective,Options);
 
 if DiagnosticMI.problem ~= 0
