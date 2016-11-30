@@ -145,6 +145,16 @@ if Diagnostic1.problem ~= 0
  keyboard;
 end
 
+% Verifying if the Gramian is PSD -----------------------------------------
+ValuedGramian = value(Gramian_W1);
+[~,EigenValues] = eig(ValuedGramian);
+EigenValueTolerance = 1e-6;
+EigenValues = clean(EigenValues,EigenValueTolerance);
+if min(EigenValues(:)) < 0
+    disp('ERROR: Gramian_W1 is no PSD')
+    keyboard;
+end
+
 % W2
 
 v2 = sdpvar(length(W2),1);
@@ -162,6 +172,16 @@ if Diagnostic2.problem ~= 0
  disp('ERROR:')
  yalmiperror(Diagnostic2.problem)
  keyboard;
+end
+
+% Verifying if the Gramian is PSD -----------------------------------------
+ValuedGramian = value(Gramian_W2);
+[~,EigenValues] = eig(ValuedGramian);
+EigenValueTolerance = 1e-6;
+EigenValues = clean(EigenValues,EigenValueTolerance);
+if min(EigenValues(:)) < 0
+    disp('ERROR: Gramian_W2 is no PSD')
+    keyboard;
 end
 
 %% Z Update ===============================================================
@@ -231,11 +251,27 @@ Objective   = norm(Gramian_MI1 - Gramian_W1 + Lambda1,'fro')^2 + ...
               norm(Gramian_MI2 - Gramian_W2 + Lambda2,'fro')^2;
 DiagnosticMI = optimize(Constraints,Objective,Options);
 
+% Checking for errors in the optimization ---------------------------------
 if DiagnosticMI.problem ~= 0
  disp('ERROR:')
  yalmiperror(DiagnosticMI.problem)
  keyboard;
 end
+
+% Verifying if the Gramian is PSD -----------------------------------------
+ValuedGramian = value(Gramian_MI);
+[~,EigenValues] = eig(ValuedGramian);
+EigenValueTolerance = 1e-6;
+EigenValues = clean(EigenValues,EigenValueTolerance);
+if min(EigenValues(:)) < 0
+    disp('ERROR: Gramian_MI is no PSD')
+    keyboard;
+end
+
+%% Lambda Update ==========================================================
+
+Lambda1 = Gramian_W1 - Gramian_MI1 + Lambda1;
+Lambda2 = Gramian_W2 - Gramian_MI2 + Lambda2;
 
 keyboard;
 
