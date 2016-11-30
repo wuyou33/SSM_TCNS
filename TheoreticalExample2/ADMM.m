@@ -11,10 +11,10 @@ function ADMM
 clear all;
 close all;
 clc;
-dbstop if error
+% dbstop if error
 
-% PositiveDefiniteness
-MWE
+PositiveDefiniteness
+% MWE
 
 % BiDADMMProgram
 end
@@ -90,15 +90,15 @@ while NumberOfIterations < MaxNumberOfIterations && max(norm(Q1-Qz1+Lambda1,'fro
     D(Indices) = 0;
     
     if min(D(:)) < 0
-        display('Q1 is not SPD')
-        return;
+        display('Q1 is not PSD')
+        keyboard;
     end
 
 if Diagnostics.problem == 0
-%     disp('Solver thinks it is feasible for W1')
+     disp('Solver thinks it is feasible for W1')
 elseif Diagnostics.problem == 1
     disp('Solver thinks that optimize W1 it is infeasible')
-    return;
+    keyboard;
 else
     if Diagnostics.problem == -2
         disp('No suitable solver to optimize W1')
@@ -107,7 +107,7 @@ else
     else
         disp('Something else happened while trying to optimize W1')
     end
-    return;
+    keyboard;
 end
 
 % Solving for W2 ----------------------------------------------------------
@@ -149,15 +149,15 @@ Indices = find(abs(D) < Precision);
 D(Indices) = 0;
 
 if min(D(:)) < 0
-    display('Q2 is not SPD')
-    return;
+    display('Q2 is not PSD')
+    keyboard;
 end
 
 if Diagnostics.problem == 0
 %     disp('Solver thinks it is feasible for W2')
 elseif Diagnostics.problem == 1
     disp('Solver thinks that optimize W2 it is infeasible')
-    return;
+    keyboard;
 else
     if Diagnostics.problem == -2
         disp('No suitable solver to optimize W2')
@@ -166,7 +166,7 @@ else
     else
         disp('Something else happened while trying to optimize W2')
     end
-    return;
+    keyboard;
 end
     
     W = blkdiag(W1,W2);
@@ -174,8 +174,8 @@ end
     
     % Creation of Z1 and DZ1
     [Zp111,Zc111,Zv1] = polynomial(q1,PolynomialDegree,0);
-    [Zp112,Zc112,~] = polynomial(q1,PolynomialDegree,0);
-    [Zp122,Zc122,~] = polynomial(q1,PolynomialDegree,0);
+    [Zp112,Zc112,~]   = polynomial(q1,PolynomialDegree,0);
+    [Zp122,Zc122,~]   = polynomial(q1,PolynomialDegree,0);
     % Creation of W1
     Z1 = [Zp111, Zp112;
           Zp112, Zp122];
@@ -212,7 +212,8 @@ end
 
     
 %     MI = -DZ + A*Z + Z*transpose(A) + 2*Z;% + B*Y + transpose(B*Y);
-    MI = A*Z + Z*transpose(A) + 2*Z;
+    lambda = 1e-1;
+    MI = A*Z + Z*transpose(A) + 2*lambda*Z;
     
     v1 = sdpvar(2,1);
     v2 = sdpvar(2,1);
@@ -231,10 +232,10 @@ end
     Diagnostics = optimize(Constraints,Objective,options);
     
     if Diagnostics.problem == 0
-%     disp('Solver thinks it is feasible for Z')
+     disp('Solver thinks it is feasible for Z')
 elseif Diagnostics.problem == 1
     disp('Solver thinks that optimize Z it is infeasible')
-    return;
+    keyboard;
 else
     if Diagnostics.problem == -2
         disp('No suitable solver to optimize Z')
@@ -243,7 +244,7 @@ else
     else
         disp('Something else happened while trying to optimize Z')
     end
-    return;
+    keyboard;
     end
 
     Qz = value(Qz);
@@ -369,17 +370,17 @@ u2 = sdpvar;
 
 % System Definitions ------------------------------------------------------
 
-% dx1 = -x1 - x1^3 + y1^2 -0*(+1*x1^3 -1*x2^3);
-% dy1 = u1;
+dx1 = -x1 - x1^3 + y1^2 -0*(+1*x1^3 -1*x2^3);
+dy1 = u1;
 
-f1 = [-x1;0];
-b1 = [0;-y1];
+f1 = [dx1;0];
+b1 = [0;dy1];
 
-% dx2 = -x2 - x2^3 + y2^2 -0*(-1*x1^3 +1*x2^3);
-% dy2 = u2;
+dx2 = -x2 - x2^3 + y2^2 -0*(-1*x1^3 +1*x2^3);
+dy2 = u2;
 
-f2 = [-x2;0];
-b2 = [0;-y2];
+f2 = [dx2;0];
+b2 = [0;dy2];
 
 A11 = jacobian(f1+b1,[x1;y1]);
 A12 = jacobian(f1+b1,[x2;y2]);
@@ -539,22 +540,69 @@ end
 
 function PositiveDefiniteness
 
+SOSSolver = 'No'
+
 x = sdpvar;
 y = sdpvar;
+u = sdpvar;
 
-f = [-x;-y];
-A = jacobian(f,[x;y]);
+f = [-x - x^3 + y^2;0];
+% f = [-x - x^3];
+% f = [-x;-y];
+b = [0;1];
+% b = 0;
 
-[Wp11,Wc11,Wv] = polynomial([x;y],2,0);
-[Wp12,Wc12,~] = polynomial([x;y],2,0);
-[Wp22,Wc22,~] = polynomial([x;y],2,0);
+q = [x;y];
+A = jacobian(f+b*u,q);
+
+[Zp11,Zc11,Zv] = polynomial(q,2,0);
+[Zp12,Zc12,~]  = polynomial(q,2,0);
+[Zp22,Zc22,~]  = polynomial(q,2,0);
+% Creation of W1
+Z = [Zp11, Zp12;
+     Zp12, Zp22];
+Zc = [Zc11;Zc12;Zc22];
+Zp = [Zp11;Zp12;Zp22];
+
+DZTemp = jacobian(Zp,q);
+DZ = [DZTemp(1,:)*f/2, DZTemp(2,:)*f;
+    0,                DZTemp(3,:)*f/2];
+DZ = DZ + transpose(DZ);
+
+% Lambda must be smaller than 1
+lambda = 1e-0;
+MI = -DZ + A*Z + Z*transpose(A) + 2*lambda*Z;
+
+z = sdpvar(2,1);
+p_z = -z'*MI*z;
+% [c_w m_w] = coefficients(p_w,[q;z]);
+Options = sdpsettings('solver','mosek','verbose',0);
+[~,Monomials,GramianMatrix,~] = solvesos([sos(p_z);sos],[],Options,Zc);
+
+GramianMatrix = cell2mat(GramianMatrix);
+
+m_z = sdpvar(length(GramianMatrix),1);
+
+for i = 1:length(GramianMatrix)
+        m_z(i) = Monomials{1,1}(i,1);
+end
+
+Q = sdpvar(length(m_z));
+p_sos = m_z'*Q*m_z;
+[c_sos m_sos] = coefficients(p_sos,[q;z]);
+
+Precision = 1e-6;
+
+[Wp11,Wc11,Wv] = polynomial(q,2,0);
+[Wp12,Wc12,~]  = polynomial(q,2,0);
+[Wp22,Wc22,~]  = polynomial(q,2,0);
 % Creation of W1
 W = [Wp11, Wp12;
     Wp12, Wp22];
 Wc = [Wc11;Wc12;Wc22];
 Wp = [Wp11;Wp12;Wp22];
 
-DWTemp = jacobian(Wp,[x;y]);
+DWTemp = jacobian(Wp,q);
 DW = [DWTemp(1,:)*f/2, DWTemp(2,:)*f;
     0,                DWTemp(3,:)*f/2];
 DW = DW + transpose(DW);
@@ -563,38 +611,44 @@ DW = DW + transpose(DW);
 lambda = 1e-1;
 MI = -DW + A*W + W*transpose(A) + 2*lambda*W;
 
-z = sdpvar(2,1);
-Q = sdpvar(length([Wv;z]));
-p_sos = [Wv;z]'*Q*[Wv;z];
+
 p_w = -z'*MI*z;
+[c_MI m_MI] = coefficients(p_w,[q;z]);
 
-F = [Q>=0,coefficients(p_sos - p_w,[x;y;z])==0];
-Objective = norm(Q-eye(length([Wv;z])),'fro')^2;
+Constraints = [Q>=0;coefficients(p_sos - p_w,[q;z])==0];
+Objective = norm(Q-eye(length(Q)),'fro')^2;
 Options = sdpsettings('solver','mosek','verbose',1);
-optimize(F,Objective,Options)
-
-Precision = 1e-6;
-
-Q=value(Q)
-[~,D] = eig(Q);
-Indices = find(abs(D) < Precision);
-D(Indices) = 0;
-
-if min(D(:)) < 0
-    display('ERROR: Q is not PSD')
-    keyboard
+if strcmp(SOSSolver,'No')
+    Diagnostics = optimize(Constraints,Objective,Options);
+    
+    Q=value(Q);
+    [~,D] = eig(Q);
+    D = clean(abs(D),Precision);
+    
+    if min(D(:)) < 0
+        display('ERROR: Q is not PSD')
+        keyboard
+    end
+else
+    [Diagnostics,~,Q,~] = solvesos([sos(-MI);...
+        sos(W-Precision*eye(2))],[],Options,Wc);
 end
 
-VerifiedW11 = clean(replace(W(1,1), Wc, double(Wc)), 1e-6);
-VerifiedW12 = clean(replace(W(1,2), Wc, double(Wc)), 1e-6);
-VerifiedW22 = clean(replace(W(2,2), Wc, double(Wc)), 1e-6);
+CleanPrecision = 1e-6;
+
+VerifiedW11 = clean(replace(W(1,1), Wc, double(Wc)), CleanPrecision);
+VerifiedW12 = clean(replace(W(1,2), Wc, double(Wc)), CleanPrecision);
+VerifiedW22 = clean(replace(W(2,2), Wc, double(Wc)), CleanPrecision);
 
 W11 = sdisplay(VerifiedW11);
 W12 = sdisplay(VerifiedW12);
 W22 = sdisplay(VerifiedW22);
 
-W = [W11, W12;
+VerifiedW = [W11, W12;
     W12, W22]
+
+display('END of execution')
+keyboard
 end
 
 function SimpleADMMProgram
@@ -657,5 +711,6 @@ Z
 Lambda
 
 end
+
 
 
