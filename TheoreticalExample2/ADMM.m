@@ -384,9 +384,11 @@ Z44 = sdisplay(VerifiedZ44);
 
 clear VerifiedZ44;
 VerifiedZ = [Z11, Z12, Z13, Z14;
-             Z21, Z22, Z23, Z24;
-             Z31, Z32, Z33, Z34;
-             Z41, Z42, Z43, Z44];
+    Z21, Z22, Z23, Z24;
+    Z31, Z32, Z33, Z34;
+    Z41, Z42, Z43, Z44];
+
+save('ADMMOutput','W')
 
 keyboard;
 
