@@ -11,6 +11,7 @@ function ADMM
 clear all
 clc
 close all
+dbstop if error
 
 %% Initialization =========================================================
 
@@ -21,7 +22,8 @@ Simulation   = 0;
 SystemStates = ['x','y'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-d = 1e-3; %Maximum value to avoid numerical problems
+d = 1e-2; %Maximum value to avoid numerical problems
+% d = 0;
 NumberOfAgents = 2
 NumberOfStates = length(SystemStates);
 
@@ -32,10 +34,11 @@ LaplacianMatrix = LinearLaplacianGenerator(NumberOfAgents);
 PolymialDegree = 2;
 NumberOfMonomials = nchoosek(2*NumberOfStates + PolymialDegree,PolymialDegree);
 
-MaxNumberOfIterations = 10;
+MaxNumberOfIterations = 50;
 IterationCounter      = 1;
-ErrorTolerance = 1e-6;
+ErrorTolerance = 1e-4;
 Error = Inf;
+ErrorVector = zeros(MaxNumberOfIterations,1);
 
 Gramian_MI1 = rand(NumberOfMonomials);
 Gramian_MI2 = rand(NumberOfMonomials);
@@ -152,8 +155,8 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     end
     
     % Verifying if the Gramian is PSD -----------------------------------------
-    ValuedGramian = value(Gramian_W1);
-    [~,EigenValues] = eig(ValuedGramian);
+    Gramian_W1 = value(Gramian_W1);
+    [~,EigenValues] = eig(Gramian_W1);
     EigenValueTolerance = 1e-6;
     EigenValues = clean(EigenValues,EigenValueTolerance);
     if min(EigenValues(:)) < 0
@@ -181,8 +184,8 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     end
     
     % Verifying if the Gramian is PSD -----------------------------------------
-    ValuedGramian = value(Gramian_W2);
-    [~,EigenValues] = eig(ValuedGramian);
+    Gramian_W2 = value(Gramian_W2);
+    [~,EigenValues] = eig(Gramian_W2);
     EigenValueTolerance = 1e-6;
     EigenValues = clean(EigenValues,EigenValueTolerance);
     if min(EigenValues(:)) < 0
@@ -251,8 +254,10 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     p_SMI = ListOfMonomials_MI'*Gramian_MI*ListOfMonomials_MI;
     
     Constraints = [Gramian_MI>=0;coefficients(p_MI-p_SMI,[q;v])==0];
-    Objective   = norm(Gramian_MI1 - Gramian_W1 + Lambda1,'fro')^2 + ...
-        norm(Gramian_MI2 - Gramian_W2 + Lambda2,'fro')^2;
+    Objective   = norm(Gramian_MI1 - Gramian_W1 - Lambda1,'fro')^2 + ...
+        norm(Gramian_MI2 - Gramian_W2 - Lambda2,'fro')^2;
+%     Objective   = norm(Gramian_MI - blkdiag(Gramian_W1,Gramian_W2) ...
+%                   + blkdiag(Lambda1,Lambda2),'fro')^2;
     DiagnosticMI = optimize(Constraints,Objective,Options);
     
     % Checking for errors in the optimization ---------------------------------
@@ -263,8 +268,10 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     end
     
     % Verifying if the Gramian is PSD -----------------------------------------
-    ValuedGramian = value(Gramian_MI);
-    [~,EigenValues] = eig(ValuedGramian);
+    Gramian_MI = value(Gramian_MI);
+    Gramian_MI1 = value(Gramian_MI1);
+    Gramian_MI2 = value(Gramian_MI2);
+    [~,EigenValues] = eig(Gramian_MI);
     EigenValueTolerance = 1e-6;
     EigenValues = clean(EigenValues,EigenValueTolerance);
     if min(EigenValues(:)) < 0
@@ -277,10 +284,108 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     Lambda1 = Gramian_W1 - Gramian_MI1 + Lambda1;
     Lambda2 = Gramian_W2 - Gramian_MI2 + Lambda2;
     
-    Error = norm(Lambda1,'fro')^2 + norm(Lambda2,'fro')^2;
+    ErrorVector(IterationCounter) = norm(Gramian_W1 - Gramian_MI1,'fro') + norm(Gramian_W2 - Gramian_MI2,'fro');
+%   ErrorVector(IterationCounter) = norm(Lambda1,'fro') + norm(Lambda2,'fro');
+    Error = ErrorVector(IterationCounter);
     IterationCounter = IterationCounter + 1;
     
 end
+
+if IterationCounter >= MaxNumberOfIterations
+   disp('Maximum number of iterations reached !')
+end
+
+IterationCounter = IterationCounter - 1;
+plot(linspace(1,IterationCounter,IterationCounter),ErrorVector(1:IterationCounter),'LineWidth',2);
+xlabel('Iteration number');
+ylabel('Error');
+axis tight
+grid on
+
+
+%% PostProcessing =========================================================
+
+%W
+
+Precision = 1e-9;
+coefList = Wc;
+AnalysisW(SystemStates,LaplacianMatrix,Precision)
+PostProcessedW
+W
+
+% Z -----------------------------------------------------------------------
+
+Precision = 1e-15;
+coefList = Zc;
+
+VerifiedZ11 = clean(replace(Z(1,1), coefList, double(coefList)), Precision);
+Z11 = sdisplay(VerifiedZ11);
+
+clear VerifiedZ11;
+VerifiedZ12 = clean(replace(Z(1,2), coefList, double(coefList)), Precision);
+Z12 = sdisplay(VerifiedZ12);
+
+clear VerifiedZ12;
+VerifiedZ13 = clean(replace(Z(1,3), coefList, double(coefList)), Precision);
+Z13 = sdisplay(VerifiedZ13);
+
+clear VerifiedZ13;
+VerifiedZ14 = clean(replace(Z(1,4), coefList, double(coefList)), Precision);
+Z14 = sdisplay(VerifiedZ14);
+
+clear VerifiedZ14;
+VerifiedZ21 = clean(replace(Z(2,1), coefList, double(coefList)), Precision);
+Z21 = sdisplay(VerifiedZ21);
+
+clear VerifiedZ21;
+VerifiedZ22 = clean(replace(Z(2,2), coefList, double(coefList)), Precision);
+Z22 = sdisplay(VerifiedZ22);
+
+clear VerifiedZ22;
+VerifiedZ23 = clean(replace(Z(2,3), coefList, double(coefList)), Precision);
+Z23 = sdisplay(VerifiedZ23);
+
+clear VerifiedZ23;
+VerifiedZ24 = clean(replace(Z(2,4), coefList, double(coefList)), Precision);
+Z24 = sdisplay(VerifiedZ24);
+
+clear VerifiedZ24;
+VerifiedZ31 = clean(replace(Z(3,1), coefList, double(coefList)), Precision);
+Z31 = sdisplay(VerifiedZ31);
+
+clear VerifiedZ31;
+VerifiedZ32 = clean(replace(Z(3,2), coefList, double(coefList)), Precision);
+Z32 = sdisplay(VerifiedZ32);
+
+clear VerifiedZ32;
+VerifiedZ33 = clean(replace(Z(3,3), coefList, double(coefList)), Precision);
+Z33 = sdisplay(VerifiedZ33);
+
+clear VerifiedZ33;
+VerifiedZ34 = clean(replace(Z(3,4), coefList, double(coefList)), Precision);
+Z34 = sdisplay(VerifiedZ34);
+
+clear VerifiedZ34;
+VerifiedZ41 = clean(replace(Z(4,1), coefList, double(coefList)), Precision);
+Z41 = sdisplay(VerifiedZ41);
+
+clear VerifiedZ41;
+VerifiedZ42 = clean(replace(Z(4,2), coefList, double(coefList)), Precision);
+Z42 = sdisplay(VerifiedZ42);
+
+clear VerifiedZ42;
+VerifiedZ43 = clean(replace(Z(4,3), coefList, double(coefList)), Precision);
+Z43 = sdisplay(VerifiedZ43);
+
+clear VerifiedZ43;
+VerifiedZ44 = clean(replace(Z(4,4), coefList, double(coefList)), Precision);
+Z44 = sdisplay(VerifiedZ44);
+
+clear VerifiedZ44;
+VerifiedZ = [Z11, Z12, Z13, Z14;
+             Z21, Z22, Z23, Z24;
+             Z31, Z32, Z33, Z34;
+             Z41, Z42, Z43, Z44];
 
 keyboard;
 
