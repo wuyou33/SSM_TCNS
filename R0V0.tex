@@ -807,7 +807,7 @@ The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\
 
 \mypara Now that the computation of a positive definite $W$ satisfying inequality~\eqref{eq:Artstein-Sontag:inequality:dual} in terms of SOS polynomials has been explained, the next step is to solve the SOS feasibility using ADMM. 
 
-\mypara Define the set $\mathbf{T}=\{Z_1,\ldots,Z_N:Z_W=\mathbin{\mathtt{diag}}(Z_1,\ldots,Z_N)\succeq0,p_{MI}=\bar{v}^\top Z_W\bar{v}\in\mathbb{R}[x,v]\}$. For a set $\mathbf{G}$ define the indicator (also known as barrier) function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
+\mypara Define the set $\mathbf{T}=\{Z_1,\ldots,Z_N:Z=\mathbin{\mathtt{diag}}(Z_1,\ldots,Z_N),p_{MI}=\bar{v}^\top Z\bar{v}\in\mathbb{R}[x,v]\}$. For a set $\mathbf{G}$ define the indicator (also known as barrier) function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
 \begin{equation*}
 	H(\mathbf{G},g)=\begin{cases}
 									0,&g\in \mathbf{G}\\
@@ -818,18 +818,18 @@ The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\
 \mypara The MI~\eqref{eq:MI formulation} can be cast into the following optimization problem
 \begin{equation*}
 	\begin{array}{rl}
-		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N))+\sum_{i=1}^N H(\mathbf{S}_{\succ0}^{\alpha_i},Q_{W_i})\\
+		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N))+\sum_{i=1}^N H(\mathbf{S}_{\succeq0}^{\alpha_i},Q_{W_i})\\
 		\text{subject to}&Q_{W_i}-Z_i=0,\quad\forall i\in\mathbb{N}_{[1,N]}\;,
 	\end{array}
 \end{equation*}
 where $\alpha_i=(2n_i+d_i)!/(d_i!(2n_i)!)$, $d_i=\deg(v_i^\top W_iv_i)$ and $v_i\in\mathbb{R}^{n_i}$.
 
-The ADMM algorithm can be written as
+\mypara The ADMM algorithm can be written as
 \begin{enumerate}
 	\item For each $i\in\mathbb{N}_{[1,N]}$, update the matrix $W_i$ as follows.
 	\begin{equation*}
 	\begin{array}{rcl}
-		Q_{W_i}^{k+1}&=&\mathbin{\mathtt{argmin}}_{Q_{W_i}\in\mathbf{S}_{\succ0}^{\alpha_i}}\left|\left|Q_{W_i}-Z_i^k+\Lambda_i^k\right|\right|_F^2\;,
+		Q_{W_i}^{k+1}&=&\mathbin{\mathtt{argmin}}_{Q_{W_i}\in\mathbf{S}_{\succeq0}^{\alpha_i}}\left|\left|Q_{W_i}-Z_i^k+\Lambda_i^k\right|\right|_F^2\;,
 	\end{array}
 \end{equation*}
 	where $||\cdot||_F$ stands for the Frobenius norm;
@@ -844,6 +844,8 @@ The ADMM algorithm can be written as
 	\end{equation*}
 \end{enumerate}
 Note that steps 1 and 3 are computed in parellel while step 2 requires to gather all the values of the matrices $Q_{W_i}$ and the values $\Lambda_i$.
+
+\mypara As $k\to\infty$, for each index $i\in\mathbb{N}_{[1,N]}$, the Gramians $Q_{W_i}$ will coincide with the matrices $Z_i$. Consequently, the block-diagonal matrix $Z$ is symmetric and positive definite. Thus, $p_{MI}\in\mathbb{SOS}[x,v]$ and, for each index $i\in\mathbb{N}_{[1,N]}$, $v_i^\top W_iv_i\in\mathbb{SOS}[x_i,v_i]$. Hence, $M=\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)^{-1}$ is a separable control contraction metric for system \eqref{eq:general system}.
 
 \subsection{Discussion}
 
