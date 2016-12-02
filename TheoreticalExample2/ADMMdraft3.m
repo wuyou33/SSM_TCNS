@@ -63,8 +63,8 @@ InputVector = [input1; input2];
 x1dot = -x1 - x1^3 + y1^2 -d*(+1*x1^3 -1*x2^3);
 x2dot = -x2 - x2^3 + y2^2 -d*(-1*x1^3 +1*x2^3);
 
-y1dot = -y1;
-y2dot = -y2;
+y1dot = 0;
+y2dot = 0;
 
 
 % Writing Vector Fields and Jacobian Matrices 
