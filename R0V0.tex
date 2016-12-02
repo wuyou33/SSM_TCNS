@@ -36,6 +36,7 @@
 
 \usepackage{chngcntr} % To reset counter at each section
 
+
 % Paragraph counter 
 \newcounter{para}
 \newcommand\mypara{\par \thesection.\refstepcounter{para}\thepara.\space}
@@ -89,6 +90,8 @@ firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bib
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+  
+ 
   
   \usepackage{epstopdf} % Must be loaded right after graphicx
 \else
@@ -485,7 +488,7 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \paragraph{Overview} The motivation and the problem formulation are provided in Section \ref{sec:Problem Formulation and Motivation}. The background needed for this paper is stated in Section \ref{sec:background}. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. Section \ref{sec:Conclusion} collects final remarks.
 
-\paragraph{Notation} Let $\mathbb{S}$ be a totally ordered set and $s_1,s_2,s_3\in\mathbb{S}$. The notation $\mathbb{S}_{[s_1,s_2)}$ (resp. $\mathbb{S}_{\diamond s_3}$) stands for the set $\{s\in\mathbb{S}:s_1\leq s< s_2\}$ (resp. $\{s\in\mathbb{S}:s\diamond s_3\}$, where $\diamond$ is a comparison operator, i.e., $\diamond\in\{<,\geq,=,\ \text{etc}\}$). Let $n>0$ be any integer, the vector $e_i$ denotes the vector with zeros in all rows except the $i$-th where it is 1. A matrix $M\in\mathbb{R}^{n\times n}$ with zero elements except (possibly) those  $m_{ii},\ldots,m_{nn}$ on the diagonal is denoted as $\mathbin{\mathtt{diag}}(m_{ii},\ldots,m_{nn})$. The notation $M\succ 0$ (resp. $M\succeq 0$) stands for $M$ being positive (resp. semi)definite. For a matrix $M\succ0$, the notation $\mathbin{\mathtt{chol}}(M)$ stands for the \emph{upper-triangular Cholesky factor $U$} satisfying $A=U^\top U$.
+\paragraph{Notation} Let $\mathbb{S}$ be a totally ordered set and $s_1,s_2,s_3\in\mathbb{S}$. The notation $\mathbb{S}_{[s_1,s_2)}$ (resp. $\mathbb{S}_{\diamond s_3}$) stands for the set $\{s\in\mathbb{S}:s_1\leq s< s_2\}$ (resp. $\{s\in\mathbb{S}:s\diamond s_3\}$, where $\diamond$ is a comparison operator, i.e., $\diamond\in\{<,\geq,=,\ \text{etc}\}$). Let $n>0$ be any integer, the vector $e_i$ denotes the vector with zeros in all rows except the $i$-th where it is 1. A matrix $M\in\mathbb{R}^{n\times n}$ with zero elements except (possibly) those  $m_{ii},\ldots,m_{nn}$ on the diagonal is denoted as $\mathbin{\mathtt{diag}}(m_{ii},\ldots,m_{nn})$. The notation $M\succ 0$ (resp. $M\succeq 0$) stands for $M$ being positive (resp. semi)definite such a class of matrices is denoted as $\mathbf{S}_{\star0}^n=\{M\in\mathbb{R}^{n\times n}:M\star0,M=M^\top\}$, where $\star\in\{\succ,\succeq,\prec,\preceq\}$. For a matrix $M\succ0$, the notation $\mathbin{\mathtt{chol}}(M)$ stands for the \emph{upper-triangular Cholesky factor $U$} satisfying $A=U^\top U$.
 
 \mypara The notation $\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ stands for the class of functions $u:\mathbb{R}\to\mathbb{R}^m$ that are locally essentially bounded. Given differentiable functions $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $f:\mathbb{R}^n\to\mathbb{R}^n$ the notation $\partial_fM$ stands for matrix with dimension $n\times n$ and with $(i,j)$ element given by $\frac{\partial m_{ij}}{\partial x}(x)f(x)$. The notation $\dot{f}$ stands for the total derivative of $f$.
 
@@ -595,9 +598,9 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 			\delta_x\neq0,\quad\delta_x^\top M(x)B(x)=0
 		\end{equation}
 		implies that the inequality
-		\begin{align}
-			\delta_x^\top(\dot{M}+A^\top M+MA)\delta_x<\ -2\lambda \delta_x^\top M\delta_x\label{eq:}
-		\end{align}
+		\begin{equation}\label{eq:Artstein-Sontag:inequality}
+			\delta_x^\top(\dot{M}+A^\top M+MA)\delta_x<\ -2\lambda \delta_x^\top M\delta_x
+		\end{equation}
 		holds, where $\dot{M}:=\partial_{f+Bu}M$.
 	\end{subequations}
 \end{definition}
@@ -785,7 +788,26 @@ where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is de
 \end{subequations}
 Note that, when the requirement of $A$ is diagonally dominant can be interpreted as the network having a weak coupling.
 
-\mypara The alternating direction method of multipliers (ADMM) provides a framework to compute the block-diagonal matrix $W$ to satisfy the MI~\eqref{eq:MI formulation} in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this framework, define the sets $\mathbf{S}_{\succ0}^n=\{W\in\mathbb{R}^{n\times n}:W\succ0,W=W^\top\}$, $\mathbf{T}=\{W_1,\ldots,W_N:\exists Y\in\Xi,(\mathbin{\mathtt{diag}}(W_1,\ldots,W_N),Y)\text{ is a solution to \eqref{eq:MI formulation}}\}$. For a set $\mathbf{G}$ define the indicator/barrier function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
+\mypara The alternating direction method of multipliers (ADMM) provides a framework to compute the block-diagonal matrix $W$ to satisfy the MI~\eqref{eq:MI formulation} in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this methodology, define the set of (resp. sum-of-squares (SOS)) polynomials $\mathbb{R}[x]$ (resp. $\mathbb{SOS}[x]$), and denote the degree of a polynomial $p\in\mathbb{R}[x]$ as $\deg(p)$.
+
+\mypara By applying the change of coordinates $\eta=M\delta$ and defining the matrix $W=M^{-1}$, inequality~\eqref{eq:Artstein-Sontag:inequality} is satisfied, whenever the matrix inequality
+\begin{equation}\label{eq:Artstein-Sontag:inequality:dual}
+ 	-\dot{W}+AW + WA^\top+2\lambda W\prec0
+\end{equation} 
+holds. 
+
+\mypara The search the function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ can be relaxed to a semidefinite program. Whenever $f$ and $B$ are polynomials, this program is cast in terms of the sum-of-squares (SOS) feasibility program \cite{Parrilo2000}. To that end, introduce the vector $v\in\mathbb{R}^n$ and define the polynomials
+\begin{align*}
+	p_W=&\ v^\top W v\;,\\
+	p_{MI}=&\ -v^\top(-\dot{W}+AW + WA^\top+2\lambda W)v\;.
+\end{align*}
+The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\succeq0$, called \emph{Gramians}, with appropriate dimensions and such that $p_W=\bar{v}^\top Q_W\bar{v}$ and $p_{MI}=\bar{v}^\top Q_{MI}\bar{v}$ belong to $\mathbb{R}[x,v]$, where $\bar{v}$ is vector of monomials on the variables $x_i,\ldots,x_N$ and $v_1,\ldots,v_N$. 
+
+\mypara Once $Q$ has been computed, employing Finsler's lemma \cite[Lemma~11.1]{CalafioreGhaoui2014} pointwisely, the existence of a function $Y:\mathbb{R}^n\to\mathbb{R}^{n\times m}$ satisfying MI~\eqref{eq:MI formulation} is ensured.
+
+\mypara Now that the computation of a positive definite $W$ satisfying inequality~\eqref{eq:Artstein-Sontag:inequality:dual} in terms of SOS polynomials has been explained, the next step is to solve the SOS feasibility using ADMM. 
+
+\mypara Define the set $\mathbf{T}=\{Z_1,\ldots,Z_N:Z_W=\mathbin{\mathtt{diag}}(Z_1,\ldots,Z_N)\succeq0,p_{MI}=\bar{v}^\top Z_W\bar{v}\in\mathbb{R}[x,v]\}$. For a set $\mathbf{G}$ define the indicator (also known as barrier) function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
 \begin{equation*}
 	H(\mathbf{G},g)=\begin{cases}
 									0,&g\in \mathbf{G}\\
@@ -796,30 +818,32 @@ Note that, when the requirement of $A$ is diagonally dominant can be interpreted
 \mypara The MI~\eqref{eq:MI formulation} can be cast into the following optimization problem
 \begin{equation*}
 	\begin{array}{rl}
-		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N))+\sum_{i=1}^N H(\mathbf{S}_{\succ0}^{n_i},W_i)\\
-		\text{subject to}&W_i-Z_i=0,\quad\forall i\in\mathbb{N}_{[1,N]}\;.
+		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N))+\sum_{i=1}^N H(\mathbf{S}_{\succ0}^{\alpha_i},Q_{W_i})\\
+		\text{subject to}&Q_{W_i}-Z_i=0,\quad\forall i\in\mathbb{N}_{[1,N]}\;,
 	\end{array}
 \end{equation*}
+where $\alpha_i=(2n_i+d_i)!/(d_i!(2n_i)!)$, $d_i=\deg(v_i^\top W_iv_i)$ and $v_i\in\mathbb{R}^{n_i}$.
+
 The ADMM algorithm can be written as
 \begin{enumerate}
 	\item For each $i\in\mathbb{N}_{[1,N]}$, update the matrix $W_i$ as follows.
 	\begin{equation*}
 	\begin{array}{rcl}
-		W_i^{k+1}&=&\mathbin{\mathtt{argmin}}_{W_i\in\mathbf{S}_{\succ0}^{n_i}}\left|\left|W_i-Z_i^k+\Lambda_i^k\right|\right|_F^2\;,
+		Q_{W_i}^{k+1}&=&\mathbin{\mathtt{argmin}}_{Q_{W_i}\in\mathbf{S}_{\succ0}^{\alpha_i}}\left|\left|Q_{W_i}-Z_i^k+\Lambda_i^k\right|\right|_F^2\;,
 	\end{array}
 \end{equation*}
 	where $||\cdot||_F$ stands for the Frobenius norm;
 	
 	\item If the matrices $W_1,\ldots,W_N$ belong to $T$, then a solution has been found and the algorithm can be stopped. Otherwise, solve the global problem
 	\begin{equation*}
-		Z^{k+1}=\mathbin{\mathtt{argmin}}_{Z\in\mathbf{T}}\sum_{i=1}^N\left|\left|W_i^{k+1}-Z_i+\Lambda_i^k\right|\right|_F^2\;;
+		Z^{k+1}=\mathbin{\mathtt{argmin}}_{Z\in\mathbf{T}}\sum_{i=1}^N\left|\left|Q_{W_i}^{k+1}-Z_i+\Lambda_i^k\right|\right|_F^2\;;
 	\end{equation*}
 	\item Update $\Lambda$ and return to step 1
 	\begin{equation*}
-		\Lambda_i^{k+1}=X_i^{k+1}-Z_i^{k+1}+\Lambda_i^k\;.
+		\Lambda_i^{k+1}=Q_{W_i}^{k+1}-Z_i^{k+1}+\Lambda_i^k\;.
 	\end{equation*}
 \end{enumerate}
-Note that steps 1 and 3 are computed in parellel while step 2 requires to gather all the values of the matrices $W_i$ and the values $\Lambda_i$.
+Note that steps 1 and 3 are computed in parellel while step 2 requires to gather all the values of the matrices $Q_{W_i}$ and the values $\Lambda_i$.
 
 \subsection{Discussion}
 
