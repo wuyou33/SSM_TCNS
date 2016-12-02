@@ -662,13 +662,15 @@ where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $
 \mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the set $\mathbf{X}_i$ is empty, for all indexes $i\in\mathbb{N}_{[1,N]}$, and $\Xi$ reduces to the set $\mathcal{K}$ defined in \cite{Tanaka2011}.
 
 \begin{theorem}\label{thm:main result}
-	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system:differential}, then there exists a solution to Problem~\ref{problem formulation}.
+	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system}, then there exists a solution to Problem~\ref{problem formulation}.
 \end{theorem}
+
+\mypara The existence of a control contraction metric for system~\eqref{eq:general system} implies that there exist matrices $(W,Y)$ that are a solution to the MI~\eqref{eq:MI formulation} with structure prescribed by the set $\Xi$.
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
 	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ are a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi$.
 	
-	The MI \eqref{eq:MI formulation} implies that the inequality
+\mypara	The MI \eqref{eq:MI formulation} implies that the inequality
 	\begin{equation*}
 		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
 	\end{equation*}
@@ -836,7 +838,7 @@ where $\alpha_i=(2n_i+d_i)!/(d_i!(2n_i)!)$, $d_i=\deg(v_i^\top W_iv_i)$ and $v_i
 	
 	\item If the matrices $W_1,\ldots,W_N$ belong to $T$, then a solution has been found and the algorithm can be stopped. Otherwise, solve the global problem
 	\begin{equation*}
-		Z^{k+1}=\mathbin{\mathtt{argmin}}_{Z\in\mathbf{T}}\sum_{i=1}^N\left|\left|Q_{W_i}^{k+1}-Z_i+\Lambda_i^k\right|\right|_F^2\;;
+		Z^{k+1}=\mathbin{\mathtt{argmin}}_{Z\in\mathbf{T}}\sum_{i=1}^N\left|\left|Q_{W_i}^{k+1}-Z_i-\Lambda_i^k\right|\right|_F^2\;;
 	\end{equation*}
 	\item Update $\Lambda$ and return to step 1
 	\begin{equation*}
@@ -845,7 +847,7 @@ where $\alpha_i=(2n_i+d_i)!/(d_i!(2n_i)!)$, $d_i=\deg(v_i^\top W_iv_i)$ and $v_i
 \end{enumerate}
 Note that steps 1 and 3 are computed in parellel while step 2 requires to gather all the values of the matrices $Q_{W_i}$ and the values $\Lambda_i$.
 
-\mypara As $k\to\infty$, for each index $i\in\mathbb{N}_{[1,N]}$, the Gramians $Q_{W_i}$ will coincide with the matrices $Z_i$. Consequently, the block-diagonal matrix $Z$ is symmetric and positive definite. Thus, $p_{MI}\in\mathbb{SOS}[x,v]$ and, for each index $i\in\mathbb{N}_{[1,N]}$, $v_i^\top W_iv_i\in\mathbb{SOS}[x_i,v_i]$. Hence, $M=\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)^{-1}$ is a separable control contraction metric for system \eqref{eq:general system}.
+\mypara As $k\to\infty$, for each index $i\in\mathbb{N}_{[1,N]}$, the Gramians $Q_{W_i}$ will coincide with the matrices $Z_i$. Consequently, the block-diagonal matrix $Z$ is symmetric and positive semidefinite. Thus, $p_{MI}\in\mathbb{SOS}[x,v]$ and, for each index $i\in\mathbb{N}_{[1,N]}$, $v_i^\top W_iv_i\in\mathbb{SOS}[x_i,v_i]$. Hence, $M=\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)^{-1}$ is a separable control contraction metric for system \eqref{eq:general system}.
 
 \subsection{Discussion}
 
@@ -1043,6 +1045,32 @@ k_i=\begin{cases}
 \end{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
+
+\mypara Using ADMM to solve the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual} leads to the following components of the matrix $W$ for system~\eqref{eq:example} with four agents lead to the 
+
+\begin{figure*}
+\begin{align*}
+	W_1(q_1)=1\times10^{-7}\begin{bmatrix}
+	18-15x_1-28y_1+11.2y_1^2+3.2x_1^2+1.2x_1y_2&9.3+35x_1-43y_1+28y_1^2-16x_1^2-16x_1y_1\\
+	*&4.9+40x_1-37y_1+72y_1^2+84x_1^2-155x_1y_1
+	\end{bmatrix}\;,\\
+	W_2(q_2)=1\times10^{-7}\begin{bmatrix}1-3.7x_2+2.3y_2+1.3y_2^2+3.5x_2^2-4.3x_2y_2&
+	-0.6-0.6x_2+y_2+2y_2^2+3.5x_2^2-5.5x_2y_2\\
+	*&0.4+2.3x_2-2.3y_2+3.3y_2^2+3.4x_2^2-6.7x_2y_2
+	\end{bmatrix}\;,\\
+	W_3(q_3)=1\times10^{-7}\begin{bmatrix}
+		127-248x_3+18y_3+y_3^2+122x_3^2-18x_3y_3&
+		-98+146x_3+19y_3+1.9y_3^2-50x_3^2-22x_3y_3\\
+		*&76-78x_3-42y_3+6.4y3^2+21x_3^2+20x_3y_3
+	\end{bmatrix}\;,\\
+	W_4(q_4)=1\times10^{-6}\begin{bmatrix}
+	22+4x_4-17y_4+8.8y_4^2+9.4x_4^2+12x_4y_4&
+	-8.6-5.9x_4+1.8y_4-4.2y_4^2-9.7x_4^2-12x_4y_4\\
+	*&4.3+7.5x_4+2.8y_4+3.2y_4^2+10x_4^2+11x_4y_4
+	\end{bmatrix}\;.
+\end{align*}
+\end{figure*}
+
 
 
 \section{Conclusion}\label{sec:Conclusion}
