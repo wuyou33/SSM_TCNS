@@ -654,7 +654,7 @@ where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^
 \begin{subequations}
 	\begin{align*}
 		\Xi=\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ |\mathbin{\mathtt{col}}(Y,j)\in\mathbf{C}_j,\\
-		\arg(Y_{ij})\in\mathbf{X}(\mathscr{K}(k)),\forall i\in\mathbb{N}_{[1,m]},\forall j\in\mathbb{N}_{[1,n]},k\in\mathbb{N}_{[1,N]}\}\;,
+		\arg(Y_{ij}(\cdot,u))\in\mathbf{X}(\mathscr{K}(k)),\forall i\in\mathbb{N}_{[1,m]},\forall j\in\mathbb{N}_{[1,n]},k\in\mathbb{N}_{[1,N]}\}\;,
 	\end{align*}
 \end{subequations}
 where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $Y$, the set $\mathbf{C}_j$ is the space spanned by the sparsity vector $v_j\in\mathbb{R}^{n}$, and the set $\mathbf{X}(\mathscr{K}(k))$ is the space spanned by components of $x$ indexed by the set $\mathscr{K}(k)$.
@@ -908,9 +908,9 @@ n+d\\ d
 \end{equation*}
 \cite{Waki2006}. Consequently, when no structural constraints are imposed on $Y$, this verification can lead to
 \begin{equation*}
-N\dfrac{N+1}{2}\begin{pmatrix}
+n\dfrac{n+1}{2}\begin{pmatrix}
 n+d\\ d
-\end{pmatrix}^2
+\end{pmatrix}
 \end{equation*}
 monomials to be computed. This motivates the approach proposed in this paper.
 
@@ -1046,7 +1046,7 @@ k_i=\begin{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
 
-\mypara Using ADMM to solve the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual} leads to the following components of the matrix $W$ for system~\eqref{eq:example} with four agents lead to the 
+\mypara Using ADMM to solve the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual},  the solver took 23 seconds to compute the matrix $W$ for system~\eqref{eq:example} with four agents lead to the 
 
 \begin{figure*}
 \begin{align*}
