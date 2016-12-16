@@ -579,11 +579,11 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 \mypara A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
 
 \begin{definition}\label{def:}
-		 A metric $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ receives the adjective \emph{contraction} if, for fixed controls $u\equiv0$ and $\delta_u\equiv0$ for systems~\eqref{eq:general system} and \eqref{eq:general system:differential}, there exists a value $\lambda>0$ such that the inequality
+		 A metric $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ receives the adjective \emph{contraction} if, for a fixed control $u$ for system~\eqref{eq:general system}, there exists a value $\lambda>0$ such that the inequality
 	 	 \begin{equation}
-	 	 	\tfrac{dV}{dt}(X(t,x,u),\Delta(t,x,\delta_x,0,0))\leq -\lambda V(x,\delta_x)
+	 	 	\tfrac{dV}{dt}(X(t),\Delta(t))\leq -\lambda V(X(t),\Delta(t))
  	 	 \end{equation}
- 	 	 holds, for every pair $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$.
+ 	 	 holds, where $X(t):=X(t,x,u)$ and $\Delta(t):=\Delta(t,x,\delta_x,u,0)$, for every pair $(x,\delta_x)\in\mathbb{R}^n\times\mathbb{R}^n$.
 \end{definition}
 
 
