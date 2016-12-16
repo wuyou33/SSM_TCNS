@@ -517,11 +517,11 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,x^\ast,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
 \end{definition}
 
-\mypara Let $N>0$ be an integer, for each index $i\in\mathbb{N}_{[1,N]}$, system~\eqref{eq:general system} can be decomposed into smaller components as follows.
+\mypara Let $N>0$ be an integer and consider the graph $\mathscr{G}$ defined by the set of vertices $\mathscr{V}=\mathbb{N}_{[1,N]}$ and a set of edges $\mathscr{E}\subset\mathbb{N}_{[1,N]}\times\mathbb{N}_{[1,N]}$. For each index $i\in\mathbb{N}_{[1,N]}$, system~\eqref{eq:general system} can be decomposed into smaller components as follows.
 \begin{equation}\label{eq:subsystem}
 	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
 \end{equation}
-where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Using this decomposition, the interconnection of system~\eqref{eq:general system} is described by the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$.
+where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}.
 
 \mypara At this point, the problem under consideration in this paper can be stated as follows.
 
