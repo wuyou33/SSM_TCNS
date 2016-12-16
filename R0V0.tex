@@ -562,9 +562,9 @@ where the notation $c_s$ stands for the derivative $\tfrac{\partial c}{\partial 
 \begin{equation}\label{eq:general system:differential}
 	\dot{\delta}_x=A(x,u)\delta_x+B(x)\delta_u\;,
 \end{equation}
-where $\delta_x$ (resp. $\delta_u$) is a vector of the Euclidean space $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). More precisely, it is the vector tangent to a piecewise smooth curve connecting a pair of points in $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). The matrix $A\in\mathbb{R}^{n\times n}$ has components given, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, by 
+where $\delta_x$ (resp. $\delta_u$) is a vector of the Euclidean space $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). More precisely, it is the vector tangent to a piecewise smooth curve connecting a pair of points in $\mathbb{R}^n$ (resp. $\mathbb{R}^m$). The matrix $A\in\mathbb{R}^{n\times n}$ has components given by 
 \begin{equation*}
-	A_{jk}(x,u)=\dfrac{\partial[f_j+b_ju_j]}{\partial x_k}(x,u)	
+	A_{jk}(x,u)=\dfrac{\partial}{\partial x_k}\left[f_j+\sum_{i=1}^{m_j} B_{ji}u_i\right]
 \end{equation*}
 for indexes $j,k\in\mathbb{N}_{[1,n]}$. 
 
