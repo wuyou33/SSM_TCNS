@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage{IRM}
+\begin{document}
+
+\begin{enumerate}
+\section{Introduction}
+	\item Overall, this introduction is very focused on "nonlinear" and not much about "distrbuted" until paragraph 5/6. This needs to be fundamentally rethought: right from the start we want to be talking about large-scale networked dynamic systems and the challenges they pose, not getting into the weeds of nonlinear control theory.
+	\item I.1 Typo: "the Lyapunov's" should be "Lyapunov's". More broadly, is this claim defensible? Almost all controllers in practice are PID or MPC, neither of which is (explicitly) based on Lyapunov's theory. What does it mean for a design problem to be translated in terms of dynamic programming? I don't understand this at all
+	\item I.2: LQR is not defined. Why do you say SOS is often employed for feedback synthesis? As far as I know CCM is the first case in which this is possible.
+	\item I.3: Why "by the time this paper was submitted"? That implies that general results came after. 
+	\item I.5: "may require a function with $n^2$ terms. Is this supposed to be restricted to linear systems? For nonlinear, how can you even set a finite dimension?
+	\item I.7, what has this statement got to do with dynamic programming?
+	\item I.8 Isn't the idea of [23] that actually NO LMIs are solved, not just a reduced number? (Instead one can solve LPs)
+	\item I.9 Shouldn't we be talking about CLFs here? We are doing synthesis, not just analysis.
+	\item I.20: is the graph $\mathcal G$ defined? Shouldn't we define the graph first, and then define $\u x$ in terms of it?
+	\item I.21: what is the difference between problems P1 and P2? How does $\mathcal V_c$ differ from $\mathcal K(i)$? Are these actually defined anywhere?
+	\item I.22 How do you know it was due to the number of variables, and not, e.g., the number of constraints? Shouldn't we just say due to memory constraints?
+	\item I.25: Shouldn't this be something like
+	\[
+`	\pder{x_k}\left(f_j+\sum_iB_{ji}u_i\right)
+	\]
+	for the multi-input case? Otherwise you are mixing index of $\dot x$ with index of $u$.
+	\item I.30: why fixed $u$ and $\delta_u$? If $u$ is fixed, then $\delta_u=0$ and we are just looking at autonomous systems, right? What is meant be "the norm" here? A metric defines a (possibly state-varying) norm for the differential dynamics. Is this norm in this paragraph the Euclidean norm, or the norm from the metric?
+	\item I.31, again Why $u=0$ here? The right hand side of (7) should have $X$ and $\Delta$ as arguments, not $x$ and $\delta_x$. Why not just write
+	\[
+	ddt V(x(t),\delta_x(t))\le -\lambda V(x(t)\delta_x(t))
+	\]
+	where $x(t)=X..., \delta_x(t) = \Delta(...$
+	\item I.34. Do you mean Artstein-Sontag condition applied to the differential dynamics?
+	\item I.36-I.39 Here we should give the alternative CLF construction, as it will generally be more tractable in practice.
+	\item I.40: distributely is not a word. Replace with "cannot generally be computed in a distributed manner".
+	\item I.41: not block-diagonal but separable.
+\section{Design of Distributed Controllers}
+\item This section includes a theorem about Problem 1. But actually it seems to me it is not correctly stated. If there exists a SSCCM, then there is a solution to the distributed control problem where the control dependency is defined by $\u x$. This follows from the CLF result. But for arbitrary control dependency, we need also conditions on the sparsity patterns and dependency of $Y$ explicitly stated in the theorem.
+\item II.3: I think we need to clean up the definition of $\Xi$. I still can't understand what this is supposed to mean! It should be much simpler.
+\item II.8: Why does this follow from $M$ being positive-definite? Don't you mean "since $M$ is separable"? This should be clarified. (13) can be split explicitly into $N$ separate optimization problems depending on different decision variables. Should we use $\arg\min$ rather than $\arg\inf$? If an $\arg$ exists, then a $\min$ exists as well.
+\section{Distributed Design of Distributed Controllers}
+\item This section looks very-much "first draft". It's not clear who the methods of chordal graphs, scaled diagonal dominance, and ADMM are used together, or whether they are different approaches with different strengths.
+\item How is scaled-diagonal-dominance related to networked small gain conditions?
+\item III.12: why is this change of variables introduced here? We use it all through the paper. The inequality (18) is just for analysis, not synthesis. Why is it introduced here? Should it be over the kernel of $B$?
+\item III.14 pointwisely is not a word. I don't see what Finsler's theorem has to do with this section.
+\section{Numerical Experiment}
+\item Can we do, in addition, a more interesting graph than a line (like the one you made a figure for with 4 nodes)? Or a randomly-generated scale-free network?
+\item What is the results of SDD and ADMM for the example?
+\item Can we show results of the systems stabilizing? E.g. time-graphs of convergence? How do we compare performance of the unconstrained, neighbour, and decentralized cases?
+\section{Conclusion}
+\item Why is the first sentence here "In this work, input-affine nonlinear systems were considered". Is that really a strong claim of what we aim to do?? Think carefully about opening sentences in abstract, intro, and conclusion as these define the reviewer's frame of mind, and the ultimate impact on readers.
+
+	
+	
+	\end{enumerate}
+
+
+\end{document}
