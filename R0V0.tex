@@ -684,15 +684,16 @@ where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $
 	\end{equation}
 
 	
-\mypara 	Since $M$ is positive definite, the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. Moreover, for a geodesic curve $\gamma$, $e(\gamma)=\ell(\gamma)$. Consequently,
+\mypara Since $M$ has a block-diagonal structure, it can be split into $N$ separate optimization problems depending on
+different decision variables. Moreover, the positive definiteness of $M$ implies also that the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. Moreover, for a geodesic curve $\gamma$, $e(\gamma)=\ell(\gamma)$. Consequently,
 	\begin{equation*}
-		\gamma_i=\arg\inf e(c_i)\Leftrightarrow\gamma=\arg\inf\ell(c),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
+		\gamma_i=\arg\min e(c_i)\Leftrightarrow\gamma=\arg\min\ell(c),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
 	\end{equation*}
 	Thus, the minimization of Equation~\eqref{eq:geodesic sum} can be computed in parallel. 
 	
 \mypara 	From Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every index $i\in\mathbb{N}_{[1,N]}$, and for every $x_i$ and $x_i^\ast\in\mathbb{R}^{n_i}$, there exists a solution to the optimization problem
 	\begin{align*}
-		\gamma_i=\arg\inf_{c_i\in\Gamma(x_i^\ast,x_i)} e(c_i)\;.
+		\gamma_i=\arg\min_{c_i\in\Gamma(x_i^\ast,x_i)} e(c_i)\;.
 	\end{align*}
 	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
 	
