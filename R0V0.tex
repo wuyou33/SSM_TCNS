@@ -460,7 +460,7 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \section{Introduction}
 
-\mypara Over the years, methods for the design of controllers for dynamical systems has developed different techniques, according to the vector field that describes the system structure. The main underlying concept employed for the synthesis of feedback laws is the Lyapunov's stability theory \cite{Bhatia1970,Rouche:1977}. In terms of computation, controller design problems are often translated in terms of dynamic programming.
+\mypara Over the years, methods for the design of controllers for dynamical systems has developed different techniques, according to the vector field that describes the system structure. One of the main underlying concepts employed for the synthesis of feedback laws is Lyapunov's stability theory \cite{Bhatia1970,Rouche:1977}. In terms of computation, controller design problems are often translated in terms of optimization.
 
 \mypara For linear systems, controller design methods include $H_\infty$ optmization \cite{Doyleetal1992} and LQR \cite{Hespanha:2009}. The design problems are usually formulated in terms of linear matrix inequalities (LMIs) and semidefinite programming \cite{Boyd1994,DullerudPaganini2000}. In the case of nonlinear systems, design approaches include high-gain  \cite{GrognardSepulchreBastin1999}, backstepping \cite{Krstic1995}, and forwarding \cite{MazencPraly96}. These methods depend on the structure of the vector field and may fail to be applied when appropriate conditions are not met \cite{SteinShiromoto2013a}. In terms of numerical computation, often the techniques employed for feedback synthesis include sum-of-squares (SOS) optimization \cite{Parrilo2003}.
 
