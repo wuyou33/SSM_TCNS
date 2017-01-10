@@ -791,16 +791,17 @@ Note that, when the requirement of $A$ is diagonally dominant can be interpreted
 
 \mypara The alternating direction method of multipliers (ADMM) provides a framework to compute the block-diagonal matrix $W$ to satisfy the MI~\eqref{eq:MI formulation} in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this methodology, define the set of (resp. sum-of-squares (SOS)) polynomials $\mathbb{R}[x]$ (resp. $\mathbb{SOS}[x]$), and denote the degree of a polynomial $p\in\mathbb{R}[x]$ as $\deg(p)$.
 
-\mypara By applying the change of coordinates $\eta=M\delta$ and defining the matrix $W=M^{-1}$, inequality~\eqref{eq:Artstein-Sontag:inequality} is satisfied, whenever the matrix inequality
+\mypara Inequality~\eqref{eq:Artstein-Sontag:inequality} is satisfied, whenever the matrix inequality
 \begin{equation}\label{eq:Artstein-Sontag:inequality:dual}
- 	-\dot{W}+AW + WA^\top+2\lambda W\prec0
+ 	\ker(B)^\top\left(-\dot{W}+AW + WA^\top+2\lambda W\right)\ker(B)\prec0
 \end{equation} 
-holds. 
+holds, where $\ker(B)$ is a full-rank matrix satisfying $B^\top\ker(B)\equiv0$. 
 
 \mypara The search the function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ can be relaxed to a semidefinite program. Whenever $f$ and $B$ are polynomials, this program is cast in terms of the sum-of-squares (SOS) feasibility program \cite{Parrilo2000}. To that end, introduce the vector $v\in\mathbb{R}^n$ and define the polynomials
 \begin{align*}
 	p_W=&\ v^\top W v\;,\\
-	p_{MI}=&\ -v^\top(-\dot{W}+AW + WA^\top+2\lambda W)v\;.
+	p_{MI}=&\ -v^\top\ker(B)^\top(-\dot{W}+AW + WA^\top+2\lambda W)\\
+	&\ker(B)v\;.
 \end{align*}
 The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\succeq0$, called \emph{Gramians}, with appropriate dimensions and such that $p_W=\bar{v}^\top Q_W\bar{v}$ and $p_{MI}=\bar{v}^\top Q_{MI}\bar{v}$ belong to $\mathbb{R}[x,v]$, where $\bar{v}$ is vector of monomials on the variables $x_i,\ldots,x_N$ and $v_1,\ldots,v_N$. 
 
