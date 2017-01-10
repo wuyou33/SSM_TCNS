@@ -805,8 +805,6 @@ holds, where $\ker(B)$ is a full-rank matrix satisfying $B^\top\ker(B)\equiv0$.
 \end{align*}
 The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\succeq0$, called \emph{Gramians}, with appropriate dimensions and such that $p_W=\bar{v}^\top Q_W\bar{v}$ and $p_{MI}=\bar{v}^\top Q_{MI}\bar{v}$ belong to $\mathbb{R}[x,v]$, where $\bar{v}$ is vector of monomials on the variables $x_i,\ldots,x_N$ and $v_1,\ldots,v_N$. 
 
-\mypara Once $Q$ has been computed, employing Finsler's lemma \cite[Lemma~11.1]{CalafioreGhaoui2014} pointwisely, the existence of a function $Y:\mathbb{R}^n\to\mathbb{R}^{n\times m}$ satisfying MI~\eqref{eq:MI formulation} is ensured.
-
 \mypara Now that the computation of a positive definite $W$ satisfying inequality~\eqref{eq:Artstein-Sontag:inequality:dual} in terms of SOS polynomials has been explained, the next step is to solve the SOS feasibility using ADMM. 
 
 \mypara Define the set $\mathbf{T}=\{Z_1,\ldots,Z_N:Z=\mathbin{\mathtt{diag}}(Z_1,\ldots,Z_N),p_{MI}=\bar{v}^\top Z\bar{v}\in\mathbb{R}[x,v]\}$. For a set $\mathbf{G}$ define the indicator (also known as barrier) function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
