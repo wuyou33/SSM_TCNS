@@ -526,14 +526,10 @@ where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of
 \mypara At this point, the problem under consideration in this paper can be stated as follows.
 
 \begin{problem}\label{problem formulation}
-	\begin{enumerate}[{P}$_1$.]\hfill
-		\item For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into a set $\mathscr{K}(i)$ of graph nodes;
-		
-		\item Given a graph $\mathscr{G}_c=(\mathscr{V}_c,\mathscr{E}_c)$ describing the communication network among the components of the controller, the set $\mathscr{K}(i)$ is composed of elements from $\mathscr{E}_c$.
-	\end{enumerate}
+ For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into a set $\mathscr{K}(i)$ of graph nodes;
 \end{problem}
 
-\mypara In other words, item P$_1$ of Problem~\ref{problem formulation} states that the controller is decomposed into smaller components. Each of these depends on the states  prescribed by the set $\mathscr{K}$. Item P$_2$ of Problem~\ref{problem formulation} states that this set may not necessarily correspond to the states which system~\eqref{eq:subsystem} depends on. This item addresses the case in which there exists a difference between the communication topology of the network represented by Equation~\eqref{eq:general system} and the communication topology of the distributed controller.
+\mypara In other words, Problem~\ref{problem formulation} states that the controller is decomposed into smaller components. Each of these depends on the states  prescribed by the set $\mathscr{K}$. The definition of the set $\mathscr{K}$ is not restricted to the topology described by the graph $\mathscr{G}$. Given a graph $\mathscr{G}_c=(\mathscr{V}_c,\mathscr{E}_c)$ describing the communication network among different controllers, the set $\mathscr{K}$ can be defined as a subset of $\mathscr{V}_c$.
 
 \mypara The constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology). Consider the network composed of systems described by the following equation.
 \begin{equation}\label{eq:example}
