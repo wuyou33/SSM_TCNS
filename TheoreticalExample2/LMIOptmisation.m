@@ -12,10 +12,10 @@ SystemStates = ['x','y'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
 d = 1e-2;
-lambda = 1;
+lambda = 1e-1; % Max value for SOS feasibility
 Option       = 'Neighbor';
 
-NumberOfAgents = 2
+NumberOfAgents = 4
 
 fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
 diary(fname)
@@ -41,7 +41,7 @@ if NumberOfAgents > 512 && strcmp(Option,'Diagonal')
 end
 
 LaplacianMatrix = LinearLaplacianGenerator(NumberOfAgents);
-LMIOptimisation(LaplacianMatrix,Option,lambda)
+Optimisation(LaplacianMatrix,Option,lambda)
 
 diary off
 
@@ -49,7 +49,7 @@ pause(60)
 
 end
 
-function LMIOptimisation(LaplacianMatrix,Option,lambda)
+function Optimisation(LaplacianMatrix,Option,lambda)
 
 global Simulation SystemStates SystemInputs SystemParameters
 
@@ -57,7 +57,7 @@ WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 PreProcessedSys
 
 Wdegree = 2;
-ScalingFactor = 1;
+ScalingFactor = 1e-2; % Max value for SOS feasibility
 WriterW(SystemStates,LaplacianMatrix,Wdegree,ScalingFactor)
 PreProcessedW
 
@@ -86,4 +86,5 @@ PostProcessedY
 NumberOfAgents = size(LaplacianMatrix,1);
 fname = sprintf('Output%s%dAgents',Option,NumberOfAgents);
 save(fname)
+
 end
