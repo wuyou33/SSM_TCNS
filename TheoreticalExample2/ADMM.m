@@ -129,7 +129,7 @@ B4  = jacobian(f4,input4);
 f = [f1;f2;f3;f4;];
 A = jacobian(f,q);
 B = jacobian(f,InputVector);
-
+tic
 while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance    
     %% W update ===============================================================
     
@@ -450,7 +450,7 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     IterationCounter = IterationCounter + 1;
     
 end
-
+SolverTime = toc
 if IterationCounter >= MaxNumberOfIterations
    disp('Maximum number of iterations reached !')
 end
