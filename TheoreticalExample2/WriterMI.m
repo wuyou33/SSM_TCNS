@@ -48,13 +48,13 @@ if strcmp(Option,'Diagonal') || strcmp(Option,'Neighbor')
     
     fprintf(fid, 'MIConstraints = [');
     for AgentsCounter = 1:NumberOfAgents - 1
-        fprintf(fid, 'sos(-Block%s + %f*eye(size(Block%s)));',num2str(AgentsCounter),ScalingFactor,num2str(AgentsCounter));
+        fprintf(fid, 'sos(-Block%s);',num2str(AgentsCounter));
     end
     fprintf(fid, '];');
     
 else
     
-    fprintf(fid, 'MIConstraints = sos(-MI + %f*eye(size(MI)));\n',ScalingFactor);
+    fprintf(fid, 'MIConstraints = sos(-MI);\n');
     
 end
 
