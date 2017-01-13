@@ -921,31 +921,24 @@ monomials to be computed. This motivates the approach proposed in this paper.
 
 \mypara To show the advantages of the method proposed in this paper, a benchmark was run for a network composes by $N=4$ systems and in three scenarios, according to the constraints imposed on the matrix $Y$. Namely, the unconstrained case, the ``neighbor case'', and the fully decentralized (diagonal) case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor case'' and up to $N=512$ systems for the fully decentralized (diagonal) case.
 
-\mypara In all cases, the computed matrix $W$ has a block-diagonal structure as follows
+\mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $j\in\mathbb{N}_{[1,8]}$, $\mathbf{C}_j=\mathbb{R}^8$, and $\mathbf{X}(\mathscr{K}(k))=\{x\}$, for each $k\in\mathbb{N}_{[1,4]}$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The matrix $W$ is given by
 \begin{equation*}
- W=\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right)\;.
-\end{equation*}
-the definition of the matrices $W_a$ and $W_b$ differs, according to each case considered.
-
-\mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $j\in\mathbb{N}_{[1,8]}$, $\mathbf{C}_j=\mathbb{R}^8$, and $\mathbf{X}(\mathscr{K}(k))=\{x\}$, for each $k\in\mathbb{N}_{[1,4]}$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The components of the matrix $W$ and the matrix $Y$ that form a solution to \eqref{eq:MI formulation} are
-\begin{equation*}
-		W_a=\mathbin{\mathtt{diag}}\left(
- 1.27,1.53\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.08,1.53\right)
+		W=\mathbin{\mathtt{diag}}(1,1,2,1,2,1,1,1)
 \end{equation*}
 and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:general} with elements
 \begin{align*}
- \overline{Y}_{ij}(q)=&-3y_i-0.08x_iy_i\;,\\
- \underline{Y}_{ij}(q)=&-2+0.009x_i-1.2\sum_{k=1}^4 y_k^2+x_k^2\;.
+ \overline{Y}_{ij}(q)=&-2y_i\;,\\
+ \underline{Y}_{ij}(q)=&-2-2\sum_{k=1}^4 y_k^2+x_k^2\;.
 \end{align*}
 
 \begin{figure*}
 \begin{equation}\label{eq:example:Y:general}
-		Y(q)=\scalebox{0.75}{$\begin{bmatrix}
-			\overline{Y}_{11},&\underline{Y}_{12},&-0.004y_1,&0,&-0.04y_1-0.003x_3y_1,&0.005y_1y_3,&-0.006y_1+0.001x_4y_1,&0\\
-			-0.006y_2,&0,&\overline{Y}_{23},&\underline{Y}_{24},&-0.009y_2-0.001x_3y_21,&0,&-0.04y_2-0.004x_4y_2,&0.005y_2y_4\\
-			-0.04y_3-0.004x_1y_3,&0,&-0.008y_3+0.001x_2y_3,&0,&\overline{Y}_{35},&\underline{Y}_{36},&-0.006y_3,&0\\
-			-0.006y_4+0.001x_1y_4,&0,&-0.04-0.003x_2y_4,&0,&-0.004y_4&0,&\overline{Y}_{47},&\underline{Y}_{48}
-		\end{bmatrix}$}
+		Y(q)=\begin{bmatrix}
+			\overline{Y}_{11}(q),&\underline{Y}_{12}(q),&0,&0,&-0.03y_1,&0,&0&0\\
+			0,&0,&\overline{Y}_{23}(q),&\underline{Y}_{24}(q),&0,&0,&-0.04y_2,&0\\
+			-0.04y_3,&0,&0,&0,&\overline{Y}_{35}(q),&\underline{Y}_{36}(q),&0,&0\\
+			0,&0,&-0.03y_4,&0,&0,&0,&\overline{Y}_{47}(q),&\underline{Y}_{48}(q)
+		\end{bmatrix}
 \end{equation}
 \end{figure*}
 
@@ -967,31 +960,26 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 
 \mypara The sets $\mathbf{X}(\mathscr{K}(\cdot))$ are defined as $\mathbf{X}(\mathscr{K}(1))=\{q_1,q_2\}$,  $\mathbf{X}(\mathscr{K}(2))=\{q_1,q_2,q_3\}$, $\mathbf{X}(\mathscr{K}(3))=\{q_2,q_3,q_4\}$ and $\mathbf{X}(\mathscr{K}(4))=\{q_3,q_4\}$.
 
-\mypara The time taken by the parser to solve the MI \eqref{eq:MI formulation}, in this case, was 3.5 seconds. The components of the matrix $W$ and the matrix $Y$ that form a solution to the \eqref{eq:MI formulation} are
+\mypara The time taken by the parser to solve the MI \eqref{eq:MI formulation}, in this case, was 3.5 seconds. The matrix $W$ is given by
 \begin{equation*}
-		W_a=\mathbin{\mathtt{diag}}\left(
- 1.32,1.7\right)\quad\text{and}\quad W_b=\mathbin{\mathtt{diag}}\left(1.2,1.6\right)
+		W=\mathbin{\mathtt{diag}}(2,1,1,1,1,1,2,1)
 \end{equation*}
 and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:neighbor} with elements
-\begin{equation*}
-	Y_{ij}(q_i,\breve{q}_i)=-3.3y_i-0.09x_iy_i
-\end{equation*}
-for pair of indexes $(i,j)$ given as $(1,1)$, $(2,3)$, $(3,5)$ and $(4,6)$. Also, 
 \begin{align*}
-	Y_{12}(q_1,\breve{q}_1)=&-2.8-0.01x_1-2(y_1^2+y_2^2+x_1^2+x_2^2)\;,\\	
-	Y_{24}(q_2,\breve{q}_2)=&-3-2(y_1^2+y_2^2+y_3^2+x_1^2+x_2^2+x_3^2)\;,\\	
-	Y_{36}(q_3,\breve{q}_3)=&-3-2(y_2^2+y_3^2+y_4^2+x_2^2+x_3^2+x_4^2)\;,\\	
-	Y_{48}(q_4,\breve{q}_4)=&-2.5-0.01x_4-1.5(y_3^2+y_4^2+x_3^2+x_4^2)\;.
+	Y_{12}(q_1,\breve{q}_1)=&-2.5(1+\sum_{j=1}^2x_j^2+y_j^2)\;,\\	
+	Y_{24}(q_2,\breve{q}_2)=&-2.3(1+\sum_{j=1}^3x_j^2+y_j^2)\;,\\	
+	Y_{36}(q_3,\breve{q}_3)=&-2.2(1+\sum_{j=2}^4x_j^2+y_j^2)\;,\\	
+	Y_{48}(q_4,\breve{q}_4)=&-1.7(1+\sum_{j=3}^4x_j^2+y_j^2)\;.\\	
 \end{align*}
 
 \begin{figure*}
 \begin{equation}\label{eq:example:Y:neighbor}
-	Y(q)=\scalebox{0.85}{$\begin{bmatrix}
-	Y_{11}(q_1,\breve{q}_1),&Y_{12}(q_1,\breve{q}_1),&-0.001y_1,&0,&0,&0,&0,&0\\
-	-0.001(y_2+x_1y_2),&0,&Y_{23}(q_2,\breve{q}_2),&Y_{24}(q_2,\breve{q}_2),&-0.003y_2,&0,&0,&0\\
-	0,&0,&-0.002y_3,&0,&Y_{35}(q_3,\breve{q}_3),&Y_{36}(q_3,\breve{q}_3),&-0.002y_3,&0\\
-	0,&0,&0,&0,&-0.003y_4,&0,&Y_{47}(q_4,\breve{q}_4),&Y_{48}(q_4,\breve{q}_4)
-	\end{bmatrix}$}
+	Y(q)=\begin{bmatrix}
+	-1.8y_1,&Y_{12}(q_1,\breve{q}_1),&0,&0,&0,&0,&0,&0\\
+	0,&0,&-2y_2,&Y_{24}(q_2,\breve{q}_2),&0,&0,&0,&0\\
+	0,&0,&0,&0,&-2y_3,&Y_{36}(q_3,\breve{q}_3),&0,&0\\
+	0,&0,&0,&0,&0,&0,&-2y_4,&Y_{48}(q_4,\breve{q}_4)
+	\end{bmatrix}
 \end{equation}
 \end{figure*}
  
@@ -1003,27 +991,19 @@ for pair of indexes $(i,j)$ given as $(1,1)$, $(2,3)$, $(3,5)$ and $(4,6)$. Also
 		\mathbf{C}_5=\mathbf{C}_6=\left\{\begin{bmatrix}0,0,1,0\end{bmatrix}^\top\right\},&\mathbf{C}_7=\mathbf{C}_8=\left\{\begin{bmatrix}0,0,0,1\end{bmatrix}^\top\right\}\;.
 	\end{array}
 \end{equation*}
-Solving the MI \eqref{eq:MI formulation} the following components the matrices $W$ and $Y$ were obtained
+Solving the MI \eqref{eq:MI formulation} the following matrices $W$ and $Y$ were obtained
 \begin{align*}
- W=&\mathbin{\mathtt{diag}}\left(W_a,W_b,W_b,W_a\right),\\
- Y=&\begin{bmatrix}
- 	Y_{11}&Y_{12}&0&0&0&0&0&0\\
- 	0&0&Y_{23}&Y_{24}&0&0&0&0\\
- 	0&0&0&0&Y_{35}&Y_{36}&0&0\\
- 	0&0&0&0&0&0&Y_{47}&Y_{48}
+ W=&\mathbin{\mathtt{diag}}\left(2,1,1,1,1,1,1,1\right),\\
+ Y(q)=&\begin{bmatrix}
+ 	\overline{Y}(q_1)&0&0&0\\
+ 	0&\overline{Y}(q_2)&0&0\\
+ 	0&0&\overline{Y}(q_3)&0\\
+ 	0&0&0&\overline{Y}(q_4)
  \end{bmatrix}
 \end{align*}
 where
-\begin{equation*}
-		W_a=\mathbin{\mathtt{diag}}\left(
- 1.4,1.6\right),\quad W_b=\mathbin{\mathtt{diag}}\left(1.2,1.6\right)
-\end{equation*}
-and
 \begin{align*}
- Y_{11}(q_i)=Y_{47}(q_i)=&\ -3.1y_i+0.06x_iy_i\;,\\
- Y_{12}(q_i)=Y_{48}(q_i)=&\ -3.6-0.02x_i-2.3y_i^2-2.4x_i^2\;,\\
- Y_{23}(q_i)=Y_{35}(q_i)=&\ -3.1y_i\;,\\
- Y_{24}(q_i)=Y_{26}(q_i)=&\ -3.8-2.1y_i^2-2.2x_i^2\;.
+ \overline{Y}(q_i)=-\begin{bmatrix}2y_i,3+2(x_i^2+y_i^2)\end{bmatrix}
 \end{align*}
 
 \mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI formulation} for the three cases considered in this illustration: unconstrained, ``neighbor'' and fully decentralized.
