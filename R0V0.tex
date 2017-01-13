@@ -858,7 +858,7 @@ Note that steps 1 and 3 are computed in parellel while step 2 requires to gather
 
 \mypara Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control-contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
 
-\section{Numerical Experiment}\label{sec:Illustration}
+\section{Numerical Experiments}\label{sec:Illustration}
 
 \mypara A case where structured controller design is relevant is on distributed design for network systems. For a given integer $N>0$, consider the system that describes the dynamics of each agent
 \begin{equation}\tag{\ref{eq:example}}
@@ -1087,7 +1087,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	\label{fig:cycle graph}
 \end{figure}
 
-\mypara The matrix $W$ obtained is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.72,0.19)$. The matrix $Y$ is given by
+\mypara In the ``neighbour'' case, the solver took 11.7s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.72,0.19)$. The matrix $Y$ is given by
 \begin{equation*}
 	Y(q)=\begin{bmatrix}
 		\underline{Y}(q_1,\breve{q}_1)&\overline{Y}(q_1,\breve{q}_1)&0_{2\times1}&\overline{Y}(q_1,\breve{q}_1)\\
@@ -1098,6 +1098,28 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 \end{equation*}
 where $\underline{Y}(q_i,\breve{q}_i)=-2.26\begin{bmatrix}y_i,&y_i^2+x_i^2+\sum_{j\in\mathscr{N}(i)}y_j^2+x_j^2\end{bmatrix}$,
 $\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2\times1}$ stands for the vector $[0,0]\in\mathbb{R}^2$.
+
+\mypara In the ``neighbour'' case, the solver took 5.7s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.74,1.05)$. The matrix $Y$ is given by
+\begin{equation*}
+	Y(q)=\begin{bmatrix}
+	\overline{Y}(q_1)&0_{2\times1}&0_{2\times1}&0_{2\times1}\\
+	0_{2\times1}&\overline{Y}(q_2)&0_{2\times1}&0_{2\times1}\\
+	0_{2\times1}&0_{2\times1}&\overline{Y}(q_3)&0_{2\times1}\\
+	0_{2\times1}&0_{2\times1}&0_{2\times1}&\overline{Y}(q_4)
+	\end{bmatrix}\;,
+\end{equation*}
+where $\overline{Y}(q_i)=-\begin{bmatrix}2.0125y_i,&3.2+2.3(x_i^2+y_i^2)\end{bmatrix}$.
+
+\mypara In the unconstrained case, the solver took 9.8s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.69,1.24)$. The matrix $Y$ is given by
+\begin{equation*}
+	Y(q)=\begin{bmatrix}
+	\overline{Y}_1(q)&0_{2\times1}&0_{2\times1}&0_{2\times1}\\
+	0_{2\times1}&\overline{Y}_2(q)&0_{2\times1}&0_{2\times1}\\
+	0_{2\times1}&0_{2\times1}&\overline{Y}_3(q)&0_{2\times1}\\
+	0_{2\times1}&0_{2\times1}&0_{2\times1}&\overline{Y}_4(q)
+	\end{bmatrix}\;,
+\end{equation*}
+where $\overline{Y}_i(q)=-\begin{bmatrix}2.38y_i,&2.88+\sum_{j=1}^4(x_j^2+y_j^2)\end{bmatrix}$
 
 \section{Conclusion}\label{sec:Conclusion}
 
