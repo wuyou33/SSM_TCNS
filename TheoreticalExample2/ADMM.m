@@ -36,7 +36,7 @@ NumberOfMonomials = nchoosek(2*NumberOfStates + PolymialDegree,PolymialDegree);
 
 MaxNumberOfIterations = 50;
 IterationCounter      = 1;
-ErrorTolerance = 1e-4;
+ErrorTolerance = 1e-2;
 Error = Inf;
 ErrorVector = zeros(MaxNumberOfIterations,1);
 
@@ -474,7 +474,12 @@ AnalysisW(SystemStates,LaplacianMatrix,Precision)
 PostProcessedW
 W
 
-save('ADMMOutput','W')
+Precision = 1e-15;
+coefList = Zc;
+PostProcessedZ
+Z
+
+save('ADMMOutput','W','Z')
 
 keyboard;
 
