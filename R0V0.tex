@@ -795,13 +795,13 @@ Note that, when the requirement of $A$ is diagonally dominant can be interpreted
 \begin{equation}\label{eq:Artstein-Sontag:inequality:dual}
  	B_\perp^\top\left(-\dot{W}+AW + WA^\top+2\lambda W\right)B_\perp\prec0
 \end{equation} 
-holds, where $B_\perp$ is a full-rank matrix satisfying $B B_\perp\equiv0$. 
+holds, where $B_\perp$ is any full-rank matrix satisfying $B^\top B_\perp\equiv0$ \cite[pp. 23]{Boyd1994}. 
 
 \mypara The search the function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ can be relaxed to a semidefinite program. Whenever $f$ and $B$ are polynomials, this program is cast in terms of the sum-of-squares (SOS) feasibility program \cite{Parrilo2000}. To that end, introduce the vector $v\in\mathbb{R}^n$ and define the polynomials
 \begin{align*}
 	p_W=&\ v^\top W v\;,\\
-	p_{MI}=&\ -v^\top\ker(B)^\top(-\dot{W}+AW + WA^\top+2\lambda W)\\
-	&\ker(B)v\;.
+	p_{MI}=&\ -v^\top B_\perp^\top(-\dot{W}+AW + WA^\top+2\lambda W)\\
+	&B_\perp v\;.
 \end{align*}
 The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\succeq0$, called \emph{Gramians}, with appropriate dimensions and such that $p_W=\bar{v}^\top Q_W\bar{v}$ and $p_{MI}=\bar{v}^\top Q_{MI}\bar{v}$ belong to $\mathbb{R}[x,v]$, where $\bar{v}$ is vector of monomials on the variables $x_i,\ldots,x_N$ and $v_1,\ldots,v_N$. 
 
@@ -1103,11 +1103,9 @@ where $\overline{Y}_i(q)=-\begin{bmatrix}2.38y_i,&2.88+\sum_{j=1}^4(x_j^2+y_j^2)
 
 \section{Conclusion}\label{sec:Conclusion}
 
-\mypara In this work, input-affine nonlinear systems were considered. The problem was the design of structured feedback laws. The methodology employed for synthesis was based on control-contraction metrics which provides a controller ensuring exponential convergence of pairs of solutions.
-
 \mypara In terms of semidefinite programming, employing control-contraction metrics allows one to formulate the search for the controller as a convex optimization problem. Although this is one of its main advantages over the search of control-Lyapunov functions, it does not scale well.
 
-\mypara For systems described by a non-fully connected graph, the approach presented in this paper exploits sparsity to design feedback laws with a prescribed structure. More precisely, by imposing a block-diagonal structure on the matrix describing the metric, a controller with a prescribed structure can be synthesized. Moreover, the on-line integration phase computation can be in parallel, because each block defines a metric to the corresponding component of the state space where the geodesic is computed by optimization.
+\mypara For large-scale systems, the approach presented in this paper exploits sparsity to design feedback laws with a prescribed structure. More precisely, during the off-line phase, by imposing a block-diagonal structure on the matrix describing the metric, a controller with a prescribed structure can be synthesized. Moreover, the on-line integration phase computation can be in parallel, because each block defines a metric to the corresponding component of the state space.
 
 \appendices
 
