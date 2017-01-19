@@ -244,10 +244,13 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     
     v = [v1;v2];
     
-%     ListOfMonomials_MI = [ListOfMonomials1;ListOfMonomials2];
-    ListOfMonomials_MI = monolist([q1;q2;v1;v2],2);
+    ListOfMonomials_MI = [ListOfMonomials1;ListOfMonomials2];
+%     ListOfMonomials_MI = monolist([q1;q2;v1;v2],2);
 
-    Gramian_MI = sdpvar(length(ListOfMonomials_MI));
+    Gramian_MI1 = sdpvar(length(ListOfMonomials1));
+    Gramian_MI2 = sdpvar(length(ListOfMonomials2));
+%     Gramian_MI = sdpvar(length(ListOfMonomials_MI));
+    Gramian_MI  = blkdiag(Gramian_MI1,Gramian_MI2);
     
     p_MI = -v'*MI*v;
     p_SMI = ListOfMonomials_MI'*Gramian_MI*ListOfMonomials_MI;
@@ -255,11 +258,11 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
     Options = sdpsettings('solver','mosek','verbose',0);
     
     Constraints = [Gramian_MI>=0;coefficients(p_MI-p_SMI,[q;v])==0];
-%     Objective   = norm(Gramian_MI1 - Gramian_W1 - Lambda1,'fro')^2 ...
-%                   + norm(Gramian_MI2 - Gramian_W2 - Lambda2,'fro')^2;
-    Objective   = norm(blkdiag(Gramian_MI1,Gramian_MI2)...
-                   + blkdiag(Gramian_W1,Gramian_W2) -...
-                   + blkdiag(Lambda1,Lambda2),'fro')^2;
+    Objective   = norm(Gramian_MI1 - Gramian_W1 - Lambda1,'fro')^2 ...
+                  + norm(Gramian_MI2 - Gramian_W2 - Lambda2,'fro')^2;
+%     Objective   = norm(blkdiag(Gramian_MI1,Gramian_MI2)...
+%                    + blkdiag(Gramian_W1,Gramian_W2) -...
+%                    + blkdiag(Lambda1,Lambda2),'fro')^2;
     DiagnosticMI = optimize(Constraints,Objective,Options);
     
     % Checking for errors in the optimization ---------------------------------
@@ -269,8 +272,8 @@ while IterationCounter <= MaxNumberOfIterations && Error >= ErrorTolerance
         keyboard;
     end
     
-    Gramian_MI1 = Gramian_MI(1:15,1:15);
-    Gramian_MI2 = Gramian_MI(16:30,16:30);
+%     Gramian_MI1 = Gramian_MI(1:15,1:15);
+%     Gramian_MI2 = Gramian_MI(16:30,16:30);
     
     % Verifying if the Gramian is PSD -----------------------------------------
     Gramian_MI = value(Gramian_MI);
