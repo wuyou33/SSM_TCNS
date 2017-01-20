@@ -658,7 +658,7 @@ where $\mathbin{\mathtt{col}}(Y,j)$ stands for the $j$-th column of the matrix $
 \mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the set $\mathbf{X}_i$ is empty, for all indexes $i\in\mathbb{N}_{[1,N]}$, and $\Xi$ reduces to the set $\mathcal{K}$ defined in \cite{Tanaka2011}.
 
 \begin{theorem}\label{thm:main result}
-	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system}, then there exists a solution to Problem~\ref{problem formulation}.
+	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system}, then there exists a solution to Problem~\ref{problem formulation}. In particular, given a graph $\mathscr{G}_c$ describing the communication network among different controllers
 \end{theorem}
 
 \mypara The existence of a control contraction metric for system~\eqref{eq:general system} implies that there exist matrices $(W,Y)$ that are a solution to the MI~\eqref{eq:MI formulation} with structure prescribed by the set $\Xi$.
@@ -1107,20 +1107,26 @@ where $\overline{Y}_i(q)=-\begin{bmatrix}2.38y_i,&2.88+\sum_{j=1}^4(x_j^2+y_j^2)
 	\begin{subequations}
 	\begin{equation}\label{eq:}
 		\resizebox{.9\textwidth}{!}{$W_1(q_1)=1\times10^{-5}\begin{bmatrix}
-		4+3x_1-1\times10^3y_1+1\times10^{5}y_1^2+5x_1^2-1\times10^{3}x_1y_1&2+6x_1-6\times10^{2}y_1^2+3x_1^2-8\times10^{2}x_1y_1\\
-		*&2+4x_1+3y_1+3y_1^2+5x_1^2+7x_1y_1
+		4+3x_1-1\times10^3y_1+1\times10^{5}y_1^2+5x_1^2-1\times10^{3}x_1y_1&2+6x_1-5\times10^2y_1-6\times10^{2}y_1^2+3x_1^2-8\times10^{2}x_1y_1\\
+		*&2+4x_1+3y_1+3y_1^2+5x_1^2+8x_1y_1
 		\end{bmatrix}\;,$}
 	\end{equation}
 	\begin{equation}\label{eq:}
 		\resizebox{.9\textwidth}{!}{$W_2(q_2)=1\times10^{-5}\begin{bmatrix}
-		5+9x_2-2\times10^3y_2+1\times10^{5}y_2^2+4x_2^2-1\times10^{3}x_2y_2&6+10x_2-1\times10^{2}y_2-7\times10^{2}y_2^2+5x_2^2-9\times10^{2}x_2y_2\\
+		5+9x_2-2\times10^3y_2+1\times10^{5}y_2^2+4x_2^2-1\times10^{3}x_2y_2&6+11x_2-1\times10^{3}y_2-7\times10^{2}y_2^2+5x_2^2-9\times10^{2}x_2y_2\\
 		*&7+12x_2+10y_2+4y_1^2+6x_1^2+9x_2y_2
 		\end{bmatrix}\;,$}
 	\end{equation}
 	\begin{equation}\label{eq:}
 		\resizebox{.9\textwidth}{!}{$W_3(q_3)=1\times10^{-5}\begin{bmatrix}
-		7+16x_3-2\times10^3y_3+1\times10^{5}y_3^2+12x_3^2-2\times10^{3}x_3y_3&10+20x_3-1\times10^{3}y_3+1\times10^{3}y_3^2+11x_1^3-11\times10^{3}x_3y_3\\
+		7+16x_3-2\times10^3y_3+1\times10^{5}y_3^2+12x_3^2-2\times10^{3}x_3y_3&10+20x_3-1\times10^{3}y_3+1\times10^{3}y_3^2+11x_1^2-11\times10^{3}x_3y_3\\
 		*&20+29x_3+29y_3+13y_3^2+13x_3^2+24x_3y_3
+		\end{bmatrix}\;,$}
+	\end{equation}
+	\begin{equation}\label{eq:}
+		\resizebox{.9\textwidth}{!}{$W_4(q_4)=1\times10^{-5}\begin{bmatrix}
+		11+17x_4-2\times10^3y_4+1\times10^{5}y_4^2+9x_4^2-2\times10^{3}x_4y_4&13+21x_4-1\times10^{3}y_4+1\times10^{3}y_4^2+10x_4^2-1\times10^{3}x_4y_4\\
+		*&20+27x_4+24y_4+11y_4^2+12x_4^2+18x_4y_4
 		\end{bmatrix}\;,$}
 	\end{equation}
 	\end{subequations}
