@@ -1044,7 +1044,7 @@ k_i=\begin{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
 
-\mypara Note that the ADMM cannot be used to solve the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual}. The reason is the fact that $B_\perp\equiv0$. 
+\mypara Solving the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual} with ADMM, the components of the matrix $W$ obtained are shown in Equation~?? 
 
 \begin{figure*}
 \begin{align*}
@@ -1068,6 +1068,14 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	\end{bmatrix}\;.
 \end{align*}
 \end{figure*}
+
+\begin{table}
+	\begin{tabular}{r|l}
+	Method&Time taken by the solver [s]\\ \hline
+	Chordal graph decomposition&2.6 to 98\\
+	ADMM&
+	\end{tabular}
+\end{table}
 
 \subsection{Circumference topology}
 
