@@ -920,7 +920,7 @@ monomials to be computed. This motivates the approach proposed in this paper.
 
 \mypara To show the advantages of the method proposed in this paper, a benchmark was run for a network composes by $N=4$ systems and in three scenarios, according to the constraints imposed on the matrix $Y$. Namely, the unconstrained case, the ``neighbor case'', and the fully decentralized (diagonal) case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor case'' and up to $N=512$ systems for the fully decentralized (diagonal) case.
 
-\mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $j\in\mathbb{N}_{[1,8]}$, $\mathbf{C}_j=\mathbb{R}^8$, and $\mathbf{X}(\mathscr{K}(k))=\{x\}$, for each $k\in\mathbb{N}_{[1,4]}$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The matrix $W$ is given by
+\mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $i\in\mathbb{N}_{[1,4]}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\mathbb{R}^8$, $\mathbf{C}(i)=\mathbb{R}^8$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(1,1,2,1,2,1,1,1)
 \end{equation*}
