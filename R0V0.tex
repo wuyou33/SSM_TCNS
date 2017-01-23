@@ -1044,7 +1044,7 @@ k_i=\begin{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
 
-\mypara Solving the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual} with ADMM, the components of the matrix $W$ obtained are shown in the set of Equations~\eqref{eq:ADMM:chain case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is shown in Table~\ref{tab:chain case}.
+\mypara Solving the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual} with ADMM, the components of the matrix $W$ obtained are shown in the set of Equations~\eqref{eq:ADMM:chain case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:chain case}.
 
 \begin{figure*}
 \begin{subequations}\label{eq:ADMM:chain case}
@@ -1087,7 +1087,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	&98s (unconstrained)\\
 	ADMM&300s\\\hline
 	\end{tabular}
-	\caption{A summary of the time taken to solve the matrix inequalities \eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual} using chordal graph decomposition and ADMM approaches, respectively, in the case of the chain topology}
+	\caption{A summary of the time taken to solve the matrix inequalities \eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual} using chordal graph decomposition and ADMM approaches, respectively, in the topology illustrated by Fig.~\ref{fig:graph}.}
 	\label{tab:chain case}
 \end{table}
 
@@ -1102,19 +1102,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	\label{fig:cycle graph}
 \end{figure}
 
-\mypara In the ``neighbour'' case, the solver took 11.7s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.72,0.19)$. The matrix $Y$ is given by
-\begin{equation*}
-	Y(q)=\begin{bmatrix}
-		\underline{Y}(q_1,\breve{q}_1)&\overline{Y}(q_1,\breve{q}_1)&0_{2\times1}&\overline{Y}(q_1,\breve{q}_1)\\
-		\overline{Y}(q_2,\breve{q}_2)&\underline{Y}(q_2,\breve{q}_2)&\overline{Y}(q_2,\breve{q}_2)&0_{2\times1}\\
-		0_{2\times1}&\overline{Y}(q_3,\breve{q}_3)&\underline{Y}(q_3,\breve{q}_3)&\overline{Y}(q_3,\breve{q}_3)\\
-		\overline{Y}(q_4,\breve{q}_4)&0_{2\times1}&\overline{Y}(q_4,\breve{q}_4)&\underline{Y}(q_4,\breve{q}_4)
-	\end{bmatrix}\;,
-\end{equation*}
-where $\underline{Y}(q_i,\breve{q}_i)=-2.26\begin{bmatrix}y_i,&y_i^2+x_i^2+\sum_{j\in\mathscr{N}(i)}y_j^2+x_j^2\end{bmatrix}$,
-$\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2\times1}$ stands for the vector $[0,0]\in\mathbb{R}^2$.
-
-\mypara In the ``neighbour'' case, the solver took 5.7s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.74,1.05)$. The matrix $Y$ is given by
+\mypara In the ``unconstrained'' case, the solver took 7.4s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1.2)$. The matrix $Y$ is given by
 \begin{equation*}
 	Y(q)=\begin{bmatrix}
 	\overline{Y}(q_1)&0_{2\times1}&0_{2\times1}&0_{2\times1}\\
@@ -1123,9 +1111,21 @@ $\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2
 	0_{2\times1}&0_{2\times1}&0_{2\times1}&\overline{Y}(q_4)
 	\end{bmatrix}\;,
 \end{equation*}
-where $\overline{Y}(q_i)=-\begin{bmatrix}2.0125y_i,&3.2+2.3(x_i^2+y_i^2)\end{bmatrix}$.
+where $\overline{Y}(q_i)=-\begin{bmatrix}2.4y_i,&2.9+2.9(x_i^2+y_i^2)\end{bmatrix}$.
 
-\mypara In the unconstrained case, the solver took 9.8s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.69,1.24)$. The matrix $Y$ is given by
+\mypara In the ``neighbor'' case, the solver took 7.7s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1.2)$. The matrix $Y$ is given by
+\begin{equation*}
+	Y(q)=\begin{bmatrix}
+		\underline{Y}(q_1,\breve{q}_1)&\overline{Y}(q_1,\breve{q}_1)&0_{2\times1}&\overline{Y}(q_1,\breve{q}_1)\\
+		\overline{Y}(q_2,\breve{q}_2)&\underline{Y}(q_2,\breve{q}_2)&\overline{Y}(q_2,\breve{q}_2)&0_{2\times1}\\
+		0_{2\times1}&\overline{Y}(q_3,\breve{q}_3)&\underline{Y}(q_3,\breve{q}_3)&\overline{Y}(q_3,\breve{q}_3)\\
+		\overline{Y}(q_4,\breve{q}_4)&0_{2\times1}&\overline{Y}(q_4,\breve{q}_4)&\underline{Y}(q_4,\breve{q}_4)
+	\end{bmatrix}\;,
+\end{equation*}
+where $\underline{Y}(q_i,\breve{q}_i)=-2.26\begin{bmatrix}y_i,&1+\sum_{j=1}^4y_j^2+x_j^2\end{bmatrix}$,
+$\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2\times1}$ stands for the vector $[0,0]\in\mathbb{R}^2$.
+
+\mypara In the decentralized case, the solver took 6.2s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1)$. The matrix $Y$ is given by
 \begin{equation*}
 	Y(q)=\begin{bmatrix}
 	\overline{Y}_1(q)&0_{2\times1}&0_{2\times1}&0_{2\times1}\\
@@ -1134,9 +1134,9 @@ where $\overline{Y}(q_i)=-\begin{bmatrix}2.0125y_i,&3.2+2.3(x_i^2+y_i^2)\end{bma
 	0_{2\times1}&0_{2\times1}&0_{2\times1}&\overline{Y}_4(q)
 	\end{bmatrix}\;,
 \end{equation*}
-where $\overline{Y}_i(q)=-\begin{bmatrix}2.38y_i,&2.88+\sum_{j=1}^4(x_j^2+y_j^2)\end{bmatrix}$.
+where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3\sum_{j=1}^4(x_j^2+y_j^2)\end{bmatrix}$.
 
-\mypara Using ADMM to compute a solution to the MI~\eqref{eq:Artstein-Sontag:inequality:dual}, the solver took 96[s] and the obtained matrix $W$ has the components shown in the set of Equations~\eqref{eq:ADMM:cyclic case}.
+\mypara Using ADMM to compute a solution to the MI~\eqref{eq:Artstein-Sontag:inequality:dual}, the solver took 114[s] and the obtained matrix $W$ has the components shown in the set of Equations~\eqref{eq:ADMM:cyclic case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:cyclic case}.
 
 \begin{figure*}
 	\begin{subequations}\label{eq:ADMM:cyclic case}
@@ -1166,6 +1166,19 @@ where $\overline{Y}_i(q)=-\begin{bmatrix}2.38y_i,&2.88+\sum_{j=1}^4(x_j^2+y_j^2)
 	\end{equation}
 	\end{subequations}
 \end{figure*}
+
+\begin{table}
+	\begin{tabular}{r|l}
+	Method&Time taken by the solver (4 agents)\\ \hline
+	Chordal graph decomposition&7.4s (unconstrained)\\
+	&7.7s (neighbor)\\
+	&6.2s (decentralized)\\	
+	ADMM&114s\\\hline
+	\end{tabular}
+	\caption{A summary of the time taken to solve the matrix inequalities \eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual} using chordal graph decomposition and ADMM approaches, respectively, in the topology illustrated by Fig.~\ref{fig:cycle graph}.}
+	\label{tab:cyclic case}
+\end{table}
+
 
 \section{Conclusion}\label{sec:Conclusion}
 
