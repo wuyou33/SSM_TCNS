@@ -733,9 +733,9 @@ where $De^+$ stands for the Dini's upper right-hand time derivative of the energ
 
 \mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem for the computation of a solution to the MI~\eqref{eq:MI formulation}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. For this reason, the computation of a solution to MI~\eqref{eq:MI formulation} need to be done in parallel. 
 
-\mypara To that end three methodologies are recalled below: chordal graphs, alternating direction of multipliers (ADMM) and scaled diagonal dominance. The first exploits the network topology to decompose it into smaller connected components. The second method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality below. Finally, scaled diagonal dominance exploits the stability of individual agents (i.e., when these considered not connected to the network) and weak coupling. Note that these methodologies can be used either separately or together. The latter would appropriate, when the smaller components of the network have high rank. Some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}. 
+\mypara To that end three methodologies are recalled below: chordal graphs, alternating direction of multipliers (ADMM) and scaled diagonal dominance. The first exploits the network topology to decompose it into smaller complete components. The second method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality (see Eq.~\eqref{eq:Artstein-Sontag:inequality:dual}, below). Finally, scaled diagonal dominance exploits the stability of individual agents (i.e., when these considered not connected to the network) and weak coupling. Note that these methodologies can be used either separately or together. The latter would appropriate, when the smaller components of the network have high rank and the computing platform where the solver runs has memory limitations. 
 
-\mypara Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denote as $\mathscr{T}(\mathscr{G})$.
+\mypara Some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}.  onsider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denote as $\mathscr{T}(\mathscr{G})$.
 
 \begin{proposition}\label{prop:clique tree decomposition}
 	Let $p\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI formulation} can be decomposed into $p$ matrix inequalities with smaller dimension.
@@ -894,7 +894,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 
 \subsection{Chain topology}
 
-\mypara The graph describing the network structure in provided in Figure~\ref{fig:graph}. Consider the case with $N=4$.
+\mypara The graph describing the network structure in provided in Figure~\ref{fig:graph}. Consider the case with $N=4$. Two different methods are employed to compute the matrix $W$, namely, chordal graphs and ADMM.
 
 \begin{figure}[htpb!]
 	\centering
@@ -904,7 +904,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 \end{figure}
 
 
-\mypara When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
+\mypara When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials and the MI \eqref{eq:MI formulation} could not be solved. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
 \begin{equation*}
 		\begin{pmatrix}
 n+d\\ d
@@ -918,7 +918,7 @@ n+d\\ d
 \end{equation*}
 monomials to be computed. This motivates the approach proposed in this paper.
 
-\mypara To show the advantages of the method proposed in this paper, a benchmark was run for a network composes by $N=4$ systems and in three scenarios, according to the constraints imposed on the matrix $Y$. Namely, the unconstrained case, the ``neighbor case'', and the fully decentralized (diagonal) case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor case'' and up to $N=512$ systems for the fully decentralized (diagonal) case.
+\mypara To show the advantages of the method proposed in this paper, a benchmark composed of  three scenarios, according to the constraints imposed on the matrix $Y$, has been created.  Namely, the unconstrained case, the ``neighbor'' case, and the fully decentralized case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor'' case and up to $N=512$ systems for the fully decentralized (diagonal) case. In these scenarios the techniques provided by chordal graphs have been employed.
 
 \mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $i\in\mathbb{N}_{[1,4]}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\mathbb{R}^8$, $\mathbf{C}(i)=\mathbb{R}^8$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The matrix $W$ is given by
 \begin{equation*}
@@ -949,7 +949,7 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 	\end{bmatrix}\;.
 \end{equation*}
 
-\mypara In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. The the set $\mathscr{K}$ is defined, for each index $i=2,3$, as $\mathscr{K}(i)=\{i-1,i,i+1\}$, $\mathscr{K}(1)=\{1,2\}$ and $\mathscr{K}(4)=\{3,4\}$. The sets $\mathbf{C}$ are defined as
+\mypara In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. To comply with this requirement, the set $\mathscr{K}$ is defined as $\mathscr{K}(1)=\{1,2\}$, $\mathscr{K}(4)=\{3,4\}$ and $\mathscr{K}(i)=\{i-1,i,i+1\}$, for each index $i=2,3$. The sets $\mathbf{C}$ are defined as
 \begin{equation*}
 	\begin{array}{rcl}
 		\mathbf{C}(1)&=&\{\begin{bmatrix}
@@ -993,7 +993,7 @@ and the matrix $Y$ has the structure defined, over $q\in\mathbb{R}^8$ as
 with elements given, for every $(q_i,\breve{q}_i)\in\mathbb{R}^2\times\mathbb{R}^{\breve{n}_i}$, by 
 \begin{equation*}
 	\overline{Y}_i(q_i,\breve{q}_i)=-2\begin{bmatrix}
-	y_i,&1+\sum_{j\in\mathscr{N}(i)}x_j^2+y_j^2)\end{bmatrix}\;.
+	y_i,&1+\sum_{j\in\mathscr{N}(i)}x_j^2+y_j^2)\end{bmatrix}, i\in\mathbb{N}_{[1,4]}\;.
 \end{equation*}
  
 
@@ -1016,10 +1016,10 @@ Solving the MI \eqref{eq:MI formulation} the matrix $W$
 \end{equation*}
 and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and decentralized} with elements defined, for every $q_i\in\mathbb{R}^2$, by 
 \begin{align*}
- \overline{Y}_i(q_i)=-\begin{bmatrix}2y_i,3+2(x_i^2+y_i^2)\end{bmatrix}
+ \overline{Y}_i(q_i)=-\begin{bmatrix}2y_i,3+2(x_i^2+y_i^2)\end{bmatrix},\quad i\in\mathbb{N}_{[1,4]}\;.
 \end{align*}
 
-\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI formulation} for the three cases considered in this illustration: unconstrained, ``neighbor'' and fully decentralized.
+\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI formulation} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph shown, for $N=1,2$, the time taken by the parser to solve the MI \eqref{eq:MI formulation} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralize case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
 
 \begin{figure}[htpb!]
 	\centering
@@ -1027,22 +1027,6 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 	\caption{Time take by the parser to solve the MI \eqref{eq:MI formulation} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
 	\label{fig:time graph}
 \end{figure}
-
-\mypara According to the graph shown in Figure \ref{fig:time graph}, for $N=1,2$, the time taken by the parser to solve the MI \eqref{eq:MI formulation} was of the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor''-constrained case which, in turn, takes more time than the fully decentralized-constrained case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
-
-\mypara Regarding the on-line integration phase, since the matrices $W$ computed in each case is  constant, for each index $i\in\mathbb{N}_{[1,4]}$, the geodesic curve connecting the origin to a point $q_i\in\mathbb{R}^2$ is a straight line: $\gamma_i(s)=sq_i$, where $s\in[0,1]$. For each case, and for each index $i\in\mathbb{N}_{[1,4]}$, the feedback law is  given by the formula
-\begin{equation*}
-	k= \int_0^1Y(sq)W^{-1}q\,ds.
-\end{equation*}
-Given the structure of the matrices $Y$ and $W$, each line $i\in\mathbb{N}_{[1,4]}$ is given by
-\begin{equation*}
-k_i=\begin{cases}
-	\displaystyle\int_0^1Y_i(sq)W_i^{-1}q_i\,ds,&\text{if unconstrained}\\
-	\displaystyle\int_0^1Y_i(sq_i,s\breve{q}_i)W_i^{-1}q_i\,ds,&\text{if ``neighbor''}\\
-	\displaystyle\int_0^1Y_i(sq_i)W_i^{-1}q_i\,ds,&\text{if fully decentralized.}
-\end{cases}
-\end{equation*}
-Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
 
 \mypara Solving the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual} with ADMM, the components of the matrix $W$ obtained are shown in the set of Equations~\eqref{eq:ADMM:chain case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:chain case}.
 
@@ -1091,9 +1075,23 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	\label{tab:chain case}
 \end{table}
 
+\mypara Regarding the on-line integration phase, since the matrices $W$ computed in each case are  constant, for each index $i\in\mathbb{N}_{[1,4]}$, the geodesic curve connecting the origin to a point $q_i\in\mathbb{R}^2$ is a straight line: $\gamma_i(s)=sq_i$, where $s\in[0,1]$. For each index $i\in\mathbb{N}_{[1,4]}$ and assuming that $u^\ast\equiv0$, the feedback law is  given by the formula
+\begin{equation*}
+	k= \int_0^1Y(sq)W^{-1}q\,ds.
+\end{equation*}
+Given the structure of the matrices $Y$ and $W$, each line $i\in\mathbb{N}_{[1,4]}$ is given by
+\begin{equation*}
+k_i=\begin{cases}
+	\displaystyle\int_0^1Y_i(sq)W_i^{-1}q_i\,ds,&\text{if unconstrained}\\
+	\displaystyle\int_0^1Y_i(sq_i,s\breve{q}_i)W_i^{-1}q_i\,ds,&\text{if ``neighbor''}\\
+	\displaystyle\int_0^1Y_i(sq_i)W_i^{-1}q_i\,ds,&\text{if fully decentralized.}
+\end{cases}
+\end{equation*}
+Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
+
 \subsection{Circumference topology}
 
-\mypara Consider the with four agents (i.e., $N=4$) network having the topology illustrated in Figure~\ref{fig:cycle graph}.
+\mypara Consider the with network with four agents (i.e., $N=4$) with the topology illustrated in Figure~\ref{fig:cycle graph}. Also in this topology, chordal graphs and ADMM are employed to solve the MIs~\eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual}, respectively.
 
 \begin{figure}[htpb!]
 	\centering
@@ -1178,6 +1176,8 @@ where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3\sum_{j=1}^4(x_j^2+y_j^2
 	\caption{A summary of the time taken to solve the matrix inequalities \eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual} using chordal graph decomposition and ADMM approaches, respectively, in the topology illustrated by Fig.~\ref{fig:cycle graph}.}
 	\label{tab:cyclic case}
 \end{table}
+
+\mypara The online computation of the feedback law for the network composed of subsystems of the form \eqref{eq:example} is analogous to what has been shown to the chain-topology case.
 
 
 \section{Conclusion}\label{sec:Conclusion}
