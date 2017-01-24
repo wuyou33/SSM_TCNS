@@ -657,7 +657,7 @@ where $Y_{pq}$ is the component of $Y$ located at row $p$ and column $q$, the no
 \mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the map $Y_{pq}$ is constant.
 
 \begin{theorem}\label{thm:main result}
-	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system}, then there exists a solution to Problem~\ref{problem formulation}. In particular, given a graph $\mathscr{G}_c$ describing the communication network among different controllers
+	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system}, then there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
 \end{theorem}
 
 \mypara The existence of a control contraction metric for system~\eqref{eq:general system} implies that there exist matrices $(W,Y)$ that are a solution to the MI~\eqref{eq:MI formulation} with structure prescribed by the set $\Xi$.
@@ -712,8 +712,10 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 	\begin{equation*}
 		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma),k_i^\ast(t,\sigma))\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
 	\end{equation*}
-	where $\widetilde{\gamma}_i(\cdot)\in\mathbf{X}(\mathscr{K}(i))$.
-	Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. This concludes the proof of Theorem \ref{thm:main result}.
+	where $\widetilde{\gamma}_i(\cdot)\in\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^n)$.
+	Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
+	
+	To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the sets $\mathbf{C}$ and $\mathbin{\mathtt{proj}}_{\mathscr{K}}$. This concludes the proof of Theorem~\ref{thm:main result}.
 \end{proof}
 
 \mypara Based on \cite{Manchester2014a}, the energy function also provides a control-Lyapunov function for system~\eqref{eq:general system} that can be employed to design a distributed controller for system~\eqref{eq:general system}. More precisely, from the first variation of the energy function, the time derivative of $e$ yields the equation
