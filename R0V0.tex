@@ -433,7 +433,7 @@ Rose Street Building J04, The University of Sydney, NSW 2006, Australia. Corresp
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this paper, input-affine nonlinear systems are considered. The problem is the design of structured (for instance, decentralized or distributed) controllers for this class of systems. Although control-Lyapunov functions are the natural candidate to design feedback laws, in this case, numerical methods employed to construct for these functions usually leads to a non-convex optimization problem. Moreover, it may require to verify the positiveness of a function with, at least, $n^2$ elements. In this paper, control-contraction metrics (CCMs) are employed to design controllers with suitable topological (distributed) structures. By exploiting sparsity, the number of verifications needed can be made smaller, as the search of CCMs is formulated as a distributed semidefinite program. An example illustrates the approach for a network system.
+In this paper, large-scale input-affine nonlinear systems are considered. The problem is the design of distributed controllers for this class of network systems. Although control-Lyapunov functions are the natural candidates to design feedback laws, in this case, numerical methods employed to construct for these functions usually lead to a non-convex optimization problem. Moreover, it may require to verify the positiveness of a function with, at least, $n^2$ elements. In this paper, control-contraction metrics (CCMs) are employed to design controllers with suitable distributed structures. By exploiting sparsity, the number of verifications needed can be made smaller, as the search of CCMs is formulated as a distributed semidefinite program. An example illustrates the approach for a network system.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -464,11 +464,11 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \mypara Numerical methods to design linear controllers include $H_\infty$ optmization \cite{Doyleetal1992} and LQR \cite{Hespanha:2009}. The design problems are usually formulated in terms of linear matrix inequalities (LMIs) and semidefinite programming \cite{Boyd1994,DullerudPaganini2000}. In the case of nonlinear systems, design approaches are generally analytic and include high-gain  \cite{GrognardSepulchreBastin1999}, backstepping \cite{Krstic1995}, and forwarding \cite{MazencPraly96}. These methods depend on the structure of the vector field and may fail to be applied when appropriate conditions are not met \cite{SteinShiromoto2013a}.
 
-\mypara For those systems described by input-affine differential equations,  the existence of a control-Lyapunov function (CLF) satisfying the so-called \emph{small control property} provides a ``universal'' formula for a stabilizing feedback law  \cite{Sontag1983,Sontag1989a}. However, by the time that this paper was submitted, systematic methods for the search of a CLF were known only for particular systems within this class (see, for instance, \cite{MazencMalisoff2006}). In addition to the lack of a general systematic approach, the search for a CLF in terms of numerical optimization leads to a problem that is not necessarily convex nor connected \cite{Rantzer:2001}.
+\mypara For systems described by input-affine differential equations,  the existence of a control-Lyapunov function (CLF) satisfying the so-called \emph{small control property} provides a ``universal'' formula for a stabilizing feedback law  \cite{Sontag1983,Sontag1989a}. However, by the time that this paper was submitted, systematic methods for the search of a CLF were known only for particular systems within this class (see, for instance, \cite{MazencMalisoff2006}). In addition to the lack of a general systematic approach, the search for a CLF in terms of numerical optimization leads to a problem that is not necessarily convex nor connected \cite{Rantzer:2001}.
 
-\mypara An alternative to CLFs is provided by the so-called control-contraction metrics (CCMs). One of the main advantages of CCMs over CLFs is that the feedback law is obtained by solving a convex optimization problem \cite{Manchester2014a}, due to fact that the \emph{differential / variational} formulation (see definition below) of the system is considered. The obtained controller makes every solution of the closed-loop system exponentially converge to a prescribed solution (see a precise definition below). In contrast to feedback linearization which depends on integrability, the obtained controller depends only on the stabilizability property of the system. This stability notion is related to contraction theory (an incremental stability property \cite{Angeli2002,Lohmiller1998,Rueffer2013,Sontag2010,Forni2014}) which can be traced back to the work \cite{Lewis1949}.
+\mypara An alternative to CLFs is provided by the so-called control-contraction metrics (CCMs). One of the main advantages of CCMs over CLFs is that the feedback law is obtained by solving a convex optimization problem \cite{Manchester2014a}.
 
-\mypara One of the drawbacks of numerical methods is that, when the system under consideration has a large number of states, it does not scale well. This is due to the fact that the stability verification of a linear system with $n$ states may require a function with $n^2$ terms (see \cite{Rantzer2015} for the case of linear systems and Lyapunov functions). In general, the case is worse, for nonlinear systems.
+\mypara One of the drawbacks of numerical methods is that, when the system under consideration has a large number of states, it may require a large memory size. This is due to the fact that the stability verification of a linear system with $n$ states may require a function with $n^2$ terms (see \cite{Rantzer2015} for the case of linear systems and Lyapunov functions). In general, the case is worse, for nonlinear systems.
 
 \mypara Large-scale systems may appear in the form of interconnection of smaller components, for example, in applications such as traffic networks \cite{CanudasdeWitMorbidiLeonOjedaEtAl2015}, pipe networks \cite{Persis2011a} and sensor networks \cite{Pajic2011}. For such systems, a property often desired is the ability to synthetize controllers with particular structures (see \cite{Siljak1991,Bai2011} for distributed controllers). 
 
@@ -476,13 +476,13 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \mypara In the case of linear systems whose solutions evolve in the positive orthant (positive systems), the problem of design a structured stabilizing feedback law has been addressed in \cite{Tanaka2011}. Also, the authors show that the existence of such a controller is equivalent to the existence of Lyapunov function with a diagonal structure. The importance of this result for large-scale systems is highlighted in \cite{Rantzer2015}, where sparsity is explored to solve linear programs.
 
-\mypara For nonlinear systems, the design of structured controllers could be simplified by choosing structured control-Lyapunov functions (see \cite{Dirr2015} and references therein). However, the search for a general control-Lyapunov function is a non-trivial problem by itself (see \cite{MalisoffMazenc2009} for the search of Lyapunov functions). The case can be even worse, when structural constraints are considered.
+\mypara For nonlinear systems, the design of structured controllers could be simplified by choosing structured control-Lyapunov functions (see \cite{Dirr2015} and references therein). However, the search for a general control-Lyapunov function is a non-trivial problem by itself (see \cite{MalisoffMazenc2009} for the search of Lyapunov functions). The case can be even worse, when structural constraints are imposed.
 
-\mypara For this reason, the structured design of feedback laws for nonlinear systems is investigated with CCMs satisfying structural constraints, in this work. The systems under consideration are continuously differentiable and affine in the input. One of the key elements employed to design these controllers is the concept of a Riemannian metric (see the definition below) which is employed, similarly to Lyapunov functions, to measure the exponential convergence of pairs of solutions. Employing CCMs that can be decomposed into the sum of smaller elements, the design of a structured feedback law allowing exponential convergence of solutions is obtained in two steps. 
+\mypara For this reason, the structured design of feedback laws for nonlinear systems is investigated with CCMs satisfying structural constraints. The systems under consideration are continuously differentiable and affine in the input. One of the key elements employed to design these controllers is the concept of a Riemannian metric (see the definition below) which is employed, similarly to Lyapunov functions, to measure the exponential convergence of pairs of solutions. Employing CCMs that can be decomposed into the sum of smaller elements, the design of a structured feedback law allowing exponential convergence of solutions is obtained in two steps. 
 
-\mypara The first step consists of an off-line computation. The original system is extended with its \emph{differential / variational} formulation. The exponential convergence problem is reformulated in terms of stability of the origin for the extended system. This stability problem is written in terms of a convex optimization problem under the prescribed structural constraint. The solution consists of a pair of matrices: the Riemannian metric and the \emph{differential / variational} feedback law. The second step consists of an on-line optimization. The obtained \emph{differential / variational} controller is integrated along geodesics (see definition below).
+\mypara The first step consists of an off-line computation. The original system is extended with its \emph{differential / variational} formulation. The exponential convergence problem is reformulated in terms of stability of the origin for the extended system. This stability problem is written in terms of a convex optimization problem under the prescribed structural constraint. The solution consists of a pair of matrices: the Riemannian metric and the \emph{differential / variational} feedback law. The second step consists of an on-line optimization. The obtained \emph{differential / variational} controller is integrated along geodesics (see definition below).  In contrast to feedback linearization which depends on integrability, the obtained controller depends only on the stabilizability property of the system. This stability notion is related to contraction theory (an incremental stability property \cite{Angeli2002,Lohmiller1998,Rueffer2013,Sontag2010,Forni2014}) which can be traced back to the work \cite{Lewis1949}.
 
-\mypara At this point, the three contributions of this work can be highlighted. First, using the methodology for synthesis of CCMs introduced in \cite{Manchester2014a} and imposing a (block-)diagonal structure constraint, a feedback law with prescribed structure is obtained for nonlinear systems. Second, because the CCM has a (block-)diagonal structure, the computation of the online integration phase, which corresponds to an optimization problem, is distributed. Third, when the system is described a non-strongly connected graph, the structure imposed on the CCM allows to reduce the number of equations needed to  verify stability. Note that the proposed method provides an explicit algorithm to design the controller which makes this approach constructive.
+\mypara At this point, the three contributions of this work can be highlighted. First, using the methodology for synthesis of CCMs introduced in \cite{Manchester2014a} and imposing a (block-)diagonal structural constraint, a distributed feedback law is obtained. Second, because the CCM has a (block-)diagonal structure, the computation of the online integration phase, which corresponds to an optimization problem, is also distributed. Third, the structure imposed on the CCM allows to reduce the number of equations needed to  verify stability. Note that the proposed method provides an explicit algorithm to design the controller.
 
 \mypara Other works related to analysis under structural constraints to achieve exponential convergence of solutions do exist in the literature. For contraction analysis, see \cite{Aminzare2014a} for analysis according to different network topologies and \cite{Andrieu2016} for transversal contraction analysis. This paper contrast with these works mainly in two points: 1) A  methodology for the design of structured controllers is proposed; 2) Due the formulation of the stabilization problem as a convex optimization problem, an explicit formula of a structured controller is obtained.
 
@@ -492,7 +492,7 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \mypara The notation $\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ stands for the class of functions $u:\mathbb{R}\to\mathbb{R}^m$ that are locally essentially bounded. Given differentiable functions $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $f:\mathbb{R}^n\to\mathbb{R}^n$ the notation $\partial_fM$ stands for matrix with dimension $n\times n$ and with $(i,j)$ element given by $\frac{\partial m_{ij}}{\partial x}(x)f(x)$. The notation $\dot{f}$ stands for the total derivative of $f$.
 
-\mypara Let $N>0$ be an integer, a \emph{graph} consists of a set of \emph{nodes} $\mathscr{V}\subset\mathbb{N}_{[1,N]}$ and a set of \emph{edges} $\mathscr{E}\subset\mathscr{V}\times\mathscr{V}$ and it is denoted by the pair $(\mathscr{V},\mathscr{E})=\mathscr{G}$. A node $i\in\mathscr{V}$ is said to be \emph{adjacent} to a node $j\in\mathscr{V}$ if $(i,j)\in\mathscr{E}$, the set of nodes that are adjacent to $j$ is defined as $\mathscr{N}(j)=\{i\in\mathscr{V}:i\neq j,(i,j)\in\mathscr{E}\}$. Given two nodes $i,j\in\mathscr{V}$, and ordered sequence of edges $\left\{(k,k+1)\right\}_{k=i}^{j-1}$ is said to be a \emph{path from the node $i$ to the node $j$}. A path is said to be \emph{cycle} if no edges are repeated and the nodes $i$ and $j-1$  are distinct. A graph is said to be \emph{strongly connected} if, for every two nodes $i,j\in\mathscr{V}$, there exists a path connecting them. It is also said to be \emph{complete} is every node is adjacent to any other node, and it is \emph{incomplete} otherwise. A graph is said to be a \emph{tree} if it is connected and does not contain cycles. A \emph{leaf} is a node that is adjacent to only one node.
+\mypara Let $N>0$ be an integer, a \emph{graph} consists of a set of \emph{nodes} $\mathscr{V}\subset\mathbb{N}_{[1,N]}$ and a set of \emph{edges} $\mathscr{E}\subset\mathscr{V}\times\mathscr{V}$ and it is denoted by the pair $(\mathscr{V},\mathscr{E})=\mathscr{G}$. A node $i\in\mathscr{V}$ is said to be \emph{adjacent} to a node $j\in\mathscr{V}$ if $(i,j)\in\mathscr{E}$, the set of nodes that are adjacent to $j$ is defined as $\mathscr{N}(j)=\{i\in\mathscr{V}:i\neq j,(i,j)\in\mathscr{E}\}$. Given two nodes $i,j\in\mathscr{V}$, an ordered sequence of edges $\left\{(k,k+1)\right\}_{k=i}^{j-1}$ is said to be a \emph{path from the node $i$ to the node $j$}. A path is said to be \emph{cycle} if no edges are repeated and the nodes $i$ and $j-1$  are distinct. A graph is said to be \emph{strongly connected} if, for every two nodes $i,j\in\mathscr{V}$, there exists a path connecting them. It is also said to be \emph{complete} is every node is adjacent to any other node, and it is \emph{incomplete} otherwise. A graph is said to be a \emph{tree} if it is connected and does not contain cycles. A \emph{leaf} is a node that is adjacent to only one node.
 
 
 \subsection{Problem Formulation and Motivation}\label{sec:Problem Formulation and Motivation}
@@ -529,16 +529,16 @@ where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of
  For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into a set $\mathscr{K}(i)$ of graph nodes;
 \end{problem}
 
-\mypara In other words, Problem~\ref{problem formulation} states that the controller is decomposed into smaller components. Each of these depends on the states  prescribed by the set $\mathscr{K}$. The definition of the set $\mathscr{K}$ is not restricted to the topology described by the graph $\mathscr{G}$. Given a graph $\mathscr{G}_c=(\mathscr{V}_c,\mathscr{E}_c)$ describing the communication network among different controllers, the set $\mathscr{K}$ can be defined as a subset of $\mathscr{V}_c$.
+\mypara In other words, Problem~\ref{problem formulation} states that each component of the controller depends on the states prescribed by the set $\mathscr{K}$. The definition of the set $\mathscr{K}$ is not restricted to the topology described by the graph $\mathscr{G}$, for instance, it can be described by a graph $\mathscr{G}_c=(\mathscr{V}_c,\mathscr{E}_c)$ that defined the communication network among different controllers.
 
-\mypara The constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation} is particularly relevant for the design feedback laws with a prescribed structure (topology). Consider the network composed of systems described by the following equation.
+\mypara The constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation} is particularly relevant for the design of distributed feedback laws with a prescribed topology (described possibly by $\mathscr{G}_c$). Consider the network composed of systems described by the following equation.
 \begin{equation}\label{eq:example}
 	\scalebox{0.95}{$\left\{\begin{array}{rcl}
 		\dot{x}_i&=&-x_i-x_i^3+y_i^2 + 0.01\left(x_{i-1}^3 - 2x_i^3 +x_{i+1}^3\right)\\
 		\dot{y}_i&=&u_i\;.
 	\end{array}\right.$}
 \end{equation}
-As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to memory constraints. However, by exploring sparsity, up to 512 of theses systems can be connected and the controller can be computed. 
+As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to memory constraints. However, by exploring sparsity, up to 512 of theses systems can be connected and the distributed controller can be computed. 
 
 \subsection{Background}\label{sec:background}
 
@@ -570,7 +570,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 
 \mypara Lyapunov stability notions of solutions to \eqref{eq:general system:differential} are similar to those of linear time-varying systems (LTVS) (see \cite{Hespanha:2009} for more information on LTVS). 
 
-\mypara The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given a fixed two control $u$ for system \eqref{eq:general system}, $\delta_u\equiv0$. If the Euclidean norm of every solution $\Delta_x(t,x,\delta_x,u,0)$ converges to zero exponentially, as the time tends to infinity, then every pair of solutions to \eqref{eq:general system} converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
+\mypara The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given a fixed control $u$ for system \eqref{eq:general system}, $\delta_u\equiv0$. If the Euclidean norm of every solution $\Delta_x(t,x,\delta_x,u,0)$ converges to zero exponentially, as the time tends to infinity, then every pair of solutions to \eqref{eq:general system} under the input $u$ converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
 
 \mypara A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
 
@@ -583,7 +583,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 \end{definition}
 
 
-\mypara The existence a contraction metric for system \eqref{eq:general system} implies that every two solutions of this system converge to each other exponentially. The proof of this claim, for the case in which $u\equiv0$ and $\delta_u\equiv0$, can be found in \cite[Theorem 1]{Lewis1951}, and \cite[Theorems 5.7 and 5.33]{Reich2005}, and \cite[Lemma 3.3]{Isac2008}.
+\mypara The existence a contraction metric for system \eqref{eq:general system} implies that every two solutions to this system converge to each other exponentially. The proof of this claim, for the case in which $u\equiv0$ and $\delta_u\equiv0$, can be found in \cite[Theorem 1]{Lewis1951}, and \cite[Theorems 5.7 and 5.33]{Reich2005}, and \cite[Lemma 3.3]{Isac2008}.
 
 \mypara For the class of systems considered in this paper, the following kind of metric is of interest, since it also allows the design a feedback law for system \eqref{eq:general system:differential}.
 
@@ -600,7 +600,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 		holds, where $\dot{M}:=\partial_{f+Bu}M$.
 	\end{subequations}
 \end{definition}
-\mypara The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition to the differential system~\eqref{eq:general system:differential}. Given a control-contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides stabilizing a feedback law of the form $\delta_u=K\delta_x$ for system \eqref{eq:general system:differential} defined for every $\delta_x\in\mathbb{R}^n$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
+\mypara The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition to the differential system~\eqref{eq:general system:differential}. Given a control-contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides a stabilizing feedback law of the form $\delta_u=K(x,u)\delta_x$ for system \eqref{eq:general system:differential}, defined for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
 
 \mypara The following result is recalled from \cite{Manchester2014a} and provides a feedback law for system~\eqref{eq:general system} given a feedback law for system~\eqref{eq:general system:differential}.
 
@@ -610,11 +610,11 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 
 \mypara As remarked in \cite{Manchester2014a}, the main advantage to look for control-contraction metric over control-Lyapunov functions is that the former case can be formulate in terms of a convex optimization problem while the latter is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system~\eqref{eq:general system} are recalled below.
 
-\mypara Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W=W^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following matrix inequality (MI)
+\mypara Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W(\cdot)=W(\cdot)^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following matrix inequality (MI)
 \begin{equation}\label{eq:MI formulation}
-	-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\prec0\;.
+	-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\prec0
 \end{equation}
-Note that \eqref{eq:MI formulation} is linear on the matrix variables $W$ and $Y$, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the MI~\eqref{eq:MI formulation} can be solved with positive semidefinite programming techniques.
+uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Note that \eqref{eq:MI formulation} is linear on the matrix variables $W$ and $Y$, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the MI~\eqref{eq:MI formulation} can be solved with positive semidefinite programming techniques.
 
 \mypara Once a solution to MI~\eqref{eq:MI formulation} has been computed, the function defined, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, by
 	\begin{equation}\label{eq:differential feedback law}
@@ -628,9 +628,18 @@ Note that \eqref{eq:MI formulation} is linear on the matrix variables $W$ and $Y
 \end{equation}
 where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^\ast$ to system~\eqref{eq:general system} globally exponentially stable.
 
-\mypara From the above steps, even if the problem of imposing a particular structure on $Y$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} cannot generally be computed in a distributed manner.
+\mypara From the above steps, even if the problem of imposing a particular structure on $Y$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} cannot generally be computed in a distributed manner. In this paper, these limitations are addressed by imposing a separable structure over $W$.
 
-\mypara In this paper, these limitations are addressed by imposing a separable structure over $W$.
+\mypara Based on \cite{Manchester2014a}, the energy function also provides a control-Lyapunov function for system~\eqref{eq:general system} that can be employed to design a distributed controller for system~\eqref{eq:general system}. More precisely, from the first variation of the energy function, the time derivative of $e$ yields the equation
+\begin{align}
+	\dfrac{1}{2}De^+(X^\ast,X)=\langle \gamma_s(t,0),\dot{X}^\ast\rangle_{X^\ast}-\langle \gamma_s(t,1),f(x)\rangle_{X}\nonumber\\
+	-\langle \gamma_s(t,1),B(x)u\rangle_{X}\,\label{eq:CLF derivative}
+\end{align}
+where $De^+$ stands for the Dini's upper right-hand time derivative of the energy $e$ along the solutions $X$ and $X^\ast$. A distributed controller can be obtained by finding the appropriate feedback law for system~\eqref{eq:general system} rendering \eqref{eq:CLF derivative} negative definite. This can be achieved by noticing that \eqref{eq:CLF derivative} is the sum of $N$ terms of the form
+\begin{align*}
+	\tfrac{\partial \gamma_i}{\partial s_i}(t,0)M_i(X_i^\ast)X_i^\ast-\tfrac{\partial \gamma_i}{\partial s_i}(t,1)M_i(X_i)f_i(X_i,\breve{X}_i)\\
+	-\tfrac{\partial \gamma_i}{\partial s_i}(t,1)M_i(X_i)B_i(X_i)u_i\;.
+\end{align*}
 
 \section{Design of Distributed Controllers}\label{sec:Design of Decentralized Controllers}
 
@@ -646,21 +655,19 @@ where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^
 
 \mypara To address the constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation}, the structure of the feedback defined by Equation~\eqref{eq:contracting feedback law} is obtained by imposing a suitable constraint on the function $Y$ to be satisfied together with the MI \eqref{eq:MI formulation}. 
 
-\mypara Following the notation introduced in \cite{Tanaka2011}, for each index $i\in\mathbb{N}_{[1,N]}$, define the set 
+\mypara For each index $i\in\mathbb{N}_{[1,N]}$, define the set 
 \begin{align}
 		\Xi=&\{Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}\ |Y_{pq}:\mathtt{proj}_{\mathscr{K}(i)}(\mathbb{R}^n)\to\mathbb{R},\nonumber\\
 		&\mathbin{\mathtt{row}}(Y,p)\in\mathbf{C}(i),\forall p\in\mathbb{N}_{[1,m]},\forall q\in\mathbb{N}_{[1,n]},\nonumber\\
 		&i\in\mathbb{N}_{[1,N]}\}\;,
 \end{align}
-where $Y_{pq}$ is the component of $Y$ located at row $p$ and column $q$, the notation $\mathtt{proj}_{\mathscr{K}(i)}(\mathbb{R}^n)$ stands for the projection of $\mathbb{R}^n$ onto the subset generated by the components of $x$ indexed by $\mathscr{K}$, $\mathbin{\mathtt{row}}(Y,p)$ is the $p$-th row of $Y$ and $\mathbf{C}$ stands for the subset of $\mathbb{R}^n$ generated by the vector having components zero but those corresponding to the indices defined in $\mathscr{K}$.
+where $Y_{pq}$ is the component of $Y$ located at row $p$ and column $q$, the notation $\mathtt{proj}_{\mathscr{K}(i)}(\mathbb{R}^n)$ stands for the projection of $\mathbb{R}^n$ onto the subset generated by the components of $x$ indexed by $\mathscr{K}$, $\mathbin{\mathtt{row}}(Y,p)$ is the $p$-th row of $Y$ and $\mathbf{C}$ stands for the subset of $\mathbb{R}^n$ generated by the vector having all components zero but those corresponding to the indices defined in $\mathscr{K}$.
 
 \mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the map $Y_{pq}$ is constant.
 
 \begin{theorem}\label{thm:main result}
 	If there exists a sum-separable control-contraction metric for system \eqref{eq:general system}, then there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
 \end{theorem}
-
-\mypara The existence of a control contraction metric for system~\eqref{eq:general system} implies that there exist matrices $(W,Y)$ that are a solution to the MI~\eqref{eq:MI formulation} with structure prescribed by the set $\Xi$.
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
 	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ are a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi$.
@@ -698,7 +705,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 	\begin{equation}\label{eq:K ODE}
 		\tfrac{dk^\ast}{ds}(t,s)=K(\gamma(t,s),k^\ast(t,s))\gamma_s(t,s)=:\overline{K}(t,s,k^\ast)\;.
 	\end{equation}
-	which has a unique solution defined of a maximal interval of existence, for every initial condition, due to the regularity of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)$ tends to infinity, as $s$ tends to $\bar{s}$.
+which has a unique solution defined on a maximal interval of existence, for every initial condition, due to the regularity of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)$ tends to infinity, as $s$ tends to $\bar{s}$.
 	
 \mypara 	To show that a solution $k^\ast$ to Equation~\eqref{eq:K ODE} is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
 		
@@ -712,55 +719,43 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 	\begin{equation*}
 		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma),k_i^\ast(t,\sigma))\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
 	\end{equation*}
-	where $\widetilde{\gamma}_i(\cdot)\in\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^n)$.
-	Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
+	where $\widetilde{\gamma}_i(\cdot)\in\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^n)$. Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
 	
-	To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the sets $\mathbf{C}$ and $\mathbin{\mathtt{proj}}_{\mathscr{K}}$. This concludes the proof of Theorem~\ref{thm:main result}.
+	\mypara To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the sets $\mathbf{C}$ and $\mathbin{\mathtt{proj}}_{\mathscr{K}}$. This concludes the proof of Theorem~\ref{thm:main result}.
 \end{proof}
 
-\mypara Based on \cite{Manchester2014a}, the energy function also provides a control-Lyapunov function for system~\eqref{eq:general system} that can be employed to design a distributed controller for system~\eqref{eq:general system}. More precisely, from the first variation of the energy function, the time derivative of $e$ yields the equation
-\begin{align}
-	\dfrac{1}{2}De^+(X^\ast,X)=\langle \gamma_s(t,0),\dot{X}^\ast\rangle_{X^\ast}-\langle \gamma_s(t,1),f(x)\rangle_{X}\nonumber\\
-	-\langle \gamma_s(t,1),B(x)u\rangle_{X}\,\label{eq:CLF derivative}
-\end{align}
-where $De^+$ stands for the Dini's upper right-hand time derivative of the energy $e$ along the solutions $X$ and $X^\ast$. A distributed controller can be obtained by finding the appropriate feedback law for system~\eqref{eq:general system} rendering \eqref{eq:CLF derivative} negative definite. This can be achieved by noticing that \eqref{eq:CLF derivative} is the sum of $N$ terms of the form
-\begin{align*}
-	\tfrac{\partial \gamma_i}{\partial s_i}(t,0)M_i(X_i^\ast)X_i^\ast-\tfrac{\partial \gamma_i}{\partial s_i}(t,1)M_i(X_i)f_i(X_i,\breve{X}_i)\\
-	-\tfrac{\partial \gamma_i}{\partial s_i}(t,1)M_i(X_i)B_i(X_i)u_i\;.
-\end{align*}
-
-\mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, the computation of the MI \eqref{eq:MI formulation} not has been said about the parallel compution of the MI~\eqref{eq:MI formulation}. The next section provides sufficient conditions to parallelize the search for a solution to the MI~ \eqref{eq:MI formulation}.
+\mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, nothing has been imposed to compute the MI~\eqref{eq:MI formulation} in a distributed manner. The next section provides sufficient conditions to parallelize the search for a solution to the MI~ \eqref{eq:MI formulation}.
 
 \section{Distributed Design of Distributed Controllers}
 
 \mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem for the computation of a solution to the MI~\eqref{eq:MI formulation}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. For this reason, the computation of a solution to MI~\eqref{eq:MI formulation} need to be done in parallel. 
 
-\mypara To that end three methodologies are recalled below: chordal graphs, alternating direction of multipliers (ADMM) and scaled diagonal dominance. The first exploits the network topology to decompose it into smaller complete components. The second method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality (see Eq.~\eqref{eq:Artstein-Sontag:inequality:dual}, below). Finally, scaled diagonal dominance exploits the stability of individual agents (i.e., when these considered not connected to the network) and weak coupling. Note that these methodologies can be used either separately or together. The latter would appropriate, when the smaller components of the network have high rank and the computing platform where the solver runs has memory limitations. 
+\mypara To that end three methodologies are recalled below: chordal graphs, scaled diagonal dominance and alternating direction of multipliers (ADMM). The first exploits the network topology to decompose it into smaller complete components. The second method exploits the stability of individual agents (i.e., when these considered not connected to the network) and weak coupling. Finally, the last method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality (see Eq.~\eqref{eq:Artstein-Sontag:inequality:dual}, below). Note that these methodologies can be used either separately or together. The latter would appropriate, when the smaller components of the network still have a large number of states and the computing platform where the solver runs has memory limitations. 
 
-\mypara Some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}.  onsider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denote as $\mathscr{T}(\mathscr{G})$.
+\mypara Some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}. Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denoted as $\mathscr{T}(\mathscr{G})$.
 
 \begin{proposition}\label{prop:clique tree decomposition}
-	Let $p\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI formulation} can be decomposed into $p$ matrix inequalities with smaller dimension.
+	Let $p\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI formulation} can be decomposed into $p$ matrix inequalities with smaller dimension. Moreover, if each matrix is negative definite, then the MI~\eqref{eq:MI formulation} is satisfied.
 \end{proposition}
 
 \begin{proof}
 	Using the Algorithm~3.1 from \cite{VandenbergheAndersen2015}, it is possible to decompose the graph $\mathscr{G}$ into the clique tree $\mathscr{T}(\mathscr{G})$. Let the integer $p>0$ be the number of nodes of $\mathscr{T}(\mathscr{G})$. The remainder of this proof is based on Section~II of \cite{PakazadHanssonAndersenEtAl2015}.
 	
-\mypara 	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the nodes of $\mathscr{T}(\mathscr{G})$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, let the integer $\dim_k$ denote the dimension of the set $\mathbf{X}(\mathscr{C}_k)$ and define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
+\mypara 	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the nodes of $\mathscr{T}(\mathscr{G})$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, let the integer $\dim_k$ denote the dimension of the set $\mathbin{\mathtt{proj}}_{\mathscr{C}_k)}(\mathbb{R}^n)$ and define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
 	
 \mypara    Denote the left-hand side of the MI~\eqref{eq:MI formulation} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\dim_k}\to\mathbb{R}^{\dim_k\times \dim_k}$, where $k\in\mathbb{N}_{[1,p]}$, satisfying the equation
    \begin{equation*}
    	 T=\sum_{k=1}^p E_k^\top F_k E_k\;.
   	\end{equation*}
   	
-\mypara   	Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into the set of matrix inequalities
+\mypara Consequently, whenever the following matrix inequality holds 
   	\begin{equation}\label{eq:MIF}
-  		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,p]}\;.
+  		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,p]},
 	\end{equation}
-	This concludes the proof.
+	uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, the matrix $T$ is uniformly negative definite. Thus, the MI~\eqref{eq:MI formulation} holds. This concludes the proof.
 \end{proof}
 
-\mypara Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedding}. The above procedure can be applied for the chordal embedded graphs.
+\mypara Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedded} and the above procedure can be applied for this graph.
 
 \mypara Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the vector fields $f$ and $B$ are polynomials and the search for the matrix $F$ is restricted to have appropriate diagonal structure, then the negative definiteness can be shown using the optimization method proposed in \cite{AhmadiHall2016}.
 
@@ -788,9 +783,9 @@ where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is de
 \end{array}
 \end{equation}
 \end{subequations}
-Note that, when the requirement of $A$ is diagonally dominant can be interpreted as the network having a weak coupling.
+Note that, the requirement of $A$ to be diagonally dominant can be interpreted as the network having stable agents interconnected with a weak coupling.
 
-\mypara The alternating direction method of multipliers (ADMM) provides a framework to compute the block-diagonal matrix $W$ to satisfy the MI~\eqref{eq:MI formulation} in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this methodology, define the set of (resp. sum-of-squares (SOS)) polynomials $\mathbb{R}[x]$ (resp. $\mathbb{SOS}[x]$), and denote the degree of a polynomial $p\in\mathbb{R}[x]$ as $\deg(p)$.
+\mypara The alternating direction method of multipliers (ADMM) provides a framework to compute the sum-separable control contraction metrics in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this methodology, define the set of (resp. sum-of-squares (SOS)) polynomials $\mathbb{R}[x]$ (resp. $\mathbb{SOS}[x]$), and denote the degree of a polynomial $p\in\mathbb{R}[x]$ as $\deg(p)$.
 
 \mypara Condition~\eqref{eq:Arstein-Sontag} is satisfied, whenever the matrix inequality
 \begin{equation}\label{eq:Artstein-Sontag:inequality:dual}
@@ -804,7 +799,7 @@ holds, where $B_\perp$ is any full-rank matrix satisfying $B^\top B_\perp\equiv0
 	p_{MI}=&\ -v^\top B_\perp^\top(-\dot{W}+AW + WA^\top+2\lambda W)\\
 	&B_\perp v\;.
 \end{align*}
-The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\succeq0$, called \emph{Gramians}, with appropriate dimensions and such that $p_W=\bar{v}^\top Q_W\bar{v}$ and $p_{MI}=\bar{v}^\top Q_{MI}\bar{v}$ belong to $\mathbb{R}[x,v]$, where $\bar{v}$ is vector of monomials on the variables $x_i,\ldots,x_N$ and $v_1,\ldots,v_N$. 
+The feasibility program consists of finding symmetric matrices $Q_W\succeq0$ and $Q_{MI}\succeq0$, called \emph{Gramians}, with appropriate dimensions and such that $p_W=\bar{v}^\top Q_W\bar{v}$ and $p_{MI}=\bar{v}^\top Q_{MI}\bar{v}$ belong to $\mathbb{R}[x,v]$, where $\bar{v}$ is vector of monomials on the variables $x_i,\ldots,x_N$ and $v_1,\ldots,v_N$. 
 
 \mypara Now that the computation of a positive definite $W$ satisfying inequality~\eqref{eq:Artstein-Sontag:inequality:dual} in terms of SOS polynomials has been explained, the next step is to solve the SOS feasibility using ADMM. 
 
@@ -816,7 +811,7 @@ The feasibility program consists of finding symmetric $Q_W\succeq0$ and $Q_{MI}\
 								\end{cases}
 \end{equation*}
 
-\mypara The MI~\eqref{eq:MI formulation} can be cast into the following optimization problem
+\mypara The MI~\eqref{eq:Artstein-Sontag:inequality:dual} can be cast into the following optimization problem
 \begin{equation*}
 	\begin{array}{rl}
 		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N))+\sum_{i=1}^N H(\mathbf{S}_{\succeq0}^{\alpha_i},Q_{W_i})\\
@@ -850,7 +845,7 @@ Note that steps 1 and 3 are computed in parellel while step 2 requires to gather
 
 \subsection{Discussion}
 
-\mypara Although the requirement of a sum-separable structure seems to be restrictive, this structure is equivalent to the (possibly local) stabilizability of the origin, for some classes of systems.
+\mypara Although the requirement of a sum-separable structure seems to be restrictive, this structure is equivalent to the (possibly local) stability of the origin, for some classes of systems.
 
 \mypara For monotone systems (i.e., systems for which the some order of initial conditions is preserved along the flow of the vector field) described by a vector field that is continuously differentiable and whose gradient matrix is Hurwitz at the origin, there exists a sum-separable Lyapunov function in a neighborhood of the origin \cite[Theorem 3.4]{Dirr2015}. 
 
@@ -906,7 +901,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 \end{figure}
 
 
-\mypara When $N\geq6$ and $Y$ is a full matrix with elements described by polynomials and the MI \eqref{eq:MI formulation} could not be solved. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
+\mypara When $N\geq6$ and $Y$ is a full-rank matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
 \begin{equation*}
 		\begin{pmatrix}
 n+d\\ d
@@ -943,7 +938,7 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 \end{equation}
 \end{figure*}
 
-\mypara For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example}. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into $N-1$ cliques  described by the matrix
+\mypara For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example} has been exploited. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into $N-1$ cliques  described by the matrix
 \begin{equation*}
 	F_k=\begin{bmatrix}
 		F_{11}&F_{12}\\
@@ -1021,7 +1016,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
  \overline{Y}_i(q_i)=-\begin{bmatrix}2y_i,3+2(x_i^2+y_i^2)\end{bmatrix},\quad i\in\mathbb{N}_{[1,4]}\;.
 \end{align*}
 
-\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI formulation} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph shown, for $N=1,2$, the time taken by the parser to solve the MI \eqref{eq:MI formulation} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralize case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
+\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI formulation} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph, for $N=1,2$, the time taken by the parser to solve the MI \eqref{eq:MI formulation} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralized case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
 
 \begin{figure}[htpb!]
 	\centering
@@ -1030,7 +1025,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 	\label{fig:time graph}
 \end{figure}
 
-\mypara Solving the matrix inequality~\eqref{eq:Artstein-Sontag:inequality:dual} with ADMM, the components of the matrix $W$ obtained are shown in the set of Equations~\eqref{eq:ADMM:chain case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:chain case}.
+\mypara The solver took approximately 300s to computed the matrix $W$ satisfying the inequality~\eqref{eq:Artstein-Sontag:inequality:dual} employing ADMM, the components of the matrix $W$ obtained are shown in the set of Equations~\eqref{eq:ADMM:chain case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:chain case}.
 
 \begin{figure*}
 \begin{subequations}\label{eq:ADMM:chain case}
@@ -1093,7 +1088,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 
 \subsection{Circumference topology}
 
-\mypara Consider the with network with four agents (i.e., $N=4$) with the topology illustrated in Figure~\ref{fig:cycle graph}. Also in this topology, chordal graphs and ADMM are employed to solve the MIs~\eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual}, respectively.
+\mypara Consider the network with four agents (i.e., $N=4$) and the topology illustrated in Figure~\ref{fig:cycle graph}. Also here, chordal graphs and ADMM are employed to solve the MIs~\eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual}, respectively.
 
 \begin{figure}[htpb!]
 	\centering
@@ -1122,7 +1117,7 @@ where $\overline{Y}(q_i)=-\begin{bmatrix}2.4y_i,&2.9+2.9(x_i^2+y_i^2)\end{bmatri
 		\overline{Y}(q_4,\breve{q}_4)&0_{2\times1}&\overline{Y}(q_4,\breve{q}_4)&\underline{Y}(q_4,\breve{q}_4)
 	\end{bmatrix}\;,
 \end{equation*}
-where $\underline{Y}(q_i,\breve{q}_i)=-2.26\begin{bmatrix}y_i,&1+\sum_{j=1}^4y_j^2+x_j^2\end{bmatrix}$,
+where $\underline{Y}(q_i,\breve{q}_i)=-2.26\begin{bmatrix}y_i,&1+\sum_{j\in\mathscr{N}(i)\cup\{i\}}^4y_j^2+x_j^2\end{bmatrix}$,
 $\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2\times1}$ stands for the vector $[0,0]\in\mathbb{R}^2$.
 
 \mypara In the decentralized case, the solver took 6.2s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1)$. The matrix $Y$ is given by
@@ -1134,7 +1129,7 @@ $\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2
 	0_{2\times1}&0_{2\times1}&0_{2\times1}&\overline{Y}_4(q)
 	\end{bmatrix}\;,
 \end{equation*}
-where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3\sum_{j=1}^4(x_j^2+y_j^2)\end{bmatrix}$.
+where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3(x_i^2+y_i^2)\end{bmatrix}$.
 
 \mypara Using ADMM to compute a solution to the MI~\eqref{eq:Artstein-Sontag:inequality:dual}, the solver took 114[s] and the obtained matrix $W$ has the components shown in the set of Equations~\eqref{eq:ADMM:cyclic case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:cyclic case}.
 
@@ -1184,7 +1179,7 @@ where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3\sum_{j=1}^4(x_j^2+y_j^2
 
 \section{Conclusion}\label{sec:Conclusion}
 
-\mypara In terms of semidefinite programming, employing control-contraction metrics allows one to formulate the search for the controller as a convex optimization problem. Although this is one of its main advantages over the search of control-Lyapunov functions, it cannot handle systems with a large number of systems, in general.
+\mypara In terms of semidefinite programming, employing control-contraction metrics allows one to formulate the search for the controller as a convex optimization problem. Although this is one of its main advantages over the search of control-Lyapunov functions, it cannot handle systems with a large number of states, in general.
 
 \mypara For large-scale systems, the approach presented in this paper exploits sparsity to design feedback laws with a prescribed structure. More precisely, during the off-line phase, by imposing a block-diagonal structure on the matrix describing the metric, a controller with a prescribed structure can be synthesized. Moreover, the on-line integration phase computation can be in parallel, because each block defines a metric to the corresponding component of the state space.
 
