@@ -734,7 +734,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
 
 \mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem for the computation of a solution to the MI~\eqref{eq:MI formulation}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. For this reason, the computation of a solution to MI~\eqref{eq:MI formulation} need to be done in parallel. 
 
-\mypara To that end three methodologies are recalled below: chordal graphs, scaled diagonal dominance and alternating direction of multipliers (ADMM). The first exploits the network topology to decompose it into smaller complete components. The second method exploits the stability of individual agents (i.e., when these considered not connected to the network) and weak coupling. Finally, the last method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality (see Eq.~\eqref{eq:Artstein-Sontag:inequality:dual}, below). Note that these methodologies can be used either separately or together. The latter would appropriate, when the smaller components of the network still have a large number of states and the computing platform where the solver runs has memory limitations. 
+\mypara To that end two methodologies are recalled below: chordal graphs and alternating direction of multipliers (ADMM). The first exploits the network topology to decompose it into smaller complete components. The last method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality (see Eq.~\eqref{eq:Artstein-Sontag:inequality:dual}, below). The latter would appropriate, when the smaller components of the network still have a large number of states and the computing platform where the solver runs has memory limitations. 
 
 \mypara Some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}. Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denoted as $\mathscr{T}(\mathscr{G})$.
 
@@ -760,34 +760,6 @@ which has a unique solution defined on a maximal interval of existence, for ever
 \end{proof}
 
 \mypara Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedded} and the above procedure can be applied for this graph.
-
-\mypara Let $\mathscr{C}$ be a clique of the graph $\mathscr{G}$ and consider the corresponding matrix $F$ that must satisfy the MI~\eqref{eq:MIF}. If the vector fields $f$ and $B$ are polynomials and the search for the matrix $F$ is restricted to have appropriate diagonal structure, then the negative definiteness can be shown using the optimization method proposed in \cite{AhmadiHall2016}.
-
-\mypara A matrix $D\in\mathbb{R}^{h\times h}$ is said to be \emph{diagonally dominant} (dd) if, for every index $i\in\mathbb{N}_{[1,h]}$, the inequality $|D_{ii}|\geq\sum_{i=1}^h |D_{ij}|$ holds. It is said to be \emph{scalable diagonally dominant} (sdd) if there exists a diagonal matrix $\overline{D}\in\mathbb{R}_{\geq0}^{h\times h}$ such that $\overline{D}D\overline{D}$ is diagonally dominant.
-
-\mypara The set of scalable diagonally dominant matrices is denoted by $SDD_h$. Let
-		\begin{align*}
-			\mathbf{SDD}(U)=\{P\succ0,P\in\mathbb{R}^{h\times h}:P=U^\top DU,\\
-			 D\in SDD_h\}
-		\end{align*}
-be the set of positive definite matrices parameterized by a matrix $U\in\mathbb{R}^{h\times h}$. 
-
-\mypara Whenever the matrix $A$ is scalable diagonally dominant and the choice for $Y$ preserves this structure, the MI~\eqref{eq:MIF} can be relaxed into the following sum-of-squares feasibility program:
-\begin{subequations}
-\begin{equation}\label{eq:DSOS}
-\begin{array}{rcl}
--F_l&\in&\mathbf{SDD}(U_l)\;,
-\end{array}
-\end{equation}
-where the sequence $\{U_l\}_{l\in\mathbb{N}}\subset\mathbb{R}^{h\times h}$ is defined as
-\begin{equation}
-\begin{array}{rcl}
-	U_0&=&\ I_h\\
-	U_{l+1}&=&\mathbin{\mathtt{chol}}(F_l)\;.
-\end{array}
-\end{equation}
-\end{subequations}
-Note that, the requirement of $A$ to be diagonally dominant can be interpreted as the network having stable agents interconnected with a weak coupling.
 
 \mypara The alternating direction method of multipliers (ADMM) provides a framework to compute the sum-separable control contraction metrics in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this methodology, define the set of (resp. sum-of-squares (SOS)) polynomials $\mathbb{R}[x]$ (resp. $\mathbb{SOS}[x]$), and denote the degree of a polynomial $p\in\mathbb{R}[x]$ as $\deg(p)$.
 
