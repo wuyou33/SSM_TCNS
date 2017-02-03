@@ -670,6 +670,20 @@ where $Y_{pq}$ is the component of $Y$ located at row $p$ and column $q$, the no
 \mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the map $Y_{pq}$ is constant.
 
 \begin{theorem}\label{thm:main result}
+	If there exists a solution to the matrix inequalities
+	\begin{subequations}
+		\begin{equation}\label{eq:MI:SSCCM}
+			-\dot{W}+A+WA^\top+BY+(BY)^\top+2\lambda W\prec0
+		\end{equation}
+		with $W=\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)$,
+		\begin{equation}\label{eq:Ws:SSCCM}
+			W_1\succ0,\ldots,W_N\succ0
+		\end{equation}
+		and
+		\begin{equation}\label{eq:YinXi}
+			Y\in\Xi.
+		\end{equation}
+	\end{subequations}
 	Then, $W$ is a sum-separable control-contraction metric for system \eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
 \end{theorem}
 
