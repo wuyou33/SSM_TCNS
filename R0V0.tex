@@ -671,7 +671,7 @@ where $Y_{pq}$ is the component of $Y$ located at row $p$ and column $q$, the no
 
 \begin{theorem}\label{thm:main result}
 	If there exists a solution to the matrix inequalities
-	\begin{subequations}
+	\begin{subequations}\label{eq:main result}
 		\begin{equation}\label{eq:MI:SSCCM}
 			-\dot{W}+A+WA^\top+BY+(BY)^\top+2\lambda W\prec0
 		\end{equation}
@@ -688,9 +688,9 @@ where $Y_{pq}$ is the component of $Y$ located at row $p$ and column $q$, the no
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
-	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ are a solution to the MI \eqref{eq:MI formulation}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi$.
+	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfy the set of equations~\eqref{eq:main result}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi$.
 	
-\mypara	The MI \eqref{eq:MI formulation} implies that the inequality
+\mypara	The MI~\eqref{eq:MI:SSCCM} implies that the inequality
 	\begin{equation*}
 		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
 	\end{equation*}
@@ -721,7 +721,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 	
 \mypara 	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
 	\begin{equation}\label{eq:K ODE}
-		\tfrac{dk^\ast}{ds}(t,s)=K(\gamma(t,s),k^\ast(t,s))\gamma_s(t,s)=:\overline{K}(t,s,k^\ast)\;.
+		\tfrac{dk^\ast}{ds}(t,s)=K(\gamma(t,s))k^\ast(t,s)\gamma_s(t,s)=:\overline{K}(t,s,k^\ast)\;.
 	\end{equation}
 which has a unique solution defined on a maximal interval of existence, for every initial condition, due to the regularity of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)$ tends to infinity, as $s$ tends to $\bar{s}$.
 	
@@ -742,18 +742,18 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	\mypara To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the sets $\mathbf{C}$ and $\mathbin{\mathtt{proj}}_{\mathscr{K}}$. This concludes the proof of Theorem~\ref{thm:main result}.
 \end{proof}
 
-\mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, nothing has been imposed to compute the MI~\eqref{eq:MI formulation} in a distributed manner. The next section provides sufficient conditions to parallelize the search for a solution to the MI~ \eqref{eq:MI formulation}.
+\mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, nothing has been imposed to compute the set of equations~\eqref{eq:main result} in a distributed manner. The next section provides sufficient conditions to parallelize the search for a solution to the set of equations~\eqref{eq:main result}.
 
 \section{Distributed Design of Distributed Controllers}
 
-\mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem for the computation of a solution to the MI~\eqref{eq:MI formulation}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. For this reason, the computation of a solution to MI~\eqref{eq:MI formulation} need to be done in parallel. 
+\mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem to satisfy the set of equations~\eqref{eq:main result}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. In particular, the computation of a solution to MI~\eqref{eq:MI:SSCCM} need to be done in parallel. 
 
 \mypara To that end two methodologies are recalled below: chordal graphs and alternating direction of multipliers (ADMM). The first exploits the network topology to decompose it into smaller complete components. The last method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality (see Eq.~\eqref{eq:Artstein-Sontag:inequality:dual}, below). The latter would appropriate, when the smaller components of the network still have a large number of states and the computing platform where the solver runs has memory limitations. 
 
 \mypara Some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}. Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denoted as $\mathscr{T}(\mathscr{G})$.
 
 \begin{proposition}\label{prop:clique tree decomposition}
-	Let $p\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI formulation} can be decomposed into $p$ matrix inequalities with smaller dimension. Moreover, if each matrix is negative definite, then the MI~\eqref{eq:MI formulation} is satisfied.
+	Let $p\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI:SSCCM} can be decomposed into $p$ matrix inequalities with smaller dimension. Moreover, if each matrix is negative definite, then the MI~\eqref{eq:MI:SSCCM} is satisfied.
 \end{proposition}
 
 \begin{proof}
@@ -761,7 +761,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	
 \mypara 	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the nodes of $\mathscr{T}(\mathscr{G})$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, let the integer $\dim_k$ denote the dimension of the set $\mathbin{\mathtt{proj}}_{\mathscr{C}_k)}(\mathbb{R}^n)$ and define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
 	
-\mypara    Denote the left-hand side of the MI~\eqref{eq:MI formulation} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\dim_k}\to\mathbb{R}^{\dim_k\times \dim_k}$, where $k\in\mathbb{N}_{[1,p]}$, satisfying the equation
+\mypara    Denote the left-hand side of the MI~\eqref{eq:MI:SSCCM} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\dim_k}\to\mathbb{R}^{\dim_k\times \dim_k}$, where $k\in\mathbb{N}_{[1,p]}$, satisfying the equation
    \begin{equation*}
    	 T=\sum_{k=1}^p E_k^\top F_k E_k\;.
   	\end{equation*}
@@ -770,7 +770,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
   	\begin{equation}\label{eq:MIF}
   		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,p]},
 	\end{equation}
-	uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, the matrix $T$ is uniformly negative definite. Thus, the MI~\eqref{eq:MI formulation} holds. This concludes the proof.
+	uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, the matrix $T$ is uniformly negative definite. Thus, the MI~\eqref{eq:MI:SSCCM} holds. This concludes the proof.
 \end{proof}
 
 \mypara Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedded} and the above procedure can be applied for this graph.
@@ -891,7 +891,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 \end{figure}
 
 
-\mypara When $N\geq6$ and $Y$ is a full-rank matrix with elements described by polynomials, the MI \eqref{eq:MI formulation} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix \eqref{eq:MI formulation} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
+\mypara When $N\geq6$ and $Y$ is a full-rank matrix with elements described by polynomials, the MI~\eqref{eq:MI:SSCCM} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix inequality~\eqref{eq:MI:SSCCM} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
 \begin{equation*}
 		\begin{pmatrix}
 n+d\\ d
@@ -907,7 +907,7 @@ monomials to be computed. This motivates the approach proposed in this paper.
 
 \mypara To show the advantages of the method proposed in this paper, a benchmark composed of  three scenarios, according to the constraints imposed on the matrix $Y$, has been created.  Namely, the unconstrained case, the ``neighbor'' case, and the fully decentralized case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor'' case and up to $N=512$ systems for the fully decentralized (diagonal) case. In these scenarios the techniques provided by chordal graphs have been employed.
 
-\mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $i\in\mathbb{N}_{[1,4]}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\mathbb{R}^8$, $\mathbf{C}(i)=\mathbb{R}^8$. The parser took 98  seconds to solve the MI \eqref{eq:MI formulation}. The matrix $W$ is given by
+\mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $i\in\mathbb{N}_{[1,4]}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\mathbb{R}^8$, $\mathbf{C}(i)=\mathbb{R}^8$. The parser took 98  seconds to solve the MI~\eqref{eq:MI:SSCCM}. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(1,1,2,1,2,1,1,1)
 \end{equation*}
@@ -928,7 +928,7 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 \end{equation}
 \end{figure*}
 
-\mypara For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example} has been exploited. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. Consequently, the MI~\eqref{eq:MI formulation} can be decomposed into $N-1$ cliques  described by the matrix
+\mypara For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example} has been exploited. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. Consequently, the MI~\eqref{eq:MI:SSCCM} can be decomposed into $N-1$ cliques  described by the matrix
 \begin{equation*}
 	F_k=\begin{bmatrix}
 		F_{11}&F_{12}\\
@@ -984,7 +984,7 @@ with elements given, for every $(q_i,\breve{q}_i)\in\mathbb{R}^2\times\mathbb{R}
 \end{equation*}
  
 
-\mypara In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI~\eqref{eq:MI formulation} was 2.6 seconds. In this case, for each index $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{i\}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\{q_i\}$. Moreover, the sets $\mathbf{C}$ are defined as
+\mypara In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI~\eqref{eq:MI:SSCCM} was 2.6 seconds. In this case, for each index $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{i\}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\{q_i\}$. Moreover, the sets $\mathbf{C}$ are defined as
 \begin{equation*}
 	\begin{array}{rcl}
 		\mathbf{C}(1)&=&\{\begin{bmatrix}
@@ -1006,7 +1006,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
  \overline{Y}_i(q_i)=-\begin{bmatrix}2y_i,3+2(x_i^2+y_i^2)\end{bmatrix},\quad i\in\mathbb{N}_{[1,4]}\;.
 \end{align*}
 
-\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI formulation} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph, for $N=1,2$, the time taken by the parser to solve the MI \eqref{eq:MI formulation} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralized case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
+\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI:SSCCM} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph, for $N=1,2$, the time taken by the parser to solve the MI~\eqref{eq:MI:SSCCM} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralized case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
 
 \begin{figure}[htpb!]
 	\centering
@@ -1087,7 +1087,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	\label{fig:cycle graph}
 \end{figure}
 
-\mypara In the ``unconstrained'' case, the solver took 7.4s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1.2)$. The matrix $Y$ is given by
+\mypara In the ``unconstrained'' case, the solver took 7.4s to solve the MI~\eqref{eq:MI:SSCCM} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1.2)$. The matrix $Y$ is given by
 \begin{equation*}
 	Y(q)=\begin{bmatrix}
 	\overline{Y}(q_1)&0_{2\times1}&0_{2\times1}&0_{2\times1}\\
