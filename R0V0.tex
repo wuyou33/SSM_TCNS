@@ -525,7 +525,7 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 \begin{equation}\label{eq:subsystem}
 	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
 \end{equation}
-where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}.
+where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network, for each $i\in\mathscr{V}$, define the set $\mathscr{K}(i)=\{j\in\mathbb{N}_{[1,N]}:(i,j)\in\mathscr{E}_c\}$. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{K}$, where $\vec{x}_i\in\mathbb{R}^{\vec{n}_i}$ stands for the vector composed of states $x_k$ for which $k\in\mathscr{K}(i)$.
 
 \mypara At this point, the problem under consideration in this paper can be stated as follows.
 
@@ -533,7 +533,7 @@ where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of
  For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into a set $\mathscr{K}(i)$ of graph nodes;
 \end{problem}
 
-\mypara In other words, Problem~\ref{problem formulation} states that each component of the controller depends on the states prescribed by the set $\mathscr{K}$. The definition of the set $\mathscr{K}$ is not restricted to the topology described by the graph $\mathscr{G}$, for instance, it can be described by a graph $\mathscr{G}_c=(\mathscr{V}_c,\mathscr{E}_c)$ that defined the communication network among different controllers.
+\mypara In other words, Problem~\ref{problem formulation} states that each component of the controller depends on the states prescribed by the set $\mathscr{K}$.
 
 \mypara The constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation} is particularly relevant for the design of distributed feedback laws with a prescribed topology (described possibly by $\mathscr{G}_c$). Consider the network composed of systems described by the following equation.
 \begin{equation}\label{eq:example}
