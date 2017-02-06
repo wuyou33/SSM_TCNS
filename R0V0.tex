@@ -728,7 +728,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	
 \mypara 	To show that a solution $k^\ast$ to Equation~\eqref{eq:K ODE} is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
 		
-\mypara 	Since the vector field $\overline{K}$ is smooth, it is also Lipschitzian. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
+\mypara Since the vector field $\overline{K}$ is affine on $u$. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
 	\begin{equation*}
 		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
 	\end{equation*}
@@ -738,9 +738,9 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	\begin{equation*}
 		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma),k_i^\ast(t,\sigma))\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
 	\end{equation*}
-	where $\widetilde{\gamma}_i(\cdot)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\breve{n}_i}$. Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
+	where $\widetilde{\gamma}_i(\cdot)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\vec{n}_i}$. Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
 	
-	\mypara To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the sets $\mathbf{C}$ and $\mathbin{\mathtt{proj}}_{\mathscr{K}}$. This concludes the proof of Theorem~\ref{thm:main result}.
+	\mypara To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the dependence of $K_i$ on the variables $x_i$ and $\vec{x}_i$. This concludes the proof of Theorem~\ref{thm:main result}.
 \end{proof}
 
 \mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, nothing has been imposed to compute the set of equations~\eqref{eq:main result} in a distributed manner. The next section provides sufficient conditions to parallelize the search for a solution to the set of equations~\eqref{eq:main result}.
