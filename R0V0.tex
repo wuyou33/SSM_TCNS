@@ -620,7 +620,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 \end{equation}
 uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Note that \eqref{eq:MI formulation} is linear on the matrix variables $W$ and $Y$, for every $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the MI~\eqref{eq:MI formulation} can be solved with positive semidefinite programming techniques.
 
-\mypara Once a solution to MI~\eqref{eq:MI formulation} has been computed, the function defined, for every $(x,\delta x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, by
+\mypara Once a solution to MI~\eqref{eq:MI formulation} has been computed, the function defined, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, by
 	\begin{equation}\label{eq:differential feedback law}
 		\delta_k=Y(x,u)W^{-1}(x)\delta_x:=K(x,u)\delta_x
 	\end{equation}
@@ -661,7 +661,7 @@ where $De^+$ stands for the Dini's upper right-hand time derivative of the energ
 
 \mypara Define $\Xi$ as the set of functions $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ with components defined by
 \begin{equation*}
-		Y_{ij}(\cdot)\begin{cases}
+		Y_{ij}\begin{cases}
 		=Y_{ij}(x_i,\vec{x}_i)u_i\in\mathbb{R}^{m_i\times n_i},&\text{if}\ (i,j)\in\mathscr{E}_c,\\
 		\equiv0_{m_i\times n_i},&\text{otherwise},
 		\end{cases}
@@ -908,26 +908,28 @@ monomials to be computed. This motivates the approach proposed in this paper.
 
 \mypara To show the advantages of the method proposed in this paper, a benchmark composed of  three scenarios, according to the constraints imposed on the matrix $Y$, has been created.  Namely, the unconstrained case, the ``neighbor'' case, and the fully decentralized case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor'' case and up to $N=512$ systems for the fully decentralized (diagonal) case. In these scenarios the techniques provided by chordal graphs have been employed.
 
-\mypara In the first one, no constraints were imposed on the matrix $Y$ (it is defined as a full matrix). More precisely, for each $k\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(k)=\{1,2,3,4\}$, for each $i\in\mathbb{N}_{[1,4]}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\mathbb{R}^8$, $\mathbf{C}(i)=\mathbb{R}^8$. The parser took 98  seconds to solve the MI~\eqref{eq:MI:SSCCM}. The matrix $W$ is given by
+\mypara In the first one, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,4]}\times\mathbb{N}_{[1,4]}$ and no constraints were imposed on the matrix $Y$. Consequently, for each $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{1,2,3,4\}$, and for every $j\in\mathbb{N}_{[1,4]}$, $Y_{ij}=Y_{ij}(q_1,\ldots,q_4)\in\mathbb{R}^{1\times 2}$.
+	
+The parser took 98  seconds to solve the MI~\eqref{eq:MI:SSCCM}. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(1,1,2,1,2,1,1,1)
 \end{equation*}
-and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:general} with elements
+and the matrix $Y$ has elements defined, for every $q\in\mathbb{R}^8$, by
 \begin{align*}
- \overline{Y}_{ij}(q)=&-2y_i\;,\\
- \underline{Y}_{ij}(q)=&-2-2\sum_{k=1}^4 y_k^2+x_k^2\;.
+	\overline{Y}_i(q)=&-2\begin{bmatrix}
+	y_i&1+\sum_{k=1}^4 y_k^2+x_k^2
+	\end{bmatrix},\\
+	\hat{Y}_i(q)=&-\begin{bmatrix}y_i,&0\end{bmatrix},
 \end{align*}
-
-\begin{figure*}
+where $i\in\mathbb{N}_{[1,4]}$, and structure given by the matrix
 \begin{equation}\label{eq:example:Y:general}
-		Y(q)=\begin{bmatrix}
-			\overline{Y}_{11}(q),&\underline{Y}_{12}(q),&0,&0,&-0.03y_1,&0,&0&0\\
-			0,&0,&\overline{Y}_{23}(q),&\underline{Y}_{24}(q),&0,&0,&-0.04y_2,&0\\
-			-0.04y_3,&0,&0,&0,&\overline{Y}_{35}(q),&\underline{Y}_{36}(q),&0,&0\\
-			0,&0,&-0.03y_4,&0,&0,&0,&\overline{Y}_{47}(q),&\underline{Y}_{48}(q)
-		\end{bmatrix}
+		\resizebox*{0.85\columnwidth}{!}{$\begin{bmatrix}
+			\overline{Y}_1(q),&0_{1\times 2},&-0.03\hat{Y}_1(q),&0_{1\times2}\\
+			0_{1\times 2},&\overline{Y}_2(q),&0_{1\times 2},&-0.04\hat{Y}_2(q)\\
+			-0.04\hat{Y}_3(q),&0_{1\times 2},&\overline{Y}_3(q),&0_{1\times 2}\\
+			0_{1\times 2},&-0.03\hat{Y}_4(q),&0_{1\times 2},&\overline{Y}_4(q)
+		\end{bmatrix}$}.
 \end{equation}
-\end{figure*}
 
 \mypara For the remaining cases, the structure of the network composed of systems of the form \eqref{eq:example} has been exploited. More specifically, Proposition~\ref{prop:clique tree decomposition} can be employed, as the graph describing the interconnection of the network is a subclass of chordal graphs. Consequently, the MI~\eqref{eq:MI:SSCCM} can be decomposed into $N-1$ cliques  described by the matrix
 \begin{equation*}
@@ -937,33 +939,7 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 	\end{bmatrix}\;.
 \end{equation*}
 
-\mypara In the ``neighbor'' case, the constraint imposed on the matrix $Y$ was that each line of this matrix should depend on the system $i$ and on its neighbors. To comply with this requirement, the set $\mathscr{K}$ is defined as $\mathscr{K}(1)=\{1,2\}$, $\mathscr{K}(4)=\{3,4\}$ and $\mathscr{K}(i)=\{i-1,i,i+1\}$, for each index $i=2,3$. The sets $\mathbf{C}$ are defined as
-\begin{equation*}
-	\begin{array}{rcl}
-		\mathbf{C}(1)&=&\{\begin{bmatrix}
-		1,&1,&1,&1,&0,&0,&0,&0\end{bmatrix}\},\\
-		\mathbf{C}(2)&=&\{\begin{bmatrix}
-		1,&1,&1,&1,&1,&1,&0,&0\end{bmatrix}\},\\
-		\mathbf{C}(3)&=&\{\begin{bmatrix}
-		0,&0,&1,&1,&1,&1,&1,&1\end{bmatrix}\},\\
-		\mathbf{C}(4)&=&\{\begin{bmatrix}
-		0,&0,&0,&0,&1,&1,&1,&1\end{bmatrix}\}\;.
-	\end{array} 
-\end{equation*}
-
-\mypara The sets $\mathbin{\mathtt{proj}}_{\mathscr{K}}(\mathbb{R}^8)$ are defined, for each index $i\in\mathbb{N}_{[1,4]}$, as
-\begin{equation*}
-	\begin{array}{rcl}
-		\mathbin{\mathtt{proj}}_{\mathscr{K}(1)}(\mathbb{R}^8)&=&\{\begin{bmatrix}
-		q_1,&q_2\end{bmatrix}\}\;,\\
-		\mathbin{\mathtt{proj}}_{\mathscr{K}(2)}(\mathbb{R}^8)&=&\{\begin{bmatrix}
-		q_1,&q_2,&q_3\end{bmatrix}\}\;,\\
-		\mathbin{\mathtt{proj}}_{\mathscr{K}(3)}(\mathbb{R}^8)&=&\{\begin{bmatrix}
-		q_2,&q_3,&q_4\end{bmatrix}\}\;,\\
-		\mathbin{\mathtt{proj}}_{\mathscr{K}(4)}(\mathbb{R}^8)&=&\{\begin{bmatrix}
-		q_3,&q_4\end{bmatrix}\}\;.
-	\end{array}
-\end{equation*}
+\mypara In the ``neighbor'' case, the communication network topology $\mathscr{G}_c$ has the same structure as the network system. Consequently, the sets $\mathscr{K}$ are defined as $\mathscr{K}(1)=\{1,2\}$, $\mathscr{K}(4)=\{3,4\}$ and $\mathscr{K}(i)=\{i-1,i,i+1\}$, for each index $i=2,3$. 
 
 \mypara The time taken by the parser to solve the MI \eqref{eq:MI formulation}, in this case, was 3.5 seconds. The matrix $W$ is given by
 \begin{equation*}
@@ -972,10 +948,10 @@ and the matrix $Y$ has the structure shown in Equation~\eqref{eq:example:Y:gener
 and the matrix $Y$ has the structure defined, over $q\in\mathbb{R}^8$ as
 \begin{equation}\label{eq:example:Y:neighbor and decentralized}
 	 Y(q)=\begin{bmatrix}
- 	\overline{Y}_1(\cdot)&0&0&0\\
- 	0&\overline{Y}_2(\cdot)&0&0\\
- 	0&0&\overline{Y}_3(\cdot)&0\\
- 	0&0&0&\overline{Y}_4(\cdot)
+ 	\overline{Y}_1(\cdot)&0_{1\times2}&0_{1\times2}&0_{1\times2}\\
+ 	0_{1\times2}&\overline{Y}_2(\cdot)&0_{1\times2}&0_{1\times2}\\
+ 	0_{1\times2}&0_{1\times2}&\overline{Y}_3(\cdot)&0_{1\times2}\\
+ 	0_{1\times2}&0_{1\times2}&0_{1\times2}&\overline{Y}_4(\cdot)
  \end{bmatrix}\;,
 \end{equation}
 with elements given, for every $(q_i,\breve{q}_i)\in\mathbb{R}^2\times\mathbb{R}^{\breve{n}_i}$, by 
@@ -985,20 +961,7 @@ with elements given, for every $(q_i,\breve{q}_i)\in\mathbb{R}^2\times\mathbb{R}
 \end{equation*}
  
 
-\mypara In the last case, the fully decentralized scenario has been considered. The time taken by the parser to solve the MI~\eqref{eq:MI:SSCCM} was 2.6 seconds. In this case, for each index $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{i\}$, $\mathbin{\mathtt{proj}}_{\mathscr{K}(i)}(\mathbb{R}^8)=\{q_i\}$. Moreover, the sets $\mathbf{C}$ are defined as
-\begin{equation*}
-	\begin{array}{rcl}
-		\mathbf{C}(1)&=&\{\begin{bmatrix}
-		1,&1,&0,&0,&0,&0,&0,&0\end{bmatrix}\},\\
-		\mathbf{C}(2)&=&\{\begin{bmatrix}
-		0,&0,&1,&1,&0,&0,&0,&0\end{bmatrix}\},\\
-		\mathbf{C}(3)&=&\{\begin{bmatrix}
-		0,&0,&0,&0,&1,&1,&0,&0\end{bmatrix}\},\\
-		\mathbf{C}(4)&=&\{\begin{bmatrix}
-		0,&0,&0,&0,&0,&0,&1,&1\end{bmatrix}\}\;.
-	\end{array} 
-\end{equation*}
-Solving the MI \eqref{eq:MI formulation} the matrix $W$ 
+\mypara In the fully decentralized case, also the communication network topology $\mathscr{G}_c$ has the same structure as the network system. However, the sets $\mathscr{K}$ are defined as proper subsets of $\mathscr{E}$. More precisely, for each index $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{i\}$. The time taken by the parser to solve the MI~\eqref{eq:MI:SSCCM} was 2.6 seconds, the matrix $W$ is given by
 \begin{equation*}
  W=\mathbin{\mathtt{diag}}\left(2,1,1,1,1,1,1,1\right),\\
 \end{equation*}
