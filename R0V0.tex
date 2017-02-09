@@ -747,9 +747,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
 
 \section{Distributed Design of Distributed Controllers}
 
-\mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem to satisfy the set of equations~\eqref{eq:main result}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. In particular, the computation of a solution to MI~\eqref{eq:MI:SSCCM} need to be done in parallel. 
-
-\mypara To that end two methodologies are recalled below: chordal graphs and alternating direction of multipliers (ADMM). The first exploits the network topology to decompose it into smaller complete components. The last method is based on the search of the metric over two sets of matrices: uniformly positive definite matrices and matrices satisfying a specific matrix inequality (see Eq.~\eqref{eq:Artstein-Sontag:inequality:dual}, below). The latter would appropriate, when the smaller components of the network still have a large number of states and the computing platform where the solver runs has memory limitations. 
+\mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem to satisfy the set of equations~\eqref{eq:main result}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. In particular, the computation of a solution to MI~\eqref{eq:MI:SSCCM} need to be done in parallel. To that end chordal graphs are employed. It utilizes the network topology to decompose it into smaller complete components. 
 
 \mypara Some concepts of graph theory and semidefinite programming are recalled from \cite{PakazadHanssonAndersenEtAl2015,VandenbergheAndersen2015,BlairPeyton1993}. Consider the graph $\mathscr{G}=(\mathscr{V},\mathscr{E})$ describing the topology of the network~\eqref{eq:general system}. A \emph{clique} $\mathscr{C}\subset\mathscr{V}$ of the graph $\mathscr{G}$ is the maximal set of nodes that induces a complete subgraph on $\mathscr{G}$. A \emph{chord} of a path is any edge joining two nonconsecutive nodes. A graph is said to be \emph{chordal} if every cycle greater than three has a chord. The importance of a graph being chordal is that it has a tree-decomposition into cliques  \cite[Proposition~12.3.11]{Diestel2005} such a tree is said to be a \emph{clique tree} and it is denoted as $\mathscr{T}(\mathscr{G})$.
 
@@ -775,64 +773,6 @@ which has a unique solution defined on a maximal interval of existence, for ever
 \end{proof}
 
 \mypara Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedded} and the above procedure can be applied for this graph.
-
-\mypara The alternating direction method of multipliers (ADMM) provides a framework to compute the sum-separable control contraction metrics in a distributed fashion \cite{BoydParikhChuEtAl2010,MeissenLessardArcakEtAl2015}. To use this methodology, define the set of (resp. sum-of-squares (SOS)) polynomials $\mathbb{R}[x]$ (resp. $\mathbb{SOS}[x]$), and denote the degree of a polynomial $p\in\mathbb{R}[x]$ as $\deg(p)$.
-
-\mypara Condition~\eqref{eq:Arstein-Sontag} is satisfied, whenever the matrix inequality
-\begin{equation}\label{eq:Artstein-Sontag:inequality:dual}
- 	B_\perp^\top\left(-\dot{W}+AW + WA^\top+2\lambda W\right)B_\perp\prec0
-\end{equation} 
-holds, where $B_\perp$ is any full-rank matrix satisfying $B^\top B_\perp\equiv0$ \cite[pp. 23]{Boyd1994}. 
-
-\mypara The search the function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ can be relaxed to a semidefinite program. Whenever $f$ and $B$ are polynomials, this program is cast in terms of the sum-of-squares (SOS) feasibility program \cite{Parrilo2000}. To that end, introduce the vector $v\in\mathbb{R}^n$ and define the polynomials
-\begin{align*}
-	p_W=&\ v^\top W v\;,\\
-	p_{MI}=&\ -v^\top B_\perp^\top(-\dot{W}+AW + WA^\top+2\lambda W)\\
-	&B_\perp v\;.
-\end{align*}
-The feasibility program consists of finding symmetric matrices $Q_W\succeq0$ and $Q_{MI}\succeq0$, called \emph{Gramians}, with appropriate dimensions and such that $p_W=\bar{v}^\top Q_W\bar{v}$ and $p_{MI}=\bar{v}^\top Q_{MI}\bar{v}$ belong to $\mathbb{R}[x,v]$, where $\bar{v}$ is vector of monomials on the variables $x_i,\ldots,x_N$ and $v_1,\ldots,v_N$. 
-
-\mypara Now that the computation of a positive definite $W$ satisfying inequality~\eqref{eq:Artstein-Sontag:inequality:dual} in terms of SOS polynomials has been explained, the next step is to solve the SOS feasibility using ADMM. 
-
-\mypara Define the set $\mathbf{T}=\{Z_1,\ldots,Z_N:Z=\mathbin{\mathtt{diag}}(Z_1,\ldots,Z_N),p_{MI}=\bar{v}^\top Z\bar{v}\in\mathbb{R}[x,v]\}$. For a set $\mathbf{G}$ define the indicator (also known as barrier) function $H:\{\mathbf{G}\}\times \mathbb{R}^k\to \{0\}\cup\{\infty\}$ as
-\begin{equation*}
-	H(\mathbf{G},g)=\begin{cases}
-									0,&g\in \mathbf{G}\\
-									\infty,&\text{Otherwise.}
-								\end{cases}
-\end{equation*}
-
-\mypara The MI~\eqref{eq:Artstein-Sontag:inequality:dual} can be cast into the following optimization problem
-\begin{equation*}
-	\begin{array}{rl}
-		\text{minimize}&\displaystyle H(\mathbf{T},(Z_1,\ldots,Z_N))+\sum_{i=1}^N H(\mathbf{S}_{\succeq0}^{\alpha_i},Q_{W_i})\\
-		\text{subject to}&Q_{W_i}-Z_i=0,\quad\forall i\in\mathbb{N}_{[1,N]}\;,
-	\end{array}
-\end{equation*}
-where $\alpha_i=(2n_i+d_i)!/(d_i!(2n_i)!)$, $d_i=\deg(v_i^\top W_iv_i)$ and $v_i\in\mathbb{R}^{n_i}$.
-
-\mypara The ADMM algorithm can be written as
-\begin{enumerate}
-	\item For each $i\in\mathbb{N}_{[1,N]}$, update the matrix $W_i$ as follows.
-	\begin{equation*}
-	\begin{array}{rcl}
-		Q_{W_i}^{k+1}&=&\mathbin{\mathtt{argmin}}_{Q_{W_i}\in\mathbf{S}_{\succeq0}^{\alpha_i}}\left|\left|Q_{W_i}-Z_i^k+\Lambda_i^k\right|\right|_F^2\;,
-	\end{array}
-\end{equation*}
-	where $||\cdot||_F$ stands for the Frobenius norm;
-	
-	\item If the matrices $W_1,\ldots,W_N$ belong to $T$, then a solution has been found and the algorithm can be stopped. Otherwise, solve the global problem
-	\begin{equation*}
-		Z^{k+1}=\mathbin{\mathtt{argmin}}_{Z\in\mathbf{T}}\sum_{i=1}^N\left|\left|Q_{W_i}^{k+1}-Z_i-\Lambda_i^k\right|\right|_F^2\;;
-	\end{equation*}
-	\item Update $\Lambda$ and return to step 1
-	\begin{equation*}
-		\Lambda_i^{k+1}=Q_{W_i}^{k+1}-Z_i^{k+1}+\Lambda_i^k\;.
-	\end{equation*}
-\end{enumerate}
-Note that steps 1 and 3 are computed in parellel while step 2 requires to gather all the values of the matrices $Q_{W_i}$ and the values $\Lambda_i$.
-
-\mypara As $k\to\infty$, for each index $i\in\mathbb{N}_{[1,N]}$, the Gramians $Q_{W_i}$ will coincide with the matrices $Z_i$. Consequently, the block-diagonal matrix $Z$ is symmetric and positive semidefinite. Thus, $p_{MI}\in\mathbb{SOS}[x,v]$ and, for each index $i\in\mathbb{N}_{[1,N]}$, $v_i^\top W_iv_i\in\mathbb{SOS}[x_i,v_i]$. Hence, $M=\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)^{-1}$ is a separable control contraction metric for system \eqref{eq:general system}.
 
 \subsection{Discussion}
 
