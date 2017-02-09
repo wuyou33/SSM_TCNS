@@ -822,7 +822,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 
 \subsection{Chain topology}
 
-\mypara The graph describing the network structure in provided in Figure~\ref{fig:graph}. Consider the case with $N=4$. Two different methods are employed to compute the matrix $W$, namely, chordal graphs and ADMM.
+\mypara The graph describing the network structure in provided in Figure~\ref{fig:graph}. Consider the case with $N=4$. To compute the matrix $W$, chordal graphs are employed.
 
 \begin{figure}[htpb!]
 	\centering
@@ -919,50 +919,14 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 	\label{fig:time graph}
 \end{figure}
 
-\mypara The solver took approximately 300s to computed the matrix $W$ satisfying the inequality~\eqref{eq:Artstein-Sontag:inequality:dual} employing ADMM, the components of the matrix $W$ obtained are shown in the set of Equations~\eqref{eq:ADMM:chain case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:chain case}.
-
-\begin{figure*}
-\begin{subequations}\label{eq:ADMM:chain case}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_1(q_1)=1\times10^{-6}\begin{bmatrix}
-		2-7x_1-10^3y_1+10^7y_1^2+10x_1^2-8.9\times10^2x_1y_1&
-		0.5+0.6x_1-5.6\times10^2y_1-3\times10^2y_1^2-9x_1^2-4.1\times10^2\\
-		*&0.4+4x_1-3y_1+6y_1^2+10x_1^2-16x_1y_1
-		\end{bmatrix}$}
-	\end{equation}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_2(q_2)=1\times10^{-6}\begin{bmatrix}
-		4-2x_2-4\times10^3y_2+10^7y_2^2+x_2^2-5\times10^3x_2y_2&
-		2-5x_2-2.5\times10^3y_2-2.3\times10^3y_2^2+3.2x_2^2-2.5\times10^3x_2y_2\\
-		*&1-3x_2+3y_2+3y_2^2+9x_2^2-8x_2y_2
-		\end{bmatrix}$}
-	\end{equation}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_3(q_3)=1\times10^{-6}\begin{bmatrix}
-		58-43x_3-6.1\times10^2y_3+10^8y_3^2+9x_3^2-4\times10^2x_3y_3&
-		-60-9x_3-2.4\times10^2y_3-4\times10^2y_3^2+11x_3^2-3.6\times10^2x_3y_3\\
-		*&60+60x_3-64y_3+18y_3^2+16x_3^2-34x_3y_3
-		\end{bmatrix}$}
-	\end{equation}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_4(q_4)=1\times10^{-6}\begin{bmatrix}
-		18.5+44x_4-3.2\times10^3y_4+9.3\times10^6y_4^2+29x_4^2-3.7\times10^3x_4y_4&
-		-33-50x_4-2\times10^3y_4-2\times10^3y_4^2-9x_4^2-2.3\times10^3x_4y_4\\
-		*&64+31x_4-26y_4+4.4y_4^2+5x_4^2-7x_4y_4
-		\end{bmatrix}$}
-	\end{equation}
-\end{subequations}
-\end{figure*}
-
 \begin{table}
 	\begin{tabular}{r|l}
 	Method&Time taken by the solver (4 agents)\\ \hline
 	Chordal graph decomposition&2.6s (decentralized)\\
 	&3.5s (neighbor)\\
-	&98s (unconstrained)\\
-	ADMM&300s\\\hline
+	&98s (unconstrained)\\\hline
 	\end{tabular}
-	\caption{A summary of the time taken to solve the matrix inequalities \eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual} using chordal graph decomposition and ADMM approaches, respectively, in the topology illustrated by Fig.~\ref{fig:graph}.}
+	\caption{A summary of the time taken to solve the matrix inequality~\eqref{eq:MI formulation} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
 	\label{tab:chain case}
 \end{table}
 
@@ -982,7 +946,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 
 \subsection{Circumference topology}
 
-\mypara Consider the network with four agents (i.e., $N=4$) and the topology illustrated in Figure~\ref{fig:cycle graph}. Also here, chordal graphs and ADMM are employed to solve the MIs~\eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual}, respectively.
+\mypara Consider the network with four agents (i.e., $N=4$) and the topology illustrated in Figure~\ref{fig:cycle graph}. Also here, chordal graphs are employed to solve the MIs\eqref{eq:MI formulation}.
 
 \begin{figure}[htpb!]
 	\centering
@@ -1025,37 +989,6 @@ $\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2
 \end{equation*}
 where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3(x_i^2+y_i^2)\end{bmatrix}$.
 
-\mypara Using ADMM to compute a solution to the MI~\eqref{eq:Artstein-Sontag:inequality:dual}, the solver took 114[s] and the obtained matrix $W$ has the components shown in the set of Equations~\eqref{eq:ADMM:cyclic case}. A summary of the time taken by the solver employing chordal graph and ADMM approach is presented in Table~\ref{tab:cyclic case}.
-
-\begin{figure*}
-	\begin{subequations}\label{eq:ADMM:cyclic case}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_1(q_1)=1\times10^{-5}\begin{bmatrix}
-		4+3x_1-1\times10^3y_1+1\times10^{5}y_1^2+5x_1^2-1\times10^{3}x_1y_1&2+6x_1-5\times10^2y_1-6\times10^{2}y_1^2+3x_1^2-8\times10^{2}x_1y_1\\
-		*&2+4x_1+3y_1+3y_1^2+5x_1^2+8x_1y_1
-		\end{bmatrix}\;,$}
-	\end{equation}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_2(q_2)=1\times10^{-5}\begin{bmatrix}
-		5+9x_2-2\times10^3y_2+1\times10^{5}y_2^2+4x_2^2-1\times10^{3}x_2y_2&6+11x_2-1\times10^{3}y_2-7\times10^{2}y_2^2+5x_2^2-9\times10^{2}x_2y_2\\
-		*&7+12x_2+10y_2+4y_1^2+6x_1^2+9x_2y_2
-		\end{bmatrix}\;,$}
-	\end{equation}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_3(q_3)=1\times10^{-5}\begin{bmatrix}
-		7+16x_3-2\times10^3y_3+1\times10^{5}y_3^2+12x_3^2-2\times10^{3}x_3y_3&10+20x_3-1\times10^{3}y_3+1\times10^{3}y_3^2+11x_1^2-11\times10^{3}x_3y_3\\
-		*&20+29x_3+29y_3+13y_3^2+13x_3^2+24x_3y_3
-		\end{bmatrix}\;,$}
-	\end{equation}
-	\begin{equation}
-		\resizebox{.9\textwidth}{!}{$W_4(q_4)=1\times10^{-5}\begin{bmatrix}
-		11+17x_4-2\times10^3y_4+1\times10^{5}y_4^2+9x_4^2-2\times10^{3}x_4y_4&13+21x_4-1\times10^{3}y_4+1\times10^{3}y_4^2+10x_4^2-1\times10^{3}x_4y_4\\
-		*&20+27x_4+24y_4+11y_4^2+12x_4^2+18x_4y_4
-		\end{bmatrix}\;,$}
-	\end{equation}
-	\end{subequations}
-\end{figure*}
-
 \begin{table}
 	\begin{tabular}{r|l}
 	Method&Time taken by the solver (4 agents)\\ \hline
@@ -1064,7 +997,7 @@ where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3(x_i^2+y_i^2)\end{bmatri
 	&6.2s (decentralized)\\	
 	ADMM&114s\\\hline
 	\end{tabular}
-	\caption{A summary of the time taken to solve the matrix inequalities \eqref{eq:MI formulation} and \eqref{eq:Artstein-Sontag:inequality:dual} using chordal graph decomposition and ADMM approaches, respectively, in the topology illustrated by Fig.~\ref{fig:cycle graph}.}
+	\caption{A summary of the time taken to solve the matrix inequality~\eqref{eq:MI formulation} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:cycle graph}.}
 	\label{tab:cyclic case}
 \end{table}
 
