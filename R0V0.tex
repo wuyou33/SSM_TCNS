@@ -830,7 +830,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 \end{figure}
 
 
-\mypara When $N\geq6$ and $Y$ is a full-rank matrix with elements described by polynomials, the MI~\eqref{eq:MI:SSCCM} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix inequality~\eqref{eq:MI:SSCCM} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
+\mypara When $N\geq6$ and $Y$ is a full-rank matrix with elements described by polynomials, the set of matrix inequalities~\eqref{eq:main result} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix inequality~\eqref{eq:MI:SSCCM} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
 \begin{equation*}
 		\begin{pmatrix}
 n+d\\ d
@@ -848,7 +848,7 @@ monomials to be computed. This motivates the approach proposed in this paper.
 
 \mypara In the first one, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,4]}\times\mathbb{N}_{[1,4]}$ and no constraints were imposed on the matrix $Y$. Consequently, for each $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{1,2,3,4\}$, and for every $j\in\mathbb{N}_{[1,4]}$, $Y_{ij}=Y_{ij}(q_1,\ldots,q_4)\in\mathbb{R}^{1\times 2}$.
 	
-The parser took 98  seconds to solve the MI~\eqref{eq:MI:SSCCM}. The matrix $W$ is given by
+The parser took 98  seconds to solve the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(1,1,2,1,2,1,1,1)
 \end{equation*}
@@ -879,7 +879,7 @@ where $i\in\mathbb{N}_{[1,4]}$, and structure given by the matrix
 
 \mypara In the ``neighbor'' case, the communication network topology $\mathscr{G}_c$ has the same structure as the network system. Consequently, the sets $\mathscr{K}$ are defined as $\mathscr{K}(1)=\{1,2\}$, $\mathscr{K}(4)=\{3,4\}$ and $\mathscr{K}(i)=\{i-1,i,i+1\}$, for each index $i=2,3$. 
 
-\mypara The time taken by the parser to solve the MI \eqref{eq:MI formulation}, in this case, was 3.5 seconds. The matrix $W$ is given by
+\mypara The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result}, in this case, was 3.5 seconds. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(2,1,1,1,1,1,2,1)
 \end{equation*}
@@ -908,12 +908,12 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
  \overline{Y}_i(q_i)=-\begin{bmatrix}2y_i,3+2(x_i^2+y_i^2)\end{bmatrix},\quad i\in\mathbb{N}_{[1,4]}\;.
 \end{align*}
 
-\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the MI \eqref{eq:MI:SSCCM} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph, for $N=1,2$, the time taken by the parser to solve the MI~\eqref{eq:MI:SSCCM} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralized case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
+\mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the set of matrix inequalities~\eqref{eq:main result} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph, for $N=1,2$, the time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralized case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
 
 \begin{figure}[htpb!]
 	\centering
 	\includegraphics[width=\columnwidth]{./imgs/ParserTime}
-	\caption{Time take by the parser to solve the MI \eqref{eq:MI formulation} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
+	\caption{Time take by the parser to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
 	\label{fig:time graph}
 \end{figure}
 
@@ -942,63 +942,9 @@ k_i=\begin{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
 
-\subsection{Circumference topology}
+\subsection{Topology with a cycle}
 
-\mypara Consider the network with four agents (i.e., $N=4$) and the topology illustrated in Figure~\ref{fig:cycle graph}. Also here, chordal graphs are employed to solve the MIs\eqref{eq:MI formulation}.
 
-\begin{figure}[htpb!]
-	\centering
-	\input{./imgs/CyclicGraph.pdf_tex}
-	\caption{Graph describing the network composed of systems of the form \eqref{eq:example}.}
-	\label{fig:cycle graph}
-\end{figure}
-
-\mypara In the ``unconstrained'' case, the solver took 7.4s to solve the MI~\eqref{eq:MI:SSCCM} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1.2)$. The matrix $Y$ is given by
-\begin{equation*}
-	Y(q)=\begin{bmatrix}
-	\overline{Y}(q_1)&0_{2\times1}&0_{2\times1}&0_{2\times1}\\
-	0_{2\times1}&\overline{Y}(q_2)&0_{2\times1}&0_{2\times1}\\
-	0_{2\times1}&0_{2\times1}&\overline{Y}(q_3)&0_{2\times1}\\
-	0_{2\times1}&0_{2\times1}&0_{2\times1}&\overline{Y}(q_4)
-	\end{bmatrix}\;,
-\end{equation*}
-where $\overline{Y}(q_i)=-\begin{bmatrix}2.4y_i,&2.9+2.9(x_i^2+y_i^2)\end{bmatrix}$.
-
-\mypara In the ``neighbor'' case, the solver took 7.7s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1.2)$. The matrix $Y$ is given by
-\begin{equation*}
-	Y(q)=\begin{bmatrix}
-		\underline{Y}(q_1,\breve{q}_1)&\overline{Y}(q_1,\breve{q}_1)&0_{2\times1}&\overline{Y}(q_1,\breve{q}_1)\\
-		\overline{Y}(q_2,\breve{q}_2)&\underline{Y}(q_2,\breve{q}_2)&\overline{Y}(q_2,\breve{q}_2)&0_{2\times1}\\
-		0_{2\times1}&\overline{Y}(q_3,\breve{q}_3)&\underline{Y}(q_3,\breve{q}_3)&\overline{Y}(q_3,\breve{q}_3)\\
-		\overline{Y}(q_4,\breve{q}_4)&0_{2\times1}&\overline{Y}(q_4,\breve{q}_4)&\underline{Y}(q_4,\breve{q}_4)
-	\end{bmatrix}\;,
-\end{equation*}
-where $\underline{Y}(q_i,\breve{q}_i)=-2.26\begin{bmatrix}y_i,&1+\sum_{j\in\mathscr{N}(i)\cup\{i\}}^4y_j^2+x_j^2\end{bmatrix}$,
-$\overline{Y}(q_i,\breve{q}_i)=\begin{bmatrix}0.002y_i,0\end{bmatrix}$ and $0_{2\times1}$ stands for the vector $[0,0]\in\mathbb{R}^2$.
-
-\mypara In the decentralized case, the solver took 6.2s to solve the MI~\eqref{eq:MI formulation} using chordal graphs. The matrix $W$ is given by $\mathbin{\mathtt{diag}}(\overline{W},\overline{W},\overline{W},\overline{W})$, where $\overline{W}=\mathbin{\mathtt{diag}}(0.7,1)$. The matrix $Y$ is given by
-\begin{equation*}
-	Y(q)=\begin{bmatrix}
-	\overline{Y}_1(q)&0_{2\times1}&0_{2\times1}&0_{2\times1}\\
-	0_{2\times1}&\overline{Y}_2(q)&0_{2\times1}&0_{2\times1}\\
-	0_{2\times1}&0_{2\times1}&\overline{Y}_3(q)&0_{2\times1}\\
-	0_{2\times1}&0_{2\times1}&0_{2\times1}&\overline{Y}_4(q)
-	\end{bmatrix}\;,
-\end{equation*}
-where $\overline{Y}_i(q)=-\begin{bmatrix}3.1y_i,&2.3+2.3(x_i^2+y_i^2)\end{bmatrix}$.
-
-\begin{table}
-	\begin{tabular}{r|l}
-	Method&Time taken by the solver (4 agents)\\ \hline
-	Chordal graph decomposition&7.4s (unconstrained)\\
-	&7.7s (neighbor)\\
-	&6.2s (decentralized)\\\hline
-	\end{tabular}
-	\caption{A summary of the time taken to solve the matrix inequality~\eqref{eq:MI formulation} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:cycle graph}.}
-	\label{tab:cyclic case}
-\end{table}
-
-\mypara The online computation of the feedback law for the network composed of subsystems of the form \eqref{eq:example} is analogous to what has been shown to the chain-topology case.
 
 
 \section{Conclusion}\label{sec:Conclusion}
