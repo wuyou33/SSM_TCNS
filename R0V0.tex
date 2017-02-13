@@ -685,7 +685,7 @@ for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i,u_i)\in\mathbb{R}
 			Y\in\Xi.
 		\end{equation}
 	\end{subequations}
-	Then, $W$ is a sum-separable control-contraction metric for system \eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
+	Then, $W$ is a sum-separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
@@ -742,6 +742,20 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	
 	\mypara To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the dependence of $K_i$ on the variables $x_i$ and $\vec{x}_i$. This concludes the proof of Theorem~\ref{thm:main result}.
 \end{proof}
+
+\begin{corollary}[{\cite{SteinShiromotoManchester2016}}]\label{cor:main result}
+	Assume that the matrix $A$ depends only on the system state $x$, the matrix $B$ satisfies the identity
+	\begin{equation*}
+		\partial_BW-\tfrac{\partial B}{\partial x}W+W\tfrac{\partial B}{\partial x}^\top\equiv0
+	\end{equation*}
+	and there exist $N$ functions $\rho_i:\mathbb{R}^{n_i+\vec{n}_i}\to\mathbb{R}$ such that the matrix inequality
+	\begin{equation}\label{eq:with R}
+		-\dot{W}+\tfrac{\partial f}{\partial x}W+W\tfrac{\partial f}{\partial x}^\top-BRB^\top-2\lambda W\prec0
+	\end{equation}
+	holds uniformly with respect to $x\in\mathbb{R}^n$, where $R=\mathbin{\mathtt{diag}}(\rho_1,\ldots,\rho_N)$. Then, $W$ is a sum-separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the functions $\rho_i$.
+\end{corollary}
+
+\mypara To see that Corollary~\ref{cor:main result} is a particular case of Theorem~\ref{thm:main result}, note that imposing $Y$ to be $Y=-RB^\top/2$ on the set $\Xi$ (cf. \eqref{eq:YinXi}), the matrix inequality~\eqref{eq:MI:SSCCM} yields \eqref{eq:with R}. 
 
 \mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, nothing has been imposed to compute the set of equations~\eqref{eq:main result} in a distributed manner. The next section provides sufficient conditions to parallelize the search for a solution to the set of equations~\eqref{eq:main result}.
 
@@ -942,7 +956,7 @@ k_i=\begin{cases}
 \end{equation*}
 Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Problem~\ref{problem formulation} for the network resulting from the interconnection of systems \eqref{eq:example}.
 
-\subsection{Topology with a cycle}
+\subsection{A topology with a cycle}
 
 
 
