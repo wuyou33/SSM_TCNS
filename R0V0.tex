@@ -509,15 +509,15 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 \begin{equation}\label{eq:subsystem}
 	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
 \end{equation}
-where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network, for each $i\in\mathscr{V}$, define the set $\mathscr{K}(i)=\{j\in\mathbb{N}_{[1,N]}:(i,j)\in\mathscr{E}_c\}$. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{K}$, where $\vec{x}_i\in\mathbb{R}^{\vec{n}_i}$ stands for the vector composed of states $x_k$ for which $k\in\mathscr{K}(i)$.
+where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network, for each $i\in\mathscr{V}$. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{G}_c$.
 
 \mypara At this point, the problem under consideration in this paper can be stated as follows.
 
 \begin{problem}\label{problem formulation}
- For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ that are collected into a set $\mathscr{K}(i)$ of graph nodes;
+ For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ described by the graph $\mathscr{G}_c$.
 \end{problem}
 
-\mypara In other words, Problem~\ref{problem formulation} states that each component of the controller depends on the states prescribed by the set $\mathscr{K}$.
+\mypara In other words, Problem~\ref{problem formulation} states that each component of the controller depends on the states prescribed by the graph $\mathscr{G}_c$.
 
 \mypara The constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation} is particularly relevant for the design of distributed feedback laws with a prescribed topology (described possibly by $\mathscr{G}_c$). Consider the network composed of systems described by the following equation.
 \begin{equation}\label{eq:example}
@@ -724,7 +724,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	\end{equation*}
 	where $\widetilde{\gamma}_i(\cdot)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\vec{n}_i}$. Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
 	
-	\mypara To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the set $\mathscr{K}$ which, in turn, defines the dependence of $K_i$ on the variables $x_i$ and $\vec{x}_i$. This concludes the proof of Theorem~\ref{thm:main result}.
+	\mypara To see how the graph $\mathscr{G}_c$ specifies the set $\Xi$, not that the set of edges $\mathscr{E}_c$ specifies the dependence of $K_i$ on the variables $x_i$ and $\vec{x}_i$. This concludes the proof of Theorem~\ref{thm:main result}.
 \end{proof}
 
 \begin{corollary}[{\cite{SteinShiromotoManchester2016}}]\label{cor:main result}
@@ -754,9 +754,9 @@ which has a unique solution defined on a maximal interval of existence, for ever
 \begin{proof}
 	Using the Algorithm~3.1 from \cite{VandenbergheAndersen2015}, it is possible to decompose the graph $\mathscr{G}$ into the clique tree $\mathscr{T}(\mathscr{G})$. Let the integer $p>0$ be the number of nodes of $\mathscr{T}(\mathscr{G})$. The remainder of this proof is based on Section~II of \cite{PakazadHanssonAndersenEtAl2015}.
 	
-\mypara 	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the nodes of $\mathscr{T}(\mathscr{G})$, and $\mathbin{\mathtt{card}}(\mathscr{C}_k)$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, let the integer $\dim_k$ denote the dimension of the set $\mathbin{\mathtt{proj}}_{\mathscr{C}_k)}(\mathbb{R}^n)$ and define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
+\mypara 	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the nodes of $\mathscr{T}(\mathscr{G})$, and $\mathbin{\mathtt{card}}_k$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
 	
-\mypara    Denote the left-hand side of the MI~\eqref{eq:MI:SSCCM} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\dim_k}\to\mathbb{R}^{\dim_k\times \dim_k}$, where $k\in\mathbb{N}_{[1,p]}$, satisfying the equation
+\mypara    Denote the left-hand side of the MI~\eqref{eq:MI:SSCCM} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\mathbin{\mathtt{card}}_k}\to\mathbb{R}^{\mathbin{\mathtt{card}}_k\times \mathbin{\mathtt{card}}_k}$, where $k\in\mathbb{N}_{[1,p]}$, satisfying the equation
    \begin{equation*}
    	 T=\sum_{k=1}^p E_k^\top F_k E_k\;.
   	\end{equation*}
@@ -816,9 +816,9 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 
 \mypara In the remainder of this section, two network topologies are considered to illustrate the results presented in this paper. The numerical results were obtained employing the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b
 
-\subsection{Chain topology}
+\subsection{Chain topology}\label{sec:chain topology}
 
-\mypara The graph describing the network structure in provided in Figure~\ref{fig:graph}. Consider the case with $N=4$. To compute the matrix $W$, chordal graphs are employed.
+\mypara The graph describing the network structure is provided in Figure~\ref{fig:graph}. Consider the case with $N=4$. To compute the matrix $W$, chordal graphs are employed.
 
 \begin{figure}[htpb!]
 	\centering
@@ -844,7 +844,7 @@ monomials to be computed. This motivates the approach proposed in this paper.
 
 \mypara To show the advantages of the method proposed in this paper, a benchmark composed of  three scenarios, according to the constraints imposed on the matrix $Y$, has been created.  Namely, the unconstrained case, the ``neighbor'' case, and the fully decentralized case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor'' case and up to $N=512$ systems for the fully decentralized (diagonal) case. In these scenarios the techniques provided by chordal graphs have been employed.
 
-\mypara In the first one, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,4]}\times\mathbb{N}_{[1,4]}$ and no constraints were imposed on the matrix $Y$. Consequently, for each $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{1,2,3,4\}$, and for every $j\in\mathbb{N}_{[1,4]}$, $Y_{ij}=Y_{ij}(q_1,\ldots,q_4)\in\mathbb{R}^{1\times 2}$.
+\mypara In the first one, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,4]}\times\mathbb{N}_{[1,4]}$ and no constraints were imposed on the matrix $Y$. Consequently, for each $i\in\mathbb{N}_{[1,4]}$, for every $j\in\mathbb{N}_{[1,4]}$, $Y_{ij}=Y_{ij}(q_1,\ldots,q_4)\in\mathbb{R}^{1\times 2}$.
 	
 The parser took 98  seconds to solve the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ is given by
 \begin{equation*}
@@ -876,7 +876,7 @@ where $i\in\mathbb{N}_{[1,4]}$, and structure given by the matrix
 	\end{bmatrix}\;.
 \end{equation*}
 
-\mypara In the ``neighbor'' case, the communication network topology $\mathscr{G}_c$ has the same structure as the network system. Consequently, the sets $\mathscr{K}$ are defined as $\mathscr{K}(1)=\{1,2\}$, $\mathscr{K}(4)=\{3,4\}$ and $\mathscr{K}(i)=\{i-1,i,i+1\}$, for each index $i=2,3$. 
+\mypara In the ``neighbor'' case, the communication network topology $\mathscr{G}_c$ has the same structure as the network system. Consequently, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\mathscr{E}$.
 
 \mypara The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result}, in this case, was 3.5 seconds. The matrix $W$ is given by
 \begin{equation*}
@@ -898,7 +898,7 @@ with elements given, for every $(q_i,\breve{q}_i)\in\mathbb{R}^2\times\mathbb{R}
 \end{equation*}
  
 
-\mypara In the fully decentralized case, also the communication network topology $\mathscr{G}_c$ has the same structure as the network system. However, the sets $\mathscr{K}$ are defined as proper subsets of $\mathscr{E}$. More precisely, for each index $i\in\mathbb{N}_{[1,4]}$, $\mathscr{K}(i)=\{i\}$. The time taken by the parser to solve the MI~\eqref{eq:MI:SSCCM} was 2.6 seconds, the matrix $W$ is given by
+\mypara In the fully decentralized case, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$. The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result} was 2.6 seconds, the matrix $W$ is given by
 \begin{equation*}
  W=\mathbin{\mathtt{diag}}\left(2,1,1,1,1,1,1,1\right),\\
 \end{equation*}
@@ -922,7 +922,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 	Chordal graph decomposition&2.6s (decentralized)\\
 	&3.5s (neighbor)\\
 	&98s (unconstrained)\\\hline
-	\end{tabular}
+	\end{tabular}\vspace{1em}
 	\caption{A summary of the time taken to solve the matrix inequality~\eqref{eq:MI formulation} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
 	\label{tab:chain case}
 \end{table}
@@ -943,6 +943,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 
 \subsection{A topology with a cycle}
 
+\mypara The graph describing the network structure is provided in Figure~\ref{fig:graph}. As in the Section~\ref{sec:chain topology}, here same three scenarios are considered. Namely, the unconstrained case, the ``neighbor'' case and the fully decentralized case.
 
 \begin{figure}[htpb!]
 	\centering
@@ -950,6 +951,19 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	\caption{Graph describing the network composed of systems of the form \eqref{eq:example}.}
 	\label{fig:graph}
 \end{figure}
+
+\mypara In the first scenario, the unconstrained case, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,6]}\times\mathbb{N}_{[1,6]}$ and no constrained were imposed on the matrix $Y$. Consequently, the matrix $Y$ have elements given by $Y_{ij}=Y_{ij}(q_1,q_2,q_3,q_4)$, for each $i,j\in\mathbb{N}_{[1,4]}$, for each $(q_1,q_2,q_3,q_4)\in\mathbb{R}^8$.
+
+\mypara In the last scenario, the fully decentralized case, the set of edges $\mathscr{E}_c$ of the graph $\mathscr{G}_c$ is specified as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$ and no constrained were imposed on the matrix $Y$. The solver took 43s to solve the set of matrix inequalities~\eqref{eq:main result}.
+
+\mypara The matrix $W$ obtained is given by
+\begin{equation*}
+	W=\mathbin{\mathtt{diag}}(0.6,1,0.8,1,0.6,1,0.4,1,0.7,1,1,1)
+\end{equation*}
+
+\mypara The matrix $Y$ have elements given by $Y_{ij}=Y_{ij}(q_i)\delta_{ij}\in\mathbb{R}^{2\times 1}$, for each $i,j\in\mathbb{N}_{[1,4]}$, and for each $q_i\in\mathbb{R}^{2}$, where $\delta_{ij}$ is the Kronecker's delta.
+
+
 
 \section{Conclusion}\label{sec:Conclusion}
 
