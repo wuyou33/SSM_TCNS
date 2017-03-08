@@ -945,13 +945,13 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 
 \subsection{A topology with a cycle}
 
-\mypara The graph describing the network structure is provided in Figure~\ref{fig:graph}. As in the Section~\ref{sec:chain topology}, here same three scenarios are considered. Namely, the unconstrained case, the ``neighbor'' case and the fully decentralized case.
+\mypara The graph describing the network structure is provided in Figure~\ref{fig:cycle graph}. As in the Section~\ref{sec:chain topology}, here same three scenarios are considered. Namely, the unconstrained case, the ``neighbor'' case and the fully decentralized case.
 
 \begin{figure}[htpb!]
 	\centering
 	\input{./imgs/NewExample.pdf_tex}
 	\caption{Graph describing the network composed of systems of the form \eqref{eq:example}.}
-	\label{fig:graph}
+	\label{fig:cycle graph}
 \end{figure}
 
 \mypara In the first scenario, the unconstrained case, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,6]}\times\mathbb{N}_{[1,6]}$ and no constrained were imposed on the matrix $Y$. Consequently, the matrix $Y$ have elements given by $Y_{ij}=Y_{ij}(q_1,q_2,q_3,q_4)$, for each $i,j\in\mathbb{N}_{[1,4]}$, for each $(q_1,q_2,q_3,q_4)\in\mathbb{R}^8$.
@@ -1028,7 +1028,7 @@ $-\begin{bmatrix}
 	Neighbor&57s\\
 	Fully decentralized&43s\\\hline
 	\end{tabular}\vspace{1em}
-	\caption{A summary of the time taken to solve the set of matrix inequalities~\eqref{eq:main result} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
+	\caption{A summary of the time taken to solve the set of matrix inequalities~\eqref{eq:main result} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:cycle graph}.}
 	\label{tab:mixed example}
 \end{table}
 
