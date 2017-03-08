@@ -433,7 +433,7 @@ Rose Street Building J04, The University of Sydney, NSW 2006, Australia. Corresp
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this paper, large-scale input-affine nonlinear systems are considered. The problem is the design of distributed controllers for this class of network systems. Although control-Lyapunov functions are the natural candidates to design feedback laws, in this case, the construction of these functions is a non-convex optimization problem. Moreover, it may require to verify the positiveness of a function with, at least, $n^2$ elements. In this paper, control-contraction metrics (CCMs) are employed to design controllers with suitable distributed structures. By utilizing a separable structure, the number of verifications needed can be made smaller, as the search of CCMs is formulated as a distributed semidefinite program. An example illustrates the approach for a network system.
+In this paper, large-scale input-affine nonlinear systems are considered. The problem is the design of distributed controllers for this class of network systems. Although control-Lyapunov functions are the natural candidates to design feedback laws, the computation of these functions is a non-convex optimization problem. Moreover, it may require to verify the positiveness of a function with, at least, $n^2$ elements. In this paper, control-contraction metrics (CCMs) are employed to design controllers with prescribed distributed structures. By using a separable structure, the number of verifications needed can be made smaller, as the search of CCMs is formulated as a distributed semidefinite program. An example illustrates the approach for a network system.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -460,9 +460,9 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \section{Introduction}
 
-\mypara Over the years, improvements on distance communication and cheaper computation platforms have allowed the development of large-scale interconnected systems such as smart grids, sensor networks \cite{Pajic2011}, smart manufacturing plants and traffic networks \cite{CanudasdeWitMorbidiLeonOjedaEtAl2015} and pipe networks \cite{Persis2011a}. One of the main characteristic of these systems is the capacity of being autonomous. Most of current control algorithms are based on the assumption that the system will operate ``near'' to a prescribed set point. Consequently, the system is designed to have fixed behavior. This assumption imposes severe limitations for system, as large excursions are not allowed, in general. For instance, large power variations on smart grids (e.g., when renewable sources of energy are taken into account) are not allowed and manufacturing plants tend to synthesize only a fixed range of goods. To render these systems more flexible, i.e., allowing large excursions a controller algorithm that takes into account a more complex behavior is needed.
+\mypara Over the years, improvements on distance communication and cheaper computation platforms have allowed the development of large-scale interconnected systems such as smart grids, sensor networks \cite{Pajic2011}, smart manufacturing plants, traffic networks \cite{CanudasdeWitMorbidiLeonOjedaEtAl2015} and pipe networks \cite{Persis2011a}. One of the main characteristic of these systems is the capacity of being autonomous. Most of current control algorithms are based on the assumption that the system will operate ``near'' to a prescribed set point. Consequently, the system is designed to have fixed behavior. This assumption imposes severe limitations for systems, as large excursions are not allowed, in general. For instance, large power variations in smart grids (e.g., when renewable sources of energy are taken into account) are not allowed and manufacturing plants tend to synthesize only a fixed range of goods. To render these systems more flexible, i.e., allowing large excursions a controller algorithm that takes into account the behavior far from the set point is needed.
 
-\mypara In terms of control theory, the difference between a system operating in a set point and operating in a much larger region lies in the type of equation that describes the system behavior. In the former, the system is described by linear equation while, in the latter, by a nonlinear one. In general, controller design methods for nonlinear systems require the knowledge of a \emph{Lyapunov function}. The search of Lyapunov functions for this class of systems is a non-trivial problem by itself, as no general methodology exists. Another drawback of Lyapunov functions is the fact that they are defined with respect to a particular set point. In case of large excursions, it is more appropriate to define a function depending of the distance between set points. Even if a Lyapunov function is known, no general methodology is known to design distributed feedback laws for nonlinear systems. Thus, existing approaches are, in general, \emph{ad-hoc}. When the design of distributed controllers is considered, the situation is even worse as the problem is known to be, at least, NP-hard \cite{BlondelTsitsiklis1997,Tanaka2011}.
+\mypara In terms of control theory, the difference between a system operating in a set point and operating in a much larger region lies in the type of equation that describes the system behavior. In the former, the system is described by linear equation while, in the latter, by a nonlinear one. In general, controller design methods for nonlinear systems require the knowledge of a \emph{Lyapunov function}. The search of Lyapunov functions for this class of systems is a non-trivial problem by itself, as no general methodology exists. Another drawback of Lyapunov functions is the fact that they are defined with respect to a particular set point. In case of large excursions, it is more appropriate to define a function depending on the distance between points. Even if a Lyapunov function is known, no general methodology is known to design distributed feedback laws for nonlinear systems. Thus, existing approaches are, in general, \emph{ad-hoc}. When the design of distributed controllers is considered, the situation is even worse as the problem is known to be, at least, NP-hard \cite{BlondelTsitsiklis1997,Tanaka2011}.
 
 \mypara  An alternative method, called control contraction method (CCM), provides an algorithm in which nonlinear feedback laws are designed based on solving a convex optimization problem  \cite{Manchester2014a}. The main challenge with this methodology is that, when the system under consideration has a large number of states, it may require a large memory amount. This is due to the fact that the stability verification of a linear system with $n$ states may require a function with, at least, $n^2$ terms (see \cite{Rantzer2015} for the case of linear systems and Lyapunov functions).
 
@@ -472,7 +472,7 @@ Nonlinear Systems, Feedback Design, Contraction Theory, Distributed Control, Net
 
 \mypara At this point, the three contributions of this work can be highlighted. First, using the methodology for synthesis of CCMs introduced in \cite{Manchester2014a} and imposing a (block-)diagonal structural constraint, a distributed feedback law is obtained. Second, because the CCM has a (block-)diagonal structure, the computation of the online integration phase, which corresponds to an optimization problem, is also distributed. Third, the structure imposed on the CCM allows to reduce the number of equations needed to  verify stability. Note that the proposed method provides an explicit algorithm to design the controller.
 
-\mypara Other works related to analysis under structural constraints to achieve exponential convergence of solutions do exist in the literature. For contraction analysis, see \cite{Aminzare2014a} for analysis according to different network topologies and \cite{Andrieu2016} for transversal contraction analysis. This paper contrast with these works mainly in two points: 1) A  methodology for the design of structured controllers is proposed; 2) Due the formulation of the stabilization problem as a convex optimization problem, an explicit formula of a structured controller is obtained. A particular case of this paper has also been published in \cite{SteinShiromotoManchester2016}. In contrast to this paper, more general conditions to design the distributed controller (cf. Corollary~\ref{cor:main result}) and a methodology to distribute the computation of the feedback law are given.
+\mypara Other works related to analysis under structural constraints to achieve exponential convergence of solutions do exist in the literature. For contraction analysis, see \cite{Aminzare2014a} for analysis according to different network topologies and \cite{Andrieu2016} for transversal contraction analysis. This paper contrast with these works mainly in two points: 1) A  methodology for the design of structured controllers is proposed; 2) Due the formulation of the stabilization problem as a convex optimization problem, an explicit algorithm of the distributed controller is provided. A particular case of this paper has also been published in \cite{SteinShiromotoManchester2016}. In contrast to this paper, more general conditions to design the distributed controller (cf. Corollary~\ref{cor:main result}) and a methodology to distribute the computation of the feedback law are given.
 
 \paragraph{Overview} The motivation and the problem formulation are provided in Section \ref{sec:Problem Formulation and Motivation}. The background needed for this paper is stated in Section \ref{sec:background}. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. Section \ref{sec:Conclusion} collects final remarks.
 
@@ -509,7 +509,7 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 \begin{equation}\label{eq:subsystem}
 	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
 \end{equation}
-where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network, for each $i\in\mathscr{V}$. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{G}_c$.
+where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{G}_c$, where $\vec{x}_i\in\mathbb{R}^{\vec{n}_i}$ stands for the vector composed of states $x_j\in\mathbb{R}^{n_j}$, that are adjacent to system $i$, according to the set of edges $\mathscr{E}_c$.
 
 \mypara At this point, the problem under consideration in this paper can be stated as follows.
 
@@ -712,7 +712,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	
 \mypara 	To show that a solution $k^\ast$ to Equation~\eqref{eq:K ODE} is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
 		
-\mypara Since the vector field $\overline{K}$ is affine on $u$. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
+\mypara Since the vector field $\overline{K}$ is affine on $k^\ast$. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
 	\begin{equation*}
 		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
 	\end{equation*}
@@ -720,7 +720,7 @@ which has a unique solution defined on a maximal interval of existence, for ever
 	
 \mypara Note that, due to the constraint $Y\in\Xi$ and the fact that $W$ is diagonal, each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$, defined by  Equation~\eqref{eq:contracting feedback law}, is given by
 	\begin{equation*}
-		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma),k_i^\ast(t,\sigma))\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
+		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma))k_i^\ast(t,\sigma)\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
 	\end{equation*}
 	where $\widetilde{\gamma}_i(\cdot)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\vec{n}_i}$. Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
 	
@@ -909,6 +909,8 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 
 \mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the set of matrix inequalities~\eqref{eq:main result} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph, for $N=1,2$, the time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralized case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
 
+\mypara Table~\ref{tab:chain case} shows a summary of the time taken by the solver to compute the matrices $W$ and $Y$ satisfying the set of matrix inequalities~\eqref{eq:main result}, according to the unrestricted, ``neighbor'' and fully decentralized cases.
+
 \begin{figure}[htpb!]
 	\centering
 	\includegraphics[width=\columnwidth]{./imgs/ParserTime}
@@ -917,13 +919,13 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 \end{figure}
 
 \begin{table}
-	\begin{tabular}{r|l}
-	Method&Time taken by the solver (4 agents)\\ \hline
-	Chordal graph decomposition&2.6s (decentralized)\\
-	&3.5s (neighbor)\\
-	&98s (unconstrained)\\\hline
+	\begin{tabular}{r|c}
+	Case&Time taken by the solver (4 agents)\\ \hline
+	Unconstrained&98s\\
+	Neighbor&3.5s\\
+	Fully decentralized&2.6s\\\hline
 	\end{tabular}\vspace{1em}
-	\caption{A summary of the time taken to solve the matrix inequality~\eqref{eq:MI formulation} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
+	\caption{A summary of the time taken to solve the set of matrix inequalities~\eqref{eq:main result} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
 	\label{tab:chain case}
 \end{table}
 
@@ -954,6 +956,51 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 
 \mypara In the first scenario, the unconstrained case, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,6]}\times\mathbb{N}_{[1,6]}$ and no constrained were imposed on the matrix $Y$. Consequently, the matrix $Y$ have elements given by $Y_{ij}=Y_{ij}(q_1,q_2,q_3,q_4)$, for each $i,j\in\mathbb{N}_{[1,4]}$, for each $(q_1,q_2,q_3,q_4)\in\mathbb{R}^8$.
 
+\mypara The solver took 48s to solve the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ obtained is given by
+\begin{equation*}
+	W=\mathbin{\mathtt{diag}}(0.1,1,0.1,1,0.1,1,0.1,1,0.1,1,0.3,1).
+\end{equation*}
+The matrix $Y$ is given by
+\begin{equation*}
+	\begin{bmatrix}
+		\overline{Y}_{11}(q)&0_{1\times2}&0_{1\times2}&0_{1\times2}&0_{1\times2}&0_{1\times2}\\
+		0_{1\times2}&\underline{Y}_{22}(q)&0_{1\times2}&0_{1\times2}&0_{1\times2}&0_{1\times2}\\
+		0_{1\times2}&0_{1\times2}&\overline{Y}_{33}(q)&0_{1\times2}&0_{1\times2}&0_{1\times2}\\
+		0_{1\times2}&0_{1\times2}&0_{1\times2}&\overline{Y}_{44}(q)&0_{1\times2}&0_{1\times2}\\
+		0_{1\times2}&0_{1\times2}&0_{1\times2}&0_{1\times2}&\overline{Y}_{55}(q)&0_{1\times2}\\
+		0_{1\times2}&0_{1\times2}&0_{1\times2}&0_{1\times2}&0_{1\times2}&\underline{Y}_{66}(q)
+	\end{bmatrix},
+\end{equation*}
+for every $q\in\mathbb{R}^{12}$, where 
+\begin{align*}
+ \overline{Y}_{ij}(q)=&\ -\begin{bmatrix}3y_i,&4+4\sum_{i=1}^6(x_i^2+y_i^2)\end{bmatrix},\\
+ \underline{Y}_{ij}(q)=&\ -\begin{bmatrix}3y_i,&2+2\sum_{i=1}^6(x_i^2+y_i^2)\end{bmatrix},
+\end{align*}
+for each index $i,j\in\mathbb{N}_{[1,6]}$.
+
+\mypara In the ``neighbor'' case, the topology of the controller is the same as of the network. More precisely, $\mathscr{G}_c=\mathscr{G}$. The solver took 57s to solve the set of matrix inequalities~\eqref{eq:main result}.
+
+\mypara The matrix $W$ obtained is given by
+\begin{equation*}
+	W=\mathbin{\mathtt{diag}}(1,1,1,1,1,1,1,1,1,1,2,1).
+\end{equation*} 
+The matrix $Y$ is given by Equation~\eqref{eq:Y mixed case:neighbor}.
+
+\setcounter{MaxMatrixCols}{20}
+\begin{figure*}
+\begin{equation}\label{eq:Y mixed case:neighbor}
+	\resizebox{.9\textwidth}{!}{
+$-\begin{bmatrix}
+		2y_1&4+3(|q_1|^2+|\breve{q}_1|^2)&0&0&0&0&0&0&0&0&0&0\\
+		0&0&2y_2&2+2(|q_2|^2+|\breve{q}_2|^2)&0&0&0&0&0&0&0&0\\
+		0&0&0&0&2y_3&4+3(|q_3|^2+|\breve{q}_3|^2)&0&0&0&0&0&0\\
+		0&0&0&0&0&0&2y_4&3+3(|q_4|^2+|\breve{q}_4|^2)&0&0&0&0\\
+		0&0&0&0&0&0&0&0&2y_5&4+3(|q_5|^2+|\breve{q}_5|^2)&0&0\\
+		0&0&0&0&0&0&0&0&0&0&2y_6&4+3(|q_6|^2+|\breve{q}_6|^2)
+	\end{bmatrix}$}
+\end{equation}
+\end{figure*}
+
 \mypara In the last scenario, the fully decentralized case, the set of edges $\mathscr{E}_c$ of the graph $\mathscr{G}_c$ is specified as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$ and no constrained were imposed on the matrix $Y$. The solver took 43s to solve the set of matrix inequalities~\eqref{eq:main result}.
 
 \mypara The matrix $W$ obtained is given by
@@ -961,9 +1008,29 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 	W=\mathbin{\mathtt{diag}}(0.6,1,0.8,1,0.6,1,0.4,1,0.7,1,1,1)
 \end{equation*}
 
-\mypara The matrix $Y$ have elements given by $Y_{ij}=Y_{ij}(q_i)\delta_{ij}\in\mathbb{R}^{2\times 1}$, for each $i,j\in\mathbb{N}_{[1,4]}$, and for each $q_i\in\mathbb{R}^{2}$, where $\delta_{ij}$ is the Kronecker's delta.
+\mypara The matrix $Y$ have elements given by $Y_{ij}=Y_{ij}(q_i)\delta_{ij}\in\mathbb{R}^{2\times 1}$, for each $i,j\in\mathbb{N}_{[1,6]}$, and for each $q_i\in\mathbb{R}^{2}$, where $\delta_{ij}$ is the Kronecker's delta. More specifically, the matrix $Y$ is presented in Equation~\eqref{Y for mixed case}.
 
+\begin{figure*}
+\begin{equation}\label{Y for mixed case}
+	Y=-\begin{bmatrix}
+	2y_1&5+3|q_1|^2&0&0&0&0&0&0\\
+ 	0&0&2y_2&3+2|q_2|^2&0&0&0&0\\
+ 	0&0&0&0&2y_3&5+3|q_3|^2&0&0\\
+ 	0&0&0&0&0&0&2y_4&4+2|q_4|^2
+	\end{bmatrix}
+\end{equation}
+\end{figure*}
 
+\begin{table}
+	\begin{tabular}{r|c}
+	Case&Time taken by the solver (4 agents)\\ \hline
+	Unconstrained&48s\\
+	Neighbor&57s\\
+	Fully decentralized&43s\\\hline
+	\end{tabular}\vspace{1em}
+	\caption{A summary of the time taken to solve the set of matrix inequalities~\eqref{eq:main result} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
+	\label{tab:mixed example}
+\end{table}
 
 \section{Conclusion}\label{sec:Conclusion}
 
