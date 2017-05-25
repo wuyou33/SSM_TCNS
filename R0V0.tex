@@ -812,7 +812,7 @@ where $i\in\mathbb{N}_{[1,N]}$ and for convenience $x_0=x_1$ and $x_N=x_{N+1}$.
 	2y_N\\0
 	\end{bmatrix}\right)
 \end{align*}
-are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only possible action by the controller on the $x$-subsystem is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component.
+are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only possible action by the controller on the $x$-subsystem is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component. 
 
 \mypara In the remainder of this section, two network topologies are considered to illustrate the results presented in this paper. The numerical results were obtained employing the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b
 
@@ -825,6 +825,15 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 	\input{./imgs/GraphStructure.pdf_tex}
 	\caption{Graph describing the network composed of systems of the form \eqref{eq:example}.}
 	\label{fig:graph}
+\end{figure}
+
+\mypara Figure~\ref{fig:3dsim} shows the $x$-component of a simulation of network~\eqref{eq:example} composed of three systems with the network structure as represented by the graph in Figure~\ref{fig:graph} and with input $u\equiv0$. Note that, when random initial random initial conditions are considered, the system may diverge from the neighborhood of the origin.
+
+\begin{figure}[htpb!]
+	\centering
+	\includegraphics[width=\linewidth]{./imgs/3dsim.eps}
+	\caption{Simulation of network~\eqref{eq:example} for 1s with input $u\equiv0$, $N=3$ and starting from random initial conditions.}
+	\label{fig:3dsim}
 \end{figure}
 
 
@@ -913,7 +922,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 
 \begin{figure}[htpb!]
 	\centering
-	\includegraphics[width=\columnwidth]{./imgs/ParserTime}
+	\includegraphics[width=\columnwidth]{./imgs/ParserTimes}
 	\caption{Time take by the parser to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
 	\label{fig:time graph}
 \end{figure}
