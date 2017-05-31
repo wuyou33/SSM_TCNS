@@ -69,10 +69,10 @@
 % http://www.ctan.org/pkg/cite
 % The documentation is contained in the cite.sty file itself.
 
-\usepackage[natbib=true,backend=biber,style=ieee,
-firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bibencoding=utf8]{biblatex}
-\addbibresource[location=remote]{https://www.dropbox.com/s/r00o9lw76cksxvj/Library.bib?dl=1} 
-\AtBeginBibliography{\small}
+%\usepackage[natbib=true,backend=biber,style=ieee,
+%firstinits=true,doi=false,eprint=false,isbn=false,url=false,texencoding=utf8,bibencoding=utf8]{biblatex}
+%\addbibresource[location=remote]{https://www.dropbox.com/s/r00o9lw76cksxvj/Library.bib?dl=1} 
+%\AtBeginBibliography{\small}
 
 % !!!! IF FILE NOT FOUND DOWNLOAD IT FROM
 %https://www.dropbox.com/s/r00o9lw76cksxvj/Library.bib?dl=1
@@ -375,7 +375,7 @@ pdfproducer={LaTeX}
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Distributed Nonlinear Feedback Design with Separable Control-Contraction Metrics}
+\title{Distributed Nonlinear Control Design using Separable Control Contraction Metrics}
 %
 %
 % author names and IEEE memberships
@@ -389,7 +389,7 @@ pdfproducer={LaTeX}
 
 \author{Humberto~Stein Shiromoto,~\IEEEmembership{Member,~IEEE,}
         Ian~R. Manchester,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
-\thanks{Both authors are with the Department of Aerospace, Mechanical, and Mechatronic Engineering and The Australian Centre for Field Robotics. Address: The
+\thanks{Both authors are with the Australian Centre for Field Robotics, Department of Aerospace, Mechanical, and Mechatronic Engineering,
 Rose Street Building J04, The University of Sydney, NSW 2006, Australia. Corresponding author: {\tt h.stein.shiromoto@gmail.com}, {\tt orcid.org/0000-0002-0883-0231}}% <-this % stops a space
 }
 
@@ -1076,8 +1076,10 @@ $-\begin{bmatrix}
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\printbibliography
+%\printbibliography
 
+\bibliographystyle{ieeetr}
+\bibliography{Library,Distributed}
 
 \end{document}
 
