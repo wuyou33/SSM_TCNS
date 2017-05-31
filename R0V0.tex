@@ -654,11 +654,11 @@ where $De^+$ stands for the Dini's upper right-hand time derivative of the energ
 \mypara Define $\Xi$ as the set of functions $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ with components defined by
 \begin{equation*}
 		Y_{ij}\begin{cases}
-		=Y_{ij}(x_i,\vec{x}_i)u_i\in\mathbb{R}^{m_i\times n_i},&\text{if}\ (i,j)\in\mathscr{E}_c,\\
+		=Y_{ij}(x_i,\vec{x}_i)\in\mathbb{R}^{m_i\times n_i},&\text{if}\ (i,j)\in\mathscr{E}_c,\\
 		\equiv0_{m_i\times n_i},&\text{otherwise},
 		\end{cases}
 \end{equation*}
-for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i,u_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\vec{n}_i}\times\mathbb{R}^{m_i}$.
+for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\vec{n}_i}$.
 
 \mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the map $Y_{pq}$ is constant. For each index $i\in\mathbb{N}_{[1,N]}$, define $\Pi_i$ as the set of functions $W_i:\mathbb{R}^{n_i}\to\mathbb{R}^{n_i\times n_i}$ such that, for each $j\in\mathbb{N}_{[1,N]}\setminus\{i\}$, $\tfrac{\partial W_i}{\partial x_j}\equiv 0$.
 
@@ -711,24 +711,11 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 	This solution is a geodesic smooth curve $\gamma_i:[0,1]\to\mathbb{R}^{n_i}$ connecting $x_i$ to $x_i^\ast\in\mathbb{R}^{n_i}$, because $e(\gamma)=\ell(\gamma)^2$.
 	
 \mypara 	From the definition of the tangent vectors $\delta_x$ and $\delta_u$, given an input $u^\ast$ for system \eqref{eq:general system}, a feedback for system~\eqref{eq:general system} is given by Equation~\eqref{eq:contracting feedback law}. 
+
 	
-\mypara 	From the fundamental theorem of calculus, Equation \eqref{eq:contracting feedback law} is equivalent to the differential equation
-	\begin{equation}\label{eq:K ODE}
-		\tfrac{dk^\ast}{ds}(t,s)=K(\gamma(t,s))k^\ast(t,s)\gamma_s(t,s)=:\overline{K}(t,s,k^\ast)\;.
-	\end{equation}
-which has a unique solution defined on a maximal interval of existence, for every initial condition, due to the regularity of the functions $K$ and $\gamma$. It remains to show that this interval of existence can be extended on $[0,1]$. In other words, show that there exist no $\bar{s}\in[0,1]$ such that $k^\ast(t,s)$ tends to infinity, as $s$ tends to $\bar{s}$.
-	
-\mypara 	To show that a solution $k^\ast$ to Equation~\eqref{eq:K ODE} is defined on the whole interval $[0,1]$, the result  \cite[Theorem 2.12]{Teschl2012} is employed. This theorem states that, if the vector field has a linear growth with respect to the variable $k^\ast$, then solutions to \eqref{eq:K ODE} are defined on the whole interval $[0,1]$.
-		
-\mypara Since the vector field $\overline{K}$ is affine on $k^\ast$. This implies that, for every fixed $t\geq0$, and for every $S>0$, there exist constants $c_1(S)$ and $c_2(S)$ such that the inequality
+\mypara Note that, due to the constraint $Y\in\Xi$, the independence of $Y$ with respect to the input variable $u$ and the fact that $W$ is diagonal, each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$, defined by  Equation~\eqref{eq:contracting feedback law}, is given by
 	\begin{equation*}
-		\left|\overline{K}(t,s,k^\ast)\right|\leq c_1(S)+c_2(S)|k^\ast|
-	\end{equation*}
-	holds, for every $(s,k^\ast)\in [-S,S]\times\mathbb{R}^m$. Applying \cite[Theorem 2.12]{Teschl2012} pointwisely with respect to $t\geq0$ implies that a solution $k^\ast$ to \eqref{eq:K ODE} is defined for every $s\in[0,1]$.
-	
-\mypara Note that, due to the constraint $Y\in\Xi$ and the fact that $W$ is diagonal, each component $i\in\mathbb{N}_{[1,N]}$ of the feedback law $k^\ast$, defined by  Equation~\eqref{eq:contracting feedback law}, is given by
-	\begin{equation*}
-		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma))k_i^\ast(t,\sigma)\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
+		k_i^\ast(t,s)=u_i^\ast(t)+\int_0^sK_i(\widetilde{\gamma}_i(t,\sigma))\tfrac{\partial\widetilde{\gamma}_i}{\partial \sigma}(t,\sigma)\,d\sigma\;,
 	\end{equation*}
 	where $\widetilde{\gamma}_i(\cdot)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\vec{n}_i}$. Thus, $k^\ast$ satisfies the constraint imposed in Problem~\ref{problem formulation}. 
 	
