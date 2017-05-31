@@ -505,7 +505,7 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 	The system \eqref{eq:general system} is said to be \emph{universally stabilizable} with rate $\lambda$ if, for every forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system}, there exists a static feedback law $k^\ast$ for system \eqref{eq:global exponential uniform stabilizability} rendering $X^\ast(\cdot,x^\ast,u^\ast)$ globally exponentially uniformly stable with rate $\lambda$.
 \end{definition}
 
-\mypara Let $N>0$ be an integer and consider the graph $\mathscr{G}$ defined by the set of vertices $\mathscr{V}=\mathbb{N}_{[1,N]}$ and a set of edges $\mathscr{E}\subset\mathbb{N}_{[1,N]}\times\mathbb{N}_{[1,N]}$. For each index $i\in\mathbb{N}_{[1,N]}$, system~\eqref{eq:general system} can be decomposed into smaller components as follows.
+\mypara Let $N>0$ be an integer and consider the graph $\mathscr{G}_p$ defined by the set of vertices $\mathscr{V}_p=\mathbb{N}_{[1,N]}$ and a set of edges $\mathscr{E}_p\subset\mathbb{N}_{[1,N]}\times\mathbb{N}_{[1,N]}$. For each index $i\in\mathbb{N}_{[1,N]}$, system~\eqref{eq:general system} can be decomposed into smaller components as follows.
 \begin{equation}\label{eq:subsystem}
 	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
 \end{equation}
@@ -885,7 +885,7 @@ where $i\in\mathbb{N}_{[1,4]}$, and structure given by the matrix
 	\end{bmatrix}\;.
 \end{equation*}
 
-\mypara In the ``neighbor'' case, the communication network topology $\mathscr{G}_c$ has the same structure as the network system. Consequently, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\mathscr{E}$.
+\mypara In the ``neighbor'' case, the communication network topology $\mathscr{G}_c$ has the same structure as the network system. Consequently, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\mathscr{E}_p$.
 
 \mypara The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result}, in this case, was 3.5 seconds. The matrix $W$ is given by
 \begin{equation*}
@@ -987,7 +987,7 @@ for every $q\in\mathbb{R}^{12}$, where
 \end{align*}
 for each index $i,j\in\mathbb{N}_{[1,6]}$.
 
-\mypara In the ``neighbor'' case, the topology of the controller is the same as of the network. More precisely, $\mathscr{G}_c=\mathscr{G}$. The solver took 57s to solve the set of matrix inequalities~\eqref{eq:main result}.
+\mypara In the ``neighbor'' case, the topology of the controller is the same as of the network. More precisely, $\mathscr{G}_c=\mathscr{G}_p$. The solver took 57s to solve the set of matrix inequalities~\eqref{eq:main result}.
 
 \mypara The matrix $W$ obtained is given by
 \begin{equation*}
