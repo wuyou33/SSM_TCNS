@@ -652,7 +652,7 @@ where $De^+$ stands for the Dini's upper right-hand time derivative of the energ
 \end{equation*}
 for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i,u_i)\in\mathbb{R}^{n_i}\times\mathbb{R}^{\vec{n}_i}\times\mathbb{R}^{m_i}$.
 
-\mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the map $Y_{pq}$ is constant.
+\mypara The set $\Xi$ defines the topology of the differential feedback law to be designed for system~\eqref{eq:general system:differential} and the dependence of each element of the matrix $Y$ on the state-space variables. Note that, whenever system \eqref{eq:general system} is linear, the map $Y_{pq}$ is constant. For each index $i\in\mathbb{N}_{[1,N]}$, define $\Pi_i$ as the set of functions $W_i:\mathbb{R}^{n_i}\to\mathbb{R}^{n_i\times n_i}$ such that, for each $j\in\mathbb{N}_{[1,N]}\setminus\{i\}$, $\tfrac{\partial W_i}{\partial x_j}\equiv 0$.
 
 \begin{theorem}\label{thm:main result}
 	If there exists a solution to the matrix inequalities
@@ -662,7 +662,7 @@ for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i,u_i)\in\mathbb{R}
 		\end{equation}
 		with $W=\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)$,
 		\begin{equation}\label{eq:Ws:SSCCM}
-			W_1\succ0,\ldots,W_N\succ0
+			W_i\succ0, W_i\in\Pi_i,\forall i\in\mathbb{N}_{[1,N]}
 		\end{equation}
 		and
 		\begin{equation}\label{eq:YinXi}
@@ -923,7 +923,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 \begin{figure}[htpb!]
 	\centering
 	\includegraphics[width=\columnwidth]{./imgs/ParserTimes}
-	\caption{Time take by the parser to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
+	\caption{Time taken to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
 	\label{fig:time graph}
 \end{figure}
 
