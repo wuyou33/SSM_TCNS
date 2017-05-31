@@ -822,7 +822,7 @@ where $i\in\mathbb{N}_{[1,N]}$ and for convenience $x_0=x_1$ and $x_N=x_{N+1}$.
 \end{align*}
 are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only possible action by the controller on the $x$-subsystem is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component. 
 
-\mypara In the remainder of this section, two network topologies are considered to illustrate the results presented in this paper. The numerical results were obtained employing the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 8GB RAM, Microsoft Windows 10 and on Matlab 2015b
+\mypara In the remainder of this section, two network topologies are considered to illustrate the results presented in this paper. The numerical results were obtained employing the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 32GB RAM, Ubuntu and on Matlab 2015b
 
 \subsection{Chain topology}\label{sec:chain topology}
 
@@ -846,7 +846,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 \end{figure}
 
 
-\mypara When $N\geq6$ and $Y$ is a full-rank matrix with elements described by polynomials, the set of matrix inequalities~\eqref{eq:main result} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix inequality~\eqref{eq:MI:SSCCM} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
+\mypara When $N>8$ and $Y$ is a full-rank matrix with elements described by polynomials, the set of matrix inequalities~\eqref{eq:main result} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix inequality~\eqref{eq:MI:SSCCM} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
 \begin{equation*}
 		\begin{pmatrix}
 n+d\\ d
@@ -932,7 +932,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 \begin{figure}[htpb!]
 	\centering
 	\includegraphics[width=\columnwidth]{./imgs/ParserTimes}\vspace{-2em}
-	\caption{Time taken to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
+	\caption{Time taken to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (8 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
 	\label{fig:time graph}
 \end{figure}
 
