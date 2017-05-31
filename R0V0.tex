@@ -509,7 +509,15 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 \begin{equation}\label{eq:subsystem}
 	\dot{x}_i=f_i(x_i,\breve{x}_i)+b_i(x_i)u_i\;,
 \end{equation}
-where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{G}_c$, where $\vec{x}_i\in\mathbb{R}^{\vec{n}_i}$ stands for the vector composed of states $x_j\in\mathbb{R}^{n_j}$, that are adjacent to system $i$, according to the set of edges $\mathscr{E}_c$.
+where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{G}_c$, where $\vec{x}_i\in\mathbb{R}^{\vec{n}_i}$ stands for the vector composed of states $x_j\in\mathbb{R}^{n_j}$, that are adjacent to system $i$, according to the set of edges $\mathscr{E}_c$. The difference between both graphs is illustrated in Figure~\ref{fig:graph different illustration}.
+
+\begin{figure}[htbp!]
+	\centering
+%	\includegraphics[]{}
+	\resizebox{.4\columnwidth}{!}{\input{./imgs/Graphs.pdf_tex}}
+	\caption{Illustration of the graphs $\mathscr{G}_p$ and $\mathscr{G}_c$. The solid lines represent the edges defining $\mathscr{G}_p$ while the dashed lines represent edges defining $\mathscr{G}_c$.}
+	\label{fig:graph different illustration}
+\end{figure}
 
 \mypara At this point, the problem under consideration in this paper can be stated as follows.
 
