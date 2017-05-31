@@ -13,7 +13,7 @@ SystemInputs = ['u'];
 SystemParameters = ['d'];
 d = 1e-2;
 lambda = 1e-1; % Max value for SOS feasibility
-Option       = 'Neighbor';
+Option       = 'Unrestricted';
 
 NumberOfAgents = 4
 
