@@ -835,12 +835,13 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 	\label{fig:graph}
 \end{figure}
 
-\mypara Figure~\ref{fig:3dsim} shows the $x$-component of a simulation of network~\eqref{eq:example} composed of three systems with the network structure as represented by the graph in Figure~\ref{fig:graph} and with input $u\equiv0$. Note that, when random initial random initial conditions are considered, the system may diverge from the neighborhood of the origin.
+\mypara Figure~\ref{fig:3dsim} shows simulations of the network~\eqref{eq:example} composed of four systems with the network structure as represented by the graph in Figure~\ref{fig:graph} under different inputs, and the Riemannian metric $V$. Note that, when random initial random initial conditions are considered, the system may diverge from the neighborhood of the origin.
 
 \begin{figure}[htpb!]
 	\centering
-	\includegraphics[width=\linewidth]{./imgs/3dsim.eps}
-	\caption{Simulation of network~\eqref{eq:example} for 1s with input $u\equiv0$, $N=3$ and starting from random initial conditions.}
+	\includegraphics[width=\linewidth]{./imgs/simulation.eps}
+	\vspace{-2em}
+	\caption{Simulation of network~\eqref{eq:example} with the target trajectory being the origin and under the controller obtained according to different constrains for the computation of $Y$: diagonal, neighbour and unconstrained. In contrast to these, the open loop simulation (performed with $u\equiv0$) does not converge to the origin. The bottom graph shows the variation of the Riemannian metric along the solutions of each case.}
 	\label{fig:3dsim}
 \end{figure}
 
@@ -930,7 +931,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 
 \begin{figure}[htpb!]
 	\centering
-	\includegraphics[width=\columnwidth]{./imgs/ParserTimes}
+	\includegraphics[width=\columnwidth]{./imgs/ParserTimes}\vspace{-2em}
 	\caption{Time taken to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (4 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
 	\label{fig:time graph}
 \end{figure}
