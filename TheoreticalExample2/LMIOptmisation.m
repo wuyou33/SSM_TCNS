@@ -1,4 +1,6 @@
 function caller
+
+
 clear all
 close all
 clc
@@ -6,18 +8,22 @@ warning off
 
 global Simulation SystemStates SystemInputs 
 global SystemParameters d
+global solver
 
 Simulation   = 0;
 SystemStates = ['x','y'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-d = 1e-2;
-lambda = 1e-1; % Max value for SOS feasibility
-Option       = 'Neighbor';
+% d = 1e-2;
+d = 0
+lambda = 1e-1; % Max value for SOS feasibilityprofile on
+Option       = 'General';
+solver = 'CDCS';
+solver = 'mosek'
 
-NumberOfAgents = 4
+NumberOfAgents = 1
 
-fname = sprintf('Diary%s%dAgents',Option,NumberOfAgents);
+fname = sprintf('Diary%s%dAgents-Solver_%s',Option,NumberOfAgents,solver);
 diary(fname)
 diary on
 
@@ -25,19 +31,19 @@ if NumberOfAgents > 5 && strcmp(Option,'Diagonal') + strcmp(Option,'Neighbor') =
     
     disp('This option requires lots of RAM memory for more than 5 agents.')
     disp('Chose Option = Diagonal or Neighbor to run with more than 5 agents or')
-    return
+%     return
     
 end
 
 if NumberOfAgents > 256 && strcmp(Option,'Neighbor')
     disp('This option requires lots of RAM memory for more than 256 agents.')
     disp('Chose Option = Diagonal and run it with more than 256 agents or')
-    return
+   % return
 end
 
 if NumberOfAgents > 512 && strcmp(Option,'Diagonal')
     disp('This option requires lots of RAM memory for more than 512 agents.')
-    return
+    %return
 end
 
 LaplacianMatrix = LinearLaplacianGenerator(NumberOfAgents);
@@ -45,13 +51,21 @@ Optimisation(LaplacianMatrix,Option,lambda)
 
 diary off
 
-pause(60)
+p = profile('info');
+profile_name = sprintf('Profile%s%dAgents-Solver_%s',Option,NumberOfAgents,solver);
+save(profile_name,'p')
+
+clear p
+
+load(profile_name)
+
+profview(0,p)
 
 end
 
 function Optimisation(LaplacianMatrix,Option,lambda)
 
-global Simulation SystemStates SystemInputs SystemParameters
+global Simulation SystemStates SystemInputs SystemParameters solver
 
 WriterSys(SystemStates,SystemInputs,SystemParameters,Simulation,LaplacianMatrix)
 PreProcessedSys
@@ -71,7 +85,9 @@ PreProcessedMI
 Constraints = [WConstraints;MIConstraints];
 checkset(Constraints)
 coefList = [Wc;Yc];
-options = sdpsettings('solver','mosek','verbose',1);
+
+options = sdpsettings('solver',solver,'verbose',1);
+%options = sdpsettings('solver',solver,'verbose',1,'sos.model',2);
 tic
 [sol, q, Q, res] = solvesos(Constraints,[],options,coefList);
 SolverTime = toc;
@@ -84,7 +100,7 @@ AnalysisY(SystemInputs,LaplacianMatrix,Precision)
 PostProcessedY
 
 NumberOfAgents = size(LaplacianMatrix,1);
-fname = sprintf('Output%s%dAgents',Option,NumberOfAgents);
+fname = sprintf('Output%s%dAgents-Solver_%s',Option,NumberOfAgents,solver);
 save(fname)
 
 end
