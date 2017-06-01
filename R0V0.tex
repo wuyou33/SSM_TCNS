@@ -581,7 +581,7 @@ where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of
 \end{equation}
 As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to memory constraints. However, by utilizing a separable structure (see definition below), up to 512 of theses systems can be connected and the distributed controller can be computed. 
 
-\subsection{Background}\label{sec:background}
+\subsection{Control Contraction Metrics}\label{sec:background}
 
 \mypara A \emph{Riemannian metric on $\mathbb{R}^n$} is a symmetric positive-definite bilinear form that depends smoothly on $x\in\mathbb{R}^n$. In a particular coordinate system, for any pair of vectors $\delta_0,\delta_1$ of $\mathbb{R}^n$ the \emph{metric} is defined as the inner product $\langle\delta_0,\delta_{ 1}\rangle_x=\delta_0^\top M(x)\delta_1$, where $M:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ is a smooth function. Consequently, local notions of norm $|\delta_0|_x^2=\langle\delta_0,\delta_0\rangle_x=:V(x,\delta_0)$ and orthogonality $\langle\delta_0,\delta_1\rangle_x=0$ can be defined. The metric is said to be \emph{bounded} if there exists constant values $\underline{m}>0$ and $\overline{m}>0$ such that, for every $x\in\mathbb{R}^n$, $\underline{m}I_n\leq M(x)\leq \overline{m}I_n$, where $I_n\in\mathbb{R}^{n\times n}$ is the identity matrix. From now, metric stands for a bounded Riemannian metric.
 
@@ -629,7 +629,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 \mypara For the class of systems considered in this paper, the following kind of metric is of interest, since it also allows the design a feedback law for system \eqref{eq:general system:differential}.
 
 \begin{definition}[{\cite{Manchester2014a}}]\label{def:}
-	A metric for system \eqref{eq:general system} is said to be a \emph{control-contraction metric for system \eqref{eq:general system}} if there exists a constant value $\lambda>0$ such that the condition
+	A metric for system \eqref{eq:general system} is said to be a \emph{control contraction metric for system \eqref{eq:general system}} if there exists a constant value $\lambda>0$ such that the condition
 	\begin{subequations}\label{eq:Arstein-Sontag}
 		\begin{equation}\label{eq:}
 			\delta_x\neq0,\quad\delta_x^\top M(x)B(x)=0
@@ -641,12 +641,12 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 		holds, where $\dot{M}:=\partial_{f+Bu}M$.
 	\end{subequations}
 \end{definition}
-\mypara The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition to the differential system~\eqref{eq:general system:differential}. Given a control-contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides a stabilizing feedback law of the form $\delta_u=K(x,u)\delta_x$ for system \eqref{eq:general system:differential}, defined for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
+\mypara The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition to the differential system~\eqref{eq:general system:differential}. Given a control contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides a stabilizing feedback law of the form $\delta_u=K(x,u)\delta_x$ for system \eqref{eq:general system:differential}, defined for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
 
 \mypara The following result is recalled from \cite{Manchester2014a} and provides a feedback law for system~\eqref{eq:general system} given a feedback law for system~\eqref{eq:general system:differential}.
 
 \begin{theorem}\label{prop:CCM Existence}
-	If there exists a control-contraction metric for system \eqref{eq:general system}, then there exists a differential feedback law for system~\eqref{eq:general system:differential} rendering the equilibrium of the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop. Moreover, a stabilizing feedback law for system~\eqref{eq:general system} is obtained by integrating the differential feedback law for system~\eqref{eq:general system:differential} along geodesics.
+	If there exists a control contraction metric for system \eqref{eq:general system}, then there exists a differential feedback law for system~\eqref{eq:general system:differential} rendering the equilibrium of the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop. Moreover, a stabilizing feedback law for system~\eqref{eq:general system} is obtained by integrating the differential feedback law for system~\eqref{eq:general system:differential} along geodesics.
 \end{theorem}
 
 \mypara As remarked in \cite{Manchester2014a}, one of the main advantages to look for control-contraction metric over control-Lyapunov functions is that the former case can be formulate in terms of a convex optimization problem while the latter is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system~\eqref{eq:general system} are recalled below.
