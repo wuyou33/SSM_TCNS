@@ -784,7 +784,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 \mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, nothing has been imposed to compute the set of equations~\eqref{eq:main result} in a distributed manner. The next section provides sufficient conditions to parallelize the search for a solution to the set of equations~\eqref{eq:main result}.
 
-\section{Distributed Design of Distributed Controllers}
+\section{Distributed Design of Distributed Controllers}\label{sec:distributed_design}
 
 \mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem to satisfy the set of equations~\eqref{eq:main result}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. In particular, the computation of a solution to MI~\eqref{eq:MI:SSCCM} need to be done in parallel. To that end chordal graphs are employed. It utilizes the network topology to decompose it into smaller complete components. 
 
@@ -817,8 +817,9 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 \mypara For monotone systems (i.e., systems for which the some order of initial conditions is preserved along the flow of the vector field) described by a vector field that is continuously differentiable and whose gradient matrix is Hurwitz at the origin, there exists a sum-separable Lyapunov function in a neighborhood of the origin \cite[Theorem 3.4]{Dirr2015}. 
 
-\mypara For linear time-invariant systems with the property that solutions starting in the positive orthant remain in the positive orthant (also known as positive systems), the stability of the origin is equivalent to the existence of a quadratic Lyapunov function described by a matrix $P=P^\top\succ0$ with diagonal structure \cite{Tanaka2011}. Thus, locally (around the origin) the assumption of a diagonal structure is not restrictive.
+\mypara For linear time-invariant systems with the property that solutions starting in the positive orthant remain in the positive orthant (also known as positive systems), the stability of the origin is equivalent to the existence of a quadratic Lyapunov function described by a matrix $P=P^\top\succ0$ with diagonal structure \cite{berman_nonnegative_1994}. Thus, locally (around the origin) the assumption of a diagonal structure is not restrictive.
 
+\mypara Further conditions are discussed in \cite{manchester_existence_2018}.
 
 \mypara Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control-contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
 
