@@ -821,7 +821,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 \mypara Further conditions are discussed in \cite{manchester_existence_2018}.
 
-\mypara Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control-contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
+\mypara Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
 
 \section{Numerical Experiments}\label{sec:Illustration}
 
@@ -854,7 +854,7 @@ where $i\in\mathbb{N}_{[1,N]}$ and for convenience $x_0=x_1$ and $x_N=x_{N+1}$.
 	2y_N\\0
 	\end{bmatrix}\right)
 \end{align*}
-are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only possible action by the controller on the $x$-subsystem is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component. 
+are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the quadratic term on $y$, the only possible action by the controller on the $x$-subsystem is to move the $x$-component of solution to \eqref{eq:example} towards the positive semi-axis. In other words, the controller cannot reduce the value of the $x$-component.
 
 \mypara In the remainder of this section, two network topologies are considered to illustrate the results presented in this paper. The numerical results were obtained employing the optimization parser Yalmip \cite{Loefberg2004,Loefberg2009} and the solver Mosek running on an Intel Core i7, 32GB RAM, Ubuntu and on Matlab 2015b
 
@@ -1086,7 +1086,7 @@ $-\begin{bmatrix}
 
 \section{Conclusion}\label{sec:Conclusion}
 
-\mypara In terms of semidefinite programming, employing control-contraction metrics allows one to formulate the search for the controller as a convex optimization problem. Although this is one of its main advantages over the search of control-Lyapunov functions, it cannot handle systems with a large number of states, in general.
+\mypara In terms of semidefinite programming, employing control contraction metrics allows one to formulate the search for the controller as a convex optimization problem. Although this is one of its main advantages over the search of control-Lyapunov functions, it cannot handle systems with a large number of states, in general.
 
 \mypara For large-scale systems, the approach presented in this paper exploits sparsity to design feedback laws with a prescribed structure. More precisely, during the off-line phase, by imposing a block-diagonal structure on the matrix describing the metric, a controller with a prescribed structure can be synthesized. Moreover, the on-line integration phase computation can be in parallel, because each block defines a metric to the corresponding component of the state space.
 
