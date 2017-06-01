@@ -649,7 +649,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 	If there exists a control contraction metric for system \eqref{eq:general system}, then there exists a differential feedback law for system~\eqref{eq:general system:differential} rendering the equilibrium of the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop. Moreover, a stabilizing feedback law for system~\eqref{eq:general system} is obtained by integrating the differential feedback law for system~\eqref{eq:general system:differential} along geodesics.
 \end{theorem}
 
-\mypara As remarked in \cite{Manchester2014a}, one of the main advantages to look for control-contraction metric over control-Lyapunov functions is that the former case can be formulate in terms of a convex optimization problem while the latter is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system~\eqref{eq:general system} are recalled below.
+\mypara As remarked in \cite{Manchester2014a}, one of the main advantages to look for control contraction metric over control-Lyapunov functions is that the former case can be formulate in terms of a convex optimization problem while the latter is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system~\eqref{eq:general system} are recalled below.
 
 \mypara Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W(\cdot)=W(\cdot)^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following matrix inequality (MI)
 \begin{equation}\label{eq:MI formulation}
@@ -669,7 +669,7 @@ uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Note that \eqref{eq:MI 
 \end{equation}
 where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^\ast$ to system~\eqref{eq:general system} globally exponentially stable.
 
-\mypara From the above steps, even if the problem of imposing a particular structure on $Y$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} cannot generally be computed in a distributed manner. In this paper, these limitations are addressed by imposing a separable structure over $W$.
+\mypara From the above steps, even if the problem of imposing a particular structure on $K$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} cannot generally be computed in a distributed manner. In this paper, these limitations are addressed by imposing a separable structure over $W$.
 
 \mypara Based on \cite{Manchester2014a}, the energy function also provides a control-Lyapunov function for system~\eqref{eq:general system} that can be employed to design a distributed controller for system~\eqref{eq:general system}. More precisely, from the first variation of the energy function, the time derivative of $e$ yields the equation
 \begin{align}
@@ -684,15 +684,16 @@ where $De^+$ stands for the Dini's upper right-hand time derivative of the energ
 
 \section{Design of Distributed Controllers}\label{sec:Design of Decentralized Controllers}
 
+Inspired by the notion of sum-separable Lyapunov functions (see \cite{Dirr2015}), we introduce the following class of control contraction metrics:
+
 \begin{definition}\label{def:SSCCM}
-	A control-contraction metric $V$ for system \eqref{eq:general system} receives the adjective \emph{sum-separable} if it can be decomposed into the following sum
-	\begin{equation*}
+	A control contraction metric $V$ for system \eqref{eq:general system} is called \emph{sum-separable} if it can be decomposed like so:	\begin{equation*}
 		V(x,\delta_x)=\sum_{i=1}^N \delta_{x_i}^\top M_i(x_i)\delta_{x_i}\;,
 	\end{equation*}
 	where, for each index $i\in\mathbb{N}_{[1,N]}$, and for every $(x_i,\delta_{x_i})\in\mathbb{R}^{n_i}\times\mathbb{R}^{n_i}$, the function $V_i(x_i,\delta_{x_i}):=\delta_{x_i}^\top M_i(x_i)\delta_{x_i}$ is a metric on $\mathbb{R}^{n_i}$.
 \end{definition}
 
-\mypara In other words, Definition~\ref{def:SSCCM} states that the metric $V$ on $\mathbb{R}^n$ can be  decomposed into a sum of smaller components. The concept behind this definition is similar to the notion of sum-separable Lyapunov functions (see \cite{Dirr2015}). 
+\mypara In other words, Definition~\ref{def:SSCCM} states that the metric $V$ on $\mathbb{R}^n$ can be  decomposed into a sum of smaller components, each of which depends only on the {\em local} information $x_i, \delta_{x_i}$.
 
 \mypara To address the constraint on the components of $k^\ast$ described in Problem~\ref{problem formulation}, the structure of the feedback defined by Equation~\eqref{eq:contracting feedback law} is obtained by imposing a suitable constraint on the function $Y$ to be satisfied together with the MI \eqref{eq:MI formulation}. 
 
@@ -711,7 +712,7 @@ for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i)\in\mathbb{R}^{n_
 	If there exists a solution to the matrix inequalities
 	\begin{subequations}\label{eq:main result}
 		\begin{equation}\label{eq:MI:SSCCM}
-			-\dot{W}+A+WA^\top+BY+(BY)^\top+2\lambda W\prec0
+			-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\prec0
 		\end{equation}
 		with $W=\mathbin{\mathtt{diag}}(W_1,\ldots,W_N)$,
 		\begin{equation}\label{eq:Ws:SSCCM}
@@ -732,7 +733,7 @@ for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i)\in\mathbb{R}^{n_
 	\begin{equation*}
 		\delta_x^\top\bigg(\dot{M}+(A+BK)M+M(A+BK)^\top-2\lambda M\bigg)\delta_x\leq0
 	\end{equation*}
-	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control-contraction metric for system \eqref{eq:general system} and, according to Theorem~\ref{prop:CCM Existence}, \eqref{eq:differential feedback law} is a differential feedback rendering the equilibrium of the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop.
+	holds, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$. Consequently, the condition defined by the set of equations \eqref{eq:Arstein-Sontag} holds. Thus, $M$ is a sum-separable control contraction metric for system \eqref{eq:general system} and, according to Theorem~\ref{prop:CCM Existence}, \eqref{eq:differential feedback law} is a differential feedback rendering the equilibrium of the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop.
 	
 	
 	
@@ -745,7 +746,7 @@ for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i)\in\mathbb{R}^{n_
 \mypara Since $M$ has a block-diagonal structure, it can be split into $N$ separate optimization problems depending on
 different decision variables. Moreover, the positive definiteness of $M$ implies also that the minimum of Equation \eqref{eq:geodesic sum} corresponds to a minimum of each component $i\in\mathbb{N}_{[1,N]}$. Moreover, for a geodesic curve $\gamma$, $e(\gamma)=\ell(\gamma)$. Consequently,
 	\begin{equation*}
-		\gamma_i=\arg\min e(c_i)\Leftrightarrow\gamma=\arg\min\ell(c),\quad\forall i\in\mathbb{N}_{[1,N]}\;.
+		\gamma_i=\arg\min e(c_i),\forall i\in\mathbb{N}_{[1,N]}\,\Leftrightarrow\,\gamma=\arg\min\ell(c).
 	\end{equation*}
 	Thus, the minimization of Equation~\eqref{eq:geodesic sum} can be computed in parallel. 
 	
