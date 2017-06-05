@@ -811,9 +811,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 \mypara For monotone systems (i.e., systems for which the some order of initial conditions is preserved along the flow of the vector field) described by a vector field that is continuously differentiable and whose gradient matrix is Hurwitz at the origin, there exists a sum-separable Lyapunov function in a neighborhood of the origin \cite[Theorem 3.4]{Dirr2015}. 
 
-\mypara For linear time-invariant systems with the property that solutions starting in the positive orthant remain in the positive orthant (also known as positive systems), the stability of the origin is equivalent to the existence of a quadratic Lyapunov function described by a matrix $P=P^\top\succ0$ with diagonal structure \cite{berman_nonnegative_1994}. Thus, locally (around the origin) the assumption of a diagonal structure is not restrictive.
-
-\mypara Further conditions are discussed in \cite{manchester_existence_2018}.
+\mypara For linear time-invariant systems with the property that solutions starting in the positive orthant remain in the positive orthant (also known as positive systems), the stability of the origin is equivalent to the existence of a quadratic Lyapunov function described by a matrix $P=P^\top\succ0$ with diagonal structure \cite{berman_nonnegative_1994}. Thus, locally (around the origin) the assumption of a diagonal structure is not restrictive. Further conditions are discussed in \cite{manchester_existence_2018}.
 
 \mypara Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
 
@@ -854,7 +852,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 
 \subsection{Chain topology}\label{sec:chain topology}
 
-\mypara The graph describing the network structure is provided in Figure~\ref{fig:graph}. Consider the case with $N=4$. To compute the matrix $W$, chordal graphs are employed.
+\mypara The graph describing the network structure is provided in Figure~\ref{fig:graph}. Consider the case with $N=4$ to compute the matrix $W$, chordal graphs are employed.
 
 \begin{figure}[htpb!]
 	\centering
@@ -863,25 +861,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 	\label{fig:graph}
 \end{figure}
 
-\mypara Figure~\ref{fig:3dsim} shows simulations of the network~\eqref{eq:example} composed of four systems with the network structure as represented by the graph in Figure~\ref{fig:graph} under different inputs. Figure~\ref{fig:Riemannian energy} show the Riemannian metric $V$ computed along solutions to network~\eqref{eq:example}. Note that, when random initial random initial conditions are considered, the system may diverge from the neighborhood of the origin.
-
-\begin{figure}[htpb!]
-	\centering
-	\includegraphics[width=\linewidth]{./imgs/simulation.eps}
-
-	\caption{Simulation of network~\eqref{eq:example} with the target trajectory being the origin and under the controller obtained according to different constrains for the computation of $Y$: diagonal, neighbour and unconstrained. In contrast to these, the open loop simulation (performed with $u\equiv0$) does not converge to the origin.}
-	\label{fig:3dsim}
-\end{figure}
-
-\begin{figure}[htbp!]
-	\centering
-%	\includegraphics[]{}
-	\includegraphics[width=\linewidth]{./imgs/Riemannian_energy.eps}
-	\caption{Computation of the Riemannian energy along solutions to \eqref{eq:example}, according to each of each case. The bottom graph is the logarithm of the Riemannian energy.}
-	\label{fig:Riemannian energy}
-\end{figure}
-
-\mypara When $N>8$ and $Y$ is a full-rank matrix with elements described by polynomials, the set of matrix inequalities~\eqref{eq:main result} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix inequality~\eqref{eq:MI:SSCCM} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position the matrix $T$ is
+\mypara When $N>8$ and $Y$ is a full-rank matrix with elements described by polynomials, the set of matrix inequalities~\eqref{eq:main result} could not be solved on a standard desktop computer. A reason for this issue is the dependence of each element of the matrix $Y$ on the variable $q$. Another reason is the need to verify if the matrix inequality~\eqref{eq:MI:SSCCM} is negative definite. For instance, when  polynomials with degree $d$ are employed, the number of monomials to be optimized in the $(i,j)$ position of the matrix $T$ is
 \begin{equation*}
 		\begin{pmatrix}
 n+d\\ d
@@ -899,7 +879,7 @@ monomials to be computed. This motivates the approach proposed in this paper.
 
 \mypara In the first one, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,4]}\times\mathbb{N}_{[1,4]}$ and no constraints were imposed on the matrix $Y$. Consequently, for each $i\in\mathbb{N}_{[1,4]}$, for every $j\in\mathbb{N}_{[1,4]}$, $Y_{ij}=Y_{ij}(q_1,\ldots,q_4)\in\mathbb{R}^{1\times 2}$.
 	
-The parser took 98  seconds to solve the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ is given by
+\mypara The solver took 98  seconds to compute a solution to the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(1,1,2,1,2,1,1,1)
 \end{equation*}
@@ -951,7 +931,7 @@ with elements given, for every $(q_i,\breve{q}_i)\in\mathbb{R}^2\times\mathbb{R}
 \end{equation*}
  
 
-\mypara In the fully decentralized case, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$. The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result} was 2.6 seconds, the matrix $W$ is given by
+\mypara In the fully decentralized case, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$. The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result} was 4.4 seconds, the matrix $W$ is given by
 \begin{equation*}
  W=\mathbin{\mathtt{diag}}\left(2,1,1,1,1,1,1,1\right),\\
 \end{equation*}
@@ -959,6 +939,24 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 \begin{align*}
  \overline{Y}_i(q_i)=-\begin{bmatrix}2y_i,3+2(x_i^2+y_i^2)\end{bmatrix},\quad i\in\mathbb{N}_{[1,4]}\;.
 \end{align*}
+
+\mypara Figure~\ref{fig:3dsim} shows simulations of the network~\eqref{eq:example} composed of four systems with the network structure as represented by the graph in Figure~\ref{fig:graph}, according to each constraint imposed on the controller. Figure~\ref{fig:Riemannian energy} show the Riemannian metric $V$ computed along solutions to network~\eqref{eq:example}. Note that, when random initial random initial conditions are considered and the input is zero to be identically zero, the system may diverge from the neighborhood of the origin.
+
+\begin{figure}[htpb!]
+	\centering
+	\includegraphics[width=\linewidth]{./imgs/simulation.eps}
+
+	\caption{Simulation of network~\eqref{eq:example} with the target trajectory being the origin and under the controller obtained according to different constrains for the computation of $Y$: diagonal, neighbour and unconstrained. In contrast to these, the open loop simulation (performed with $u\equiv0$) does not converge to the origin.}
+	\label{fig:3dsim}
+\end{figure}
+
+\begin{figure}[htbp!]
+	\centering
+%	\includegraphics[]{}
+	\includegraphics[width=\linewidth]{./imgs/Riemannian_energy.eps}
+	\caption{Computation of the Riemannian energy along solutions to \eqref{eq:example}, according to each of each case. The bottom graph is the logarithm of the Riemannian energy.}
+	\label{fig:Riemannian energy}
+\end{figure}
 
 \mypara Figure \ref{fig:time graph} shows a plot of the time taken by parser to the set of matrix inequalities~\eqref{eq:main result} for the three cases considered in this topology: unconstrained, ``neighbor'' and fully decentralized.  According to this graph, for $N=1,2$, the time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result} has the same order of magnitude for the three cases. However, as the number of systems increases, the unconstrained case takes more time to be solved than the ``neighbor'' case which, in turn, takes more time than the fully decentralized case. The time difference between the two latter cases can be explained by fact that, for the ``neighbor'' case, the matrix $Y$ contains more non-identically zero elements than the fully decentralized case. In addition to this, in the former case, each element is defined as a polynomial of second degree on the variables $q_i$ and $\breve{q}_i$, while for the latter, they are defined on the variable $q_i$ only.
 
@@ -976,7 +974,7 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 	Case&Time taken by the solver (4 agents)\\ \hline
 	Unconstrained&98s\\
 	Neighbor&3.5s\\
-	Fully decentralized&2.6s\\\hline
+	Fully decentralized&4.4s\\\hline
 	\end{tabular}\vspace{1em}
 	\caption{A summary of the time taken to solve the set of matrix inequalities~\eqref{eq:main result} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
 	\label{tab:chain case}
