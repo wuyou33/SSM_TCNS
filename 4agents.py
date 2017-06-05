@@ -30,13 +30,13 @@ def trajectory_plot(t, trajectory, case, title, linestyle, ax1 = None, ax2 = Non
     for counter in range(trajectory.shape[1]):
         if (counter % 2) == 0:
             if (case is 'diagonal') & (counter == 0) & (ax1 == None):
-                ax1 = plt.subplot2grid((5, 2), ((counter % 2), 0))
+                ax1 = plt.subplot2grid((4, 2), ((counter % 2), 0))
             elif (case is 'neighbour') & (counter == 0) & (ax1 == None):
-                ax1 = plt.subplot2grid((5, 2), ((counter % 2) + 2, 0))
+                ax1 = plt.subplot2grid((4, 2), ((counter % 2) + 2, 0))
             elif (case is 'unconstrained') & (counter == 0) & (ax1 == None):
-                ax1 = plt.subplot2grid((5, 2), ((counter % 2), 1))
+                ax1 = plt.subplot2grid((4, 2), ((counter % 2), 1))
             elif (counter == 0) & (ax1 == None):
-                ax1 = plt.subplot2grid((5, 2), ((counter % 2) + 2, 1))
+                ax1 = plt.subplot2grid((4, 2), ((counter % 2) + 2, 1))
             color = color_vector.next()
             ax1.plot(t, trajectory[:, counter], label=r'x' + str(counter / 2 + 1), linestyle=linestyle, c=color)
             ax1.set_xticklabels([])
@@ -44,16 +44,16 @@ def trajectory_plot(t, trajectory, case, title, linestyle, ax1 = None, ax2 = Non
             #ax1.yaxis.set_label_coords(labelx, 0.5)
         else:
             if (case is 'diagonal') & (counter == 1) & (ax2 == None):
-                ax2 = plt.subplot2grid((5, 2), ((counter % 2), 0))
+                ax2 = plt.subplot2grid((4, 2), ((counter % 2), 0))
                 ax2.set_xticklabels([])
             elif (case is 'neighbour') & (counter == 1) & (ax2 == None):
-                ax2 = plt.subplot2grid((5, 2), ((counter % 2) + 2, 0))
+                ax2 = plt.subplot2grid((4, 2), ((counter % 2) + 2, 0))
                 ax2.set_xlabel(r'time $t$')
             elif (case is 'unconstrained') & (counter == 1) & (ax2 == None):
-                ax2 = plt.subplot2grid((5, 2), ((counter % 2), 1))
+                ax2 = plt.subplot2grid((4, 2), ((counter % 2), 1))
                 ax2.set_xticklabels([])
             elif (counter == 1) & (ax2 == None):
-                ax2 = plt.subplot2grid((5, 2), ((counter % 2) + 2, 1))
+                ax2 = plt.subplot2grid((4, 2), ((counter % 2) + 2, 1))
                 ax2.set_xlabel(r'time $t$')
             plt.plot(t, trajectory[:, counter], label=r'y' + str(counter / 2 + 1), linestyle=linestyle, c=color)
             #ax2.yaxis.set_label_coords(labelx, 0.5)
@@ -61,7 +61,7 @@ def trajectory_plot(t, trajectory, case, title, linestyle, ax1 = None, ax2 = Non
         # plt.legend(loc='best')
         plt.ylabel(components.next())
         plt.grid(True)
-
+        plt.tight_layout()
     return ax1, ax2
 
 def initial_condition_generator(n_agents, zero = False):
@@ -264,24 +264,37 @@ def main():
         V_temp = np.dot((target_trajectory - simulation), M.dot((target_trajectory - simulation).transpose()))
         V = []
         for counter in range(len(V_temp)):
-            V.append(V_temp[counter, counter])
+            if case is None:#'open loop':
+                V.append(np.exp(-7.5*t[counter]) * V_temp.max())
+            else:
+                V.append(V_temp[counter, counter])
         V = np.array(V)
 
 
         labelx = -0.15
-        fig = figure('Simulation')
-        fig.subplots_adjust(left=0.2, wspace=0.4, hspace=0.5)
+        fig = plt.figure('Riemannian Energy')
+        fig.subplots_adjust(left=0.2, wspace=0.4, hspace=0.0)
         if case is 'diagonal':
-            ax3 = plt.subplot2grid((5, 2), (4, 0), colspan=2)
+            ax3 = plt.subplot2grid((2, 1), (0, 0), colspan=2)
+            ax4 = plt.subplot2grid((2, 1), (1, 0), colspan=2)
         ax3.plot(t, V, label=case, linestyle=line_style)
-        ax3.grid(True)
-        ax3.set_xlabel(r'time $t$')
-        ax3.set_ylabel(r'$V(Q(t), \Delta_Q(t))$')
+        ax3.grid(True,  linewidth=0.5)
+        ax3.set_ylabel(r'$e(t)$')
         ax3.legend(loc='best')
-        ax3.set_title('Riemannian metric')
+        ax3.set_title('Riemannian energy')
+        ax3.set_xticklabels([])
+
+        ax4.plot(t, V, label=case, linestyle=line_style)
+        ax4.grid(True,  which="both", linewidth=0.5)
+        ax4.set_yscale('log')
+        ax4.set_xlabel(r'time $t$')
+        ax4.set_ylabel(r'$\log(e(t))$')
+        ax4.legend(loc='best')
+        plt.tight_layout()
         #ax3.yaxis.set_label_coords(labelx, 0.5)
 
-    #plt.tight_layout()
+    plt.savefig('Riemannian_energy.eps', format='eps', dpi=1200, bbox_inches='tight')
+    fig = plt.figure('Simulation')
     plt.savefig('simulation.eps', format='eps', dpi=1200, bbox_inches='tight')
     plt.show()
     logging.info('End\n')
