@@ -490,8 +490,7 @@ in this paper we take ``decentralised'' to mean that at each node there is a con
 \mypara Design of controllers for nonlinear systems has also been a major topic of research for many years, see e.g. \cite{Slotine1991,Krstic1995, Sontag1998, Khalil:2001} for established approaches.
 Most methods require (at least implicitly) the construction of a \emph{control Lyapunov function}. While for certain structured systems, constructive methods such as backstepping and energy-based control can be used \cite{Slotine1991, Krstic1995}, no general methodology exists. Indeed, the set of control Lyapunov functions can be non-convex and disconnected \cite{Rantzer:2001}. 
 
-Separable Lyapunov functions
-\cite{Dirr2015} and references therein. \cite{liu_nonlinear_2014}.
+%Separable Lyapunov functions \cite{Dirr2015} and references therein. \cite{liu_nonlinear_2014}.
 
 
 
@@ -507,15 +506,10 @@ Separable Lyapunov functions
 
 
 
-Contraction analysis of networked systems
-\cite{Russo2013}
-\cite{Aminzare2014a} 
-\cite{manchester_existence_2018}
+%Contraction analysis of networked systems \cite{Russo2013} \cite{Aminzare2014a}  \cite{manchester_existence_2018}
 
 
-\mypara At this point, the three contributions of this work can be highlighted. First, using the methodology for synthesis of CCMs introduced in \cite{manchester_control_2017} and imposing a (block-)diagonal structural constraint, a distributed feedback law is obtained. Second, because the CCM has a (block-)diagonal structure, the computation of the online integration phase, which corresponds to an optimization problem, is also distributed. Third, the structure imposed on the CCM allows to reduce the number of equations needed to  verify stability. Note that the proposed method provides an explicit algorithm to design the controller.
-
-A particular case of this paper has also been published in \cite{SteinShiromotoManchester2016}
+\mypara At this point, the three contributions of this work can be highlighted. First, using the methodology for synthesis of CCMs introduced in \cite{manchester_control_2017} and imposing a (block-)diagonal structural constraint, a distributed feedback law is obtained. Second, because the CCM has a (block-)diagonal structure, the computation of the online integration phase, which corresponds to an optimization problem, is also distributed. Third, the structure imposed on the CCM allows to reduce the number of equations needed to  verify stability. Note that the proposed method provides an explicit algorithm to design the controller. A particular case of this paper has also been published in \cite{SteinShiromotoManchester2016}.
 
 \paragraph{Overview} The motivation and the problem formulation are provided in Section \ref{sec:Problem Formulation and Motivation}, with technical background in Section \ref{sec:background}. Sections \ref{sec:Design of Decentralized Controllers} and \ref{sec:distributed_design} present the proposed method and main theoretical results. Illustrations of the proposed approach are provided in Section \ref{sec:Illustration}. Section \ref{sec:Conclusion} collects final remarks.
 
@@ -564,7 +558,7 @@ where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of
 	\label{fig:graph different illustration}
 \end{figure}
 
-\mypara At this point, the problem under consideration in this paper can be stated as follows.
+\mypara At this point, the problem under consideration in this paper can be formulated as follows.
 
 \begin{problem}\label{problem formulation}
  For any forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$, find a feedback law $k^\ast$ such that, for every initial condition $x\in\mathbb{R}^n$, the issuing solution to  \eqref{eq:general system} in closed loop satisfies the inequality~\eqref{eq:global exponential uniform stabilizability}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, the $i$-th component $k^\ast$ depends on specific components of $x$ described by the graph $\mathscr{G}_c$.
@@ -579,7 +573,7 @@ where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of
 		\dot{y}_i&=&u_i\;.
 	\end{array}\right.$}
 \end{equation}
-As explained in Section \ref{sec:Illustration}, when more than five of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to memory constraints. However, by utilizing a separable structure (see definition below), up to 512 of theses systems can be connected and the distributed controller can be computed. 
+As explained in Section \ref{sec:Illustration}, when more than eight of these systems are connected, the CCM approach was unable to provide unconstrained controller on a standard desktop machine, due to memory constraints. However, by utilizing a separable structure (see definition below), up to 512 of theses systems can be connected and the distributed controller can be computed. 
 
 \subsection{Control Contraction Metrics}\label{sec:background}
 
