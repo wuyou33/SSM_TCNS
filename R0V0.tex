@@ -780,27 +780,31 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 \section{Distributed Design of Distributed Controllers}\label{sec:distributed_design}
 
-\mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem to satisfy the set of equations~\eqref{eq:main result}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. In particular, the computation of a solution to MI~\eqref{eq:MI:SSCCM} need to be done in parallel. To that end chordal graphs are employed. It utilizes the network topology to decompose it into smaller complete components. 
+\mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem to satisfy the set of equations~\eqref{eq:main result}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. Thus, the computation of a solution to MI~\eqref{eq:MI:SSCCM} need to be scalable, in the sense that adding more agents to the network will make the time taken to compute the controller linearly. To that end chordal graphs are employed to decompose the network topology into smaller complete components. 
+
+
 
 \begin{proposition}\label{prop:clique tree decomposition}
-	Let $p\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI:SSCCM} can be decomposed into $p$ matrix inequalities with smaller dimension. Moreover, if each matrix is negative definite, then the MI~\eqref{eq:MI:SSCCM} is satisfied.
+	Let $\mathscr{G}:=\mathscr{G}_p\cup\mathscr{G}_c$ and $l\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI:SSCCM} can be decomposed into $p$ matrix inequalities with smaller dimension. Moreover, if each matrix is negative definite, then the MI~\eqref{eq:MI:SSCCM} is satisfied.
 \end{proposition}
 
 \begin{proof}
-	Using the Algorithm~3.1 from \cite{VandenbergheAndersen2015}, it is possible to decompose the graph $\mathscr{G}$ into the clique tree $\mathscr{T}(\mathscr{G})$. Let the integer $p>0$ be the number of nodes of $\mathscr{T}(\mathscr{G})$. The remainder of this proof is based on Section~II of \cite{PakazadHanssonAndersenEtAl2015}.
+	Using the Algorithm~3.1 from \cite{VandenbergheAndersen2015}, it is possible to decompose the graph $\mathscr{G}$ into the clique tree $\mathscr{T}(\mathscr{G})$. Let the integer $l>0$ be the number of nodes of $\mathscr{T}(\mathscr{G})$. The remainder of this proof is based on Section~II of \cite{PakazadHanssonAndersenEtAl2015}.
 	
-\mypara 	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_p$ be the nodes of $\mathscr{T}(\mathscr{G})$, and $\mathbin{\mathtt{card}}_k$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,p]}$. For each index $k\in\mathbb{N}_{[1,p]}$, define the matrix $E_k\in\mathbb{R}^{\dim_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
+\mypara 	Let the sets $\mathscr{C}_1,\ldots,\mathscr{C}_l$ be the nodes of $\mathscr{T}(\mathscr{G})$, and $\mathbin{\mathtt{card}}_k$ be cardinality (number of elements) of the set $\mathscr{C}_k$, $k\in\mathbb{N}_{[1,l]}$. For each index $k\in\mathbb{N}_{[1,l]}$, define the matrix $E_k\in\mathbb{R}^{\mathbin{\mathtt{card}}_k\times n}$ obtained from the $n\times n$ identity matrix with blocks of rows indexed by $\mathbb{N}_{[1,N]}\setminus \mathscr{C}_k$ removed.
 	
-\mypara    Denote the left-hand side of the MI~\eqref{eq:MI:SSCCM} by $T$. The existence of $p$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\mathbin{\mathtt{card}}_k}\to\mathbb{R}^{\mathbin{\mathtt{card}}_k\times \mathbin{\mathtt{card}}_k}$, where $k\in\mathbb{N}_{[1,p]}$, satisfying the equation
+\mypara    Denote the left-hand side of the MI~\eqref{eq:MI:SSCCM} by $T$. The existence of $l$ cliques implies that there exist matrices $F_k:\mathbb{R}^{\mathbin{\mathtt{card}}_k}\to\mathbb{R}^{\mathbin{\mathtt{card}}_k\times \mathbin{\mathtt{card}}_k}$, where $k\in\mathbb{N}_{[1,l]}$, satisfying the equation
    \begin{equation*}
    	 T=\sum_{k=1}^p E_k^\top F_k E_k\;.
   	\end{equation*}
   	
-\mypara Consequently, whenever the following matrix inequality holds 
+\mypara Without loss of generality, assume that the node $i\in\mathscr{V}_c$ is contained in the clique $\mathscr{C}_k$. Whenever the following matrix inequality 
   	\begin{equation}\label{eq:MIF}
-  		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,p]},
+  		F_k\prec0,\quad\forall k\in\mathbb{N}_{[1,l]},
 	\end{equation}
-	uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, the matrix $T$ is uniformly negative definite. Thus, the MI~\eqref{eq:MI:SSCCM} holds. This concludes the proof.
+	holds uniformly, the matrix $T$ is uniformly negative definite. Thus, the MI~\eqref{eq:MI:SSCCM} holds. 
+	
+	For each node $i\in\mathscr{V}_p\cup\mathscr{V}_c$ contained in the clique $\mathscr{C}_k$. The corresponding matrix $F_k$ has arguments $x_i, \breve{x}_i$ and $\vec{x}_i$. In other words, $F_k$ depends on how strongly the nodes of the of the system (defined by $\mathscr{G}_c$) and communication network (defined by $\mathscr{G}_p$) are connected among each other. This concludes the proof.
 \end{proof}
 
 \mypara Note that if a graph is not chordal, it is possible to make it chordal by adding edges to the graph. The obtained graph is said to be a \emph{chordal embedded} and the above procedure can be applied for this graph.
@@ -875,11 +879,11 @@ n+d\\ d
 \end{equation*}
 monomials to be computed. This motivates the approach proposed in this paper.
 
-\mypara To show the advantages of the method proposed in this paper, a benchmark composed of  three scenarios, according to the constraints imposed on the matrix $Y$, has been created.  Namely, the unconstrained case, the ``neighbor'' case, and the fully decentralized case. For the two latter cases, it was possible to consider up to $N=256$ systems for the ``neighbor'' case and up to $N=512$ systems for the fully decentralized (diagonal) case. In these scenarios the techniques provided by chordal graphs have been employed.
+\mypara To show the advantages of the method proposed in this paper, a benchmark composed of  three scenarios, according to the constraints imposed on the matrix $Y$, has been created.  Namely, the unconstrained case, the ``neighbor'' case, and the fully decentralized case. For the two latter cases, it was possible to consider up to $N=512$ systems. In these scenarios the techniques provided by chordal graphs have been employed.
 
 \mypara In the first one, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,4]}\times\mathbb{N}_{[1,4]}$ and no constraints were imposed on the matrix $Y$. Consequently, for each $i\in\mathbb{N}_{[1,4]}$, for every $j\in\mathbb{N}_{[1,4]}$, $Y_{ij}=Y_{ij}(q_1,\ldots,q_4)\in\mathbb{R}^{1\times 2}$.
 	
-\mypara The solver took 98  seconds to compute a solution to the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ is given by
+\mypara The solver took 31 seconds to compute a solution to the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(1,1,2,1,2,1,1,1)
 \end{equation*}
@@ -911,7 +915,7 @@ where $i\in\mathbb{N}_{[1,4]}$, and structure given by the matrix
 
 \mypara In the ``neighbor'' case, the communication network topology $\mathscr{G}_c$ has the same structure as the network system. Consequently, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\mathscr{E}_p$.
 
-\mypara The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result}, in this case, was 3.5 seconds. The matrix $W$ is given by
+\mypara The time taken by solver to find a solution to the set of matrix inequalities~\eqref{eq:main result}, in this case, was 3 seconds. The matrix $W$ is given by
 \begin{equation*}
 		W=\mathbin{\mathtt{diag}}(2,1,1,1,1,1,2,1)
 \end{equation*}
@@ -931,7 +935,7 @@ with elements given, for every $(q_i,\breve{q}_i)\in\mathbb{R}^2\times\mathbb{R}
 \end{equation*}
  
 
-\mypara In the fully decentralized case, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$. The time taken by the parser to solve the set of matrix inequalities~\eqref{eq:main result} was 4.4 seconds, the matrix $W$ is given by
+\mypara In the fully decentralized case, the set of edges $\mathscr{E}_c$ is defined as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$. The time taken by the solver to find a solution to the set of matrix inequalities~\eqref{eq:main result} was 2.5 seconds, the matrix $W$ is given by
 \begin{equation*}
  W=\mathbin{\mathtt{diag}}\left(2,1,1,1,1,1,1,1\right),\\
 \end{equation*}
@@ -965,16 +969,16 @@ and the matrix $Y$ with structure given by \eqref{eq:example:Y:neighbor and dece
 \begin{figure}[htpb!]
 	\centering
 	\includegraphics[width=\columnwidth]{./imgs/ParserTimes}\vspace{-2em}
-	\caption{Time taken to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (8 for the unconstrained case, 256 for the ``neighbor'' case and 512 for the fully decentralized case). Axes are on log scale.}
+	\caption{Time taken to solve the set of matrix inequalities~\eqref{eq:main result} for the three cases under consideration. The number of agents started with one system and doubled  until the maximum that the computer could process (8 for the unconstrained case, 512 for the other cases). Axes are on log scale.}
 	\label{fig:time graph}
 \end{figure}
 
 \begin{table}
 	\begin{tabular}{r|c}
 	Case&Time taken by the solver (4 agents)\\ \hline
-	Unconstrained&98s\\
-	Neighbor&3.5s\\
-	Fully decentralized&4.4s\\\hline
+	Unconstrained&31s\\
+	Neighbor&3s\\
+	Fully decentralized&2.5s\\\hline
 	\end{tabular}\vspace{1em}
 	\caption{A summary of the time taken to solve the set of matrix inequalities~\eqref{eq:main result} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:graph}.}
 	\label{tab:chain case}
@@ -1007,7 +1011,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 
 \mypara In the first scenario, the unconstrained case, the graph $\mathscr{G}_c$ describing the communication network is fully connected, i.e., $\mathscr{E}_c=\mathbb{N}_{[1,6]}\times\mathbb{N}_{[1,6]}$ and no constrained were imposed on the matrix $Y$. Consequently, the matrix $Y$ have elements given by $Y_{ij}=Y_{ij}(q_1,q_2,q_3,q_4)$, for each $i,j\in\mathbb{N}_{[1,4]}$, for each $(q_1,q_2,q_3,q_4)\in\mathbb{R}^8$.
 
-\mypara The solver took 48s to solve the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ obtained is given by
+\mypara The solver took 32s to solve the set of matrix inequalities~\eqref{eq:main result}. The matrix $W$ obtained is given by
 \begin{equation*}
 	W=\mathbin{\mathtt{diag}}(0.1,1,0.1,1,0.1,1,0.1,1,0.1,1,0.3,1).
 \end{equation*}
@@ -1029,7 +1033,7 @@ for every $q\in\mathbb{R}^{12}$, where
 \end{align*}
 for each index $i,j\in\mathbb{N}_{[1,6]}$.
 
-\mypara In the ``neighbor'' case, the topology of the controller is the same as of the network. More precisely, $\mathscr{G}_c=\mathscr{G}_p$. The solver took 57s to solve the set of matrix inequalities~\eqref{eq:main result}.
+\mypara In the ``neighbor'' case, the topology of the controller is the same as of the network. More precisely, $\mathscr{G}_c=\mathscr{G}_p$. The solver took 17s to solve the set of matrix inequalities~\eqref{eq:main result}.
 
 \mypara The matrix $W$ obtained is given by
 \begin{equation*}
@@ -1052,7 +1056,7 @@ $-\begin{bmatrix}
 \end{equation}
 \end{figure*}
 
-\mypara In the last scenario, the fully decentralized case, the set of edges $\mathscr{E}_c$ of the graph $\mathscr{G}_c$ is specified as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$ and no constrained were imposed on the matrix $Y$. The solver took 43s to solve the set of matrix inequalities~\eqref{eq:main result}.
+\mypara In the last scenario, the fully decentralized case, the set of edges $\mathscr{E}_c$ of the graph $\mathscr{G}_c$ is specified as $\mathscr{E}_c=\{(1,1),(2,2),(3,3),(4,4)\}$ and no constrained were imposed on the matrix $Y$. The solver took 12s to solve the set of matrix inequalities~\eqref{eq:main result}.
 
 \mypara The matrix $W$ obtained is given by
 \begin{equation*}
@@ -1075,9 +1079,9 @@ $-\begin{bmatrix}
 \begin{table}
 	\begin{tabular}{r|c}
 	Case&Time taken by the solver (4 agents)\\ \hline
-	Unconstrained&48s\\
-	Neighbor&57s\\
-	Fully decentralized&43s\\\hline
+	Unconstrained&32s\\
+	Neighbor&17s\\
+	Fully decentralized&12s\\\hline
 	\end{tabular}\vspace{1em}
 	\caption{A summary of the time taken to solve the set of matrix inequalities~\eqref{eq:main result} using chordal graph decomposition, in the topology illustrated by Fig.~\ref{fig:cycle graph}.}
 	\label{tab:mixed example}
