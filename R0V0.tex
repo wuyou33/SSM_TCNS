@@ -39,7 +39,9 @@
 
 % Paragraph counter 
 \newcounter{para}
-\newcommand\mypara{\par \thesection.\refstepcounter{para}\thepara.\space}
+%\newcommand\mypara{\par \thesection.\refstepcounter{para}\thepara.\space}
+\newcommand\mypara{\par}
+
 
 \counterwithin*{para}{section} % Resets counter at each section
 
@@ -532,7 +534,7 @@ where, for every positive times $t$, the \emph{system state} $x(t)$ and the \emp
 
 \mypara A function $u^\ast\in\mathcal{L}_{\mathrm{loc}}^\infty(\mathbb{R}_{\geq0},\mathbb{R}^m)$ is said to be an \emph{input signal or control for \eqref{eq:general system}}. For such a control for \eqref{eq:general system}, and for every \emph{initial condition} $x^\ast$, there exists a unique solution to \eqref{eq:general system} (\cite{Teschl2012}) that is denoted by $X(t,x^\ast,u^\ast)$, when computed at time $t$. This solution is defined over an open interval $(\underline{t},\overline{t})$, and it is said to be \emph{forward complete} if $\overline{t}=+\infty$.
 
-\mypara A forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system} is said to be  \emph{globally exponentially uniformly stabilizable} with \emph{rate} $\lambda>0$ if there exist a constant value $C>0$ and a feedback law $k^\ast:\mathbb{R}_{\geq0}\times\mathbb{R}^n\times\{X^\ast\}\times\{u^\ast\}\to\mathbb{R}^m$, denoted as $k^\ast$, such that the inequality
+\mypara A forward complete solution $X^\ast(\cdot,x^\ast,u^\ast)$ to \eqref{eq:general system} is said to be  \emph{globally exponentially uniformly stabilizable} with \emph{rate} $\lambda>0$ if there exist a constant value $C>0$ and a feedback law $k^\ast:\mathbb{R}^n\times\{X^\ast\}\times\{u^\ast\}\to\mathbb{R}^m$, denoted as $k^\ast$, such that the inequality
 \begin{equation}\label{eq:global exponential uniform stabilizability}
 	\left|X^\ast(t,x^\ast,u^\ast)-X(t,x,k^\ast)\right|\leq Ce^{-\lambda t}|x^\ast-x|
 \end{equation}
@@ -550,11 +552,11 @@ holds, for every $t\geq0$, and for every initial condition $x\in\mathbb{R}^n$ (\
 \end{equation}
 where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of states $x_j$ of systems that are adjacent to system~\eqref{eq:subsystem}. Given a graph $\mathscr{G}_c=(\mathbb{N}_{[1,N]},\mathscr{E}_c)$ that specifies a communication network. One of the objectives of this work is to design a feedback law $k_i^\ast=k_i(t,x_i,\vec{x}_i,X_i^\ast,\vec{X}_i^\ast,u_i^\ast)$ for \eqref{eq:subsystem} under the constraints defined by $\mathscr{G}_c$, where $\vec{x}_i\in\mathbb{R}^{\vec{n}_i}$ stands for the vector composed of states $x_j\in\mathbb{R}^{n_j}$, that are adjacent to system $i$, according to the set of edges $\mathscr{E}_c$. The difference between both graphs is illustrated in Figure~\ref{fig:graph different illustration}.
 
-\begin{figure}[htbp!]
+\begin{figure}
 	\centering
 %	\includegraphics[]{}
-	\resizebox{.4\columnwidth}{!}{\input{./imgs/Graphs.pdf_tex}}
-	\caption{Illustration of the graphs $\mathscr{G}_p$ and $\mathscr{G}_c$. The solid lines represent the edges defining $\mathscr{G}_p$ while the dashed lines represent edges defining $\mathscr{G}_c$.}
+	%\resizebox{.4\columnwidth}{!}{\input{./imgs/Graphs.pdf_tex}}
+	\caption{Illustration of the directed graphs representing the physical interaction between nodes $\mathscr{G}_p$, and the communication network $\mathscr{G}_c$. These may or may not be identical.}
 	\label{fig:graph different illustration}
 \end{figure}
 
@@ -605,7 +607,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 
 \mypara Lyapunov stability notions of solutions to \eqref{eq:general system:differential} are similar to those of linear time-varying systems (LTVS) (see \cite{Hespanha:2009} for more information on LTVS). 
 
-\mypara The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given a fixed control $u$ for system \eqref{eq:general system}, $\delta_u\equiv0$. If the Euclidean norm of every solution $\Delta_x(t,x,\delta_x,u,0)$ converges to zero exponentially, as the time tends to infinity, then every pair of solutions to \eqref{eq:general system} under the input $u$ converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
+\mypara The importance of the stability of \eqref{eq:general system:differential} for system \eqref{eq:general system} can be understood as follows. Given a particular control signal $u(\cdot)$ for system \eqref{eq:general system}, $\delta_u\equiv0$. If the Euclidean norm of every solution $\Delta_x(t,x,\delta_x,u,0)$ converges to zero exponentially, as the time tends to infinity, then every pair of solutions to \eqref{eq:general system} under the input $u$ converge to each other exponentially. The interested reader may address \cite{Lohmiller1998,Sontag2010} and references therein for further details.
 
 \mypara A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
 
@@ -635,7 +637,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 		holds, where $\dot{M}:=\partial_{f+Bu}M$.
 	\end{subequations}
 \end{definition}
-\mypara The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition to the differential system~\eqref{eq:general system:differential}. Given a control contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides a stabilizing feedback law of the form $\delta_u=K(x,u)\delta_x$ for system \eqref{eq:general system:differential}, defined for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, where $K:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{n\times m}$. 
+\mypara The set of equations \eqref{eq:Arstein-Sontag} is an adaptation of Artstein-Sontag's condition to the differential system~\eqref{eq:general system:differential}. Given a control contraction metric for system \eqref{eq:general system}, Finsler's lemma (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) provides a stabilizing feedback law of the form $\delta_u=K(x)\delta_x$ for system \eqref{eq:general system:differential}, defined for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, where $K:\mathbb{R}^n\to\mathbb{R}^{n\times m}$. 
 
 \mypara The following result is recalled from \cite{Manchester2014a} and provides a feedback law for system~\eqref{eq:general system} given a feedback law for system~\eqref{eq:general system:differential}.
 
@@ -645,7 +647,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 
 \mypara As remarked in \cite{Manchester2014a}, one of the main advantages to look for control contraction metric over control-Lyapunov functions is that the former case can be formulate in terms of a convex optimization problem while the latter is non-convex \cite{Rantzer:2001}. The steps to obtain a control to system~\eqref{eq:general system} are recalled below.
 
-\mypara Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W(\cdot)=W(\cdot)^\top\succ0$ and a function $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfying the following matrix inequality (MI)
+\mypara Step 1 (Offline MI computation). Consider the change of variables $\eta=M\delta$ and define the matrix $W=M^{-1}$. The set of equations \eqref{eq:Arstein-Sontag} is equivalent (cf. \cite[Lemma 11.1]{CalafioreGhaoui2014}) to the existence of a bounded differentiable function $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ such that $W(\cdot)=W(\cdot)^\top\succ0$ and a function $Y:\mathbb{R}^n\to\mathbb{R}^{m\times n}$ satisfying the following matrix inequality (MI)
 \begin{equation}\label{eq:MI formulation}
 	-\dot{W}+AW+WA^\top+BY+(BY)^\top+2\lambda W\prec0
 \end{equation}
@@ -653,15 +655,19 @@ uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Note that \eqref{eq:MI 
 
 \mypara Once a solution to MI~\eqref{eq:MI formulation} has been computed, the function defined, for every $(x,\delta_x,u)\in\mathbb{R}^n\times\mathbb{R}^n\times\mathbb{R}^m$, by
 	\begin{equation}\label{eq:differential feedback law}
-		\delta_k=Y(x,u)W^{-1}(x)\delta_x:=K(x,u)\delta_x
+		\delta_k=Y(x)W^{-1}(x)\delta_x:=K(x)\delta_x
 	\end{equation}
 	is a differential feedback law that renders the origin globally exponentially stable for system~\eqref{eq:general system:differential} in closed loop with $\delta_k$.
 
-\mypara Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system}, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every pair of solutions $X(\cdot,x,u)$ and $X^\ast(\cdot,x^\ast,u^\ast)\in\mathbb{R}^n$, and at each time instant $t\geq0$,  there exist a smooth geodesic curve $\gamma:\{t\}\times [0,1]\to\mathbb{R}^n$ connecting them. This implies that the solution $k^\ast$ to the integral equation
+\mypara Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system}, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every pair of solutions $X(\cdot,x,u)$ and $X^\ast(\cdot,x^\ast,u^\ast)\in\mathbb{R}^n$, and at each time instant $t\geq0$,  there exist a smooth geodesic curve $\gamma:\{t\}\times [0,1]\to\mathbb{R}^n$ connecting them. Then the differential feedback law $K(x)$ can be integrated along $\gamma$:
 \begin{equation}\label{eq:contracting feedback law}
-	k^\ast(t,\sigma)=u^\ast(t)+\int_0^\sigma K(\gamma(t,s),k^\ast(t,s))\gamma_s(t,s)\,ds\;,
+	k(x,=u^\ast(t)+\int_0^1 K(\gamma(t,s))\gamma_s(t,s)\,ds\;,
 \end{equation}
 where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^\ast$ to system~\eqref{eq:general system} globally exponentially stable.
+
+Note about existence a.e.
+
+Note about constant metric/constant Y case.
 
 \mypara From the above steps, even if the problem of imposing a particular structure on $K$ to correspond to the constraints of Problem \ref{problem formulation} was tractable, the integration of the controller would not necessarily satisfy these constraints. This is due to the fact that the solutions to the optimization problem \eqref{eq:geodesic formulation} cannot generally be computed in a distributed manner. In this paper, these limitations are addressed by imposing a separable structure over $W$.
 
@@ -676,9 +682,11 @@ where $De^+$ stands for the Dini's upper right-hand time derivative of the energ
 	-\tfrac{\partial \gamma_i}{\partial s_i}(t,1)M_i(X_i)B_i(X_i)u_i\;.
 \end{align*}
 
+This was used in \cite{wang_distributed_2017} to guarantee stability in distributed economic model predictive control.
+
 \section{Design of Distributed Controllers}\label{sec:Design of Decentralized Controllers}
 
-Inspired by the notion of sum-separable Lyapunov functions (see \cite{Dirr2015}), we introduce the following class of control contraction metrics:
+Inspired by the notion of sum-separable Lyapunov functions (see e.g. \cite{Dirr2015}), we introduce the following class of control contraction metrics:
 
 \begin{definition}\label{def:SSCCM}
 	A control contraction metric $V$ for system \eqref{eq:general system} is called \emph{sum-separable} if it can be decomposed like so:	\begin{equation*}
@@ -717,11 +725,11 @@ for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i)\in\mathbb{R}^{n_
 			Y\in\Xi.
 		\end{equation}
 	\end{subequations}
-	Then, $W$ is a sum-separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
+	Then, $W$ is a separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
-	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfy the set of equations~\eqref{eq:main result}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is diagonal, the structure of $Y$ is preserved and, consequently, $K\in\Xi$.
+	By assumption, the functions $W:\mathbb{R}^n\to\mathbb{R}^{n\times n}$ and $Y:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^{m\times n}$ satisfy the set of equations~\eqref{eq:main result}. Apply the coordinate change $\eta=M\delta$ and define the matrices $W=M^{-1}$ and $K=YW^{-1}$. Since $W$ is separable, the sparsity pattern and local dependence of $Y$ is preserved and, consequently, $K\in\Xi$.
 	
 \mypara	The MI~\eqref{eq:MI:SSCCM} implies that the inequality
 	\begin{equation*}
