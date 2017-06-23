@@ -778,7 +778,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 \mypara Although Theorem~\ref{thm:main result} provides a methodology to design distributed controllers, \emph{a priori}, nothing has been imposed to compute the set of equations~\eqref{eq:main result} in a distributed manner. The next section provides sufficient conditions to parallelize the search for a solution to the set of equations~\eqref{eq:main result}.
 
-\section{Distributed Design of Distributed Controllers}\label{sec:distributed_design}
+\section{Scalable Design of Distributed Controllers}\label{sec:distributed_design}
 
 \mypara For large scale systems, the dimension of the matrices $W$ and $Y$ can be a problem to satisfy the set of equations~\eqref{eq:main result}. This is due to the fact that semidefinite programming become less efficient when those matrices have high rank \cite{VandenbergheBoyd1996}. Thus, the computation of a solution to MI~\eqref{eq:MI:SSCCM} need to be scalable, in the sense that adding more agents to the network will make the time taken to compute the controller linearly. To that end chordal graphs are employed to decompose the network topology into smaller complete components. 
 
