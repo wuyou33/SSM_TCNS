@@ -726,7 +726,7 @@ for every $i,j\in\mathscr{V}_c$, and for every $(x_i,\vec{x}_i)\in\mathbb{R}^{n_
 			Y\in\Xi.
 		\end{equation}
 	\end{subequations}
-	Then, $W$ is a separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
+	Then, $W$ is a separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. Moreover, for each index $i\in\mathbb{N}_{[1,N]}$, each function $W_i$ depends only on the state of system $i$. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the set $\Xi$.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem \ref{thm:main result}]
@@ -780,7 +780,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 	\begin{equation}\label{eq:with R}
 		-\dot{W}+\tfrac{\partial f}{\partial x}W+W\tfrac{\partial f}{\partial x}^\top-BRB^\top-2\lambda W\prec0
 	\end{equation}
-	holds uniformly with respect to $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, where $R=\mathbin{\mathtt{diag}}(\rho_1,\ldots,\rho_N)$. Then, $W$ is a sum-separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. In particular, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the functions $\rho_i$.
+	holds uniformly with respect to $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$, where $R=\mathbin{\mathtt{diag}}(\rho_1,\ldots,\rho_N)$. Then, $W$ is a sum-separable control contraction metric for system~\eqref{eq:general system} and there exists a solution to Problem~\ref{problem formulation}. Also, the graph $\mathscr{G}_c$ describing the communication network among different controllers specifies the functions $\rho_i$.
 \end{corollary}
 
 \mypara To see that Corollary~\ref{cor:main result} is a particular case of Theorem~\ref{thm:main result}, note that imposing $Y$ to be $Y=-RB^\top/2$ on the set $\Xi$ (cf. \eqref{eq:YinXi}), the matrix inequality~\eqref{eq:MI:SSCCM} yields \eqref{eq:with R}. 
@@ -794,7 +794,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 
 \begin{proposition}\label{prop:clique tree decomposition}
-	Let $\mathscr{G}:=\mathscr{G}_p\cup\mathscr{G}_c$ and $l\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI:SSCCM} can be decomposed into $p$ matrix inequalities with smaller dimension. Moreover, if each matrix is negative definite, then the MI~\eqref{eq:MI:SSCCM} is satisfied.
+	Let $\mathscr{G}:=\mathscr{G}_p\cup\mathscr{G}_c$ and $l\in\mathbb{N}_{>0}$ be the number of nodes of the clique tree $\mathscr{T}(\mathscr{G})$. Then, the MI~\eqref{eq:MI:SSCCM} can be decomposed into $l$ matrix inequalities with smaller dimension. Furthermore, each of the matrix inequality correspond to a clique, and for each node $i\in\mathscr{V}_p\cup\mathscr{V}_c$ contained in it, the matrix inequality depends on $x_i, \breve{x}_i$ and $\vec{x}_i$. Finally, whenever each matrix inequality holds uniformly over its argument, the set of Equations~\eqref{eq:MI:SSCCM} is satisfied.
 \end{proposition}
 
 \begin{proof}
