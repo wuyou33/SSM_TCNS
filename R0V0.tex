@@ -556,6 +556,7 @@ where $\breve{x}_i\in\mathbb{R}^{\breve{n}_i}$ stands for the vector composed of
 	\centering
 %	\includegraphics[]{}
 	%\resizebox{.4\columnwidth}{!}{\input{./imgs/Graphs.pdf_tex}}
+	\includegraphics[width=\columnwidth]{./imgs/physical_network_graphs}
 	\caption{Illustration of the directed graphs representing the physical interaction between nodes $\mathscr{G}_p$, and the communication network $\mathscr{G}_c$. These may or may not be identical.}
 	\label{fig:graph different illustration}
 \end{figure}
@@ -611,7 +612,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 
 \mypara A sufficient condition for the stability of \eqref{eq:general system:differential} is provided by analyzing the derivative of a particular function along the solutions of systems \eqref{eq:general system} and \eqref{eq:general system:differential}. This function is recalled from \cite{Forni2014} and \cite{Manchester2014a}.
 
-\begin{definition}\label{def:}
+\begin{definition}
 		 A metric $V:\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}_{\geq0}$ receives the adjective \emph{contraction} if, for a fixed control $u$ for system~\eqref{eq:general system}, there exists a value $\lambda>0$ such that the inequality
 	 	 \begin{equation}
 	 	 	\tfrac{dV}{dt}(X(t),\Delta(t))\leq -\lambda V(X(t),\Delta(t))
@@ -624,7 +625,7 @@ for indexes $j,k\in\mathbb{N}_{[1,n]}$.
 
 \mypara For the class of systems considered in this paper, the following kind of metric is of interest, since it also allows the design a feedback law for system \eqref{eq:general system:differential}.
 
-\begin{definition}[{\cite{Manchester2014a}}]\label{def:}
+\begin{definition}[{\cite{Manchester2014a}}]
 	A metric for system \eqref{eq:general system} is said to be a \emph{control contraction metric for system \eqref{eq:general system}} if there exists a constant value $\lambda>0$ such that the condition
 	\begin{subequations}\label{eq:Arstein-Sontag}
 		\begin{equation}\label{eq:}
@@ -661,7 +662,7 @@ uniformly over $(x,u)\in\mathbb{R}^n\times\mathbb{R}^m$. Note that \eqref{eq:MI 
 
 \mypara Step 2 (Online controller integration). The feedback law for system \eqref{eq:general system} can be obtained by integration as follows. Let $u^\ast:\mathbb{R}_{\geq0}\to\mathbb{R}^m$ be a control for system \eqref{eq:general system}, from Hopf-Rinow theorem (cf. \cite[Theorem 7.7]{Boothby1986}), for every pair of solutions $X(\cdot,x,u)$ and $X^\ast(\cdot,x^\ast,u^\ast)\in\mathbb{R}^n$, and at each time instant $t\geq0$,  there exist a smooth geodesic curve $\gamma:\{t\}\times [0,1]\to\mathbb{R}^n$ connecting them. Then the differential feedback law $K(x)$ can be integrated along $\gamma$:
 \begin{equation}\label{eq:contracting feedback law}
-	k(x,=u^\ast(t)+\int_0^1 K(\gamma(t,s))\gamma_s(t,s)\,ds\;,
+	k(t)=u^\ast(t)+\int_0^1 K(\gamma(t,s))\gamma_s(t,s)\,ds\;,
 \end{equation}
 where $s\in[0,1]$, is a feedback law rendering any forward complete solution $X^\ast$ to system~\eqref{eq:general system} globally exponentially stable.
 
@@ -823,7 +824,7 @@ different decision variables. Moreover, the positive definiteness of $M$ implies
 
 \mypara For monotone systems (i.e., systems for which the some order of initial conditions is preserved along the flow of the vector field) described by a vector field that is continuously differentiable and whose gradient matrix is Hurwitz at the origin, there exists a sum-separable Lyapunov function in a neighborhood of the origin \cite[Theorem 3.4]{Dirr2015}. 
 
-\mypara For linear time-invariant systems with the property that solutions starting in the positive orthant remain in the positive orthant (also known as positive systems), the stability of the origin is equivalent to the existence of a quadratic Lyapunov function described by a matrix $P=P^\top\succ0$ with diagonal structure \cite{berman_nonnegative_1994}. Thus, locally (around the origin) the assumption of a diagonal structure is not restrictive. Further conditions are discussed in \cite{manchester_existence_2018}.
+\mypara For linear time-invariant systems with the property that solutions starting in the positive orthant remain in the positive orthant (also known as positive systems), the stability of the origin is equivalent to the existence of a quadratic Lyapunov function described by a matrix $P=P^\top\succ0$ with diagonal structure \cite{berman_nonnegative_1994}. Thus, locally (around the origin) the assumption of a diagonal structure is not restrictive.
 
 \mypara Based on these paragraphs, the question of how restrictive is the requirement of $M$ to have a block-diagonal structure remains open. As mentioned before, the main advantage to look for control contraction metric with a diagonal structure is that it allows to exploit sparsity to design controllers for large scale systems. This is illustrated in the next section.
 
