@@ -14,14 +14,14 @@ Simulation   = 0;
 SystemStates = ['x','y'];
 SystemInputs = ['u'];
 SystemParameters = ['d'];
-% d = 1e-2;
-d = 0
+d = 1e-2;
+% d = 0
 lambda = 1e-1; % Max value for SOS feasibilityprofile on
-Option       = 'General';
-solver = 'CDCS';
+Option       = 'Neighbor';
+% solver = 'CDCS';
 solver = 'mosek'
 
-NumberOfAgents = 1
+NumberOfAgents = 512
 
 fname = sprintf('Diary%s%dAgents-Solver_%s',Option,NumberOfAgents,solver);
 diary(fname)
@@ -93,11 +93,11 @@ tic
 SolverTime = toc;
 
 Precision = 1e-3;
-AnalysisW(SystemStates,LaplacianMatrix,Precision)
-PostProcessedW
+%AnalysisW(SystemStates,LaplacianMatrix,Precision)
+%PostProcessedW
 
-AnalysisY(SystemInputs,LaplacianMatrix,Precision)
-PostProcessedY
+%AnalysisY(SystemInputs,LaplacianMatrix,Precision)
+%PostProcessedY
 
 NumberOfAgents = size(LaplacianMatrix,1);
 fname = sprintf('Output%s%dAgents-Solver_%s',Option,NumberOfAgents,solver);
