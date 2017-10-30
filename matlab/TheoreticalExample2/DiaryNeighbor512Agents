@@ -1,0 +1,74 @@
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/getvariables', 'C:\Program Files\MATLAB\R2015b\yalmip\@sdpvar\getvariables.m', 16)" style="font-weight:bold">sdpvar/getvariables</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\yalmip\@sdpvar\getvariables.m',16,0)">line 16</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/exponents', 'C:\Program Files\MATLAB\R2015b\yalmip\@sdpvar\exponents.m', 9)" style="font-weight:bold">sdpvar/exponents</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\yalmip\@sdpvar\exponents.m',9,0)">line 9</a>)
+    x_var = [x_var getvariables(extsubsref(x,i))];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('shadowjacobian>scalar_jacobian', 'C:\Program Files\MATLAB\R2015b\yalmip\extras\shadowjacobian.m', 70)" style="font-weight:bold">shadowjacobian>scalar_jacobian</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\yalmip\extras\shadowjacobian.m',70,0)">line 70</a>)
+exponent_p = exponents(f,AllVars);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('shadowjacobian', 'C:\Program Files\MATLAB\R2015b\yalmip\extras\shadowjacobian.m', 46)" style="font-weight:bold">shadowjacobian</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\yalmip\extras\shadowjacobian.m',46,0)">line 46</a>)
+        dfdx = [dfdx;scalar_jacobian(f(i),x,AllVars)];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/jacobian', 'C:\Program Files\MATLAB\R2015b\yalmip\@sdpvar\jacobian.m', 16)" style="font-weight:bold">sdpvar/jacobian</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\yalmip\@sdpvar\jacobian.m',16,0)">line 16</a>)
+            dfdx = shadowjacobian(f,recover(x));
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('PreProcessedSys', 'C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\PreProcessedSys.m', 7196)" style="font-weight:bold">PreProcessedSys</a> (<a href="matlab: opentoline('C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\PreProcessedSys.m',7196,0)">line 7196</a>)
+B = jacobian(f,InputVector);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation>LMIOptimisation1', 'C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 46)" style="font-weight:bold">LMIOptmisation>LMIOptimisation1</a> (<a href="matlab: opentoline('C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',46,0)">line 46</a>)
+PreProcessedSys
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation', 'C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 33)" style="font-weight:bold">LMIOptmisation</a> (<a href="matlab: opentoline('C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',33,0)">line 33</a>)
+LMIOptimisation1(LaplacianMatrix,Option,lambda)
+} 
+{Out of memory. Type HELP MEMORY for your options.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation>LMIOptimisation1', 'C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 55)" style="font-weight:bold">LMIOptmisation>LMIOptimisation1</a> (<a href="matlab: opentoline('C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',55,0)">line 55</a>)
+PreProcessedY
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation', 'C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 33)" style="font-weight:bold">LMIOptmisation</a> (<a href="matlab: opentoline('C:\Users\SSPG\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',33,0)">line 33</a>)
+LMIOptimisation1(LaplacianMatrix,Option,lambda)
+} 
+{The current workspace already has too many variables; there is no room for
+"Yp641665".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation>LMIOptimisation1', 'C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 55)" style="font-weight:bold">LMIOptmisation>LMIOptimisation1</a> (<a href="matlab: opentoline('C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',55,0)">line 55</a>)
+PreProcessedY
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation', 'C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 33)" style="font-weight:bold">LMIOptmisation</a> (<a href="matlab: opentoline('C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',33,0)">line 33</a>)
+LMIOptimisation1(LaplacianMatrix,Option,lambda)
+} 
+clear all
+LMIOptmisation
+
+NumberOfAgents =
+
+   512
+
+{The current workspace already has too many variables; there is no room for
+"Yp641665".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation>LMIOptimisation1', 'C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 55)" style="font-weight:bold">LMIOptmisation>LMIOptimisation1</a> (<a href="matlab: opentoline('C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',55,0)">line 55</a>)
+PreProcessedY
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation', 'C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 33)" style="font-weight:bold">LMIOptmisation</a> (<a href="matlab: opentoline('C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',33,0)">line 33</a>)
+LMIOptimisation1(LaplacianMatrix,Option,lambda)
+} 
+{The current workspace already has too many variables; there is no room for
+"Yp641665".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation>LMIOptimisation1', 'C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 55)" style="font-weight:bold">LMIOptmisation>LMIOptimisation1</a> (<a href="matlab: opentoline('C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',55,0)">line 55</a>)
+PreProcessedY
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('LMIOptmisation', 'C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m', 33)" style="font-weight:bold">LMIOptmisation</a> (<a href="matlab: opentoline('C:\Users\humberto.shiromoto\Dropbox\Work\Articles\IManchester\SeparableMetrics\TCNS\Matlab\TheoreticalExample\TheoreticalExample1Version2\LMIOptmisation.m',33,0)">line 33</a>)
+LMIOptimisation1(LaplacianMatrix,Option,lambda)
+} 
+clc
+clear all
+LMIOptmisation
+
+NumberOfAgents =
+
+     1
+
