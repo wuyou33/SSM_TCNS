@@ -128,4 +128,4 @@ sympy-plots-for-*.tex/
 *.mtc4
 
 # Ignore images folder
-./imgs/
+/imgs/
