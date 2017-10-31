@@ -126,3 +126,6 @@ sympy-plots-for-*.tex/
 *.mtc2
 *.mtc3
 *.mtc4
+
+# Ignore images folder
+./imgs/
