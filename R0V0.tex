@@ -83,12 +83,13 @@
 
 
 % *** GRAPHICS RELATED PACKAGES ***
-%
+\usepackage{import}
+  
 \ifCLASSINFOpdf
   \usepackage{xcolor}
   \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
-  \graphicspath{{./imgs/}}
+  \graphicspath{{./imgs}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
@@ -869,7 +870,7 @@ are not linearly independent when $y_1=\cdots=y_N=0$.  Furthermore, due to the q
 
 \begin{figure}[htpb!]
 	\centering
-	\input{./imgs/GraphStructure.pdf_tex}
+	\import{./imgs/}{GraphStructure.pdf_tex}
 	\caption{Graph describing the network composed of systems of the form \eqref{eq:example}.}
 	\label{fig:graph}
 \end{figure}
@@ -1013,7 +1014,7 @@ Moreover, from Theorem~\ref{thm:main result}, the feedback law $k$ solves Proble
 
 \begin{figure}[htpb!]
 	\centering
-	\input{./imgs/NewExample.pdf_tex}
+	\import{./imgs/}{NewExample.pdf_tex}
 	\caption{Graph describing the network composed of systems of the form \eqref{eq:example}.}
 	\label{fig:cycle graph}
 \end{figure}
