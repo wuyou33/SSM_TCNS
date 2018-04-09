@@ -1,0 +1,22 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"build_systems":
+	[
+		{
+	"name": "PDFLaTeX",
+    "cmd": ["pdflatex -synctex=1 -interaction=nonstopmode $file"],
+    "selector": "text.tex.latex"
+		}
+	],
+    "settings": 
+	[
+		{
+      		"TEXroot": "R0V0.tex"
+  		}
+  	]
+}
