@@ -1,0 +1,47 @@
+The paper discusses the method of control contraction metrics for the
+design of distributed controllers for networked nonlinear dynamical
+systems. Conditions for the existence of so-called sum-separable
+control contraction metrics are expressed in terms of matrix
+inequalities. And because the metric is sum-separable, the controller
+synthesis problem is computationally efficient and scalable.
+
+ The paper is well-written and the results seem correct, but I have
+some doubt about the novelty and applicability of the result. First of
+all, it is no surprise that any restriction on the space of matrix
+functions in which the solution to the matrix inequalities (9) and  (12
+c) should be found could make the search for a solution faster and
+numerically tractable. However, there might exist systems for which the
+restricted version of (9), i.e. (12a) (12b), does not have a solution.
+Are there any conditions (like controllability, stabilizability) that
+are sufficient for the existence of the sum-separable metric? Does
+sum-separability relate to the structure of the physical interaction
+graph? Second, I guess the matrix inequalities (12) should be satisfied
+along all possible (x,u), which renders the problem infinite
+dimensional. Please explain in detail how one can solve the matrix
+inequalities. 
+Further comments are:
+II.A: 
+-	Typo in the definition of a chord: path->cycle
+-	It is unclear if trees, leaves, … are defined for directed or
+undirected graphs. Please clarify. In particular, doesn’t the
+tree-decomposition of a chordal graph require the graph to be
+undirected?
+Technical results:
+-	Problem 1. Should (1) be (3)? Although (1) includes (3), it
+lacks the description of the physical network. Furthermore, I guess
+some connectivity assumptions are imposed on the physical (and
+communication) graph(s); Please clarify. 
+-	Proposition 1. How is the union of graphs defined in this
+paper? (By the way V_p \cup V_c = V as V = V_p=V_c, isn’t it?) What
+further assumptions/conditions are imposed on these graphs (undirected,
+connected,…)? 
+Examples:
+-	The examples do not support the generality of the technical
+results. Why do you consider only identical systems (except for i=1 and
+i=N) on undirected networks of small size. Please provide more
+convincing examples. 
+-	Why is the constraint Y_{ij}=Y_{ji} imposed in V.A?  (It is
+mentioned that no constraints are imposed…) In particular, where does
+this symmetry come from?
+-	Graph Figure 6 is not chordal. Furthermore, does this graph
+represent  G_c, or G_p, or both?

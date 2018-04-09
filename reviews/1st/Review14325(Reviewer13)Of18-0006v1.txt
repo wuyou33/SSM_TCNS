@@ -1,0 +1,92 @@
+
+Review of: Distributed Nonlinear Control Design using Separable Control
+Contraction Metrics
+
+The paper considers designing a stabilizing distributed control for a
+network of plants with dynamics \dot x=f(x)+B(x) u, with the matrix
+B(x) full rank for all x. The approach combines contraction metrics and
+separable metric structures, resulting in controllers that only depend
+on information from local sensors and communications from immediate
+neighbors.  
+
+Main comments:
+-------------------
+
+The basic idea seems to be that the variational eqn that is used in the
+analysis of contraction and the synthesis of contractive controllers is
+linear and thus linear control approaches like those based on LMIs can
+be applied. However, if I understand correctly then each of the basic
+ideas used in the paper is by itself well known and I am not sure that
+combining them together justifies publication as a full paper.	
+
+The authors use the term "contraction metrics" for what seems to be a
+Lyapunov-Finsler function (see “A differential Lyapunov framework for
+contraction analysis,” IEEE TAC, 2014.). Later on they use
+space-dependent matrix measures, but again without using the correct
+terminology (see eg the survey paper "Contraction methods for nonlinear
+systems: a brief introduction and some open problems", IEEE CDC, 2014).
+
+The authors state that "Note that the proposed method provides an
+explicit algorithm to design the controller. But if I understand
+correctly the designed controllers are implicit in the sense that they
+depended on an implicit integral. Isn't this a drawback of the
+approach? 
+
+Rigorous contraction analysis using matrix measures applied to the
+variational system requires to assume a convex state space. Indeed, the
+rigorous proof that the distance between x(t,a) and x(t,b) decreases
+with time t is based on studying J(ra+(1-r)b) where J is the Jacobian
+of the vector field and r \in [0,1] (see eg "Global entrainment of
+transcriptional systems to periodic inputs,” PLOS Computational
+Biology, 2010). Hence, ra+(1-r)b must be in the state space. I could
+not find any mention of this in the paper under review. 
+
+I am not sure I understood Definition 1. Is the goal to design a
+different static feedback law k^* for each solution of the system or to
+design a single k^*  that renders all solutions contractive? 
+I did not understand why the data in Table 1 is stated as a table
+rather than just a sentence. 
+
+The paper is generally well-written but sometimes the full technical
+details are missing. In some places, I could not understand what the
+authors mean. For example, in Eq (4) what is the range of the index i? 
+ 
+
+Typos:
+---------
+
+in refs [37] and [45]: lyapunov -> Lyapunov
+e_i denotes the vector with zeros in all rows except..-> zeros in all
+entries except…
+Note that, when random initial random initial conditions
+
+can be explained by fact that,
+
+here same three scenarios are
+
+former case can be formulate
+
+The acronym MI (for matrix inequality) is used before it is defined. By
+the way, isn't it better to use LMI?
+
+Missing links and references: 
+----------------------------------
+
+There are other papers combining contraction theory and graph theory eg
+“Certifying spatially uniform behavior in reaction-diffusion PDE and
+compartmental ODE systems,” Automatica, 2011. How are these related to
+the results in the paper under review? A very important property of
+contractive systems with many applications is entrainment to periodic
+excitations see eg “Global entrainment of transcriptional systems to
+periodic inputs,” PLOS Computational Biology, 2010. I think that
+mentioning this is useful. 
+The authors state that "Decentralised and distributed control are
+long-standing problems in control theory, with important early work
+surveyed in [8]". I think that another relevant ref on this is the
+monograph "Large-Scale Dynamic Systems: Stability and Structure" by
+Siljak.
+
+There are other approaches to decentralized control using a diagonal
+structure constraint and even more general structures see eg
+"Distributed Control with Low-Rank Coordination", IEEE TAC, 2014. How
+are these related to the results here?

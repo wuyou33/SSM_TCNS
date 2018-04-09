@@ -1,0 +1,62 @@
+The paper "Distributed Nonlinear Control Design using Separable Control
+Contraction Metrics" studies the problem of synthesizing distributed
+controllers for networked systems using a contraction theory approach.
+The basic idea is to construct a controller for  the variational
+dynamics, which is a linear time-varying system, instead of the
+original nonlinear dynamics. In doing so, sparsity constraints can be
+enforced on the controller so that a distributed controller is
+obtained.
+
+The paper is well written and appears correct. I do not have any major
+concerns. However, I do have the following comments.
+	- In the control synthesis steps outline after Theorem 1, in
+step 1, it is suggested to find W and Y so that (9) is satisfied for
+all x,u. How is this computed to ensure that it holds for all x and u?
+	- After Theorem 1, it is stated that computing a
+control-Lyapunov function for the system is Non-convex. It should be
+noted that for some classes of systems, this problem is convex.
+	- There seem to be quite a few details lacking in the
+description of the numerical experiments. For example, are the
+conditions of Theorem 2 somehow augmented with a cost function? If not,
+then there does not seem to be any reason why the unconstrained case
+should be better than the neighbor case, which is in turn better than
+the diagonal case since in both cases the latter is a special case of
+the former. If there is some cost function,  this should be described.
+	- What are the dynamics for the example with a cycle shown in
+Figure 6? In particular, node 4 now has 3 neighbors and it seems the
+dynamics must be different than (4).
+	- In the last sentence of Corollary 1, it is comment that the
+graph G_c specifies the functions rho_i. This seems strange since the
+existence of such rho_i’s is part of they hypothesis of the Corollary,
+so I do not understand what this statement means.
+	- I am not sure I see the purpose in introducing the physical
+network alongside the communication network. Where is the topology of
+the physical networked used?
+Some more minor comments:
+	- I don’t understand the point in introducing Example 1 and
+equation (4) on page 3 when it is repeated later in Section 5. I
+suggested removing it. Regardless, it is confusing to have the same
+equation appear twice with the same equation number.
+	- Theorem 2 should be rewritten so that it consists of complete
+sentences.
+	- In Proposition 1 and the discussion following, why is the
+notation V_p\cup V_c sometimes used? It seems that V_p and V_c should
+both consist of the full set of nodes in the system, so I do not seem
+the necessity in taking their union.
+	- In the numerical examples, sometimes the “network” is
+referred to without specifying if it is the physical network or the
+communication network. This should be specified.
+	- 8 lines after (6), (x,\delta_x)\in R^n\times R^n, not
+R^n\times R^m
+	- 11 lines after (6), (x(t),u(t)\inR^n\times R^m, not R^n\times
+R^n.
+	- It is a bit misleading to refer to solutions of the system
+(6) since (6) is not itself a system. It is only a complete system when
+couple with (1).
+	- After theorem 1, it appears that the argument of M and other
+variables is dropped sometimes. First, this should be noted that the
+argument is being dropped. Second, this could lead to some confusion
+since the special case of constant matrices is explicitly comment on.
+	- Page 5, column 1, line 18: what is Y_{pq}?
+	- Second sentence of section V.A, “Consider the case with
+N=4…”. I don’t understand this sentence. Is there a typo?

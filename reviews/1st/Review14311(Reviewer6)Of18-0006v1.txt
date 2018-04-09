@@ -1,0 +1,30 @@
+The paper is clearly written and well presented. The authors extend
+their recently paper I. R. Manchester and J. J. E. Slotine, “Control
+Contraction Metrics: Convex and Intrinsic Criteria for Nonlinear
+Feedback Design,” IEEE Transactions on Automatic Control, vol. 62, pp.
+3046–3053, June 2017, to include the result of Theorem 2 and Corollary
+1, as well as scalability considerations as part of Section IV. In
+brief, the design of nonlinear controllers comes down to first solving
+the system of matrix inequalities (equation 12), which can be made more
+scalable using arguments on the clique tree. 
+
+My main concern is about the novelty of this work. The authors could
+clarify their contribution better, with respect to the previous work
+mentioned above. The authors could clarify the benefits of their
+results when it comes to control design, again with respect to their
+previous work. 
+
+The authors could suggest an engineering application for their result
+as opposed to the artificial agent dynamics considered (system (4)),
+particularly because the paper is being considered for publication in
+IEEE TCNS. This would allow the authors to give more perspective to the
+scalability considerations. Such an addition to the paper may address
+the novelty concern. 
+
+Some literature is missing, e.g., among others, the work on the use of
+matrix measures and norms for the design of nonlinear controllers “A
+Contraction Approach to the Hierarchical Analysis and Design of
+Networked Systems”. The authors could be more exhaustive in citing the
+“non-Lyapunov” literature.
+  
+Please correct typos, e.g. “define $\Pi_i$ as the”.
